@@ -1,0 +1,21 @@
+call do_all 01
+call do_all 02
+call do_all 03
+call do_all 04
+call do_all 05
+call do_all 06
+call do_all 07
+call do_all 08
+call do_all 09
+call do_all 10
+
+call do_publish 01
+call do_publish 02
+call do_publish 03
+call do_publish 04
+call do_publish 05
+call do_publish 06
+call do_publish 07
+call do_publish 08
+call do_publish 09
+call do_publish 10

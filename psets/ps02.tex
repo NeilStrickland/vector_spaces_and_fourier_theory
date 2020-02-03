@@ -1,0 +1,268 @@
+\begin{document}
+
+\opengraphsfile{pics/pics01}
+
+\begin{center}
+ {\huge Vector Spaces and Fourier Theory ---
+   Problem Sheet 2
+ }
+\end{center}
+
+\begin{rubric}
+ Please log on at \verb+http://aim.shef.ac.uk/AiM+ and enter your
+ answers there.  Use your usual user name (eg \verb+pma04xyz+) but
+ \textbf{not} your usual password.  Instead, click the 'Password
+ reminder' button and your password will be emailed to you.
+\end{rubric}
+
+\begin{exercise}\label{ex-check-linear}
+ Which of the following rules defines a linear map?
+ \begin{itemize}
+  \item[(a)] $\phi_0\:\R^2\to\R^2$ given by
+   $\phi_0\bsm x\\ y\esm=\bsm x+y\\ x-y\esm$
+  \item[(b)] $\phi_1\:\R^3\to\R$ given by 
+   $\phi_1\bsm x\\ y\\ z\esm=xyz$
+  \item[(c)] $\phi_2\:M_2\R\to\R$ given by
+   $\phi_2\bsm a&b\\ c&d\esm=\max(|a|,|b|,|c|,|d|)$
+  \item[(d)] $\phi_3\:\R[x]\to\R$ given by
+   $\phi_3(f)=f(0)+f'(1)+f''(2)$
+  \item[(e)] $\phi_4\:\R[x]\to\R$ given by
+   $\phi_4(f)=f(0)f(1)$.  
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ The maps $\phi_0$ and $\phi_3$ are linear.  Indeed, we have
+ \begin{align*}
+  \phi_0\left(\bsm x\\ y\esm + \bsm x'\\ y'\esm\right) &=
+  \phi_0\bsm x+x' \\ y+y' \esm = 
+  \bsm (x+x')+(y+y') \\ (x+x')-(y+y') \esm \\
+  &= \bsm x+y+x'+y' \\ x-y+x'-y' \esm = 
+   \bsm x+y \\ x-y \esm + \bsm x'+y' \\ x'-y'\esm  \\
+  &= \phi_0\bsm x\\ y\esm + \phi_0\bsm x'\\ y'\esm \\
+  \phi_0\left(t\bsm x\\y\esm\right) &= 
+   \phi_0\bsm tx\\ ty \esm = \bsm tx+ty\\ tx-ty\esm =
+   t\bsm x+y\\ x-y\esm = t\phi_0\bsm x\\ y\esm \\
+  \phi_3(f+g) &= 
+   (f+g)(0) + (f+g)'(1) + (f+g)''(2) 
+   = f(0) + g(0) + f'(1) + g'(1) + f''(2) + g''(2) \\
+   &= (f(0)+f'(1)+f''(2)) + (g(0)+g'(1)+g''(2)) 
+    = \phi_3(f) + \phi_3(g) \\
+  \phi_3(tf) &= (tf)(0) + (tf)'(1) + (tf)''(2) 
+    = t(f(0) + f'(1) + f''(2)) = t\phi_3(f).
+ \end{align*}
+ For the others:
+ \begin{itemize}
+  \item[(b)] Consider the vectors
+   \[ \ve_1=\bsm 1\\0\\0 \esm \hspace{3em}
+      \ve_2=\bsm 0\\1\\0 \esm \hspace{3em}
+      \ve_3=\bsm 0\\0\\1 \esm.
+   \]
+   Then $\phi_1(\ve_1)=\phi_1(\ve_2)=\phi_1(\ve_3)=0$.  However,
+   we have 
+   \[ \phi_1(\ve_1+\ve_2+\ve_3) = \phi_1\bsm 1\\1\\1\esm =  1, \]
+   so
+   \[ \phi_1(\ve_1+\ve_2+\ve_3)\neq
+       \phi_1(\ve_1)+\phi(\ve_2)+\phi(\ve_3),
+   \]
+   so $\phi_1$ is not linear.
+  \item[(c)] We have $\phi_2(I)=1$ and $\phi_2((-1).I)=1$,
+   so $\phi_2((-1).I)\neq(-1).\phi_2(I)$, so $\phi_2$ is not
+   linear.
+  \item[(e)] Consider the polynomials $p(x)=x$ and
+   $q(x)=1-x$.  Then $\phi_4(p)=0\tm 1=0$ and
+   $\phi_4(q)=1\tm 0=0$, but $\phi_4(p+q)=1\tm 1=1$, so
+   $\phi_4(p+q)\neq\phi_4(p)+\phi_4(q)$, so $\phi_4$ is not
+   linear. 
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-find-eg-linear}
+ In each of the cases below, give an example of a nonzero
+ linear map $\phi\:V\to W$.  (Here ``nonzero'' means that
+ there is at least one $v\in V$ such that $\phi(v)\neq 0$.)
+ \begin{itemize}
+  \item[(a)] $V=\R^4$ and $W=\R^2$
+  \item[(b)] $V=M_3\R$ and $W=\R^2$
+  \item[(c)] $V=M_3\R$ and $W=\R[x]$
+  \item[(d)] $V=\R[x]$ and $W=M_2\R$
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ Of course there are many different correct answers for this
+ question.  The following will do:
+ \begin{itemize}
+  \item[(a)] $\phi\bsm w\\ x\\ y\\ z\esm=\bsm w+x\\ y+z\esm$
+  \item[(b)] $\phi\bsm a&b&c \\ d&e&f\\ g&h&i\esm = \bsm a\\ i\esm$
+  \item[(c)] $\phi\bsm a&b&c \\ d&e&f\\ g&h&i\esm = ax^2+bx+c$
+  \item[(d)] $\phi(f)=\bsm f(0) & 0 \\ 0 & f(1) \esm$.
+ \end{itemize}
+\end{solution}
+%------------------------------------------------------------------
+
+\begin{exercise}\label{ex-char-nonlinear}
+ Define $\chi\:M_n\R\xra{}\R[t]_{\leq n}$ by
+ \[ \chi(A) = \det(tI-A) =
+      \text{ the characteristic polynomial of } A.
+ \]
+ Is this a linear map?
+\end{exercise}
+\begin{solution}
+ No, because $\chi(0)=t^n\neq 0$, for example.
+\end{solution}
+\begin{exercise}\label{ex-spectral-radius}
+ Given a matrix $A\in M_n\C$, we write $\rho(A)$ for the
+ \emph{spectral radius} of $A$, which is the largest
+ absolute value of any eigenvalue of $A$.  In symbols, we
+ have 
+ \[ \rho(A) = \max\{|\lm| \st \det(\lm I - A)=0\}. \]
+ Is $\rho\:M_n\C\to\C$ a linear map?
+\end{exercise}
+\begin{solution}
+ No.  The eigenvalues of $\lm I$ are all equal to $\lm$, so
+ $\rho(\lm I)=|\lm|$, whereas if $\rho$ were linear we would
+ have to have $\rho(\lm I)=\lm\rho(I)=\lm$.  Alternatively,
+ we have $\rho(I)=\rho(-I)=1$ but $\rho(0)=0$, so
+ $\rho(I+(-I))\neq\rho(I)+\rho(-I)$.  
+\end{solution}
+
+\begin{exercise}\label{ex-check-subspace}
+ Which of the following subsets of $\R^4$ is a subspace?
+ \begin{align*}
+  U_0 &= \{[w,x,y,z]^T \st w+x=0\} \\
+  U_1 &= \{[w,x,y,z]^T \st w+x=1\} \\
+  U_2 &= \{[w,x,y,z]^T \st w+2x+3y+4z=0\} \\
+  U_3 &= \{[w,x,y,z]^T \st w+x^2+y^3+z^4=0\} \\
+  U_4 &= \{[w,x,y,z]^T \st w^2 + x^2=0\}
+ \end{align*}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(0)] The set $U_0$ is a subspace.  Indeed, it
+   certainly contains the zero vector.  If $[w,x,y,z]^T$ and
+   $[w',x',y',z']^T$ lie in $U_0$, then $w+x=0$ and $w'+x'=0$,
+   so $(w+w')+(x+x')=0$, so the vector
+   \[ [w,x,y,z]^T+[w',x',y',z']^T=[w+w',x+x',y+y',z+z']^T \]
+   also lies in $U_0$, so $U_0$ is closed under addition.
+   If we also have $t\in\R$ then $tw+tx=t(w+x)=0$, so
+   $[tw,tx,ty,tz]^T\in U_0$, so $U_0$ is closed under scalar
+   multiplication, and so is a subspace.
+  \item[(1)] The set $U_1$ is not a subspace, because it
+   does not contain the zero vector.
+  \item[(2)] The set $U_2$ is a subspace.  Indeed, it
+   certainly contains the zero vector.  If $[w,x,y,z]^T$ and
+   $[w',x',y',z']^T$ lie in $U_2$, then $w+2x+3y+4z=0$ and
+   $w'+2x'+3y'+4z'=0$, so 
+   \[ (w+w')+2(x+x')+3(y+y')+4(z+z') = 
+      (w+2x+3y+4z)+(w'+2x'+3y'+4z') = 0+0 = 0,
+   \] 
+   so the vector
+   \[ [w,x,y,z]^T+[w',x',y',z']^T=[w+w',x+x',y+y',z+z']^T \]
+   also lies in $U_2$, so $U_2$ is closed under addition.  If we
+   also have $t\in\R$ then $tw+2tx+3ty+4tz=t(w+2x+3y+4z)=0$,
+   so $[tw,tx,ty,tz]^T\in U_2$, so $U_2$ is closed under
+   scalar multiplication, and so is a subspace.
+  \item[(3)] The vector $[1,0,-1,0]^T$ lies in $U_3$, because
+   $1+0^2+(-1)^3+0^4=0$.  However, the vector
+   $2.[1,0,-1,0]^T=[2,0,-2,0]^T$ does not lie in $U_3$, because
+   $2+0^2+(-2)^3+0^4=-6\neq 0$.  This shows that $U_3$ is
+   not closed under scalar multiplication, so it is not a
+   subspace.
+  \item[(4)] As $w$ and $x$ are real numbers, we have
+   $w^2,x^2\geq 0$, so the only way we can have $w^2+x^2=0$
+   is if $w=x=0$.  Thus 
+   \[ U_4 = \{[w,x,y,z]^T\in\R^4\st w=x=0\} = 
+            \{[0,0,y,z]^T\st y,z\in\R\}. 
+   \]
+   This is clearly a subspace of $\R^4$.
+ \end{itemize}
+\end{solution}
+%------------------------------------------------------------------
+
+\begin{exercise}\label{ex-check-subspace-FR}
+ Which of the following subsets of $F(\R)$ are subspaces?
+ \begin{align*}
+   U_0 &= \{ f \st f(0) = 0 \} &
+   U_1 &= \{ f \st f(1) = 1 \} \\
+   U_2 &= \{ f \st f(0) \geq 0 \} &
+   U_3 &= \{ f \st f(0) = f(1) \} \\
+   U_4 &= \{ f \st f(0) f(1) = f(2) f(3) \}.
+ \end{align*}
+\end{exercise}
+\begin{solution}
+ The set $U_1$ is not a subspace, because the zero function
+ is not in $U_1$.  The set $U_2$ is not a subspace either.
+ Indeed, the constant function $f(t)=1$ is an element of
+ $U_2$, but $(-1).f$ is not an element of $U_2$, so $U_2$ is
+ not closed under scalar multiplication.  The set $U_4$ is
+ also not a subspace.  To see this, consider the functions
+ $f(x)=x(x-2)$ and $g(x)=(x-1)(x-2)$ and
+ $h(x)=f(x)+g(x)=(2x-1)(x-2)$.  Then
+ \begin{align*}
+  f(0)f(1) &= 0 = f(2)f(3) \\
+  g(0)g(1) &= 0 = g(2)g(3) \\
+  h(0)h(1) &= -2 \neq h(2)h(3) = 0.
+ \end{align*}
+ Thus $f,g\in U_4$ but $f+g\not\in U_4$, so $U_4$ is not a
+ subspace.  However, $U_0$ and $U_3$ are subspaces of $F$.
+\end{solution}
+%------------------------------------------------------------------
+
+\begin{exercise}\label{ex-find-eg-subspace}
+ For each of the following vector spaces $V$, give an
+ example of a subspace $W\leq V$ such that $W\neq 0$ and
+ $W\neq V$.  
+ \begin{itemize}
+  \item[(a)] $V=\R[x]_{\leq 3}$
+  \item[(b)] $V=M_{2,3}\R$
+  \item[(c)] $V=\{[x,y,z]^T\in\R^3\st x+y+z=0\}$
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ Of course there are many different correct answers for this
+ question.  The following will do:
+ \begin{itemize}
+  \item[(a)]
+   $W=\{p\in \R[x]_{\leq 2}\st p(0)=0\}=\{ax^2+bx\st a,b\in\R\}$.
+  \item[(b)]
+   $W=\{A\in M_{2,3}\R\st A\bsm 1\\0\\0\esm = 0\}=
+     \{\bsm 0&a&b\\ 0&c&d\esm \st a,b,c,d\in\R\}$
+  \item[(c)]
+   $W=\{[x,y,z]^T\in V\st z=0\}=\{[x,-x,0]^T\st x\in\R\}$
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-find-eg-trivial-intersect}
+ For each of the following vector spaces $U$, give an
+ example of subspaces $V,W\leq U$ such that $V\neq 0$ and
+ $W\neq 0$ but $V\cap W=0$.
+ \begin{itemize}
+  \item[(a)] $U=\R^4$
+  \item[(b)] $U=M_2\R$
+  \item[(c)] $U=\{[x,y,z]^T\in\R^3\st x+y+z=0\}$
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ Of course there are many different correct answers for this
+ question.  The following will do:
+ \begin{itemize}
+  \item[(a)]
+   $V=\{[w,x,0,0]^T\st w,x\in\R\}$ and 
+   $W=\{[0,0,y,z]^T\st w,x\in\R\}$.
+  \item[(b)]
+   $V=\{\bsm w&x\\0&0\esm\st w,x\in\R\}$ and
+   $W=\{\bsm 0&0\\y&z\esm\st y,z\in\R\}$.   
+  \item[(c)]
+   $V=\{[s,-s,0]^T\st s\in\R\}$ and
+   $W=\{[0,t,-t]^T\st t\in\R\}$.
+ \end{itemize}
+\end{solution}
+
+
+\closegraphsfile
+\end{document}
+
+
+
+%%% Local Variables:
+%%% compile-command: "do_both 02"
+%%% End:

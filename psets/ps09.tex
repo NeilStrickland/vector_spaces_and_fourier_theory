@@ -1,0 +1,373 @@
+\begin{document}
+
+\begin{center}
+ {\huge Vector Spaces and Fourier Theory ---
+   Problem Sheet 9
+ }
+\end{center}
+
+\begin{rubric}
+ Please hand in answers to exercises~\ref{ex-parseval-unnormalised}
+ and~\ref{ex-orthonormal-quad}.  Because of the Bank Holiday on Monday
+ May~5th, I will ask you to put your work in the folder pinned to the
+ door of my office (J26) by 12.00 on May~6th.  I will try to get it
+ marked in time for tutorials on May~7th. 
+\end{rubric}
+
+\begin{exercise}\label{ex-parseval-unnormalised}
+ Let $\CW=w_1,\dotsc,w_p$ be a strictly orthogonal sequence in an
+ inner product space $V$, and let $v$ be an element of $V$.  Show that 
+ \[ \|v\|^2 \geq \sum_{i=1}^p \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}}. \]
+ (Note that Parseval's inequality covers the case where the sequence
+ is orthonormal, so $\|w_i\|=1$.  You can prove the above statement
+ either by modifying the proof of Parseval's inequality, or by
+ applying Parseval's inequality to a different sequence.)
+\end{exercise}
+\begin{solution}
+ Put $W=\spn(\CW)$ and  
+ \[ \pi(v) = \sum_i \frac{\ip{v,w_i}}{\ip{w_i,w_i}} w_i \]
+ and $\ep(v)=v-\pi(v)$.  We saw in lectures that $v=\pi(v)+\ep(v)$,
+ with $\pi(v)\in W$ and $\ep(v)\in W^\perp$, so
+ $\|v\|^2=\|\pi(v)\|^2+\|\ep(v)\|^2\geq\|\pi(v)\|^2$.  On the other
+ hand, the vectors $\ip{v,w_i}w_i/\ip{w_i,w_i}$ are orthogonal to each
+ other, so Pythagoras tells us that
+ \[ \|v\|^2 =
+     \sum_i \left\| \frac{\ip{v,w_i}}{\ip{w_i,w_i}} w_i\right|^2 = 
+     \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}^2} \|w_i\|^2 = 
+     \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}^2} \ip{w_i,w_i} = 
+     \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}}.
+ \]
+
+ Alternatively, we can introduce the orthonormal sequence
+ $\hw_i=w_i/\|w_i\|$.  Parseval's inequality tells us that 
+ \[ \|v\|^2 \geq \sum_i \ip{v,\hw_i}^2
+     = \sum_i \left\langle v,\frac{w_i}{\|w_i\|}\right\rangle^2
+     = \sum_i \frac{\ip{v,w_i}^2}{\|w_i\|^2} 
+     = \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}} 
+ \]
+\end{solution}
+
+\begin{exercise}\label{ex-parseval-i}
+ Use the result in Exercise~\ref{ex-parseval-unnormalised} to show
+ that for any continuous function $f\in C[-1,1]$ we have
+ \[ \textstyle 
+    2 \int_{-1}^1 f(x)^2\,dx \geq 
+    \left(\int_{-1}^1 f(x)\,dx\right)^2 +
+    3 \left(\int_{-1}^1 x\,f(x)\,dx\right)^2.
+ \]
+\end{exercise}
+\begin{solution}
+ Observe that the integrals involved in the claimed inequality can be
+ interpreted as follows:
+ \begin{align*}
+  \int_{-1}^1 f(x)^2\,dx &= \ip{f,f} \\
+  \int_{-1}^1 f(x)\,dx   &= \ip{f,1} \\
+  \int_{-1}^1 x f(x)\,dx &= \ip{f,x}.
+ \end{align*}
+ Note also that $\ip{1,x}=\int_{-1}^1x\,dx=0$, so the sequence
+ $\CW=1,x$ is strictly orthogonal.  We can therefore apply
+ Exercise~\ref{ex-parseval-unnormalised}: it tells us that
+ \[ \ip{f,f} \geq \frac{\ip{f,1}^2}{\ip{1,1}} + 
+                  \frac{\ip{f,x}^2}{\ip{x,x}}.
+ \]
+ Here $\ip{1,1}=\int_{-1}^1 1\,dx=2$ and
+ $\ip{x,x}=\int_{-1}^1x^2\,dx=2/3$, so we get
+ \[ \int_{-1}^1 f(x)^2\, dx 
+     \geq \tfrac{1}{2} \left(\int_{-1}^1 f(x)\,dx\right)^2 + 
+          \tfrac{3}{2} \left(\int_{-1}^1 x\,f(x)\,dx\right)^2. 
+ \]
+ We can now multiply by two to get the inequality in the question.
+\end{solution}
+
+\begin{exercise}\label{ex-orthonormal-matrices}
+ Consider the space $V=M_4\R$ with the usual inner product
+ $\ip{A,B}=\trc(AB^T)$.  Consider the following sequence in
+ $V$:
+ {\tiny \[
+  A_1 = \bsm 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\esm 
+  \hspace{3em}
+  A_2 = \bsm 0&0&0&0\\ 0&1&1&0\\ 0&1&1&0\\ 0&0&0&0\esm 
+  \hspace{3em}
+  A_3 = \bsm 0&1&1&0\\ 1&1&1&1\\ 1&1&1&1\\ 0&1&1&0\esm 
+  \hspace{3em}
+  A_4 = \bsm 1&1&1&1\\ 1&1&1&1\\ 1&1&1&1\\ 1&1&1&1\esm 
+ \]}
+ Find an orthonormal sequence $C_1,\dotsc,C_4$ in $V$ such
+ that $\spn\{A_1,\dotsc,A_i\}=\spn\{C_1,\dotsc,C_i\}$ for
+ all $i$.  (You can use the Gram-Schmidt procedure for this
+ but it is easier to find an answer by inspection.)
+\end{exercise}
+\begin{solution}
+ Consider the matrices
+ {\tiny \[
+  B_1=A_1 = \bsm 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\esm 
+  \hspace{3em}
+  B_2=A_2-A_1 = \bsm 0&0&0&0\\ 0&0&1&0\\ 0&1&0&0\\ 0&0&0&0\esm 
+  \hspace{3em}
+  B_3=A_3-A_2 = \bsm 0&1&1&0\\ 1&0&0&1\\ 1&0&0&1\\ 0&1&1&0\esm 
+  \hspace{3em}
+  B_4=A_4-A_3 = \bsm 1&0&0&1\\ 0&0&0&0\\ 0&0&0&0\\ 1&0&0&1\esm 
+ \]}
+ If $i\neq j$ we see that $B_i$ and $B_j$ do not overlap, or
+ in other words, in any place where $B_i$ has a one, $B_j$
+ has a zero.  To calculate $\ip{B_i,B_j}$ we multiply all
+ the entries in $B_i$ by the corresponding entries in $B_j$,
+ and add these terms together.  All the terms are zero
+ because the matrices do not overlap, so $\ip{B_i,B_j}=0$,
+ so we have an orthogonal sequence.  From the formulae
+ \[ B_1=A_1     \hspace{3em}
+    B_2=A_2-A_1 \hspace{3em}
+    B_3=A_3-A_2 \hspace{3em}
+    B_4=A_4-A_3
+ \]
+ we deduce that
+ \[ A_1=B_1 \hspace{3em}
+    A_2=B_1+B_2 \hspace{2em}
+    A_3=B_1+B_2+B_3 \hspace{2em}
+    A_4=B_1+B_2+B_3+B_4.
+ \]
+ From these two sets of equations together we see that
+ $\spn\{B_1,\dotsc,B_i\}=\spn\{A_1,\dotsc,A_i\}$ for all
+ $i$.  We were asked for an orthonormal sequence, so we now
+ put $C_i=B_i/\|B_i\|$.  Note that if a matrix $X$ contains
+ only zeros and ones then $\|X\|^2$ is just the number of
+ ones.  Using this we see that 
+ \[ \|B_1\| = \sqrt{2} \hspace{3em}
+    \|B_2\| = \sqrt{2} \hspace{3em}
+    \|B_3\| = \sqrt{8} \hspace{3em}
+    \|B_4\| = 2,
+ \]
+ so 
+ {\tiny \[
+  C_1 = \frac{1}{\sqrt{2}} \bsm 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\esm 
+  \hspace{3em}
+  C_2 = \frac{1}{\sqrt{2}} \bsm 0&0&0&0\\ 0&0&1&0\\ 0&1&0&0\\ 0&0&0&0\esm 
+  \hspace{3em}
+  C_3 = \frac{1}{\sqrt{8}} \bsm 0&1&1&0\\ 1&0&0&1\\ 1&0&0&1\\ 0&1&1&0\esm 
+  \hspace{3em}
+  C_4 = \frac{1}{2}        \bsm 1&0&0&1\\ 0&0&0&0\\ 0&0&0&0\\ 1&0&0&1\esm 
+ \]}
+\end{solution}
+
+\begin{exercise}\label{ex-orthonormal-vectors}
+ Consider the following vectors in $\R^5$:
+ \[
+  u_1 = \bsm 1\\ 1\\ 1\\ 1\\ 1\esm \hspace{3em}
+  u_2 = \bsm 1\\ 1\\ 1\\ 1\\ 0\esm \hspace{3em}
+  u_3 = \bsm 1\\ 1\\ 1\\ 0\\ 0\esm \hspace{3em}
+  u_4 = \bsm 1\\ 1\\ 0\\ 0\\ 0\esm \hspace{3em}
+  u_5 = \bsm 1\\ 0\\ 0\\ 0\\ 0\esm
+ \]
+ Find an orthonormal sequence $\hv_1,\dotsc,\hv_5$ such that
+ $\spn\{\hv_1,\dotsc,\hv_i\}=\spn\{u_1,\dotsc,u_i\}$ for all $i$.
+\end{exercise}
+\begin{solution}
+ The  answer is 
+ \[
+  \hv_1 = \frac{1}{\sqrt{5}}\bsm 1\\ 1\\ 1\\ 1\\ 1\esm \hspace{2em}
+  \hv_2 = \frac{1}{\sqrt{20}}\bsm 1\\ 1\\ 1\\ 1\\ -4\esm \hspace{2em}
+  \hv_3 = \frac{1}{\sqrt{12}}\bsm 1\\ 1\\ 1\\ -3 \\ 0\esm \hspace{2em}
+  \hv_4 = \frac{1}{\sqrt{6}}\bsm 1\\ 1\\ -2 \\ 0 \\ 0 \esm \hspace{2em}
+  \hv_5 = \frac{1}{\sqrt{2}}\bsm 1\\ -1\\ 0\\ 0\\ 0\esm
+ \]
+ The steps are as follows.  We will first find a strictly
+ orthogonal sequence $v_1,\dotsc,v_5$ and then put
+ $\hv_i=v_i/\|v_i\|$.  We start with $v_1=u_1$, which gives
+ $\ip{v_1,v_1}=5$ and $\ip{u_2,v_1}=4$.  We then have
+ \[ v_2 = u_2 - \frac{\ip{u_2,v_1}}{\ip{v_1,v_1}}v_1 =
+     \bsm 1\\1\\1\\1\\0 \esm -
+     \frac{4}{5}\bsm 1\\1\\1\\1\\1 \esm =
+     \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm.
+ \]
+ This gives 
+ \[ \ip{v_2,v_2}=(1^2+1^2+1^2+1^2+(-4)^2)/25 = 20/25 = 4/5,
+ \]
+ and $\ip{u_3,v_1}=3$ and $\ip{u_3,v_2}=3/5$ so
+ \[ v_3 = u_3 - \frac{\ip{u_3,v_1}}{\ip{v_1,v_1}}v_1
+              - \frac{\ip{u_3,v_2}}{\ip{v_2,v_2}}v_2
+    = \bsm 1\\ 1\\ 1\\ 0\\ 0\esm 
+      - \frac{3}{5} \bsm 1\\1\\1\\1\\1 \esm
+      - \frac{3/5}{4/5} \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm
+    = \frac{1}{20} \bsm 5\\ 5\\ 5\\ -15\\ 0\esm 
+    = \frac{1}{4} \bsm 1\\ 1\\ 1\\ -3\\ 0\esm .
+ \]
+ This gives $\ip{v_3,v_3}=(1^2+1^2+1^2+(-3)^2)/16=3/4$ and 
+ $\ip{u_4,v_1}=2$ and $\ip{u_4,v_2}=2/5$ and
+ $\ip{u_4,v_3}=2/4=1/2$, so 
+ \begin{align*}
+  v_4 &=  u_4 - \frac{\ip{u_4,v_1}}{\ip{v_1,v_1}}v_1
+              - \frac{\ip{u_4,v_2}}{\ip{v_2,v_2}}v_2
+              - \frac{\ip{u_4,v_3}}{\ip{v_3,v_3}}v_3 \\
+   &= \bsm 1\\ 1\\ 0\\ 0\\ 0\esm 
+      - \frac{2}{5} \bsm 1\\1\\1\\1\\1 \esm
+      - \frac{2/5}{4/5} \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm
+      - \frac{2/4}{3/4} \frac{1}{4} \bsm 1\\1\\1\\-3\\0 \esm
+    = \frac{1}{30} \bsm 10\\ 10\\ -20\\ 0\\ 0\esm 
+    = \frac{1}{3} \bsm 1\\ 1\\ -2\\ 0\\ 0\esm .
+ \end{align*}
+ This in turn gives $\ip{v_4,v_4}=2/3$ and $\ip{u_5,v_1}=1$
+ and $\ip{u_5,v_2}=1/5$ and $\ip{u_5,v_3}=1/4$ and
+ $\ip{u_5,v_4}=1/3$ so 
+ \begin{align*}
+   v_5 &= u_5 - \frac{\ip{u_5,v_1}}{\ip{v_1,v_1}}v_1
+              - \frac{\ip{u_5,v_2}}{\ip{v_2,v_2}}v_2
+              - \frac{\ip{u_5,v_3}}{\ip{v_3,v_3}}v_3
+              - \frac{\ip{u_5,v_4}}{\ip{v_4,v_4}}v_4 \\
+   &= \bsm 1\\ 0\\ 0\\ 0\\ 0\esm 
+      - \frac{1}{5} \bsm 1\\1\\1\\1\\1 \esm
+      - \frac{1/5}{4/5} \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm
+      - \frac{1/4}{3/4} \frac{1}{4} \bsm 1\\1\\1\\-3\\0 \esm
+      - \frac{1/3}{2/3} \frac{1}{3} \bsm 1\\1\\-2\\0\\0 \esm
+    = \frac{1}{60} \bsm 30\\ -30\\ 0\\ 0\\ 0\esm 
+    = \frac{1}{2} \bsm 1\\ -1\\ 0\\ 0\\ 0\esm .
+ \end{align*}
+ In summary, the vectors 
+ \[ v_1 = \bsm 1\\1\\1\\1\\1\esm \hspace{2em}
+    v_2 = \frac{1}{5}\bsm 1\\1\\1\\1\\-4\esm \hspace{2em}
+    v_3 = \frac{1}{4}\bsm 1\\1\\1\\-3\\0\esm \hspace{2em}
+    v_4 = \frac{1}{3}\bsm 1\\1\\-2\\0\\0\esm \hspace{2em}
+    v_5 = \frac{1}{2}\bsm 1\\-1\\0\\0\\0\esm, 
+ \]
+ form an orthogonal (but not yet orthonormal) sequence with
+ $\spn\{v_1,\dotsc,v_i\}=\spn\{u_1,\dotsc,u_i\}$ for
+ $i=1,\dotsc,5$.  To get an orthonormal sequence we put
+ $\hv_i=v_i/\|v_i\|$.  We have
+ \[ \|v_1\| = \sqrt{5} \hspace{2em}
+    \|v_2\| = \sqrt{4/5} \hspace{2em}
+    \|v_3\| = \sqrt{3/4} \hspace{2em}
+    \|v_4\| = \sqrt{2/3} \hspace{2em}
+    \|v_5\| = \sqrt{1/2}.
+ \]
+ and so 
+ \[
+  \hv_1 = \frac{1}{\sqrt{5}}\bsm 1\\ 1\\ 1\\ 1\\ 1\esm \hspace{2em}
+  \hv_2 = \frac{1}{\sqrt{20}}\bsm 1\\ 1\\ 1\\ 1\\ -4\esm \hspace{2em}
+  \hv_3 = \frac{1}{\sqrt{12}}\bsm 1\\ 1\\ 1\\ -3 \\ 0\esm \hspace{2em}
+  \hv_4 = \frac{1}{\sqrt{6}}\bsm 1\\ 1\\ -2 \\ 0 \\ 0 \esm \hspace{2em}
+  \hv_5 = \frac{1}{\sqrt{2}}\bsm 1\\ -1\\ 0\\ 0\\ 0\esm
+ \]
+\end{solution}
+
+\begin{exercise}\label{ex-orthonormal-quad}
+ Define an inner product on $\R[t]_{\leq 2}$ by 
+ \[ \ip{f,g} =
+     \int_{-\infty}^\infty f(t)g(t)e^{-t^2}dt/\sqrt{\pi}.
+ \]
+ Apply the Gram-Schmidt procedure to the basis $\{1,t,t^2\}$
+ to get a basis for $\R[t]_{\leq 2}$ that is orthonormal
+ with respect to this inner product.  You may assume that
+ \begin{align*}
+  \ip{t^n,t^m} &= 
+    \frac{1}{\sqrt{\pi}} \int_{-\infty}^\infty t^{n+m} e^{-t^2}\,dt \\
+   &= 
+    \begin{cases}
+     \frac{1}{2^{n+m}} \,\frac{(n+m)!}{((n+m)/2)!} &
+      \text{ if $n+m$ is even } \\
+     0 & \text{ if $n+m$ is odd }
+    \end{cases}
+ \end{align*}
+ (and you should remember that $0!=1$).  
+\end{exercise}
+\begin{solution}
+ The resulting orthonormal basis is 
+ $\{1,\sqrt{2}t,\sqrt{2}(t^2-1/2)\}$.  The calculation is as
+ follows.  We first note that if $i+j$ is an odd number, then
+ $t^{i+j}e^{-t^2}$ is an odd function, so its integral from
+ $-\infty$ to $\infty$ is zero, so $\ip{t^i,t^j}=0$.  In
+ particular, $t$ is orthogonal to $1$ and $t^2$.  Next,
+ the hint tells us that
+ \begin{align*}
+  \ip{1,1} &= 1 \\
+  \ip{t,t} &= 1/2 \\
+  \ip{1,t^2} &= 1/2 \\
+  \ip{t^2,t^2} &= 3/4.
+ \end{align*}
+ It follows that $\|t\|=1/\sqrt{2}$, so $1,\sqrt{2}t$ is an
+ orthonormal sequence.  The projection of $t^2$ orthogonal
+ to these is
+ \[
+  t^2 - \ip{t^2,1}1 - \ip{t^2,\sqrt{2}t} \sqrt{2}t 
+   = t^2 - 1/2.
+ \]
+ To normalise this, we note that
+ \[ \ip{t^2-1/2,t^2-1/2} = 
+     \ip{t^2,t^2} - 2\ip{t^2,1/2} + \ip{1/2,1/2} = 
+     3/4 - \ip{t^2,1} + \ip{1,1}/4 = 
+     \tfrac{3}{4} - \tfrac{1}{2} + \tfrac{1}{4} = 1/2.
+ \]
+ It follows that $\|\sqrt{2}(t-1/2)\|=1$, so our orthonormal
+ basis is $\{1,\sqrt{2}t,\sqrt{2}(t^2-1/2)\}$.
+\end{solution}
+
+\begin{exercise}
+ For $x\in\R^4$, put 
+ \[ \al(x) = x_1^2+x_2^2+x_3^2+x_4^2 -
+      \frac{(x_1-x_2)^2}{2} -
+      \frac{(x_3-x_4)^2}{2} - 
+      \frac{(x_1+x_2+x_3+x_4)^2}{4}
+ \] 
+ \begin{itemize}
+  \item[(a)] By finding a suitable orthonormal sequence $v_1,v_2,v_3$,
+   show that $\al(x)\geq 0$ for all $x\in\R^4$.
+  \item[(b)] Find a fourth vector $v_4$ such that $v_1,v_2,v_3,v_4$ is
+   orthonormal.
+  \item[(c)] Expand out and simplify $\al(x)$.  How is the answer related to~(b)? 
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] Take
+   \[ v_1 = \frac{1}{\sqrt{2}}\bsm 1 \\ -1\\ 0 \\ 0 \esm \hspace{4em} 
+      v_2 = \frac{1}{\sqrt{2}}\bsm 0 \\ 0\\ 1 \\ -1 \esm \hspace{4em} 
+      v_3 = \frac{1}{2} \bsm 1\\ 1\\ 1\\ 1 \esm
+   \] 
+   so $(x_1-x_2)^2/2=\ip{x,v_1}^2$ and $(x_3-x_4)^2/2=\ip{x,v_2}^2$
+   and $(x_1+x_2+x_3+x_4)^2/4=\ip{x,v_3}^2$, so 
+   \[ \al(x) = \|x\|^2 - \sum_{i=1}^3 \ip{x,v_i}^2. \]
+   It is easy to check that $\ip{v_1,v_2}=\ip{v_1,v_3}=\ip{v_2,v_3}=0$
+   and $\ip{v_1,v_1}=\ip{v_2,v_2}=\ip{v_3,v_3}=1$, so the sequence is
+   orthonormal.  Parseval's inequality is thus applicable, and it
+   tells us that $\sum_{i=1}^3\ip{x,v_i}^2\leq\|x\|^2$, or in other
+   words $\al(x)\geq 0$.
+  \item[(b)] The vector $v_4=[1,1,-1,-1]^T/2$ is a unit vector
+   orthogonal to $v_1$, $v_2$ and $v_3$, so the sequence
+   $v_1,v_2,v_3,v_4$ is orthonormal.  (How did we find this?  If
+   $v_4=[a,b,c,d]^T$ we must have $a=b$ for orthogonality with $v_1$,
+   and $c=d$ for orthogonality with $v_2$, and $a+b+c+d=0$ for
+   orthogonality with $v_3$, and $a^2+b^2+c^2+d^2=1$ to make $v_4$ a
+   unit vector.  The only two solutions are $[1,1,-1,-1]^T/2$ and
+   $[-1,-1,1,1]^T/2$, and either of these will do.)
+  \item[(c)] By direct calculation, we have 
+   \begin{align*}
+    \al(x) =& 
+     x_1^2+x_2^2+x_3^2+x_4^2 - 
+     \qrt x_1^2 - \qrt x_2^2 - \qrt x_3^2 - \qrt x_4^2 \\ &
+     - \half x_1x_2 - \half x_1x_3 - \half x_1x_4
+     - \half x_2x_3 - \half x_2x_4 - \half x_3x_4 \\ &
+     - \half x_1^2 - \half x_2^2 + x_1x_2
+     - \half x_3^2 - \half x_4^2 + x_3x_4 \\
+     =& \qrt x_1^2 + \qrt x_2^2 + \qrt x_3^2 + \qrt x_4^2
+     + \half x_1x_2 - \half x_1x_3 - \half x_1x_4
+     - \half x_2x_3 - \half x_2x_4 + \half x_3x_4 \\
+     =& (x_1+x_2-x_3-x_4)^2/4 = \ip{x,v_4}^2.
+   \end{align*}
+   We could have done this without calculation as follows.  The
+   sequence $v_1,\dotsc,v_4$ is orthonormal (hence linearly
+   independent) of length $4$, so it is a basis for $\R^4$, so $x$ automatically
+   lies in the span.  Thus Parseval's inequality for this extended
+   sequence is actually an equality, which means that 
+   \[ \|x\|^2 =
+        \ip{x,v_1}^2 + \ip{x,v_2}^2 + \ip{x,v_3}^2 + \ip{x,v_4}^2.
+   \]
+   Rearranging this gives $\al(x)=\ip{x,v_4}^2$ as before.
+ \end{itemize}
+\end{solution}
+
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% compile-command: "do_both 09"
+%%% End:

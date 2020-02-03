@@ -1,0 +1,2506 @@
+
+\BeginDeferredSolution{ex-typical-elements}{2.1}
+ Of course there are many different correct answers to this
+ question. The following will do:
+ \begin{itemize}
+  \item[(a)] $u=\bsm 1\\1\\1\\1\esm$,
+             $v=\bsm 1\\-1\\1\\-1\esm$,
+             $u+v=\bsm 2\\0\\2\\0\esm$,
+             $10v=\bsm 10\\-10\\10\\-10\esm$.
+  \item[(b)] $u=\bsm 1&2&3\\4&5&6\esm$,
+             $v=\bsm 6&5&4\\3&2&1\esm$,
+             $u+v=\bsm 7&7&7\\7&7&7\esm$,
+             $10v=\bsm 60&50&40\\30&20&10\esm$.
+  \item[(c)] $u=1+x$, $v=x+x^2$, $u+v=1+2x+x^2$, $10v=10x+10x^2$.
+  \item[(d)] $u$ is the vector pointing 10 miles east, $v$
+   is the vector pointing 20 miles west, $u+v$ points ten
+   miles west, $10v$ points 200 miles west.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-not-vector-spaces}{2.2}
+ \begin{itemize}
+ \item[(a)] This is not a vector space because
+  $\bsm 1&2\\3&4\esm\in V_0$ but
+  $(-1).\bsm 1&2\\3&4\esm=\bsm -1&-2\\-3&-4\esm\not\in V_0$,
+  which contradicts axiom~(b) of Predefinition~2.1.
+ \item[(b)] This is not a vector space because the zero matrix does
+  not lie in $V_1$.
+ \item[(c)] This is not a vector space because
+  $\bsm 1\\1\esm\in V_2$ and $\bsm 1\\-1\esm\in V_2$
+  but $\bsm 1\\1\esm+\bsm 1\\-1\esm=\bsm 2\\0\esm\not\in V_2$,
+  which contradicts axiom~(a).
+ \item[(d)] To see that this is not a vector space, consider
+  the polynomials $p(x)=x$ and $q(x)=1-x$.  Then
+  $p(0)p(1)=0=q(0)q(1)$, so $p\in V_3$ and $q\in V_3$.
+  However, $p(x)+q(x)=1$ for all $x$, so $p+q\not\in V_3$.
+  This contradicts axiom~(a).
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-linear}{3.1}
+ The maps $\phi_0$ and $\phi_3$ are linear.  Indeed, we have
+ \begin{align*}
+  \phi_0\left(\bsm x\\ y\esm + \bsm x'\\ y'\esm\right) &=
+  \phi_0\bsm x+x' \\ y+y' \esm =
+  \bsm (x+x')+(y+y') \\ (x+x')-(y+y') \esm \\
+  &= \bsm x+y+x'+y' \\ x-y+x'-y' \esm =
+   \bsm x+y \\ x-y \esm + \bsm x'+y' \\ x'-y'\esm  \\
+  &= \phi_0\bsm x\\ y\esm + \phi_0\bsm x'\\ y'\esm \\
+  \phi_0\left(t\bsm x\\y\esm\right) &=
+   \phi_0\bsm tx\\ ty \esm = \bsm tx+ty\\ tx-ty\esm =
+   t\bsm x+y\\ x-y\esm = t\phi_0\bsm x\\ y\esm \\
+  \phi_3(f+g) &=
+   (f+g)(0) + (f+g)'(1) + (f+g)''(2)
+   = f(0) + g(0) + f'(1) + g'(1) + f''(2) + g''(2) \\
+   &= (f(0)+f'(1)+f''(2)) + (g(0)+g'(1)+g''(2))
+    = \phi_3(f) + \phi_3(g) \\
+  \phi_3(tf) &= (tf)(0) + (tf)'(1) + (tf)''(2)
+    = t(f(0) + f'(1) + f''(2)) = t\phi_3(f).
+ \end{align*}
+ For the others:
+ \begin{itemize}
+  \item[(b)] Consider the vectors
+   \[ \ve_1=\bsm 1\\0\\0 \esm \hspace{3em}
+      \ve_2=\bsm 0\\1\\0 \esm \hspace{3em}
+      \ve_3=\bsm 0\\0\\1 \esm.
+   \]
+   Then $\phi_1(\ve_1)=\phi_1(\ve_2)=\phi_1(\ve_3)=0$.  However,
+   we have
+   \[ \phi_1(\ve_1+\ve_2+\ve_3) = \phi_1\bsm 1\\1\\1\esm =  1, \]
+   so
+   \[ \phi_1(\ve_1+\ve_2+\ve_3)\neq
+       \phi_1(\ve_1)+\phi(\ve_2)+\phi(\ve_3),
+   \]
+   so $\phi_1$ is not linear.
+  \item[(c)] We have $\phi_2(I)=1$ and $\phi_2((-1).I)=1$,
+   so $\phi_2((-1).I)\neq(-1).\phi_2(I)$, so $\phi_2$ is not
+   linear.
+  \item[(e)] Consider the polynomials $p(x)=x$ and
+   $q(x)=1-x$.  Then $\phi_4(p)=0\tm 1=0$ and
+   $\phi_4(q)=1\tm 0=0$, but $\phi_4(p+q)=1\tm 1=1$, so
+   $\phi_4(p+q)\neq\phi_4(p)+\phi_4(q)$, so $\phi_4$ is not
+   linear.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-find-eg-linear}{3.2}
+ Of course there are many different correct answers for this
+ question.  The following will do:
+ \begin{itemize}
+  \item[(a)] $\phi\bsm w\\ x\\ y\\ z\esm=\bsm w+x\\ y+z\esm$
+  \item[(b)] $\phi\bsm a&b&c \\ d&e&f\\ g&h&i\esm = \bsm a\\ i\esm$
+  \item[(c)] $\phi\bsm a&b&c \\ d&e&f\\ g&h&i\esm = ax^2+bx+c$
+  \item[(d)] $\phi(f)=\bsm f(0) & 0 \\ 0 & f(1) \esm$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-char-nonlinear}{3.3}
+ No, because $\chi(0)=t^n\neq 0$, for example.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-spectral-radius}{3.4}
+ No.  The eigenvalues of $\lm I$ are all equal to $\lm$, so
+ $\rho(\lm I)=|\lm|$, whereas if $\rho$ were linear we would
+ have to have $\rho(\lm I)=\lm\rho(I)=\lm$.  Alternatively,
+ we have $\rho(I)=\rho(-I)=1$ but $\rho(0)=0$, so
+ $\rho(I+(-I))\neq\rho(I)+\rho(-I)$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-subspaces-R-three}{4.1}
+ \begin{itemize}
+  \item[(a)] $U\cap V$ is the set of vectors $[w,x,y,z]^T$
+   satisfying the three equations
+   \begin{align*}
+    w-x+y-z &= 0 \\
+    w+x+y &= 0 \\
+    x+y+z &= 0.
+   \end{align*}
+   Subtracting the last two equations gives $w=z$.  Putting
+   this back into the first equation gives $x=y$.  The
+   middle equation now gives $w=-2x$, so
+   \[ [w,x,y,z] = [-2x,x,x,-2x]. \]
+   Thus
+   \[ U\cap V = \{ [-2x,x,x,-2x]^T \st x\in\R\} =
+       \spn([-2,1,1,-2]^T).
+   \]
+  \item[(b)] $U\cap W$ is the set of vectors of the form
+   $[u,u+v,u+2v,u+3v]^T$ for which
+   $u-(u+v)+(u+2v)-(u+3v)=0$, which reduces to $-2v=0$, or
+   equivalently $v=0$.  Thus
+   \[ U\cap W = \{[u,u,u,u]^T\st u\in\R\} =
+       \spn([1,1,1,1]^T)
+   \]
+  \item[(c)] $V\cap W$ is the set of vectors of the form
+   $[u,u+v,u+2v,u+3v]^T$ for which
+   $u+(u+v)+(u+2v)=0=(u+v)+(u+2v)+(u+3v)$, or in other words
+   $3u+3v=0=3u+6v$.  These equations easily imply that
+   $u=v=0$, and this means that $V\cap W=0$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-degenerate-planes}{4.2}
+ If you choose two planes at random, their intersection will
+ be a line (unless the two planes happened to be the same,
+ which is unlikely).  If you intersect this with a third
+ randomly chosen plane, then you will just get the origin
+ (barring unlikely coincidences).  The special feature of
+ $P$, $Q$ and $R$ is that $P\cap Q\cap R$ is not just the
+ origin, but a line.  Specifically, we have
+ \[ P\cap Q\cap R =
+      \left\{\bsm t\\ -2t\\ t\esm \st t\in\R\right\}.
+ \]
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-subspace}{4.3}
+ \begin{itemize}
+  \item[(0)] The set $U_0$ is a subspace.  Indeed, it
+   certainly contains the zero vector.  If $[w,x,y,z]^T$ and
+   $[w',x',y',z']^T$ lie in $U_0$, then $w+x=0$ and $w'+x'=0$,
+   so $(w+w')+(x+x')=0$, so the vector
+   \[ [w,x,y,z]^T+[w',x',y',z']^T=[w+w',x+x',y+y',z+z']^T \]
+   also lies in $U_0$, so $U_0$ is closed under addition.
+   If we also have $t\in\R$ then $tw+tx=t(w+x)=0$, so
+   $[tw,tx,ty,tz]^T\in U_0$, so $U_0$ is closed under scalar
+   multiplication, and so is a subspace.
+  \item[(1)] The set $U_1$ is not a subspace, because it
+   does not contain the zero vector.
+  \item[(2)] The set $U_2$ is a subspace.  Indeed, it
+   certainly contains the zero vector.  If $[w,x,y,z]^T$ and
+   $[w',x',y',z']^T$ lie in $U_2$, then $w+2x+3y+4z=0$ and
+   $w'+2x'+3y'+4z'=0$, so
+   \[ (w+w')+2(x+x')+3(y+y')+4(z+z') =
+      (w+2x+3y+4z)+(w'+2x'+3y'+4z') = 0+0 = 0,
+   \]
+   so the vector
+   \[ [w,x,y,z]^T+[w',x',y',z']^T=[w+w',x+x',y+y',z+z']^T \]
+   also lies in $U_2$, so $U_2$ is closed under addition.  If we
+   also have $t\in\R$ then $tw+2tx+3ty+4tz=t(w+2x+3y+4z)=0$,
+   so $[tw,tx,ty,tz]^T\in U_2$, so $U_2$ is closed under
+   scalar multiplication, and so is a subspace.
+  \item[(3)] The vector $[1,0,-1,0]^T$ lies in $U_3$, because
+   $1+0^2+(-1)^3+0^4=0$.  However, the vector
+   $2.[1,0,-1,0]^T=[2,0,-2,0]^T$ does not lie in $U_3$, because
+   $2+0^2+(-2)^3+0^4=-6\neq 0$.  This shows that $U_3$ is
+   not closed under scalar multiplication, so it is not a
+   subspace.
+  \item[(4)] As $w$ and $x$ are real numbers, we have
+   $w^2,x^2\geq 0$, so the only way we can have $w^2+x^2=0$
+   is if $w=x=0$.  Thus
+   \[ U_4 = \{[w,x,y,z]^T\in\R^4\st w=x=0\} =
+            \{[0,0,y,z]^T\st y,z\in\R\}.
+   \]
+   This is clearly a subspace of $\R^4$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-subspace-FR}{4.4}
+ The set $U_1$ is not a subspace, because the zero function
+ is not in $U_1$.  The set $U_2$ is not a subspace either.
+ Indeed, the constant function $f(t)=1$ is an element of
+ $U_2$, but $(-1).f$ is not an element of $U_2$, so $U_2$ is
+ not closed under scalar multiplication.  The set $U_4$ is
+ also not a subspace.  To see this, consider the functions
+ $f(x)=x(x-2)$ and $g(x)=(x-1)(x-2)$ and
+ $h(x)=f(x)+g(x)=(2x-1)(x-2)$.  Then
+ \begin{align*}
+  f(0)f(1) &= 0 = f(2)f(3) \\
+  g(0)g(1) &= 0 = g(2)g(3) \\
+  h(0)h(1) &= -2 \neq h(2)h(3) = 0.
+ \end{align*}
+ Thus $f,g\in U_4$ but $f+g\not\in U_4$, so $U_4$ is not a
+ subspace.  However, $U_0$ and $U_3$ are subspaces of $F$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-find-eg-subspace}{4.5}
+ Of course there are many different correct answers for this
+ question.  The following will do:
+ \begin{itemize}
+  \item[(a)]
+   $W=\{p\in \R[x]_{\leq 2}\st p(0)=0\}=\{ax^2+bx\st a,b\in\R\}$.
+  \item[(b)]
+   $W=\{A\in M_{2,3}\R\st A\bsm 1\\0\\0\esm = 0\}=
+     \{\bsm 0&a&b\\ 0&c&d\esm \st a,b,c,d\in\R\}$
+  \item[(c)]
+   $W=\{[x,y,z]^T\in V\st z=0\}=\{[x,-x,0]^T\st x\in\R\}$
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-find-eg-trivial-intersect}{4.6}
+ Of course there are many different correct answers for this
+ question.  The following will do:
+ \begin{itemize}
+  \item[(a)]
+   $V=\{[w,x,0,0]^T\st w,x\in\R\}$ and
+   $W=\{[0,0,y,z]^T\st w,x\in\R\}$.
+  \item[(b)]
+   $V=\{\bsm w&x\\0&0\esm\st w,x\in\R\}$ and
+   $W=\{\bsm 0&0\\y&z\esm\st y,z\in\R\}$.
+  \item[(c)]
+   $V=\{[s,-s,0]^T\st s\in\R\}$ and
+   $W=\{[0,t,-t]^T\st t\in\R\}$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-quad-intersection}{4.7}
+ Consider a polynomial $f\in U$, say $f(x)=ax^2+bx+c$.  We
+ have $f(0)=c$, so $f\in V$ iff $c=0$ iff $f(x)=ax^2+bx$ for
+ some $a,b\in\R$.  On the other hand, we have
+ \[ f(1) + f(-1) = (a+b+c) + (a-b+c) = 2(a+c), \]
+ so $f\in W$ iff $c=-a$, so $f(x)=a(x^2-1)+bx$ for some
+ $a,b\in\R$.  Thus $f\in V\cap W$ iff $c=0$ and also $c=-a$,
+ which means that $a=c=0$, so $f(x)=bx$ for some $b$.  This
+ shows that $V\cap W$ is as claimed.
+
+ On the other hand, given an arbitrary quadratic polynomial
+ $f(x)=ax^2+bx+c$ we can put $g(x)=(a+c)x^2$ and
+ $h(x)=bx-c(x^2-1)$.  We then have $g(0)=0$ and
+ $h(1)+h(-1)=0$, so $g\in V$ and $h\in W$, and $f=g+h$.
+ This shows that $V+W=U$.
+
+ \textbf{Aside:}
+ How did we find this $g$ and $h$?  We need $g$ to be an element of
+ $V$, so $g$ must have the form $g(x)=px^2+qx$ for some $p,q$.  We
+ also need $h$ to be an element of $W$, so $h$ must have the form
+ $h(x)=r(x^2-1)+sx$ for some $r,s$.  Finally, we need $f=g+h$, which
+ means that
+ \[ ax^2+bx+c = (px^2+qx)+(r(x^2-1)+sx)
+     = (p+r)x^2 + (q+s)x - r.
+ \]
+ By comparing coefficients we see that $a=p+r$ and $b=q+s$ and $c=-r$,
+ so $r=-c$ and $p=a-r=a+c$ and $s=b-q$ with $q$ arbitrary.  We can
+ choose to take $q=0$, giving $s=b$ and so $g(x)=px^2+qx=(a+c)x^2$ and
+ $h(x)=r(x^2-1)+sx=-c(x^2-1)+bx$ as before.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-inj-misc-i}{4.8}
+ Firstly, it is clear that $\al\bsm u\\ v\esm$ can only be
+ zero if $u=v=0$, so $\ker(\al)=0$, so $\al$ is injective.
+ Next, if $A\in\img(\al)$ then $A=\bsm u& -u\\ v&-v\esm$ for
+ some $u$ and $v$, so
+ $A\bsm 1\\1\esm=\bsm u&-u\\ v&-v\esm\bsm 1\\1\esm =
+ \bsm 0\\0\esm$.  Conversely, suppose we have a matrix
+ $A$ with $A\bsm 1\\1\esm=\bsm 0\\0\esm$.  We can write
+ $A=\bsm u&s\\ t&v\esm$ for some $u$, $s$, $t$ and $v$, and
+ we must have
+ \[ \bsm 0\\0 \esm = \bsm u&s\\ t&v\esm \bsm 1\\1\esm =
+     \bsm u+s\\ t+v\esm.
+ \]
+ This means that $s=-u$ and $t=-v$, so
+ $A=\bsm u&-u\\ -v&v\esm=\al\bsm u\\ v\esm$, so
+ $A\in\img(\al)$.  This proves that
+ $\img(\al)=\{A\st A\bsm 1\\1\esm=0\}$, as claimed.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-inj-misc-ii}{4.9}
+ \begin{itemize}
+  \item[(a)] $\displaystyle
+   \phi\bsm a&b\\ c&d\esm =
+   \bsm a&b\\ c&d\esm - \frac{a+d}{2}\bsm 1&0\\0&1\esm =
+   \bsm (a-d)/2 & b \\ c & (d-a)/2 \esm
+   $
+  \item[(b)] We have $\trc(I)=2$, so
+   $\phi(I)=I-\half.2I=0$, so $aI\in\ker(\phi)$ for all
+   $a$.  On the other hand, if $A\in\ker(\phi)$ then
+   $A-\half\trc(A)I=0$, so $A=\half\trc(A)I$, which is a
+   multiple of $I$.  Alternatively, we can write $A$ as
+   $\bsm a&b\\ c&d\esm$, and then if $\phi(A)=0$ then
+   part~(a) gives $a-d=b=c=0$, so $A=\bsm a&0\\0&a\esm=aI$.
+   Either way, this completes the proof that
+   $\ker(\phi)=\{aI\st a\in\R\}$.
+  \item[(c)] For any matrix $A=\bsm a&b\\ c&d\esm$, we have
+   \[ \trc(\phi(A)) =
+       \trc\left(\bsm (a-d)/2 & b \\ c & (d-a)/2 \esm\right) =
+       \frac{a-d}{2} + \frac{d-a}{2} = 0.
+   \]
+   Thus, $\img(\phi)\sse\{B\in M_2\R\st\trc(B)=0\}$.
+
+   Conversely, suppose we have a matrix $B$ with
+   $\trc(B)=0$; we must show that $B\in\img(\phi)$.  We
+   thus need to find a matrix $A$ such that $\phi(A)=B$.  In
+   fact we have $\phi(B)=B-\half\trc(B)I=B-0.I=B$, so we
+   can just take $A=B$.  This completes the proof that
+   $\img(\phi)=\{B\st\trc(B)=0\}$.
+
+   \textbf{Aside:} If we had not noticed that $\phi(B)=B$, what would
+   we have done?  We would have $B=\bsm p&q\\ r&-p\esm$ for some
+   $p,q,r$, and we would need to find a matrix $A=\bsm a&b\\c&d\esm$
+   with $\phi(A)=B$.  Using part~(a) we see that this reduces to the
+   equations $(a-d)/2=p$ and $b=q$ and $c=r$ and $(d-a)/2=-p$.  These
+   can be solved to give $a=2p+d$ and $b=q$ and $c=r$ with $d$
+   arbitrary.  We could take $d=0$, giving $A=\bsm 2p&q\\r&0\esm$, or
+   we could take $d=-p$ giving $A=\bsm p&q\\r&-p\esm=B$ as before.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-inj-misc-iii}{4.10}
+ \begin{itemize}
+  \item[(a)] $\displaystyle
+    \phi(f) =
+     \bbm
+      [ax^3/3+bx^2/2+cx]_{-1}^0 \\
+      [ax^3/3+bx^2/2+cx]_{-1}^1 \\
+      [ax^3/3+bx^2/2+cx]_0^1
+     \ebm =
+     \bbm
+      a/3-b/2+c \\ 2a/3+2c \\ a/3+b/2+c
+     \ebm
+   $
+  \item[(b)] We have $f\in\ker(\phi)$ iff $\phi(f)=0$ iff
+   $a/3-b/2+c=0$ and $2a/3+2c=0$ and $a/3+b/2+c=0$.  By
+   subtracting the first and third equations we see that
+   this implies $b=0$, and the second equation gives
+   $a=-3c$, so $f(x)=ax^2+bx+c=-3cx^2+c=c(1-3x^2)$.  It
+   follows that $\ker(\phi)=\{c(1-3x^2)\st c\in\R\}$.
+  \item[(c)] We need
+   \[ \bsm 1\\1\\0\esm = \phi(px+q) =
+      \bsm -p/2+q \\ 2q \\ p/2+q \esm, \]
+   so
+   \begin{align*}
+    -p/2 + q &= 1  \\
+    2q       &= 1  \\
+     p/2 + q &= 0.
+   \end{align*}
+   These equations have the unique solution  $p=-1$ and
+   $q=1/2$, so $g_+(x)=\half - x$.
+  \item[(d)] We now have $g_-(x)=\half+x$, and using the
+   formula in~(a) we see that $\phi(g_-)=\bsm 0\\1\\1\esm$
+   as required.
+  \item[(e)] Now put
+   \[ W = \{[u,v,w]^T\in\R^3\st v=u+w\} =
+          \{[u,u+w,w]^T\st u,w\in\R\}.
+   \]
+   The claim is that $W=\img(\phi)$.  Firstly, for any $f$
+   we certainly have
+   \[ \int_{-1}^1 f(x)\,dx =
+      \int_{-1}^0 f(x)\,dx +
+      \int_0^1 f(x)\,dx,
+   \]
+   so $\phi(f)\in W$, which proves that $\img(\phi)\sse W$.
+   On the other hand, given a vector $\vx=[u,u+w,w]^T\in W$,
+   we note that
+   \[ \phi(ug_++wg_-) =
+       u\phi(g_+) + w \phi(g_-) =
+       u \bsm 1\\1\\0\esm + w \bsm 0\\1\\1\esm =
+       \bsm u\\ u+w\\ w\esm = \vx,
+   \]
+   so $\vx\in\img(\phi)$.  This shows that
+   $W\sse\img(\phi)$, so $W=\img(\phi)$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-inj-misc-iv}{4.11}
+ \begin{itemize}
+  \item[(a)] This map is injective but not surjective, and
+   so is not an isomorphism.  Indeed, if $\bsm x\\ y\\ x\esm=0$,
+   then clearly $\bsm x\\ y\esm=0$.  In other words, if
+   $\phi(\vu)=0$, then $\vu=0$, which means that
+   $\ker(\phi)=0$, which means that $\phi$ is injective.  On
+   the other hand, the vector $\ve_1=\bsm 1\\0\\0\esm$ is
+   clearly not of the form $\bsm x\\ y\\ x\esm$, so it does
+   not lie in the image of $\phi$, so $\phi$ is not
+   surjective.
+  \item[(b)] This map is surjective but not injective, and
+   so is not an isomorphism.   Indeed, the vector
+   $\vu=\bsm 1\\ 1\\ 1 \esm$ has $\phi(\vu)=0$, so
+   $\vu\in\ker(\phi)$, so $\ker(\phi)\neq 0$, so $\phi$ is
+   not injective.  On the other hand, for any vector
+   $\vv=\bsm p\\ q\esm\in\R^2$ we see that
+   \[ \phi\bsm p+q\\q\\0\esm =
+       \bsm (p+q)-q \\ q-0 \esm = \bsm p\\ q\esm = \vv,
+   \]
+   so $\vv\in\img(\phi)$.  As this works for any
+   $\vv\in\R^2$, we deduce that $\img(\phi)=\R^2$, so $\phi$
+   is surjective.
+
+   \textbf{Aside:} How did we find this?  We need to find a vector
+   $\vu=\bsm x\\ y\\ z\esm$ with $\phi(\vu)=\vv=\bsm p\\ q\esm$.  This
+   reduces to the equations $x-y=p$ and $y-z=q$, giving $x=p+q+z$ and
+   $y=q+z$ with $z$ arbitrary.  We could take $z=0$, giving
+   $\vu=[p+q,q,0]^T$ as before.  Alternatively, we could take $z=-q$
+   giving $\vu=[p,0,-q]^T$.
+  \item[(c)] If $f(x)=ax^2+bx+c$ then
+   \begin{align*}
+    f(x)   &= ax^2 + bx + c & f(0)   &= c \\
+    f'(x)  &= 2ax + b       & f'(0)  &= b \\
+    f''(x) &= 2a            & f''(0) &= 2a,
+   \end{align*}
+   so
+   \[ \phi(ax^2+bx+c) = [c,b,2a]^T. \]
+   Now define $\psi\:\R^3\to\R[x]_{\leq 2}$ by
+   $\psi([p,q,r]^T)=\half r x^2+qx+p$.  We find that
+   $\psi(\phi(f))=f$ (for all $f\in\R[x]_{\leq 2}$), and
+   $\phi(\psi([p,q,r]^T))=[p,q,r]^T$.  This means that
+   $\psi$ is an inverse for $\phi$, so $\phi$ is an
+   isomorphism (and so is both injective and surjective).
+  \item[(d)] This is neither injective nor surjective, and
+   so is not an isomorphism.  It is not injective because
+   $\phi\bsm 1\\-1\esm=0$, which means that $\phi$ has
+   nonzero kernel.  Moreover, the matrix $I=\bsm
+   1&0\\0&1\esm$ does not have the form
+   $\bsm 0&x+y\\ x+y&0\esm$ for any $x$ and $y$, so
+   $I\not\in\img(\phi)$, so $\phi$ is not surjective.
+  \item[(e)] This is surjective but not injective, and so is
+   not an isomorphism.  It is not injective, because if we
+   put $g(x)=x$ then
+   \[ \int_{-1}^1 g(x)\,dx=\int_{-1}^1 x\,dx=
+       \left[ \half x^2 \right]_{-1}^1 =
+        \half(1^2 - (-1)^2) = 0.
+   \]
+   This shows that $g$ is a nonzero element of $\ker(\phi)$,
+   so $\phi$ cannot be injective.  On the other hand, given
+   any $t\in\R$ we can let $h(x)$ be the constant function
+   with value $t/2$, and we find that
+   $\phi(h)=\int_{-1}^1h(x)\,dx=2.(t/2)=t$, showing that
+   $t\in\img(\phi)$.  This works for any $t$, so
+   $\img(\phi)=\R$, so $\phi$ is surjective.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-inj-misc-v}{4.12}
+ Consider a vector $\vu$ in $L\cap M$.  We
+ must have $\vu=\bsm s\\2s\esm$ for some $s$ (because
+ $\vu\in L$) and $\vu=\bsm 2t\\ t\esm$ for some $t$ (because
+ $\vu\in M$).  This means that $s=2t$ and $t=2s$.  If we
+ substitute the second of these equations in the first we
+ get $s=4s$, so $3s=0$, so $s=0$, so $t=0$ and
+ $\vu=\bsm 0\\0\esm$.  This shows that $L\cap M=0$.
+
+ Now consider an arbitrary vector
+ $\vu=\bsm x\\ y\esm\in\R^2$.  We want to show that this
+ lies in $L+M$, so we must find vectors $\vv\in L$ and
+ $\vw\in M$ such that $\vu=\vv+\vw$.  In other words, we
+ must find numbers $s$ and $t$ such that
+ $\bsm x\\ y\esm=\bsm s\\ 2s\esm + \bsm 2t\\ t\esm$,
+ so
+ \begin{align*}
+  x &= s+2t \\
+  y &= 2s+t.
+ \end{align*}
+ These equations have the (unique) solution
+ \begin{align*}
+  t &= (2x-y)/3 \\
+  s &= (2y-x)/3
+ \end{align*}
+ so we can put
+ \[ \vv = \bsm s\\ 2s\esm = \bsm (2y-x)/3 \\ (4y-2x)/3 \esm
+    \hspace{4em}
+    \vw = \bsm 2t\\ t\esm = \bsm (4x-2y)/3 \\ (2x-y)/3 \esm.
+ \]
+ We then have $\vv\in L$ and $\vw\in M$ and $\vu=\vv+\vw$,
+ so $\vu\in L+M$.  This works for any vector $\vu\in\R^2$,
+ so $\R^2=L+M$ as claimed.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-trace-free-symmetric}{4.13}
+ If $A\in V\cap W$ then $A=A^T$ (because $A\in V$) and also
+ $A^T=-A$ (because $A\in W$) so $A=-A$.  We now add $A$ to
+ both sides to get $2A=0$, and divide by $2$ to get $A=0$.
+ This shows that $V\cap W=0$.  Now consider an arbitrary
+ matrix $A\in U$.  Put $A_+=(A+A^T)/2$ and $A_-=(A-A^T)/2$.
+ Then $A_++A_-=A$.  Moreover, we have
+ \begin{align*}
+  A_+^T &=(A^T+A^{TT})/2=(A^T+A)/2=(A+A^T)/2 = A_+ \\
+  A_-^T &=(A^T-A^{TT})/2=(A^T-A)/2=-(A-A^T)/2 = -A_-
+ \end{align*}
+ which shows that $A_+\in V$ and $A_-\in W$.  As $A=A_++A_-$
+ with $A_+\in V$ and $A_-\in W$, we have $A\in V+W$.  This
+ works for any $A\in U$, so $U=V+W$ as claimed.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-dependence}{5.1}
+ \begin{itemize}
+  \item[(a)] These are linearly dependent, and they do not span.
+   Indeed, any list of four vectors in $\R^3$ is always dependent.
+   Explicitly, we have $\vu_1-\vu_2-\vu_3+\vu_4=0$, which gives a
+   direct proof of dependence.  Also, all the vectors $\vu_i$ have
+   zero as the second entry, so the same will be true for any vector
+   in the span of the vectors $\vu_i$.  In particular, the vector
+   $[0,1,0]^T$ does not lie in that span, so the $\vu_i$'s do not span
+   all of $\R^3$.  This means that they do not form a basis.
+  \item[(b)] Any list of four vectors in $\R^3$ is
+   automatically linearly dependent (and so cannot form a
+   basis).  More specifically, the relation
+   $\vv_1+\vv_2+\vv_3-2\vv_4=0$ shows that the $\vv_i$'s are
+   dependent.  These vectors span all of $\R^3$, because any
+   vector $\va=\bsm x\\ y\\ z\esm\in\R^3$ can be expressed
+   as $\va=-z\vv_1-y\vv_2-x\vv_3+(x+y+z)\vv_4$.
+  \item[(c)] A list of two vectors can only be linearly
+   dependent if one is a multiple of the other, which is
+   clearly not the case here, so $\vw_1$ and $\vw_2$ are
+   linearly independent.  Moreover, a list of two vectors
+   can never span all of $\R^3$.  More explicitly, we claim that the
+   vector $\ve_1=\bsm 0\\1\\0\esm$ cannot be expressed as a linear
+   combination of $\vw_1$ and $\vw_2$.  Indeed, if we have
+   $\lm_1\vw_1+\lm_2\vw_2=\ve_1$ then
+   \[ \bsm 0\\1\\0\esm =
+       \lm_1\bsm 1\\2\\3\esm + \lm_2\bsm 4\\5\\6\esm =
+       \bsm \lm_1+4\lm_2 \\ 2\lm_1+5\lm_2 \\ 3\lm_1 + 6\lm_2 \esm,
+   \]
+   so
+   \[ \lm_1 + 4\lm_2 = 0 \hspace{4em}
+      2\lm_1 + 5\lm_2 = 1 \hspace{4em}
+      3\lm_1 + 6\lm_2 = 0.
+   \]
+   The first and third of these easily give $\lm_1=\lm_2=0$, which is
+   incompatible with the second equation, so there is no solution.
+   This shows that $\vw_1$ and $\vw_2$ do not form a
+   basis of $\R^3$.
+  \item[(d)] The vectors $\vx_1$, $\vx_2$ and $\vx_3$ are
+   linearly independent and span $\R^3$, so they form a
+   basis.  One way to see this is to write down the matrix
+   $A=\bsm 1&0&0\\1&2&0\\1&2&4\esm$ whose columns are
+   $\vx_1$, $\vx_2$ and $\vx_3$, and observe that it
+   row-reduces almost instantly to the identity.
+   Alternatively, we must show that for any vector
+   $\va=\bsm x\\ y\\ z\esm\in\R^3$, there are unique real
+   numbers $\lm,\mu,\nu$ such that
+   \[ \bsm x\\ y\\ z\esm =
+       \lm\bsm 1\\1\\1\esm +
+       \mu\bsm 0\\2\\2\esm +
+       \nu\bsm 0\\0\\4\esm.
+   \]
+   This equation is equivalent to $\lm=x$ and
+   $\lm+2\mu=y$ and $\lm+2\mu+4\nu=z$.  It is easy to see that there is
+   indeed a unique solution, namely $\lm=x$ and $\mu=(y-x)/2$ and
+   $\nu=(z-y)/4$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-independence}{5.2}
+ \begin{itemize}
+  \item[(a)] These vectors are linearly independent.
+   Indeed, we have
+   \[ \lm_1\vu_1+\lm_2\vu_2+\lm_3\vu_3 =
+       [\lm_1,2\lm_2,3\lm_3,2\lm_2,\lm_1]^T,
+   \]
+   and this can only be zero if $\lm_1=\lm_2=\lm_3=0$.
+   Thus, the only linear relation between $\vu_1$, $\vu_2$
+   and $\vu_3$ is the trivial one, as required.
+  \item[(b)] These are linearly dependent, because of the
+   nontrivial relation $4\vv_1-2\vv_2-\vv_3=0$.
+  \item[(c)] These are linearly independent.  Indeed,
+   suppose we have a relation
+   $\lm_1\vw_1+\lm_2\vw_2+\lm_3\vw_3=0$.  This means that
+   \[ \lm_1\bsm 1\\1\\2\esm +
+      \lm_2\bsm 4\\5\\7\esm +
+      \lm_3\bsm 1\\1\\1\esm = \bsm 0\\0\\0\esm ,
+   \]
+   so
+   \begin{align*}
+    \lm_1 + 4\lm_2 + \lm_3  &= 0 \\
+    \lm_1 + 5\lm_2 + \lm_3  &= 0 \\
+    2\lm_1 + 7\lm_2 + \lm_3 &= 0.
+   \end{align*}
+   Subtracting the first two equations gives $\lm_2=0$.
+   Given this, we can subtract the last two equations to get
+   $\lm_1=0$.  Feeding this back into the first equation
+   gives $\lm_3=0$.  Thus, the only linear relation between
+   $\vw_1$, $\vw_2$ and $\vw_3$ is the trivial one, as
+   required.
+
+   This can also be done by matrix methods.  Let $A$ be the
+   matrix whose columns are $\vw_1$, $\vw_2$ and $\vw_3$, so
+   \[ A = \bsm 1 & 4 & 1 \\ 1 & 5 & 1 \\ 2 & 7 & 1 \esm. \]
+   Then $\det(A)=-1\neq 0$, and if we row-reduce eihter $A$
+   or $A^T$ then we get the identity.  Any of these facts
+   implies that $\vw_1$, $\vw_2$ and $\vw_3$ are linearly
+   independent, as you should remember from SOM201.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-three-evals}{5.3}
+ Suppose we have a linear relation $\lm f+\mu g+\nu h=0$.
+ Note that the symbol $0$ on the right hand side means the
+ zero function, which takes the value $0$ for all $x$.  In
+ particular, it takes the value $0$ at $x=a$, so we have
+ \[ \lm f(a) + \mu g(a) + \nu h(a) = 0. \]
+ As $f(a)=1$ and $g(a)=h(a)=0$, this simplifies to $\lm=0$.
+ Similarly, we have
+ \begin{align*}
+  \lm f(b) + \mu g(b) + \nu h(b) &= 0 \\
+  \lm f(c) + \mu g(c) + \nu h(c) &= 0,
+ \end{align*}
+ and these simplify to give $\mu=\nu=0$.  Thus, the only
+ linear relation between $f$, $g$ and $h$ is the trivial
+ one, so they are linearly independent.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-exp-wronskian}{5.4}
+ We have $f'_k(x)=ke^{kx}$ and $f''_k(x)=k^2e^{kx}$, so
+ \begin{align*}
+  W(f_1,f_2,f_3)(x)
+   &= \det\bbm e^x &   e^{2x} &   e^{3x} \\
+               e^x & 2 e^{2x} & 3 e^{3x} \\
+               e^x & 4 e^{2x} & 9 e^{3x} \ebm
+    = e^x e^{2x} e^{3x} \det \bbm 1&1&1 \\ 1&2&3 \\ 1&4&9 \ebm \\
+   &= e^{6x}\left(
+         \det\bbm 2&3\\4&9 \ebm
+       - \det\bbm 1&3\\1&9 \ebm
+       + \det\bbm 1&2\\1&4 \ebm
+      \right)
+    = e^{6x} (6 - 6 + 2) = 2 e^{6x}.
+ \end{align*}
+ This is not the zero function, so $f_1$, $f_2$ and $f_3$
+ are linearly independent.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-pow-wronskian}{5.5}
+ The Wronskian matrix is
+ \[ WM = \bbm
+     x^n           & x^{n+1}       & x^{n+2}           \\
+     n x^{n-1}     & (n+1) x^n     & (n+2) x^{n+1}     \\
+     n(n-1)x^{n-2} & n(n+1)x^{n-1} & (n+1)(n+2) x^n
+    \ebm
+ \]
+ We can extract a factor of $x^n$ from the first row, $x^{n-1}$ from
+ the second row, and $x^{n-2}$ from the third row, to get
+ \[ W = \det(WM) = x^{3n-3} \det\bbm
+     1      & x       & x^2           \\
+     n      & (n+1) x & (n+2) x^2     \\
+     n(n-1) & n(n+1)x & (n+1)(n+2) x^2
+    \ebm .
+ \]
+ We then extract $x$ from the second column, and $x^2$ from the third
+ column, to get $W=x^{3n}\det(V)$, where
+ \[ V = \bbm
+     1      & 1      & 1        \\
+     n      & n+1    & n+2      \\
+     n(n-1) & n(n+1) & (n+1)(n+2)
+    \ebm .
+ \]
+
+ We will expand $\det(V)$ along the top row, using the cofactors
+ {\tiny \begin{align*}
+  \det\bbm (n+1) & (n+2)  \\ n(n+1) & (n+1)(n+2) \ebm
+   &= (n+1)^2(n+2) - n(n+1)(n+2) = (n+1)(n+2) = n^2+3n+2 \\
+  \det\bbm n  & (n+2)  \\ n(n-1) & (n+1)(n+2) \ebm
+   &= n(n+1)(n+2) - n(n-1)(n+2)
+    = 2n(n+2) = 2n^2+4n \\
+  \det\bbm n & (n+1) \\ n(n-1) & n(n+1) \ebm
+   &= n^2(n+1) - n(n-1)(n+1)
+    = n(n+1) = (n^2+n).
+ \end{align*}}
+ Thus
+ \[ \det(V) =
+   1 . (n^2+3n+2) - 1.(2n^2+4n) + 1.(n^2+n) =
+   n^2+3n+2-2n^2-4n+n^2+n = 2,
+ \]
+ so $W=2x^{3n}$.  Alternatively, you could ask Maple:
+\begin{verbatim}
+  with(LinearAlgebra):
+
+  WM := simplify(
+        <<      x^n     ,      x^(n+1)     ,      x^(n+2)      >|
+         < diff(x^n,x)  , diff(x^(n+1),x)  , diff(x^(n+2),x)   >|
+         < diff(x^n,x,x), diff(x^(n+1),x,x), diff(x^(n+2),x,x) >>
+        );
+
+  W := simplify(Determinant(WM));
+\end{verbatim}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-surj-misc-i}{5.6}
+ Consider a matrix
+ \[ A = \bbm a_1&a_2&a_3\\ a_4&a_5&a_6 \\ a_7&a_8&a_9 \ebm \]
+ Explicitly, we have
+ \begin{align*}
+  \phi(A)
+  &= \bbm 1 & x & x^2\ebm
+     \bbm a_1&a_2&a_3\\ a_4&a_5&a_6 \\ a_7&a_8&a_9 \ebm
+     \bbm 1 \\ x \\ x^2\ebm \\
+  &= \bbm 1 & x & x^2 \ebm
+     \bbm a_1 + a_2x + a_3 x^2 \\
+          a_4 + a_5x + a_6 x^2 \\
+          a_7 + a_8x + a_9 x^2 \ebm \\
+  &= a_1 + (a_2+a_4)x + (a_3+a_5+a_7)x^2 + (a_6+a_8)x^3 + a_9x^4
+ \end{align*}
+ In particular, given any element $f(x)=b_0+b_1x+b_2x^2+b_3x^3+b_4x^4$ in
+ $\R[x]_{\leq 4}$, we can take
+ \[ a_1=b_0,\; a_2=b_1,\; a_3=b_2,\; a_6=b_3,\; a_9=b_4,\;
+    a_4=a_5=a_7=a_8=0
+ \]
+ and we then have $\phi(A)=f$.  More explicitly:
+ \[ \phi\bsm b_0 & b_1 & b_2 \\ 0 & 0 & b_3 \\ 0 & 0 & b_4 \esm
+    = \bbm 1 & x & x^2\ebm
+      \bsm b_0 & b_1 & b_2 \\ 0 & 0 & b_3 \\ 0 & 0 & b_4 \esm
+      \bbm 1 \\ x \\ x^2 \ebm
+    = b_0 + b_1 x + b_2 x^2 + b_3 x^3 + b_4 x^4.
+ \]
+ This means that $\phi$ is
+ surjective.  The kernel is the set of matrices $A$ for which
+ \[ a_1 = a_2+a_4 = a_3+a_5+a_7 = a_6+a_8 = a_9 = 0, \]
+ or in other words, the set of matrices of the form
+ {\tiny \[ A = \bsm 0 &\; & a_2 &\; & a_3 \\
+             -a_2 &\; & a_5 &\; & a_6 \\
+             -a_3-a_5 &\; & -a_6 &\; & 0 \esm =
+   a_2 \bbm  0&1&0\\ -1&0&0\\ 0&0&0 \ebm +
+   a_3 \bbm 0&0&1\\ 0&0&0\\ -1&0&0 \ebm +
+   a_5 \bbm 0&0&0\\ 0&1&0\\ -1&0&0 \ebm +
+   a_6 \bbm 0&0&0\\ 0&0&1\\ 0&-1&0 \ebm
+ \]}
+ It follows that the following matrices form a basis for
+ $\ker(\phi)$:
+ {\tiny \[
+  \bbm 0&1&0\\ -1&0&0\\ 0&0&0 \ebm \hspace{4em}
+  \bbm 0&0&1\\ 0&0&0\\ -1&0&0 \ebm \hspace{4em}
+  \bbm 0&0&0\\ 0&1&0\\ -1&0&0 \ebm \hspace{4em}
+  \bbm 0&0&0\\ 0&0&1\\ 0&-1&0 \ebm
+ \]}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-surj-misc-ii}{5.7}
+ \begin{itemize}
+  \item[(a)] Given any vector $\vv=\bsm a\\ b\esm\in\R^2$,
+   we can define $f(x)=a+(b-a)x$; then $f\in\R[x]_{\leq 3}$
+   and $f(0)=a$ and $f(1)=b$, so $\phi(f)=\vv$.  This shows
+   that $\phi$ is surjective.
+
+   Now consider a polynomial $f(x)=ax^3+bx^2+cx+d$.
+   We have $\phi(f)=0$ iff $f(1)=0=f(0)$ iff $a+b+c+d=0=d$
+   iff $c=-a-b$ and $d=0$.  If this holds then
+   \[ f(x) = ax^3 + bx^2 + (-a-b)x = a(x^3-x) + b(x^2-x)
+       = a(x^3-x^2) + (a+b)(x^2-x).
+   \]
+   In other words, if we put $p(x)=x^3-x^2$ and
+   $q(x)=x^2-x$, then $\phi(p)=\phi(q)=0$ and
+   $f=a\,p+(a+b)\,q\in\spn(p,q)$.  This shows that $p$ and
+   $q$ span $\ker(\phi)$, and they are clearly linearly
+   independent, so they give a basis for $\ker(\phi)$.
+  \item[(b)] If $\psi(f)=0$ then we have
+   $f(0)=f(1)=f(2)=f(3)=0$, so $f(x)$ has at least four
+   different roots.  As $f$ is a polynomial of degree at
+   most three, this is impossible, unless $f=0$.  To be more
+   explicit, suppose that $f(x)=ax^3+bx^2+cx+d$ and
+   $f(0)=f(1)=f(2)=f(3)=0$.  This means that
+   \begin{align*}
+    d &= 0 \\
+    a+b+c+d &= 0 \\
+    8a+4b+2c+d &= 0 \\
+    27a+9b+3c+d &= 0,
+   \end{align*}
+   and these equations can be solved in the standard way to
+   show that $a=b=c=d=0$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-trace-rep}{5.8}
+ First consider the matrices
+ \[ E_1 = \bbm 1&0\\0&0 \ebm \hspace{3em}
+    E_2 = \bbm 0&1\\0&0 \ebm \hspace{3em}
+    E_3 = \bbm 0&0\\1&0 \ebm \hspace{3em}
+    E_4 = \bbm 0&0\\0&1 \ebm.
+ \]
+ We have
+ \begin{align*}
+  \phi(E_1) &= \bbm p&q\ebm\bbm r \\ 0\ebm = pr \\
+  \phi(E_2) &= \bbm p&q\ebm\bbm s \\ 0\ebm = ps \\
+  \phi(E_3) &= \bbm p&q\ebm\bbm 0 \\ r\ebm = qr \\
+  \phi(E_4) &= \bbm p&q\ebm\bbm 0 \\ s\ebm = qs.
+ \end{align*}
+ On the other hand, we have $\trc(E_1)=\trc(E_4)=1$ and
+ $\trc(E_2)=\trc(E_3)=0$.  Suppose for a contradiction
+ that we have $\phi(A)=\trc(A)$.  By taking $A=E_i$ for
+ $i=1,2,3,4$ we get $pr=1$ and $ps=0$ and $qr=0$ and
+ $qs=1$.  As $pr=qs=1$ we see that all of $p$, $q$, $r$ and
+ $s$ must be nonzero.  This conflicts with the equations
+ $ps=0=qr$, so we have the required contradiction.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-complex-eval}{5.9}
+ We have $J^2=-I$, so if $f(x)=ax^2+bx+c$ we have
+ $\phi(f)=(c-a)I+bJ=\bbm c-a&b\\-b&c-a\ebm$.  In particular,
+ we have $\phi(f)=0$ iff $b=0$ and $c=a$, which means that
+ $f(x)=a(x^2+1)$.  We also see that $\img(\phi)$ is spanned
+ by $I$ and $J$, which are linearly independent.  Thus
+ $\{x^2+1\}$ is a basis for $\ker(\phi)$ and $\{I,J\}$ is a
+ basis for $\img(\phi)$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-independence-proof}{5.10}
+ \begin{itemize}
+  \item[(a)] If $v_1,\dotsc,v_n$ are linearly dependent,
+   then there must exist a linear relation
+   $\lm_1v_1+\dotsb+\lm_nv_n=0$ in which one of the
+   $\lm_i$'s is nonzero.  We then have
+   \[ \lm_1\phi(v_1)+\dotsb+\lm_n\phi(v_n) =
+      \phi(\lm_1v_1+\dotsb+\lm_nv_n) = \phi(0) = 0,
+   \]
+   which gives a nontrivial linear relation between the
+   elements $\phi(v_1),\dotsc,\phi(v_n)$, showing that they
+   too are linearly dependent.
+  \item[(b)] Consider $\phi\:\R^2\to\R$ given by
+   $\phi\bsm x\\ y\esm=x+y$, and the vectors
+   $v_1=\bsm 1\\0\esm$ and $v_2=\bsm 0\\-1\esm$.  Then $v_1$
+   and $v_2$ are linearly independent, but
+   $\phi(v_1)+\phi(v_2)=0$, which shows that $\phi(v_1)$ and
+   $\phi(v_2)$ are linearly dependent.
+
+   Of course there are many other examples.  The minimal
+   example is to let $\phi$ be the map $\R\xra{}0$ given by
+   $\phi(t)=0$ for all $t$, and $n=1$, and $v_1=1\in\R$.
+   But this is perhaps so simple as to be confusing.
+  \item[(c)] This is logically equivalent to~(a).  If
+   $\phi(v_1),\dotsc,\phi(v_n)$ are linearly independent,
+   then $v_1,\dotsc,v_n$ cannot be dependent (as that would
+   contradict~(a)), so they must be linearly independent.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-maps-from-quad}{6.1}
+ Put $u=\phi(x)\in V$ and $v=\phi(1)\in V$.  Then
+ \[ \phi(ax+b) = \phi(a.x+b.1) = a\phi(x)+b\phi(1)
+     = au+bv,
+ \]
+ as required.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-various-polys}{6.2}
+ \begin{itemize}
+  \item[(a)]
+   \begin{align*}
+    \mu_\CV([0,1,1,-1]^T)
+     &= 0.1 + 1.x + 1.(1+x)^2 - 1.(1+x^2) \\
+     &= x + 1 + 2x + x^2 - 1 - x^2 = 3x.
+   \end{align*}
+  \item[(b)] Here it is simplest to just observe that
+   \[ x^2 =
+       -1 + (1+x^2) = (-1). 1 + 0.x + 0.(1+x)^2 + 1.(1+x^2) =
+       \mu_\CV([-1,0,0,1]^T).
+   \]
+   For a more laborious but systematic approach, we have
+   \begin{align*}
+    \mu_\CV(\vlm)
+     &= \lm_1.1 + \lm_2.x + \lm_3.(1+2x+x^2) + \lm_4.(1+x^2) \\
+     &= (\lm_1+\lm_3+\lm_4) + (\lm_2+2\lm_3)x + (\lm_3+\lm_4)x^2.
+   \end{align*}
+   We want this to equal $x^2$, so we must have
+   \begin{align*}
+    \lm_1 + \lm_3 + \lm_4 &= 0 \\
+    \lm_2 + 2\lm_3 &= 0 \\
+    \lm_3 + \lm_4 &= 1.
+   \end{align*}
+   These equations can be solved to give $\lm_1=-1$ and
+   $\lm_2=-2\lm_3$ and $\lm_4=1-\lm_3$ (where $\lm_3$ can be
+   anything).  It is simplest to take $\lm_3=0$, so
+   $\lm_1=-1$ and $\lm_2=0$ and $\lm_4=1$, so
+   $\vlm=([-1,0,0,1]^T)$.
+  \item[(c)] Again it is easiest to just observe that
+   $(1+x)^2=(1+x^2)+2x$, so
+   $0.1 + 2.x - 1.(1+x)^2 + 1.(1+x^2)=0$, so
+   $\mu_\CV([0,2,-1,1]^T)=0$.
+   For a more laborious but systematic approach, recall that
+   \[ \mu_\CV(\vlm) =
+      (\lm_1+\lm_3+\lm_4) + (\lm_2+2\lm_3)x + (\lm_3+\lm_4)x^2.
+   \]
+   We want this to equal $0$, so we must have
+   \begin{align*}
+    \lm_1 + \lm_3 + \lm_4 &= 0 \\
+    \lm_2 + 2\lm_3 &= 0 \\
+    \lm_3 + \lm_4 &= 0.
+   \end{align*}
+   These equations can be solved to give $\lm_1=0$ and
+   $\lm_3=-\lm_4$ and $\lm_2=-2\lm_3=2\lm_4$, so
+   $\vlm=\lm_4.[0,2,-1,1]^T$.  Here $\lm_4$ can be anything,
+   but it is simplest to take $\lm_4=1$ to get
+   $\vlm=[0,2,-1,1]^T$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-span-matrices}{6.3}
+ \begin{itemize}
+  \item[(a)] As the matrices in $\CA$ all have $0$ in the top
+   left corner, the same will be true of any matrix in
+   $\spn(\CA)$.  (The formula is
+   \[ \mu_\CA(\vlm) =
+       \lm_1 \bsm 0&1\\2&3\esm +
+       \lm_2 \bsm 0&2\\1&3\esm +
+       \lm_3 \bsm 0&1\\3&2\esm +
+       \lm_4 \bsm 0&3\\2&1\esm =
+       \bsm 0 & \lm_1 + 2\lm_2 + \lm_3 + 3\lm_4 \\
+            2\lm_1 + \lm_2 + 3\lm_3 + 2\lm_4 &
+            3\lm_1 + 3\lm_2 + 2\lm_3 + \lm_4 \esm,
+   \]
+   but you should be able to follow the argument without
+   needing the formula.)  In particular, the identity
+   matrix cannot lie in $\spn(\CA)$, because it
+   does not have $0$ in the top left corner.  Thus
+   $\spn(\CA)\neq M_2\R$.
+  \item[(b)] As the matrices in $\CB$ are symmetric, the
+   same will be true of any matrix in $\spn(\CB)$.  (The formula is
+   \[ \mu_\CB(\vlm) =
+       \lm_1 \bsm 1&1\\1&0\esm +
+       \lm_2 \bsm 0&1\\1&1\esm +
+       \lm_3 \bsm 1&0\\0&1\esm +
+       \lm_4 \bsm 1&0\\0&-1\esm =
+       \bsm \lm_1 +\lm_3+\lm_4 & \lm_1+\lm_2  \\
+            \lm_1+\lm_2 & \lm_2+\lm_3-\lm_4 \esm,
+   \]
+   but you should be able to follow the argument without
+   needing the formula.)  In particular, the matrix
+   $\bsm 0&1\\0&0\esm$ cannot lie in $\spn(\CB)$, because it
+   is not symmetric.  Thus $\spn(\CB)\neq M_2\R$.
+  \item[(c)] The list $\CC$ spans $M_2\R$.  To see this,
+   consider a matrix $A=\bsm a&b\\ c&d\esm$.  We have
+   \[ \mu_\CC(\vlm)=
+       \lm_1 \bsm 1&0\\0&0\esm +
+       \lm_2 \bsm 1&1\\0&0\esm +
+       \lm_3 \bsm 1&1\\1&0\esm +
+       \lm_4 \bsm 1&1\\1&1\esm =
+       \bsm \lm_1+\lm_2+\lm_3+\lm_4 & \lm_2+\lm_3+\lm_4 \\
+            \lm_3+\lm_4 & \lm_4 \esm.
+   \]
+   We want this to equal $\bsm a&b \\ c&d\esm$, so we must
+   have
+   \begin{align*}
+    \lm_1 + \lm_2 + \lm_3 + \lm_4 &= a \\
+            \lm_2 + \lm_3 + \lm_4 &= b \\
+                    \lm_3 + \lm_4 &= c \\
+                            \lm_4 &= d
+   \end{align*}
+   These equations have the (unique) solution $\lm_1=a-b$,
+   $\lm_2=b-c$, $\lm_3=c-d$ and $\lm_4=d$.  In conclusion,
+   we have
+   \[ \mu_{\CC}([a-b, b-c, c-d, d]^T) = A,  \]
+   showing that $A\in\spn(\CC)$.  This works for any matrix
+   $A$, so $M_2\R=\spn(\CC)$.
+  \item[(d)] As all the matrices in $\CD$ have trace zero,
+   the same will be true of any matrix in $\spn(\CD)$.  In
+   particular, the identity matrix cannot lie in
+   $\spn(\CD)$, because it does not have trace zero.  Thus,
+   $\spn(\CD)\neq M_2\R$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-prove-rk-spans}{6.4}
+ Given $\vlm=[\lm_0,\lm_1,\lm_2]^T\in\R^3$, we have
+ \begin{align*}
+  \mu_\CR(\vlm)(x)
+   &= \lm_0x^2 + \lm_1(x+1)^2 + \lm_2(x+2)^2
+    = \lm_0x^2 + \lm_1(x^2+2x+1) + \lm_2(x^2+4x+4) \\
+   &= (\lm_0+\lm_1+\lm_2)x^2 + (2\lm_1+4\lm_2)x + (\lm_1+4\lm_2)
+ \end{align*}
+ Suppose we have a quadratic polynomial $q(x)=ax^2+bx+c$,
+ and we want to have $\mu_\CR(\vlm)=q$.  We must then have
+ \begin{align*}
+  \lm_0+\lm_1+\lm_2 &= a \\
+  2\lm_1 + 4\lm_2 &= b \\
+  \lm_1 + 4\lm_2 &= c.
+ \end{align*}
+ Subtracting the last two equations gives $\lm_1=b-c$, and
+ we can put this into the last equation to give
+ $\lm_2=c/2-b/4$.  We then put these two values back into
+ the first equation to give $\lm_0=a-3b/4+c/2$.  The
+ conclusion is that
+ \[ \mu\left(\bsm a-3b/4+c/2 \\ b-c \\ c/2-b/4\esm\right) = q,
+ \]
+ showing that $q\in\spn(\CR)$.  As this works for any
+ quadratic polynomial $q$, we have $\spn(\CR)=\R[x]_{\leq 2}$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-matrix-i}{7.1}
+ We have
+ \[ \phi(\ve_1) = \bsm 0\\1\\1\esm \hspace{2em}
+    \phi(\ve_2) = \bsm 1\\0\\1\esm \hspace{2em}
+    \phi(\ve_3) = \bsm 1\\1\\0\esm
+ \]
+ so the matrix with respect to the standard basis is
+ \[ \bsm 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \esm. \]
+ On the other hand, we have
+ \begin{align*}
+   \phi(\vu_1) &= \bsm 2\\2\\2\esm = 2.\vu_1+0.\vu_2+0.\vu_3 \\
+   \phi(\vu_2) &= \bsm -1\\ 1\\ 0\esm = 0\vu_1 - 1.\vu_2 + 0.\vu_3 \\
+   \phi(\vu_3) &= \bsm 0\\-1\\ 1\esm = 0\vu_1 + 0.\vu_2 - 1.\vu_3
+ \end{align*}
+ so the matrix with respect to $\vu_1$, $\vu_2$ and $\vu_3$
+ is
+ \[ \bsm 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -1 \esm. \]
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-matrix-ii}{7.2}
+ The usual basis of $\R[x]_{\leq 2}$ is $\{1,x,x^2\}$.  If
+ $f(x)=x^2$ then $f'(x)=2x$ and $f''(x)=2$, so $f(0)=0$ and
+ $f'(1)=2$ and $f''(2)=2$, so $\phi(f)=[0,2,2]^T$.  In the same
+ way, we get
+ \[
+  \phi(1)   = \bsm 1\\0\\0\esm \hspace{2em}
+  \phi(x)   = \bsm 0\\1\\0\esm \hspace{2em}
+  \phi(x^2) = \bsm 0\\2\\2\esm.
+ \]
+ The matrix of $\phi$ has these three vectors as its columns, so
+ the matrix is $\bbm 1&0&0\\ 0&1&2\\ 0&0&2\ebm$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-matrix-iii}{7.3}
+ \begin{itemize}
+  \item[(a)] The functions $f_0(x)=e^{\lm x}$, $f_1(x)=xe^{\lm x}$
+  and $f_2(x)=x^2e^{\lm x}$ form a basis for $V$.
+  \item[(b)] If $f\in V$ then $f(x)=(ax^2+bx+c)e^{\lm x}$, so
+   \[ f'(x)=(2ax+b)e^{\lm x} + (ax^2+bx+c)\lm e^{\lm x}
+       = (a\lm x^2+(2a+b\lm)x + (b+c\lm))e^{\lm x}.
+   \]
+   Here $a$, $b$, $c$ and $\lm$ are all just constants, so we see
+   that $f'(x)$ is again a quadratic polynomial times $e^{\lm x}$,
+   so $f'\in V$ as required.
+  \item[(c)]
+   We have
+   \begin{align*}
+    f'_0 &= \lm f_0 + 0. f_1 + 0.f_2 \\
+    f'_1 &= 1.f_0 + \lm f_1 + 0.f_2 \\
+    f'_2 &= 0.f_0 + 2.f_1 + \lm f_2
+   \end{align*}
+   so the matrix is $\bbm \lm&1&0 \\ 0&\lm&2 \\ 0&0&\lm\ebm$.
+  \item[(d)] We have $(D-\lm)f_0=f'_0-\lm f_0=0$ and similarly
+   $(D-\lm)f_1=f_0$ and $(D-\lm)f_2=2f_1$.  It follows that
+   $(D-\lm)^2f_2=(D-\lm)f_1=0$ and $(D-\lm)^3f_2=2(D-\lm)^2f_1=0$,
+   so $(D-\lm)^3f_i=0$ for $i=0,1,2$, so $(D-\lm)^3=0$.
+   Alternatively, we can note that $D-\lm$ has matrix
+   $\bbm 0&1&0\\ 0&0&2\\ 0&0&0\ebm$, and it is easy to see that
+   the cube of this matrix is zero.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-difference-op}{7.4}
+ We have $\Dl(x^k)=(x+1)^k-x^k$, so
+ \begin{align*}
+  \Dl(x^0) &= 0
+           &= 0.x^0 + 0.x^1 + 0.x^2 + 0.x^3 \\
+  \Dl(x^1) &= 1
+           &= 1.x^0 + 0.x^1 + 0.x^2 + 0.x^3 \\
+  \Dl(x^2) &= 2x+1
+           &= 1.x^0 + 2.x^1 + 0.x^2 + 0.x^3 \\
+  \Dl(x^3) &= 3x^2+3x+1
+           &= 1.x^0 + 3.x^1 + 3.x^2 + 0.x^3 \\
+  \Dl(x^4) &= 4x^3+6x^2+4x+1
+           &= 1.x^0 + 4.x^1 + 6.x^2 + 4.x^3
+ \end{align*}
+ The matrix is therefore
+ \[ \bsm
+     0 & 1 & 1 & 1 & 1 \\
+     0 & 0 & 2 & 3 & 4 \\
+     0 & 0 & 0 & 3 & 6 \\
+     0 & 0 & 0 & 0 & 4
+    \esm
+ \]
+ It is clear that the nonzero columns form a basis for
+ $\R^4$.  It follows that the map is surjective (so the
+ image is all of $\R[x]_{\leq 3}$), and the kernel is just
+ the set of constant polynomials.  More explicitly, consider
+ a polynomial $p=ax^4+bx^3+cx^2+dx+e$.  We have
+ \begin{align*}
+   \Dl(p) &=
+     a(4x^3+6x^2+4x+1)+ b(3x^2+3x+1) +
+     c(2x+1) + d \\
+    &= 4ax^3 + (6a+3b)x^2 + (4a+3b+2c)x + (a+b+c+d).
+ \end{align*}
+ We can only have $\Dl(p)=0$ if
+ $4a=6a+3b=4a+3b+2c=a+b+c+d=0$, which is easily solved to
+ give $a=b=c=d=0$ (with $e$ arbitrary).  In other words,
+ $\Dl(p)$ can only be zero if $p$ is constant.  We also find
+ that
+ \begin{align*}
+  \Dl(x) &= 1 \\
+  \Dl((x^2-x)/2) &= x \\
+  \Dl((2x^3-3x^2+x)/6) &= x^2 \\
+  \Dl((x^4-2x^3+x^2)/4) &= x^3,
+ \end{align*}
+ so the image of $\Dl$ is a subspace containing the elements
+ $1,x,x^2$ and $x^3$, but these elements span all of
+ $\R[x]_{\leq 3}$, so $\Dl$ is surjective.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-commutative}{7.5}
+ \begin{itemize}
+  \item[(a)] The general formula is
+   \[ \al\bsm x\\ y\\ z\esm=\bsm 3\\4\\0\esm\tm\bsm x\\ y\\ z\esm
+       = \bsm 4z\\ -3z\\ 3y-4x\esm,
+   \]
+   so
+   \begin{align*}
+    \al(\vu_1) &= \bsm 60\\-45\\-100\esm = 5\vu_3
+               &&= 0.\vu_1 + 0.\vu_2 + 5.\vu_3 \\
+    \al(\vu_2) &= \bsm 0\\0\\0\esm
+               &&= 0.\vu_1 + 0.\vu_2 + 0.\vu_3 \\
+    \al(\vu_3) &= \bsm -80\\60\\-75\esm = -5\vu_1
+               &&= -5\vu_1+0.\vu_2+0.\vu_3
+   \end{align*}
+  \item[(b)]
+   The lists of coefficients here form the columns of the
+   matrix $A$, so $A=\bsm 0&0&-5\\ 0&0&0\\ 5&0&0\esm$.
+  \item[(c)]
+   \begin{align*}
+    \mu_\CU(\vb) &= 1.\vu_1 + 2.\vu_2 + 3.\vu_3
+                  = \bsm 16\\ -12\\ 15\esm +
+                    \bsm 30\\ 40\\ 0\esm +
+                    \bsm 36\\-27\\-60\esm
+                  = \bsm 82\\ 1\\-45\esm \\
+    \al(\mu_\CU(\vb))
+     &= \al\bsm 82\\ 1\\ -45 \esm
+      = \bsm 4\tm (-45) \\ (-3) \tm (-45) \\ 3\tm 1 - 4\tm 82\esm
+      = \bsm -180 \\ 135 \\ -325 \esm \\
+    \phi_A(\vb) &= A\vb = \bsm 0&0&-5\\ 0&0&0\\ 5&0&0\esm
+                          \bsm 1\\ 2\\ 3\esm
+                 = \bsm -15\\ 0\\ 5 \esm \\
+    \mu_\CU(\phi_A(\vb)) &=
+     \mu_\CU\bsm -15\\ 0\\ 5\esm =
+      -15.\vu_1 + 0.\vu_2 + 5.\vu_3 =
+      \bsm (-15)\tm 16 + 5\tm 12 \\
+           (-15)\tm(-12) + 5\tm(-9) \\
+           (-15)\tm 15 + 5\tm(-20) \esm =
+      \bsm -180 \\ 135 \\ -325 \esm
+   \end{align*}
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-composite}{7.6}
+ \begin{itemize}
+  \item[(a)] We have $E_1^T=E_1$ and $E_2^T=E_3$ and
+   $E_3^T=E_2$ and $E_4^T=E_4$.  It follows that
+   $\al(E_1)=\al(E_4)=0$, whereas $\al(E_2)=E_2-E_3$ and
+   $\al(E_3)=E_3-E_2$.  From this it follows that
+   {\tiny \[
+     A = \bsm 0&0&0&0 \\ 0&1&-1&0 \\ 0&-1&1&0\\ 0&0&0&0 \esm.
+   \]}
+  \item[(b)]
+   \begin{align*}
+    \bt(E_1) &= \bsm 1&1\\ 1&1\esm \bsm 1&0\\0&0\esm
+              = \bsm 1&0\\1&0\esm = 1.E_1+0.E_2+1.E_3 + 0.E_4\\
+    \bt(E_2) &= \bsm 1&1\\ 1&1\esm \bsm 0&1\\0&0\esm
+              = \bsm 0&1\\0&1\esm = 0.E_1+1.E_2+0.E_3 + 1.E_4\\
+    \bt(E_3) &= \bsm 1&1\\ 1&1\esm \bsm 0&0\\1&0\esm
+              = \bsm 1&0\\1&0\esm = 1.E_1+0.E_2+1.E_3 + 0.E_4\\
+    \bt(E_4) &= \bsm 1&1\\ 1&1\esm \bsm 0&0\\0&1\esm
+              = \bsm 0&1\\0&1\esm = 0.E_1+1.E_2+0.E_3 + 1.E_4
+   \end{align*}
+   The lists of coefficents here give the columns of $B$,
+   so
+   {\tiny \[
+     B = \bsm 1&0&1&0 \\ 0&1&0&1 \\ 1&0&1&0\\ 0&1&0&1 \esm.
+   \]}
+  \item[(c)] Using part~(b) we get
+   \begin{align*}
+    \al\bt(E_1) &=\al\bsm 1&0\\1&0\esm
+                 =\bsm 1&0\\1&0\esm -\bsm 1&1\\0&0\esm
+                 =\bsm 0&-1\\1&0\esm = 0.E_1-E_2 + E_3 +0.E_4\\
+    \al\bt(E_2) &=\al\bsm 0&1\\0&1\esm
+                 =\bsm 0&1\\0&1\esm -\bsm 0&0\\1&1\esm
+                 =\bsm 0&1\\-1&0\esm = 0.E_1+E_2 - E_3+0.E_4 \\
+    \al\bt(E_3) &=\al\bsm 1&0\\1&0\esm
+                 =\bsm 1&0\\1&0\esm -\bsm 1&1\\0&0\esm
+                 =\bsm 0&-1\\1&0\esm = 0.E_1-E_2 + E_3+0.E_4 \\
+    \al\bt(E_4) &=\al\bsm 0&1\\0&1\esm
+                 =\bsm 0&1\\0&1\esm -\bsm 0&0\\1&1\esm
+                 =\bsm 0&1\\-1&0\esm = 0.E_1+E_2 - E_3+0.E_4
+   \end{align*}
+   The lists of coefficents here give the columns of $C$,
+   so
+   {\tiny \[
+     C = \bsm 0&0&0&0 \\ -1&1&-1&1 \\ 1&-1&1&-1\\ 0&0&0&0 \esm.
+   \]}
+  \item[(d)] One checks directly that
+   {\tiny \[
+     \bsm 0&0&0&0 \\ 0&1&-1&0 \\ 0&-1&1&0\\ 0&0&0&0 \esm
+     \bsm 1&0&1&0 \\ 0&1&0&1 \\ 1&0&1&0\\ 0&1&0&1 \esm =
+     \bsm 0&0&0&0 \\ -1&1&-1&1 \\ 1&-1&1&-1\\ 0&0&0&0 \esm,
+   \]}
+   so $AB=C$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-basis-change}{7.7}
+ \begin{itemize}
+  \item[(a)] The columns of $P$ are the lists of coefficents
+   in the following equations:
+   \begin{align*}
+    E'_1 &= E_1 + 0.E_2 + 0.E_3 + E_4 \\
+    E'_2 &= E_1 + 0.E_2 + 0.E_3 - E_4 \\
+    E'_3 &= 0.E_1 + E_2 + E_3 + 0.E_4 \\
+    E'_4 &= 0.E_1 + E_2 - E_3 + 0.E_4
+   \end{align*}
+   Thus,
+   {\tiny \[ P =
+      \bsm 1&1&0&0 \\ 0&0&1&1 \\ 0&0&1&-1 \\ 1&-1&0&0 \esm
+   \]}
+  \item[(b)] For $i\leq 3$, the matrix $E'_i$ is symmetric,
+   so $\al(E'_i)=0$.  This means that the first three
+   columns of $A'$ are zero.  We also have
+   \[ \al(E'_4) = \bsm 0&1\\-1&0\esm - \bsm 0&-1\\1&0\esm =
+        \bsm 0&2\\-2&0 \esm = 2E'_4
+        =0.E'_1+0.E'_2+0.E'_3+2.E'_4,
+   \]
+   so the last column of $A'$ is $[0,0,0,2]^T$, so
+   {\tiny \[
+    A' = \bsm 0&0&0&0 \\ 0&0&0&0 \\ 0&0&0&0 \\ 0&0&0&2 \esm.
+   \]}
+  \item[(c)] Just by multiplying out we see that
+   {\tiny \[
+    PA' =
+     \bsm 1&1&0&0 \\ 0&0&1&1 \\ 0&0&1&-1 \\ 1&-1&0&0 \esm
+     \bsm 0&0&0&0 \\ 0&0&0&0 \\ 0&0&0&0 \\ 0&0&0&2 \esm =
+     \bsm 0&0&0&0 \\ 0&0&0&2 \\ 0&0&0&-2 \\ 0&0&0&0 \esm =
+     \bsm 0&0&0&0 \\ 0&1&-1&0 \\ 0&-1&1&0\\ 0&0&0&0 \esm
+     \bsm 1&1&0&0 \\ 0&0&1&1 \\ 0&0&1&-1 \\ 1&-1&0&0 \esm =
+    AP
+   \]}
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-char-poly}{7.8}
+ The obvious basis to use is $x^2,x,1$.  We have
+ \begin{align*}
+  \phi(x^2) &= x^2 + 2x + 2 \\
+  \phi(x)  &= 0.x^2 + x + 1 \\
+  \phi(1)  &= 0.x^2 + 0.x + 1,
+ \end{align*}
+ so the matrix of $\phi$ with respect to $x^2,x,1$ is
+ \[ P = \bsm 1 & 0 & 0 \\ 2 & 1 & 0 \\ 2 & 1 & 1 \esm \]
+ We thus have
+ \begin{align*}
+  \trc(\phi) &= \trc(P) = 1+1+1 = 3 \\
+  \det(\phi) &= \det(P) = 1.\det\bsm 1&0\\1&1\esm  -
+                          0.\det\bsm 2&0\\2&1\esm +
+                          0.\det\bsm 2&1\\2&1\esm = 1\\
+  \chr(\phi)(t) &= \chr(P)(t) =
+    \det\bsm t-1 & 0 & 0 \\ -2 & t-1 & 0 \\ -2 & -1 & t-1 \esm =
+    (t-1)^3.
+ \end{align*}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-recurrence}{7.9}
+ \begin{itemize}
+  \item[(a)] If $a\in\ker(\pi)$ then $\pi(a)=0$ so $a_0=a_1=0$.
+   Using the relation $a_2=3a_1-2a_0$ we see that $a_2=0$.  We
+   can now use the relation $a_3=3a_2-2a_1$ to see that $a_3=0$.
+   More generally, if $a_0=\dotsb=a_{i-1}=0$ (for some $i\geq 2$)
+   then the relation $a_i=3a_{i-1}-2a_{i-2}$ tells us that
+   $a_i=0$ as well.  It follows by induction that $a_i=0$ for
+   all $i$, so $a=0$.  Thus $\ker(\pi)=0$ as claimed.
+  \item[(b)] We have $u_{i+2}-3u_{i+1}+2u_i=1-3+2=0$, so
+   $u\in V$.  We also have
+   \[ v_{i+2}-3v_{i+1}+2v_i = 2^{i+2}-3.2^{i+1}+2.2^i =
+      2^i(4 - 3.2 +2) = 0,
+   \]
+   so $v\in V$.
+  \item[(c)] We have $\pi(u)=[1,1]^T$ and $\pi(v)=[1,2]^T$.  By
+  inspection we have $\pi(2u-v)=[1,0]^T$ and $\pi(v-u)=[0,1]^T$, so we
+  can take $b=2u-v$ and $c=v-u$.
+  \item[(d)] Suppose we have an element $a\in V$.  We then have
+   \[ \pi(a - a_0b - a_1c) = \pi(a) - a_0\pi(b) - a_1\pi(c)
+      = [a_0,a_1]^T - a_0[1,0]^T - a_1[0,1]^T = [0,0]^T.
+   \]
+   As $\pi$ is injective, this means that $a=a_0b+a_1c$.  It is
+   clear that this expression for $a$ in terms of $b$ and $c$ is
+   unique, so $b$ and $c$ give a basis.  Next, for $a$ as above
+   we have
+   \[ a=a_0b+a_1c=a_0(2u-v)+a_1(v-u) = (2a_0-a_1)u+(a_1-a_0)v,
+   \]
+   which is a linear combination of $u$ and $v$.  This shows
+   that $u$ and $v$ span $V$, and they are clearly independent,
+   so they also form a basis.
+  \item[(a)] We have
+   \begin{align*}
+    \lm(u) &= \lm(1,1,1,1,1,\dotsc) = (1,1,1,1,\dotsc) = u \\
+    \lm(v) &= \lm(1,2,4,8,16,\dotsc) = (2,4,8,16,\dotsc) = 2v
+   \end{align*}
+   so the matrix of $\lm$ with respect to $u,v$ is just
+   $\bbm 1&0\\0&2\ebm$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-find-jumps}{8.1}
+ \begin{enumerate}
+  \item Clearly $\vv_1\not\in 0=V_0$, so $1$ is a jump.
+  \item Clearly $\vv_2$ is not a multiple of $\vv_1$, so
+   $\vv_2\not\in V_1$, so $2$ is a jump.
+  \item We have $\vv_3=(\vv_1-\vv_2)/2\in V_2$, so $3$ is
+   not a jump.
+  \item We have $\vv_4=\vv_1-\vv_3\in V_3$, so $4$ is not a jump.
+  \item The vectors $\vv_1,\dotsc,\vv_4$ all have the
+   property that the second and third coordinates are the
+   same.  Any vector in $V_4=\spn(\vv_1,\dotsc,\vv_4)$ will
+   therefore have the same property.  However, the second
+   and third coordinates in $\vv_5$ are different, so
+   $\vv_5\not\in V_4$, so $5$ is a jump.
+  \item We have $\vv_6=\vv_1-\vv_5\in V_5$, so $6$ is not a jump.
+  \item The vector $\vv_7$ does not lie in $V_6$.  The
+   cleanest way  prove this is to consider the linear map
+   $\phi\:\R^6\to\R$ give by
+   \[ \phi([x_1,x_2,x_3,x_4,x_5,x_6]^T) =
+       x_2-x_3+x_4-x_5.
+   \]
+   We then find that
+   $\phi(\vv_1)=\phi(\vv_2)=\dotsb=\phi(\vv_6)=0$, so
+   $\phi(\vu)=0$ for any
+   $\vu\in\spn(\vv_1,\dotsc,\vv_6)=V_6$, but
+   $\phi(\vv_7)=-2$, so $\vv_7\not\in V_6$.  Thus $7$ is a
+   jump.
+  \item We have $\vv_8=\vv_2-\vv_7\in V_7$, so $8$ is not a jump.
+ \end{enumerate}
+ The set of jumps is thus $\{1,2,5,7\}$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-two-subspaces}{8.2}
+ Note that $V\cap W$ is the set of matrices of the form
+ $\bsm a&b\\ b&-a\esm$, so if we put
+ $u_1=\bsm 1&0\\0&-1\esm$ and $u_2=\bsm 0&1\\1&0\esm$ then
+ $u_1,u_2$ is a basis for $V\cap W$.  We now put $v_1=\bsm
+ 1&0\\0&1\esm$ and $w_1=\bsm 0&1\\-1&0\esm$.  We find that
+ $u_1,u_2,v_1$ is a basis for $V$, and $u_1,u_2,w_1$ is a
+ basis for $W$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-two-subspaces-numbers}{8.3}
+ \begin{align*}
+  \dim(U+V) &= \dim(U)+\dim(V)-\dim(U\cap V)=2+3-1=4\\
+  \dim(V+W) &= \dim(V)+\dim(W)-\dim(V\cap W)=3+4-2=5\\
+  \dim(U+V+W) &= \dim(U+V)+\dim(W)-\dim((U+V)\cap W)
+               = 4+4-3=5.
+ \end{align*}
+ Now it is clear that $V+W\leq U+V+W$ and
+ $\dim(V+W)=\dim(U+V+W)$; this can only happen if
+ $V+W=U+V+W$.  It is also clear that $U\leq U+V+W$ but
+ $U+V+W=V+W$ so $U\leq V+W$ as claimed.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-adapted-bases}{8.4}
+ \begin{itemize}
+  \item[(a)] Here we have
+   \[ \phi\bsm a&b\\ c&d\esm =
+       [x,x^2]\bsm a+bx\\ c+dx\esm = ax+(b+c)x^2+dx^3
+   \]
+   It follows that the list $v_1=x,v_2=x^2,v_3=x^3$ is a
+   basis for $\img(\phi)$, and the matrices
+   $u_1=\bsm 1&0\\0&0\esm,u_2=\bsm 0&1\\0&0\esm,u_3=\bsm 0&0\\0&1\esm$
+   have $\phi(u_i)=v_i$.  We also see that $\phi\bsm a&b\\ c&d\esm=0$
+   iff $a=d=0$ and $c=-b$, so $u_4=\bsm 0&1\\-1&0\esm$ gives
+   a basis for $\ker(\phi)$.  Finally, we can take $v_4=1$
+   to extend our list $v_1,\dotsc,v_3$ to a basis for all of
+   $\R[x]_{\leq 3}$.  Our final answer is thus:
+   \[ u_1=\bsm 1&0\\0&0\esm\hspace{2em}
+      u_2=\bsm 0&1\\0&0\esm\hspace{2em}
+      u_3=\bsm 0&0\\0&1\esm\hspace{2em}
+      u_4=\bsm 0&1\\-1&0\esm
+   \]
+   \[ v_1=x\hspace{2em}
+      v_2=x^2\hspace{2em}
+      v_3=x^3\hspace{2em}
+      v_4=1
+   \]
+  \item[(b)] Here we have
+   \[ \psi(ax^2+bx+c) =
+       \bsm a+b+c \\ a-b+c\\ b \esm =
+       (a+c)\bsm 1\\1\\0 \esm + b \bsm 1\\-1\\1\esm
+   \]
+   From this it is clear that the list
+   $v_1=[1,1,0]^T,v_2=[1,-1,1]^T$ is a basis for
+   $\img(\psi)$, and that if we put $u_1=1$ and $u_2=x$ then
+   $\phi(u_i)=v_i$ for $i=1,2$.  Moreover, we have
+   $\phi(ax^2+bx+c=0$ iff $b=0$ and $c=-a$, so $u_3=x^2-1$
+   gives a basis for $\ker(\phi)$.  Finally, almost any
+   choice of $v_3$ will ensure that $v_1,v_2,v_3$ is a basis
+   of $\R^3$, but the simplest is to take $v_3=[1,0,0]^T$.
+   Our final answer is
+   \[ u_1 = 1\hspace{2em}
+      u_2 = x\hspace{2em}
+      u_3 = x^2-1
+   \]
+   \[ v_1 = \bsm 1\\1\\0 \esm \hspace{2em}
+      v_2 = \bsm 1\\-1\\1 \esm \hspace{2em}
+      v_3 = \bsm 1\\0\\0\esm
+   \]
+  \item[(c)] Here we have
+   {\tiny \[ \chi\bsm a&b\\ c&d\esm =
+       \bsm a & b & 0 \\ c & d & 0 \\ 0 & 0 & -a-d\esm =
+       a\bsm 1&0&0\\0&0&0\\0&0&-1\esm +
+       b\bsm 0&1&0\\0&0&0\\0&0&0 \esm +
+       c\bsm 0&0&0\\1&0&0\\0&0&0\esm +
+       d\bsm 0&0&0\\0&1&0\\0&0&-1\esm
+   \]}
+   It follows that we can take
+   \[ u_1 = \bsm 1&0\\0&0 \esm
+      u_2 = \bsm 0&1\\0&0 \esm
+      u_3 = \bsm 0&0\\1&0 \esm
+      u_4 = \bsm 0&0\\0&1 \esm
+   \]
+   \[  v_1 = \bsm 1&0&0\\0&0&0\\0&0&-1\esm \hspace{1em}
+       v_2 = \bsm 0&1&0\\0&0&0\\0&0&0 \esm \hspace{1em}
+       v_3 = \bsm 0&0&0\\1&0&0\\0&0&0\esm \hspace{1em}
+       v_4 = \bsm 0&0&0\\0&1&0\\0&0&-1\esm
+   \]
+   and then $\chi(u_i)=v_i$ and $v_1,\dotsc,v_4$ is a basis
+   for $\img(\chi)$.  Moreover, it is clear that $\chi(A)$
+   can only be zero if $A$ is zero, so $\ker(\chi)=0$, so no
+   more $u$'s need to be added.  On the other hand, we need
+   five more $v$'s to make up a basis for $M_3\R$.  The
+   obvious choices are as follows:
+   {\tiny \[
+    v_5 = \bsm 0&0&1\\0&0&0\\0&0&0\esm\hspace{1em}
+    v_6 = \bsm 0&0&0\\0&0&1\\0&0&0\esm\hspace{1em}
+    v_7 = \bsm 0&0&0\\0&0&0\\0&0&1\esm\hspace{1em}
+    v_8 = \bsm 0&0&0\\0&0&0\\0&1&0\esm\hspace{1em}
+    v_9 = \bsm 0&0&0\\0&0&0\\1&0&0\esm
+   \]}
+  \item[(d)] Here we have
+   \[ \tht([a,b,c,d]^T) = ax^2+b(x+1)^2+c(x-1)^2+d(x^2+1)
+       = (a+b+c+d)x^2+2(b-c)x+(b+c+d)
+   \]
+   From this we find that
+   \begin{align*}
+    \tht([1,0,0,0]^T) &= x^2 \\
+    \tht([0,1/4,-1/4,0]^T) &= x \\
+    \tht([-1,0,0,1]^T) &= 1 \\
+    \tht([0,1,1,-2]^T) &= 0.
+   \end{align*}
+   We can therefore take
+   \[ u_1 = \bsm 1\\0\\0\\0 \esm \hspace{1em}
+      u_2 = \bsm 0\\ 1/4 \\ -1/4 \\ 0 \esm \hspace{1em}
+      u_3 = \bsm -1\\ 0 \\ 0 \\ 1 \esm \hspace{1em}
+      u_4 = \bsm 0\\ 1\\ 1\\ -2 \esm
+   \]
+   \[ v_1 = x^2 \hspace{2em} v_2 = x \hspace{2em} v_3 = 1 \]
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-innerprod-matrices}{10.1}
+ \begin{itemize}
+  \item[(a)]
+   \begin{align*}
+    \ip{C_1,C_1} &= 1^2+1^2+1^2+0^2+1^2+1^2+0^2+0^2+1^2 = 6 \\
+    \ip{C_1,C_2} &= 1.1+1.2+1.3+0.2+1.1+1.2+0.3+0.2+1.1 = 10 \\
+    \ip{C_1,C_3} &= 1.0+1.1+1.2+0.(-1)+1.0+1.3+0.(-2)+0.(-3)+1.0 = 6 \\
+    \ip{C_2,C_2} &= 1^2+2^2+3^2+2^2+1^2+2^2+3^2+2^2+1^2 = 37 \\
+    \ip{C_2,C_3} &= 1.0+2.1+3.2+2.(-1)+1.0+2.3+3.(-2)+2.(-3)+1.0 = 0 \\
+    \ip{C_3,C_3} &= 0^2+1^2+2^2+(-1)^2+0^2+3^2+(-2)^2+(-3)^2+0^2 = 28
+   \end{align*}
+  \item[(b)] Suppose that $A^T=A$ and $B^T=-B$.  We have
+   $\ip{A,B}=\trc(AB^T)=-\trc(AB)$.  Using the rules
+   $\trc(X)=\trc(X^T)$ and $\trc(YZ)=\trc(ZY)$ we see that
+   \[ \trc(AB)=\trc((AB)^T)=\trc(B^TA^T)=
+      \trc((-B)A)=-\trc(BA)=-\trc(AB)
+   \]
+   This means that $\trc(AB)=0$, so $\ip{A,B}=0$.  More
+   directly, we have
+   {\tiny \[
+     A=\bsm a_1&a_2&a_3\\ a_2&a_4&a_5\\ a_3&a_5&a_6\esm
+     \hspace{2em}
+     B=\bsm 0&b_1&b_2 \\ -b_1&0&b_3 \\ -b_2&-b_3&0\esm
+    \]}
+   for some $a_1,\dotsc,a_6,b_1,b_2,b_3$.  It follows that
+   {\tiny \[ AB^T=\bsm
+     a_2b_1+a_3b_2 & a_3b_3-a_1b_1 & -a_1b_2-a_2b_3 \\
+     a_4b_1+a_5b_2 & a_5b_3-a_2b_1 & -a_2b_2-a_4b_3 \\
+     a_5b_1+a_6b_2 & a_6b_3-a_3b_1 & -a_3b_2-a_5b_3
+   \esm, \]}
+   and the trace of this matrix is zero as required.
+  \item[(c)] $V$ is the set of matrices of the form
+   {\tiny \[
+     B = \bsm a & a & a \\ b & b & b \\ c & c & c \esm
+       = a \bsm 1&1&1\\0&0&0\\0&0&0\esm +
+         b \bsm 0&0&0\\1&1&1\\0&0&0\esm +
+         c \bsm 0&0&0\\0&0&0\\1&1&1\esm
+   \]}
+   Thus, if we put
+   {\tiny \[
+       B_1 = \bsm 1&1&1\\0&0&0\\0&0&0\esm \hspace{2em}
+       B_2 = \bsm 0&0&0\\1&1&1\\0&0&0\esm \hspace{2em}
+       B_3 = \bsm 0&0&0\\0&0&0\\1&1&1\esm
+   \]}
+   then $V=\spn(B_1,B_2,B_3)$.  Now consider a matrix
+   \[ A = \bsm a_1&a_2&a_3\\ a_4&a_5&a_6\\ a_7&a_8&a_9\esm, \]
+   and suppose that $A\in V^\perp$.  We then have
+   $0=\ip{A,B_1}=a_1+a_2+a_3$ and
+   $0=\ip{A,B_2}=a_4+a_5+a_6$ and
+   $0=\ip{A,B_3}=a_7+a_8+a_9$.
+   It follows that
+   \[ A\bsm 1\\1\\1\esm =
+       \bsm a_1+a_2+a_3\\ a_4+a_5+a_6\\ a_7+a_8+a_9\esm
+        = \bsm 0\\ 0\\ 0 \esm,
+   \]
+   as claimed.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-innerprod-matrices}{10.2}
+ \begin{itemize}
+  \item[(a)] We have $(x+1)(x^2+x)=x^3+2x^2+x$, so
+   \[ \ip{x+1,x^2+x}=\int_{-1}^1 x^3+2x^2+x\,dx =
+       \left[ \tfrac{1}{4}x^4 + \tfrac{2}{3}x^3 +
+        \tfrac{1}{2}x^2 \right]_{-1}^1 =
+       (\tfrac{1}{4}+\tfrac{2}{3}+\tfrac{1}{2}) -
+       (\tfrac{1}{4}-\tfrac{2}{3}+\tfrac{1}{2}) = 4/3.
+   \]
+  \item[(b)] In general, we have
+   \[ \ip{x^i,x^j} = \int_{-1}^1 x^{i+j}\,dx =
+       \left[ \frac{x^{i+j+1}}{i+j+1} \right]_{-1}^1 =
+        \frac{1}{i+j+1} - \frac{(-1)^{i+j+1}}{i+j+1}.
+   \]
+   If $i+j$ is odd then $i+j+1$ is even and so $(-1)^{i+j+1}=1$ and
+   $\ip{x^i,x^j}=0$.
+  \item[(c)] Consider a polynomial $f(x)=ax^2+bx+c$.  We then have
+   \[ 4f(-1)-8f(0)+4f(1) = 4 (a-b+c) -8c + 4(a+b+c) = 8a. \]
+   On the other hand, we have
+   \begin{align*}
+    \ip{f,u} &= \int_{-1}^1 (ax^2+bx+c)(px^2+q)\,dx \\
+     &= \int_{-1}^1 apx^4 + bpx^3+ (aq+cp)x^2 + bqx + cq \, dx \\
+     &= \left[ \tfrac{ap}{5} x^5 + \tfrac{bp}{4} x^4 +
+         \tfrac{aq+cp}{3} x^3 + \tfrac{bq}{2} x^2 + cqx \right]_{-1}^1 \\
+     &= 2\tfrac{ap}{5} + 2\tfrac{aq+cp}{3} + 2cq \\
+     &= (\tfrac{2}{5}p+\tfrac{2}{3}q)a +
+        (\tfrac{2}{3}p+2q)c.
+   \end{align*}
+   For this to agree with $4f(-1)-8f(0)+4f(1)=8a$, we must have
+   $\tfrac{2}{5}p+\tfrac{2}{3}q=8$ and $\tfrac{2}{3}p+2q=0$.  The
+   second of these gives $p=-3q$, which we substitute in the first to
+   get $-\tfrac{6}{5}q+\tfrac{2}{3}q=8$ and thus $q=-15$.  The
+   equation $p=-3q$ now gives $p=45$, so $u(x)=45x^2-15$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-innerprod-exotic}{10.3}
+ If $A=\bsm a_1&a_2\\a_3&a_4\esm$ and
+ $B=\bsm b_1&b_2\\ b_3&b_4\esm$ then
+ \begin{align*}
+  \det(A-B)
+    &= \det\bsm a_1-b_1&a_2-b_2\\a_3-b_3&a_4-b_4\esm
+     = (a_1-b_1)(a_4-b_4)-(a_2-b_2)(a_3-b_3) \\
+    &= a_1a_4-a_1b_4-a_4b_1+b_1b_4
+       -a_2a_3+a_2b_3+a_3b_2-b_2b_3 \\
+  \det(A+B)
+    &= \det\bsm a_1+b_1&a_2+b_2\\a_3+b_3&a_4+b_4\esm
+     = (a_1+b_1)(a_4+b_4)-(a_2+b_2)(a_3+b_3) \\
+    &= a_1a_4+a_1b_4+a_4b_1+b_1b_4
+       -a_2a_3-a_2b_3-a_3b_2-b_2b_3 \\
+  2\trc(A)\trc(B)
+    &= 2(a_1+a_4)(b_1+b_4)
+     = 2a_1b_1 + 2a_1b_4 + 2a_4b_1 + 2 a_4b_4 \\
+  \ip{A,B}
+    &= -2a_1b_4 -2a_4b_1 + 2a_2b_3 + 2a_3b_2 +
+       2a_1b_1 + 2a_1b_4 + 2a_4b_1 + 2 a_4b_4 \\
+    &= 2(a_1b_1+a_2b_3+a_3b_2+a_4b_4).
+ \end{align*}
+ \begin{itemize}
+  \item[(a)] We now see that
+   \begin{align*}
+    \ip{A+B,C}
+     &= 2((a_1+b_1)c_1+(a_2+b_2)c_3+(a_3+b_3)c_2+(a_4+b_4)c_4)\\
+     &= 2(a_1c_1+a_2c_3+a_3c_2+a_4c_4) +
+        2(b_1c_1+b_2c_3+b_3c_2+b_4c_4) \\
+     &= \ip{A,C} + \ip{B,C}
+   \end{align*}
+  \item[(b)] Similarly
+   \begin{align*}
+    \ip{tA,B}
+     &= 2(ta_1b_1+ta_2b_3+ta_3b_2+ta_4b_4) \\
+     &= t.2(a_1b_1+a_2b_3+a_3b_2+a_4b_4) = t\ip{A,B}
+   \end{align*}
+  \item[(c)] It is clear from the formula
+   $\ip{A,B}=2(a_1b_1+a_2b_3+a_3b_2+a_4b_4)$ that
+   $\ip{A,B}=\ip{B,A}$.
+  \item[(d)] In general we have
+   $\ip{A,A}=2a_1^2+4a_2a_3+2a_4^2$.  If we take
+   $A=\bsm 0&1\\-1&0\esm$ (so $a_1=a_4=0$ and $a_2=1$ and
+   $a_3=-1$) then $\ip{A,A}=-4<0$.
+  \item[(e)] However, if $A\in V$ then $a_3=a_2$ so
+   $\ip{A,A}=2a_1^2+4a_2^2+2a_4^2$.  This is always
+   nonnegative, and can only be zero if $a_1=a_2=a_4=0$,
+   which means that $A=0$ (because $a_3=a_2$).
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-innerprod-shm}{10.4}
+ \begin{itemize}
+  \item[(a)] We have
+   \[ \ip{f,g}'=(fg+f'g')'=f'g+fg'+f''g'+f'g''=
+       (g+g'')f' + (f+f'')g',
+   \]
+   and this is zero because $f+f''=0=g+g''$.  Thus $\ip{f,g}'=0$.
+  \item[(b)] If $f\in V$ then $f+f''=0$.  Differentiating this
+  gives $f'+f'''=0$, which shows that $f'\in V$.
+  \item[(c)] It is clear that $\ip{f,g}=\ip{g,f}$ and
+   $\ip{f+g,h}=\ip{f,h}+\ip{g,h}$ and $\ip{tf,g}=t\ip{f,g}$.  All
+   that is left is to show that $\ip{f,f}\geq 0$, with equality
+   only when $f=0$.  For this, we note that
+   \begin{align*}
+    \ip{\sin,\sin} &= \sin^2 + \cos^2 = 1 \\
+    \ip{\cos,\cos} &= \cos^2 + (-\sin)^2 = 1 \\
+    \ip{\sin,\cos} &= \sin\cos + \cos.(-\sin) = 0.
+   \end{align*}
+   Any element $f\in V$ can be written as $f=a.\sin+b.\cos$ for
+   some $a,b\in\R$, and we deduce that
+   \[ \ip{f,f} =
+       a^2\ip{\sin,\sin} + 2ab\ip{\sin,\cos} + b^2\ip{\cos,\cos}
+       = a^2 + b^2.
+   \]
+   From this it is clear that $\ip{f,f}\geq 0$, with equality iff
+   $a=b=0$, or equivalently $f=0$.
+  \item[(d)]
+   We have
+   \begin{align*}
+    D(\sin) &=  \cos &= 0.\sin + 1.\cos \\
+    D(\cos) &= -\sin &= -1.\sin + 0.\cos
+   \end{align*}
+   It follows that the matrix of $D$ is $\bbm 0&-1\\1&0\ebm$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-cauchy-i}{11.1}
+ We use the standard inner product on $C[-1,1]$, given by
+ $\ip{f,g}=\int_{-1}^1f(x)g(x)\,dx$.  Take
+ $g(x)=\sqrt{1-x^2}$, so
+ \[ \|g\|^2=\int_{-1}^1g(x)^2\,dx=
+     \int_{-1}^1 1-x^2\,dx =
+     \left[x-\tfrac{1}{3}x^3\right]_{-1}^1 = 4/3,
+ \]
+ so $\|g\|=2/\sqrt{3}$.  The Cauchy-Schwartz inequality now
+ tells us that $|\ip{f,g}|\leq\frac{2}{\sqrt{3}}\|f\|$, or
+ in other words
+ \[ \left|\int_{-1}^1\sqrt{1-x^2}\,f(x)\,dx\right| \leq
+     \frac{2}{\sqrt{3}} \left(\int_{-1}^1 f(x)^2\,dx\right)^{1/2}
+ \]
+ as claimed.  This is an equality iff $f$ is a constant multiple of
+ $g$.  In particular, it is an equality when
+ $f(x)=g(x)=\sqrt{1-x^2}$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-cauchy-ii}{11.2}
+ We use the standard inner product on $C[0,1]$, given by
+ $\ip{f,g}=\int_0^1f(x)g(x)\,dx$.  The Cauchy-Schwartz
+ inequality says that for any $f$ and $g$ we have
+ $\ip{f,g}^2\leq\|f\|^2\|g\|^2=\ip{f,f}\ip{g,g}$.  Now take
+ $g(x)=f(x)^2$, so
+ \begin{align*}
+  \ip{f,g} &= \int_0^1 f(x)^3\,dx \\
+  \ip{f,f} &= \int_0^1 f(x)^2\,dx \\
+  \ip{g,g} &= \int_0^1 f(x)^4\,dx.
+ \end{align*}
+ The inequality therefore says
+ \[\left(\int_0^1 f(x)^3\,dx\right)^2 \leq
+     \left(\int_0^1 f(x)^2\,dx\right)
+     \left(\int_0^1 f(x)^4\,dx\right)
+ \]
+ as claimed.  This is an equality iff $g$ is a constant multiple of
+ $f$, so there is a constant $c$ such that $f^2=cf$, so
+ $(f(x)-c)f(x)=0$.  If $f(x)$ is nonzero for all $x$ we can divide by
+ $f(x)$ to see that $f(x)=c$ for all $x$, so $f$ is constant.  The
+ same holds by a slightly more complicated argument even if we do not
+ assume that $f$ is everywhere nonzero.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-project-to-symmetric}{12.1}
+ The obvious basis for $V$ consists of the matrices
+ \[ P_1 = \bsm 1&0\\0&0 \esm \hspace{2em}
+    P_2 = \bsm 0&0\\0&1 \esm \hspace{2em}
+    P_3 = \bsm 0&1\\1&0 \esm
+ \]
+ Using the fact that
+ \[ \ip{\bsm a&b \\ c&d\esm, \bsm p&q \\ r&s\esm}
+     = ap + bq + cr + ds,
+ \]
+ we see that the sequence $P_1,P_2,P_3$ is orthogonal, with
+ $\ip{P_1,P_1}=\ip{P_2,P_2}=1$ and $\ip{P_3,P_3}=2$.  This
+ means that
+ \[ \pi(A) =
+     \ip{A,P_1}P_1 + \ip{A,P_2}P_2 + \half\ip{A,P_3}P_3.
+ \]
+ Now take $A=\bsm a&b\\ c&d\esm$.  We find that
+ $\ip{A,P_1}=a$ and $\ip{A,P_2}=d$ and $\ip{A,P_3}=b+c$, so
+ we get
+ \[ \pi(A) =
+     a P_1 + d P_2 + \half(b+c) P_3 =
+     \bsm a & (b+c)/2 \\ (b+c)/2 & d \esm.
+ \]
+ On the other hand, we have
+ \[ A+A^T = \bsm a & b \\ c & d \esm +
+            \bsm a & c \\ b & d \esm
+          = \bsm 2a & b+c \\ b+c & 2d \esm,
+ \]
+ so $\pi(A)=(A+A^T)/2$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-parseval-unnormalised}{12.2}
+ Put $W=\spn(\CW)$ and
+ \[ \pi(v) = \sum_i \frac{\ip{v,w_i}}{\ip{w_i,w_i}} w_i \]
+ and $\ep(v)=v-\pi(v)$.  We saw in lectures that $v=\pi(v)+\ep(v)$,
+ with $\pi(v)\in W$ and $\ep(v)\in W^\perp$, so
+ $\|v\|^2=\|\pi(v)\|^2+\|\ep(v)\|^2\geq\|\pi(v)\|^2$.  On the other
+ hand, the vectors $\ip{v,w_i}w_i/\ip{w_i,w_i}$ are orthogonal to each
+ other, so Pythagoras tells us that
+ \[ \|v\|^2 =
+     \sum_i \left\| \frac{\ip{v,w_i}}{\ip{w_i,w_i}} w_i\right|^2 =
+     \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}^2} \|w_i\|^2 =
+     \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}^2} \ip{w_i,w_i} =
+     \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}}.
+ \]
+
+ Alternatively, we can introduce the orthonormal sequence
+ $\hw_i=w_i/\|w_i\|$.  Parseval's inequality tells us that
+ \[ \|v\|^2 \geq \sum_i \ip{v,\hw_i}^2
+     = \sum_i \left\langle v,\frac{w_i}{\|w_i\|}\right\rangle^2
+     = \sum_i \frac{\ip{v,w_i}^2}{\|w_i\|^2}
+     = \sum_i \frac{\ip{v,w_i}^2}{\ip{w_i,w_i}}
+ \]
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-parseval-i}{12.3}
+ Observe that the integrals involved in the claimed inequality can be
+ interpreted as follows:
+ \begin{align*}
+  \int_{-1}^1 f(x)^2\,dx &= \ip{f,f} \\
+  \int_{-1}^1 f(x)\,dx   &= \ip{f,1} \\
+  \int_{-1}^1 x f(x)\,dx &= \ip{f,x}.
+ \end{align*}
+ Note also that $\ip{1,x}=\int_{-1}^1x\,dx=0$, so the sequence
+ $\CW=1,x$ is strictly orthogonal.  We can therefore apply
+ Exercise~\ref{ex-parseval-unnormalised}: it tells us that
+ \[ \ip{f,f} \geq \frac{\ip{f,1}^2}{\ip{1,1}} +
+                  \frac{\ip{f,x}^2}{\ip{x,x}}.
+ \]
+ Here $\ip{1,1}=\int_{-1}^1 1\,dx=2$ and
+ $\ip{x,x}=\int_{-1}^1x^2\,dx=2/3$, so we get
+ \[ \int_{-1}^1 f(x)^2\, dx
+     \geq \tfrac{1}{2} \left(\int_{-1}^1 f(x)\,dx\right)^2 +
+          \tfrac{3}{2} \left(\int_{-1}^1 x\,f(x)\,dx\right)^2.
+ \]
+ We can now multiply by two to get the inequality in the question.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-orthonormal-matrices}{12.4}
+ Consider the matrices
+ {\tiny \[
+  B_1=A_1 = \bsm 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\esm
+  \hspace{3em}
+  B_2=A_2-A_1 = \bsm 0&0&0&0\\ 0&0&1&0\\ 0&1&0&0\\ 0&0&0&0\esm
+  \hspace{3em}
+  B_3=A_3-A_2 = \bsm 0&1&1&0\\ 1&0&0&1\\ 1&0&0&1\\ 0&1&1&0\esm
+  \hspace{3em}
+  B_4=A_4-A_3 = \bsm 1&0&0&1\\ 0&0&0&0\\ 0&0&0&0\\ 1&0&0&1\esm
+ \]}
+ If $i\neq j$ we see that $B_i$ and $B_j$ do not overlap, or
+ in other words, in any place where $B_i$ has a one, $B_j$
+ has a zero.  To calculate $\ip{B_i,B_j}$ we multiply all
+ the entries in $B_i$ by the corresponding entries in $B_j$,
+ and add these terms together.  All the terms are zero
+ because the matrices do not overlap, so $\ip{B_i,B_j}=0$,
+ so we have an orthogonal sequence.  From the formulae
+ \[ B_1=A_1     \hspace{3em}
+    B_2=A_2-A_1 \hspace{3em}
+    B_3=A_3-A_2 \hspace{3em}
+    B_4=A_4-A_3
+ \]
+ we deduce that
+ \[ A_1=B_1 \hspace{3em}
+    A_2=B_1+B_2 \hspace{2em}
+    A_3=B_1+B_2+B_3 \hspace{2em}
+    A_4=B_1+B_2+B_3+B_4.
+ \]
+ From these two sets of equations together we see that
+ $\spn\{B_1,\dotsc,B_i\}=\spn\{A_1,\dotsc,A_i\}$ for all
+ $i$.  We were asked for an orthonormal sequence, so we now
+ put $C_i=B_i/\|B_i\|$.  Note that if a matrix $X$ contains
+ only zeros and ones then $\|X\|^2$ is just the number of
+ ones.  Using this we see that
+ \[ \|B_1\| = \sqrt{2} \hspace{3em}
+    \|B_2\| = \sqrt{2} \hspace{3em}
+    \|B_3\| = \sqrt{8} \hspace{3em}
+    \|B_4\| = 2,
+ \]
+ so
+ {\tiny \[
+  C_1 = \frac{1}{\sqrt{2}} \bsm 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\esm
+  \hspace{3em}
+  C_2 = \frac{1}{\sqrt{2}} \bsm 0&0&0&0\\ 0&0&1&0\\ 0&1&0&0\\ 0&0&0&0\esm
+  \hspace{3em}
+  C_3 = \frac{1}{\sqrt{8}} \bsm 0&1&1&0\\ 1&0&0&1\\ 1&0&0&1\\ 0&1&1&0\esm
+  \hspace{3em}
+  C_4 = \frac{1}{2}        \bsm 1&0&0&1\\ 0&0&0&0\\ 0&0&0&0\\ 1&0&0&1\esm
+ \]}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-orthonormal-vectors}{12.5}
+ The  answer is
+ \[
+  \hv_1 = \frac{1}{\sqrt{5}}\bsm 1\\ 1\\ 1\\ 1\\ 1\esm \hspace{2em}
+  \hv_2 = \frac{1}{\sqrt{20}}\bsm 1\\ 1\\ 1\\ 1\\ -4\esm \hspace{2em}
+  \hv_3 = \frac{1}{\sqrt{12}}\bsm 1\\ 1\\ 1\\ -3 \\ 0\esm \hspace{2em}
+  \hv_4 = \frac{1}{\sqrt{6}}\bsm 1\\ 1\\ -2 \\ 0 \\ 0 \esm \hspace{2em}
+  \hv_5 = \frac{1}{\sqrt{2}}\bsm 1\\ -1\\ 0\\ 0\\ 0\esm
+ \]
+ The steps are as follows.  We will first find a strictly
+ orthogonal sequence $\vv_1,\dotsc,\vv_5$ and then put
+ $\hv_i=\vv_i/\|\vv_i\|$.  We start with $\vv_1=\vu_1$, which gives
+ $\ip{\vv_1,\vv_1}=5$ and $\ip{\vu_2,\vv_1}=4$.  We then have
+ \[ \vv_2 = \vu_2 - \frac{\ip{\vu_2,\vv_1}}{\ip{\vv_1,\vv_1}}\vv_1 =
+     \bsm 1\\1\\1\\1\\0 \esm -
+     \frac{4}{5}\bsm 1\\1\\1\\1\\1 \esm =
+     \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm.
+ \]
+ This gives
+ \[ \ip{\vv_2,\vv_2}=(1^2+1^2+1^2+1^2+(-4)^2)/25 = 20/25 = 4/5,
+ \]
+ and $\ip{\vu_3,\vv_1}=3$ and $\ip{\vu_3,\vv_2}=3/5$ so
+ \[ \vv_3 = \vu_3 - \frac{\ip{\vu_3,\vv_1}}{\ip{\vv_1,\vv_1}}\vv_1
+              - \frac{\ip{\vu_3,\vv_2}}{\ip{\vv_2,\vv_2}}\vv_2
+    = \bsm 1\\ 1\\ 1\\ 0\\ 0\esm
+      - \frac{3}{5} \bsm 1\\1\\1\\1\\1 \esm
+      - \frac{3/5}{4/5} \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm
+    = \frac{1}{20} \bsm 5\\ 5\\ 5\\ -15\\ 0\esm
+    = \frac{1}{4} \bsm 1\\ 1\\ 1\\ -3\\ 0\esm .
+ \]
+ This gives $\ip{\vv_3,\vv_3}=(1^2+1^2+1^2+(-3)^2)/16=3/4$ and
+ $\ip{\vu_4,\vv_1}=2$ and $\ip{\vu_4,\vv_2}=2/5$ and
+ $\ip{\vu_4,\vv_3}=2/4=1/2$, so
+ \begin{align*}
+  \vv_4 &=  \vu_4 - \frac{\ip{\vu_4,\vv_1}}{\ip{\vv_1,\vv_1}}\vv_1
+              - \frac{\ip{\vu_4,\vv_2}}{\ip{\vv_2,\vv_2}}\vv_2
+              - \frac{\ip{\vu_4,\vv_3}}{\ip{\vv_3,\vv_3}}\vv_3 \\
+   &= \bsm 1\\ 1\\ 0\\ 0\\ 0\esm
+      - \frac{2}{5} \bsm 1\\1\\1\\1\\1 \esm
+      - \frac{2/5}{4/5} \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm
+      - \frac{2/4}{3/4} \frac{1}{4} \bsm 1\\1\\1\\-3\\0 \esm
+    = \frac{1}{30} \bsm 10\\ 10\\ -20\\ 0\\ 0\esm
+    = \frac{1}{3} \bsm 1\\ 1\\ -2\\ 0\\ 0\esm .
+ \end{align*}
+ This in turn gives $\ip{\vv_4,\vv_4}=2/3$ and $\ip{\vu_5,\vv_1}=1$
+ and $\ip{\vu_5,\vv_2}=1/5$ and $\ip{\vu_5,\vv_3}=1/4$ and
+ $\ip{\vu_5,\vv_4}=1/3$ so
+ \begin{align*}
+   \vv_5 &= \vu_5 - \frac{\ip{\vu_5,\vv_1}}{\ip{\vv_1,\vv_1}}\vv_1
+              - \frac{\ip{\vu_5,\vv_2}}{\ip{\vv_2,\vv_2}}\vv_2
+              - \frac{\ip{\vu_5,\vv_3}}{\ip{\vv_3,\vv_3}}\vv_3
+              - \frac{\ip{\vu_5,\vv_4}}{\ip{\vv_4,\vv_4}}\vv_4 \\
+   &= \bsm 1\\ 0\\ 0\\ 0\\ 0\esm
+      - \frac{1}{5} \bsm 1\\1\\1\\1\\1 \esm
+      - \frac{1/5}{4/5} \frac{1}{5} \bsm 1\\1\\1\\1\\-4 \esm
+      - \frac{1/4}{3/4} \frac{1}{4} \bsm 1\\1\\1\\-3\\0 \esm
+      - \frac{1/3}{2/3} \frac{1}{3} \bsm 1\\1\\-2\\0\\0 \esm
+    = \frac{1}{60} \bsm 30\\ -30\\ 0\\ 0\\ 0\esm
+    = \frac{1}{2} \bsm 1\\ -1\\ 0\\ 0\\ 0\esm .
+ \end{align*}
+ In summary, the vectors
+ \[ \vv_1 = \bsm 1\\1\\1\\1\\1\esm \hspace{2em}
+    \vv_2 = \frac{1}{5}\bsm 1\\1\\1\\1\\-4\esm \hspace{2em}
+    \vv_3 = \frac{1}{4}\bsm 1\\1\\1\\-3\\0\esm \hspace{2em}
+    \vv_4 = \frac{1}{3}\bsm 1\\1\\-2\\0\\0\esm \hspace{2em}
+    \vv_5 = \frac{1}{2}\bsm 1\\-1\\0\\0\\0\esm,
+ \]
+ form an orthogonal (but not yet orthonormal) sequence with
+ $\spn\{\vv_1,\dotsc,\vv_i\}=\spn\{\vu_1,\dotsc,\vu_i\}$ for
+ $i=1,\dotsc,5$.  To get an orthonormal sequence we put
+ $\hv_i=\vv_i/\|\vv_i\|$.  We have
+ \[ \|\vv_1\| = \sqrt{5} \hspace{2em}
+    \|\vv_2\| = \sqrt{4/5} \hspace{2em}
+    \|\vv_3\| = \sqrt{3/4} \hspace{2em}
+    \|\vv_4\| = \sqrt{2/3} \hspace{2em}
+    \|\vv_5\| = \sqrt{1/2}.
+ \]
+ and so
+ \[
+  \hv_1 = \frac{1}{\sqrt{5}}\bsm 1\\ 1\\ 1\\ 1\\ 1\esm \hspace{2em}
+  \hv_2 = \frac{1}{\sqrt{20}}\bsm 1\\ 1\\ 1\\ 1\\ -4\esm \hspace{2em}
+  \hv_3 = \frac{1}{\sqrt{12}}\bsm 1\\ 1\\ 1\\ -3 \\ 0\esm \hspace{2em}
+  \hv_4 = \frac{1}{\sqrt{6}}\bsm 1\\ 1\\ -2 \\ 0 \\ 0 \esm \hspace{2em}
+  \hv_5 = \frac{1}{\sqrt{2}}\bsm 1\\ -1\\ 0\\ 0\\ 0\esm
+ \]
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-orthonormal-quad}{12.6}
+ The resulting orthonormal basis is
+ $\{1,\sqrt{2}t,\sqrt{2}(t^2-1/2)\}$.  The calculation is as
+ follows.  We first note that if $i+j$ is an odd number, then
+ $t^{i+j}e^{-t^2}$ is an odd function, so its integral from
+ $-\infty$ to $\infty$ is zero, so $\ip{t^i,t^j}=0$.  In
+ particular, $t$ is orthogonal to $1$ and $t^2$.  Next,
+ the hint tells us that
+ \begin{align*}
+  \ip{1,1} &= 1 \\
+  \ip{t,t} &= 1/2 \\
+  \ip{1,t^2} &= 1/2 \\
+  \ip{t^2,t^2} &= 3/4.
+ \end{align*}
+ It follows that $\|t\|=1/\sqrt{2}$, so $1,\sqrt{2}t$ is an
+ orthonormal sequence.  The projection of $t^2$ orthogonal
+ to these is
+ \[
+  t^2 - \ip{t^2,1}1 - \ip{t^2,\sqrt{2}t} \sqrt{2}t
+   = t^2 - 1/2.
+ \]
+ To normalise this, we note that
+ \[ \ip{t^2-1/2,t^2-1/2} =
+     \ip{t^2,t^2} - 2\ip{t^2,1/2} + \ip{1/2,1/2} =
+     3/4 - \ip{t^2,1} + \ip{1,1}/4 =
+     \tfrac{3}{4} - \tfrac{1}{2} + \tfrac{1}{4} = 1/2.
+ \]
+ It follows that $\|\sqrt{2}(t-1/2)\|=1$, so our orthonormal
+ basis is $\{1,\sqrt{2}t,\sqrt{2}(t^2-1/2)\}$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-orthonormal-quad}{12.7}
+ \begin{itemize}
+  \item[(a)] Take
+   \[ v_1 = \frac{1}{\sqrt{2}}\bsm 1 \\ -1\\ 0 \\ 0 \esm \hspace{4em}
+      v_2 = \frac{1}{\sqrt{2}}\bsm 0 \\ 0\\ 1 \\ -1 \esm \hspace{4em}
+      v_3 = \frac{1}{2} \bsm 1\\ 1\\ 1\\ 1 \esm
+   \]
+   so $(x_1-x_2)^2/2=\ip{x,v_1}^2$ and $(x_3-x_4)^2/2=\ip{x,v_2}^2$
+   and $(x_1+x_2+x_3+x_4)^2/4=\ip{x,v_3}^2$, so
+   \[ \al(x) = \|x\|^2 - \sum_{i=1}^3 \ip{x,v_i}^2. \]
+   It is easy to check that $\ip{v_1,v_2}=\ip{v_1,v_3}=\ip{v_2,v_3}=0$
+   and $\ip{v_1,v_1}=\ip{v_2,v_2}=\ip{v_3,v_3}=1$, so the sequence is
+   orthonormal.  Parseval's inequality is thus applicable, and it
+   tells us that $\sum_{i=1}^3\ip{x,v_i}^2\leq\|x\|^2$, or in other
+   words $\al(x)\geq 0$.
+  \item[(b)] The vector $v_4=[1,1,-1,-1]^T/2$ is a unit vector
+   orthogonal to $v_1$, $v_2$ and $v_3$, so the sequence
+   $v_1,v_2,v_3,v_4$ is orthonormal.  (How did we find this?  If
+   $v_4=[a,b,c,d]^T$ we must have $a=b$ for orthogonality with $v_1$,
+   and $c=d$ for orthogonality with $v_2$, and $a+b+c+d=0$ for
+   orthogonality with $v_3$, and $a^2+b^2+c^2+d^2=1$ to make $v_4$ a
+   unit vector.  The only two solutions are $[1,1,-1,-1]^T/2$ and
+   $[-1,-1,1,1]^T/2$, and either of these will do.)
+  \item[(c)] By direct calculation, we have
+   \begin{align*}
+    \al(x) =&
+     x_1^2+x_2^2+x_3^2+x_4^2 -
+     \qrt x_1^2 - \qrt x_2^2 - \qrt x_3^2 - \qrt x_4^2 \\ &
+     - \half x_1x_2 - \half x_1x_3 - \half x_1x_4
+     - \half x_2x_3 - \half x_2x_4 - \half x_3x_4 \\ &
+     - \half x_1^2 - \half x_2^2 + x_1x_2
+     - \half x_3^2 - \half x_4^2 + x_3x_4 \\
+     =& \qrt x_1^2 + \qrt x_2^2 + \qrt x_3^2 + \qrt x_4^2
+     + \half x_1x_2 - \half x_1x_3 - \half x_1x_4
+     - \half x_2x_3 - \half x_2x_4 + \half x_3x_4 \\
+     =& (x_1+x_2-x_3-x_4)^2/4 = \ip{x,v_4}^2.
+   \end{align*}
+   We could have done this without calculation as follows.  The
+   sequence $v_1,\dotsc,v_4$ is orthonormal (hence linearly
+   independent) of length $4$, so it is a basis for $\R^4$, so $x$ automatically
+   lies in the span.  Thus Parseval's inequality for this extended
+   sequence is actually an equality, which means that
+   \[ \|x\|^2 =
+        \ip{x,v_1}^2 + \ip{x,v_2}^2 + \ip{x,v_3}^2 + \ip{x,v_4}^2.
+   \]
+   Rearranging this gives $\al(x)=\ip{x,v_4}^2$ as before.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-adjoint-i}{14.1}
+ If $\vv=[x,y,z]^T$ we have
+ \[ \ip{\phi(\vv),A} =
+    \ip{\bsm x&y\\ y&z\esm,\bsm a&b\\ c&d\esm} =
+    ax+by+cy+dz = ax + (b+c)y + dz =
+    \ip{\bsm x\\ y\\ z\esm, \bsm a\\ b+c\\ d\esm},
+ \]
+ so
+ \[ \phi^*(A) = \vw = \bsm a\\ b+c\\ d\esm. \]
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-adjoint-ii}{14.2}
+ We have
+ \[ \ip{\bsm 0 & a_4 & a_7 \\ 0 & 0 & a_8 \\ 0 & 0 & 0 \esm,
+        \bsm b_1 & b_2 & b_3 \\ b_4 & b_5 & b_6 \\ b_7 & b_8 & b_9 \esm}
+    = a_4b_2 + a_7 b_3 + a_8b_6 =
+  \ip{\bsm a_1 & a_2 & a_3 \\ a_4 & a_5 & a_6 \\ a_7 & a_8 & a_9 \esm,
+      \bsm 0 & 0 & 0 \\ b_2 & 0 & 0 \\ b_3 & b_6 & 0 \esm}.
+ \]
+ In other words, if we define
+ \[ \psi\bsm b_1 & b_2 & b_3 \\
+             b_4 & b_5 & b_6 \\
+             b_7 & b_8 & b_9 \esm =
+      \bsm 0 & 0 & 0 \\ b_2 & 0 & 0 \\ b_3 & b_6 & 0 \esm
+ \]
+ we have $\ip{\phi(A),B}=\ip{A,\psi(B)}$.  Thus $\phi^*=\psi$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-adjoint-iii}{14.3}
+ We must show that $\phi^*=\phi$, or equivalently that
+ $\ip{\phi(A),B}=\ip{A,\phi(B)}$ for all $A,B\in M_2\R$.
+ If $A=\bsm a&b\\ c&d\esm$ and $B=\bsm p&q\\ r&s\esm$ then
+ \begin{align*}
+  \phi(A) &=
+   \bsm 1&1\\ 1&1\esm \bsm a&b\\ c&d\esm\bsm 1&1\\ 1&1\esm
+   = \bsm 1&1\\ 1&1\esm \bsm a+b&a+b \\ c+d\\ c+d\esm
+   = (a+b+c+d) \bsm 1&1\\ 1&1\esm = (a+b+c+d)Q \\
+  \ip{Q,B} &= \ip{\bsm 1&1\\ 1&1\esm,\bsm p&q\\ r&s\esm}
+            = p+q+r+s \\
+  \ip{\phi(A),B} &=
+    (a+b+c+d)\ip{Q,B} = (a+b+c+d)(p+q+r+s) \\
+  \phi(B) &= (p+q+r+s) Q \\
+  \ip{A,\phi(B)} &= (p+q+r+s) \ip{A,Q} = (p+q+r+s)(a+b+c+d)
+    = \ip{\phi(A),B}.
+ \end{align*}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-adjoint-iv}{14.4}
+ We have
+ \begin{align*}
+  \ip{\phi(A),B}
+   &= \trc(\phi(A)B^T)
+    = \trc(AB^T-\tfrac{1}{n}\trc(A)B^T)
+    = \trc(AB^T) - \tfrac{1}{n} \trc(A)\trc(B^T) \\
+   &= \ip{A,B} -  \tfrac{1}{n} \trc(A)\trc(B) \\
+  \ip{A,\phi(B)}
+   &= \trc(A\phi(B)^T)
+    = \trc(AB^T - \tfrac{1}{n}\trc(B) A)
+    = \trc(AB^T) - \tfrac{1}{n}\trc(A)\trc(B),
+ \end{align*}
+ so $\ip{\phi(A),B}=\ip{A,\phi(B)}$.  (For a slightly more
+ efficient approach, we can note that our expression for
+ $\ip{\phi(A),B}$ is symmetric: it does not change if we
+ swap $A$ and $B$.  Thus $\ip{\phi(A),B}=\ip{\phi(B),A}$,
+ and this is the same as $\ip{A,\phi(B)}$ by the axiom
+ $\ip{X,Y}=\ip{Y,X}$.)
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-adjoint-v}{14.5}
+ First, if $f(x)=ax^2+bx+c$ then $f'(x)=2ax+b$ and
+ $f''(x)=2a$ for all $x$, so in particular
+ $\chi(f)=f''(0)=2a$.  This means that $\chi(1)=0$ and
+ $\chi(x)=0$ and $\chi(x^2)=2$.
+
+ Next, the element $u$ must have the form $px^2+qx+r$ for some
+ constants $p,q,r\in\R$.  It must satisfy
+ \begin{align*}
+  \ip{1,u} &= \chi(1) = 0 \\
+  \ip{x,u} &= \chi(x) = 0 \\
+  \ip{x^2,u} &= \chi(x^2) = 2.
+ \end{align*}
+ On the other hand, we have
+ \begin{align*}
+  \ip{1,u}
+   &= \int_{-1/2}^{1/2} px^2+qx+r\,dx
+    = \left[ px^3/3 + qx^2/2 + rx \right]_{-1/2}^{1/2}
+    = p/12 + r \\
+  \ip{x,u}
+   &= \int_{-1/2}^{1/2} px^3+qx^2+rx\,dx
+    = \left[ px^4/4 + qx^3/3 + rx^2/2 \right]_{-1/2}^{1/2}
+    = q/12 \\
+  \ip{x^2,u}
+   &= \int_{-1/2}^{1/2} px^4+qx^3+rx^2\,dx
+    = \left[ px^5/5 + qx^4/4 + rx^3/3 \right]_{-1/2}^{1/2}
+    = p/80 + r/12
+ \end{align*}
+ so we must have
+ $p/12+r=0$ and $q/12=0$ and $p/80+r/12=2$.  These give
+ $p=360$ and $q=0$ and $r=-30$, so $u=360x^2-30$.
+
+ Now define $\psi\:\R\to\R[x]_{\leq 2}$ by $\psi(t)=tu=360
+ tx^2-30t$.  We claim that $\psi$ is adjoint to $\phi$.
+ Indeed, the standard inner product on $\R$ is just
+ $\ip{s,t}=st$, so
+ \[ \ip{\phi(f),t} = t\phi(f)=t\ip{f,u}=\ip{f,tu}=\ip{f,\psi(t)},
+ \]
+ as required.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-isometric-embedding}{14.6}
+ For any $a,b\in U$ we have
+ \[ \ip{\phi(a),\phi(b)}=\ip{a,\phi^*\phi(b)}=\ip{a,b}. \]
+ (The first step is the definition of $\phi^*$, and the
+ second is the fact that $\phi^*\phi(b)=b$.)  In particular,
+ we have $\ip{\phi(u_i),\phi(u_j)}=\ip{u_i,u_j}$.  As the
+ sequence $\CU$ is orthonormal, we have $\ip{u_i,u_j}=0$
+ when $i\neq j$, and $\ip{u_i,u_i}=1$.  We therefore see
+ that $\ip{\phi(u_i),\phi(u_j)}=0$ when $i\neq j$, and
+ $\ip{\phi(u_i),\phi(u_i)}=1$, which means that the sequence
+ $\phi(u_1),\dotsc,\phi(u_n)$ is also orthonormal.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{14.7}
+ \begin{itemize}
+  \item[(a)] We are given that $\phi\phi^*(v)=v$ for all
+   $v\in V$.  In particular, we can take $v=\phi(u)$ to get
+   $\phi\phi^*\phi(u)=\phi(u)$, or in other words
+   $\phi(u_1)=\phi(u)$.  It follows that
+   $\phi(u_2)=\phi(u-u_1)=\phi(u)-\phi(u_1)=0$.
+  \item[(b)] We have $\ip{\phi^*(a),b}=\ip{a,\phi(b)}$ for
+   all $a\in V$ and $b\in U$.  In particular we can take
+   $a=\phi(u)$ and $b=u_2$ to get
+   \[ \ip{u_1,u_2} = \ip{\phi^*\phi(u),u_2} =
+      \ip{\phi(u),\phi(u_2)} =
+      \ip{\phi(u),0} = 0.
+   \]
+   (The penultimate step uses part~(a).)
+  \item[(c)] As $u_1$ and $u_2$ are orthogonal we have
+   \[ \|u\|^2 = \|u_1+u_2\|^2 = \|u_1\|^2 + \|u_2\|^2 \geq
+       \|u_1\|^2.
+   \]
+  \item[(d)] We have
+   \[ \|u_1\|^2 = \ip{\phi^*\phi(u),\phi^*\phi(u)} =
+       \ip{\phi(u),\phi\phi^*\phi(u)} = \ip{\phi(u),\phi(u)}
+       = \|\phi(u)\|^2.
+   \]
+   (Here we have used the equation
+   $\phi\phi^*\phi(u)=\phi(u)$ from part~(a).)
+  \item[(e)] If we combine~(c) and~(d) and take square roots
+   we get $\|\phi(u)\|\leq\|u\|$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{15.1}
+ We can write $f=\sum_{n=-2}^2a_ne_n$ for some sequence of
+ coefficients $a_n$.  Note that
+ \begin{align*}
+  e_n(0) &= 1 \\
+  e_n(\pi) &= e^{in\pi} = (-1)^n \\
+  e_n(-\pi/2) &= e^{-in\pi/2} = (e^{-i\pi/2})^n = (-i)^n \\
+  e_n(\pi/2) &= e^{in\pi/2} = (e^{i\pi/2})^n = i^n.
+ \end{align*}
+ It follows that
+ \begin{align*}
+  f(0)      &= a_{-2} + a_{-1} + a_0 + a_1 + a_2 \\
+  f(\pi)    &= a_{-2} - a_{-1} + a_0 - a_1 + a_2 \\
+  f(-\pi/2) &= -a_{-2} + ia_{-1} + a_0 - ia_1 - a_2 \\
+  f(\pi/2)  &= -a_{-2} - ia_{-1} + a_0 + ia_1 - a_2 \\
+  f(0)-f(\pi) &= 2(a_{-1}+a_1) \\
+  f(-\pi/2)-f(\pi/2) &= 2i(a_{-1}-a_1).
+ \end{align*}
+ As $f(0)=f(\pi)$ and $f(-\pi/2)=f(\pi/2)$, we must have
+ $a_{-1}+a_1=0$ and also $a_{-1}-a_1=0$, which gives $a_{-1}=a_1=0$.
+ We therefore have $f=a_{-2}e_{-2}+a_0+a_2e_2$, or in other words
+ \[ f(t) = a_{-2} e^{-2it} + a_0 + a_2 e^{2it}. \]
+ This gives
+ \[ f(t+\pi) =
+  a_{-2} e^{-2it}e^{-2\pi i} + a_0 + a_2 e^{2it} e^{2\pi i},
+ \]
+ which is the same as $f(t)$ because $e^{2\pi i}=1$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{15.2}
+ \begin{itemize}
+  \item[(a)] As $f=a_{-2}e_{-2}+a_{-1}e_{-1}+a_0e_0+a_1e_1+a_2e_2$ and
+   $e_n(0)=1$ and $e'_n(0)=in$, we have
+   \begin{align*}
+    f(0)  &= a_{-2} + a_{-1} + a_0 + a_1 + a_2 \\
+    f'(0) &= i.(-2a_{-2} - a_{-1} + a_1 + 2a_2)
+   \end{align*}
+   This means that $f\in U$ iff we have
+   \begin{align*}
+    a_{-2} + a_{-1} + a_0 + a_1 + a_2  &= 0 \\
+    -2a_{-2} - a_{-1} + a_1 + 2a_2 &= 0
+   \end{align*}
+   These equations can be solved in a standard way to give
+   \begin{align*}
+    a_{-2} &= a_0 + 2a_1 + 3 a_2 \\
+    a_{-1} &= - 2a_0 - 3a_1 - 4a_2
+   \end{align*}
+   and so
+   \begin{align*}
+    f &= (a_0+2a_1+3a_2) e_{-2} - (2a_0+3a_1+4a_2) e_{-1} +
+          a_0e_0 + a_1e_1 + a_2e_2 \\
+      &= a_0(e_{-2}-2e_{-1}+e_0) + a_1(2e_{-2}-3e_{-1}+e_1) +
+         a_2(3e_{-2}-4e_{-1}+e_2).
+   \end{align*}
+  \item[(b)] From the last expression above, we observe that the
+   functions
+   \begin{align*}
+    u_0 &= e_{-2}-2e_{-1}+e_0 \\
+    u_1 &= 2e_{-2}-3e_{-1}+e_1 \\
+    u_2 &= 3e_{-2}-4e_{-1}+e_2
+   \end{align*}
+   give a basis for $U$.
+  \item[(c)] Part~(b) gives a basis for $U$ of length $3$, so
+   $\dim(U)=3$.  We also have a basis $e_{-2},e_{-1},e_0,e_1,e_2$ of
+   length $5$ for $T_2$, so $\dim(T_2)=5$.  As $T_2=U\op U^\perp$ we have
+   $\dim(U)+\dim(U^\perp)=\dim(T_2)=5$, so $\dim(U^\perp)=5-3=2$.
+  \item[(d)] Put
+   \begin{align*}
+    v_0 &= e_{-2} + e_{-1} + e_0 + e_1 + e_2 \\
+    v_1 &= -2e_{-2} -e_{-1} + e_1 + 2e_2.
+   \end{align*}
+   As the $e_n$'s are orthonormal, we have
+   \begin{align*}
+    \ip{f,v_0} &= \ip{a_{-2}e_{-2}+a_{-1}e_{-1}+a_0e_0+a_1e_1+a_2e_2,
+                      e_{-2} + e_{-1} + e_0 + e_1 + e_2 } \\
+               &= a_{-2} + a_{-1} + a_0 + a_1 + a_2 = f(0) \\
+    \ip{f,v_1} &= \ip{a_{-2}e_{-2}+a_{-1}e_{-1}+a_0e_0+a_1e_1+a_2e_2,
+                      -2e_{-2} - e_{-1} + e_1 + 2 e_2 } \\
+               &= -2a_{-2} - a_{-1} + a_1 + 2 a_2 = f'(0).
+   \end{align*}
+  \item[(e)] If $f\in U$ then $\ip{f,v_0}=f(0)=0$ and
+   $\ip{f,v_1}=f'(0)=0$.  This shows that $v_0$ and $v_1$ lie in
+   $U^\perp$.  They are clearly linearly independent, as neither one
+   is a multiple of the other.  There are two of them, and
+   $\dim(U^\perp)=2$ by part~(c), so they give a basis for $U^\perp$.
+   Moreover, we have
+   \[ \ip{v_0,v_1} = 1.(-1) + 1.(-1) + 1.0 + 1.1 + 1.2 = 0, \]
+   so they are orthogonal.  We can therefore construct an orthonormal
+   basis of $U^\perp$ by dividing $v_0$ and $v_1$ by their norms.
+   Explicitly, we have
+   \begin{align*}
+    \|v_0\|^2 &= 1^2 + 1^2 + 1^2 + 1^2 + 1^2 = 5 \\
+    \|v_1\|^2 &= (-2)^2 + (-1)^2 + 0^2 + 1^2 + 2^2 = 10
+   \end{align*}
+   so our orthonormal basis consists of the functions
+   \begin{align*}
+    \hat{v}_0 &= (e_{-2} + e_{-1} + e_0 + e_1 + e_2)/\sqrt{5} \\
+    \hat{v}_1 &= (-2e_{-2} -e_{-1} + e_1 + 2e_2)/\sqrt{10}.
+   \end{align*}
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{16.1}
+ \begin{itemize}
+  \item[(a)]
+   First note that $e_n(t)=e^{int}$, so $e'_n(t)=ine^{int}$, so
+   $e''_n(t)=(in)^2e^{int}=-n^2e_n(t)$.  This means that
+   $\Dl(e_n)=-n^2e_n$, and thus that
+   $\Dl(f)=\sum_n a_n.(-n^2e_n)=-\sum_n n^2 a_n e_n$.
+  \item[(b)]
+   Consider elements $f,g\in T_2$, say $f=\sum_{n=-2}^2a_ne_n$ and
+   $g=\sum_{k=-2}^2b_me_m$.  We then have
+   \begin{align*}
+    \Dl(f) &= -\sum_n n^2 a_n e_n \\
+    \ip{\Dl(f),g} &=
+     \left\langle -\sum_n n^2a_ne_n,\sum_m b_me_m\right\rangle
+      = -\sum_{n,m} n^2 a_n\,\overline{b_m}\,\ip{e_n,e_m} \\
+    &= -\sum_{n=-2}^2 n^2 a_n \overline{b_n} \\
+    \Dl(g) &= -\sum_m m^2 b_m e_m \\
+    \ip{f,\Dl(g)} &=
+     \left\langle\sum_n a_ne_n,-\sum_m m^2b_me_m\right\rangle
+      = -\sum_{n,m} m^2 a_n\,\overline{b_m}\,\ip{e_n,e_m} \\
+    &= -\sum_{m=-2}^2 m^2 a_m \overline{b_m}
+   \end{align*}
+   This shows that $\ip{\Dl(f),g}=\ip{f,\Dl(g)}$, so $\Dl$ is
+   self-adjoint.
+  \item[(c)] Part~(a) tells us that the matrix of $\Dl$ with respect
+   to the standard basis $\CE=e_{-2},e_{-1},e_0,e_1,e_2$ is
+   {\tiny \[
+     D = \bsm -4 &  0 & 0 &  0 &  0 \\
+               0 & -1 & 0 &  0 &  0 \\
+               0 &  0 & 0 &  0 &  0 \\
+               0 &  0 & 0 & -1 &  0 \\
+               0 &  0 & 0 &  0 & -4 \esm
+   \]}
+   From this it is clear that the eigenvalues are $0$, $-1$ and $-4$.
+  \item[(d)] The eigenspace for the eigenvalue $0$ is spanned by $e_0$
+   and so has dimension one.  The eigenspace for the eigenvalue $-1$ is
+   spanned by $e_{-1}$ and $e_1$, and so has dimension $2$.
+   Similarly, the eigenspace for the eigenvalue $-4$ has dimension two,
+   with basis $e_{-2},e_2$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{16.2}
+ \begin{itemize}
+  \item[(a)] We have $\al(\vx)=A\vx$, where
+   $\displaystyle A=\bsm 1&2&1\\ 2&9&2\\ 1&2&1\esm$, so $A$ is the
+   matrix that we need.
+  \item[(b)] We have $\al=\phi_A$ and so $\al^\dag=\phi_{A^\dag}$, but
+   clearly $A^\dag=A$, so $\al$ is self-adjoint.
+  \item[(c)] Here we just need to find the eigenvalues and
+   eigenvectors of the matrix $A$.  We have
+   \begin{align*}
+    \det(A-tI) &=
+       \det\bsm 1-t & 2 & 1 \\ 2 & 9-t & 2 \\ 1 & 2 & 1-t \esm
+     = (1-t)\det\bsm 9-t & 2 \\ 2 & 1-t \esm
+         -2 \det\bsm 2 & 2 \\ 1 & 1-t \esm
+          + \det\bsm 2 & 9-t \\ 1 & 2 \esm \\
+    &= (1-t)(t^2-10t+5)  - 2(-2t) + (t-5)
+     = -t^3 + 11t^2 - 10t  \\
+    &= -t(t^2-11t+10) = -t(t-1)(t-10),
+   \end{align*}
+   so the characteristic polynomial is $\det(tI-A)=t(t-1)(t-10)$, so
+   the eigenvalues are $0$, $1$ and $10$.  For an eigenvector of
+   eigenvalue $0$ we must have
+   \begin{align*}
+    x+2y+z &= 0 \\
+    2x+9y+2z &= 0 \\
+    x+2y+z &= 0.
+   \end{align*}
+   These equations give $y=0$ and $z=-x$, so any eigenvector of
+   eigenvalue $0$ is a multiple of $[1,0,-1]^T$.  For a unit vector,
+   we can take $u_1=[1,0,-1]^T/\sqrt{2}$.
+
+   For an eigenvector of eigenvalue $1$ we must have
+   \begin{align*}
+    x+2y+z &= x \\
+    2x+9y+2z &= y \\
+    x+2y+z &= z.
+   \end{align*}
+   These equations give $x=z=-2y$, so any eigenvector of eigenvalue
+   $1$ is a multiple of $[-2,1,-2]^T$.  For a unit vector, we can take
+   $u_2=[-2,1,-2]^T/3$.
+
+   For an eigenvector of eigenvalue $10$ we must have
+   \begin{align*}
+    x+2y+z &= 10x \\
+    2x+9y+2z &= 10y \\
+    x+2y+z &= 10z.
+   \end{align*}
+   These equations give $z=x$ and $y=4x$, so any eigenvector of eigenvalue
+   $1$ is a multiple of $[1,4,1]^T$.  For a unit vector, we can take
+   $u_3=[1,4,1]^T/(3\sqrt{2})$.
+
+   Now $u_1$, $u_2$ and $u_3$ are eigenvectors of a self-adjoint
+   map with different eigenvalues, so they are automatically
+   orthogonal.  (It is easy to check this directly, of course.)  They
+   are unit vectors, so they give an orthonormal (and so linearly
+   independent) sequence.  As this is an independent sequence of
+   length three in a three-dimensional space, it must be a basis.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{16.3}
+ \begin{itemize}
+  \item[(a)] If $z=[z_0,\dotsc,z_4]^T$ and $w=[w_0,\dotsc,w_4]^T$ we
+   have
+   \begin{align*}
+    \ip{\al(z),w} &=
+     \ip{[z_1,z_2,z_3,z_4,z_0]^T,[w_0,w_1,w_2,w_3,w_4]^T} \\
+    &= z_1\ov{w_0} + z_2\ov{w_1} + z_3\ov{w_2} + z_4\ov{w_3} + z_0\ov{w_4} \\
+    &= z_0\ov{w_4} + z_1\ov{w_0} + z_2\ov{w_1} + z_3\ov{w_2} + z_4\ov{w_3} \\
+    &= \ip{[z_0,z_1,z_2,z_3,z_4]^T,[w_4,w_0,w_1,w_2,w_3]^T}. \\
+   \end{align*}
+   Thus, if we define $\bt\:\C^5\to\C^5$ by
+   \[ \bt([w_0,w_1,w_2,w_3,w_4]^T) = [w_4,w_0,w_1,w_2,w_3]^T, \]
+   we have $\ip{\al(z),w}=\ip{z,\bt(w)}$.  This means that
+   $\bt=\al^\dag$.  We also have
+   \begin{align*}
+    \bt\al(z) &= \bt([z_1,z_2,z_3,z_4,z_0]^T) = z \\
+    \al\bt(w) &= \al([w_4,w_0,w_1,w_2,w_3]^T) = w,
+   \end{align*}
+   so $\bt$ is inverse to $\al$.  Thus $\al^{-1}=\bt=\al^\dag$.
+  \item[(b)] Suppose that $\al(z)=\lm\,z$, or in other words
+   \[ [z_1,z_2,z_3,z_4,z_0] =
+       [\lm z_0,\lm z_1,\lm z_2,\lm z_3,\lm z_4].
+   \]
+   This means that
+   \begin{align*}
+    z_1 &= \lm z_0 \\
+    z_2 &= \lm z_1 = \lm^2 z_0 \\
+    z_3 &= \lm z_2 = \lm^3 z_0 \\
+    z_4 &= \lm z_3 = \lm^4 z_0 \\
+    z_0 &= \lm z_4 = \lm^5 z_0.
+   \end{align*}
+   The last equation gives $(\lm^5-1)z_0=0$.  If $\lm^5\neq 1$ then we
+   see that $z_0=0$, and by substituting this into our other
+   equations we see that $z_1=z_2=z_3=z_4=0$ as well, so $z=0$.  Thus,
+   for such $\lm$ there are no nonzero eigenvectors, so $\lm$ is not
+   an eigenvalue.
+
+   Suppose instead that $\lm^5=1$, which means that $\lm=e^{2\pi
+    ik/5}$ for some $k\in\{0,1,2,3,4\}$.  We then see that the vector
+   \[ u_k = [1,\lm,\lm^2,\lm^3,\lm^4]^T \]
+   is an eigenvector of eigenvalue $\lm$.  Thus, the eigenvalues are
+   precisely the fifth roots of unity.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{16.4}
+ \begin{itemize}
+  \item[(a)] If $f=ax^2+bx+c$ then $f''=2a$, so $\al(f)=6ax^2-2a$, so
+   $\al(f)''=12a$, so
+   $\al(\al(f))=(3x^2-1)\al(f)''=36ax^2-12a=6\al(f)$.
+  \item[(b)] If $\al(f)=\lm f$ then
+   $\al(\al(f))=\al(\lm f)=\lm\al(f)=\lm.\lm f=\lm^2 f$.  On the other
+   hand, we also know from~(a) that $\al(\al(f))=6\al(f)=6\lm f$, so
+   $\lm^2 f=6\lm f$, so $(\lm^2-6\lm)f=0$.  As $f$ was assumed to be
+   nonzero, this means that $\lm^2-6\lm=0$, or $\lm(\lm-6)=0$, so
+   $\lm=0$ or $\lm=6$.
+  \item[(c)] By part~(b) the only possible eigenvalues are $0$ and
+   $6$.  Clearly $\al(f)=0$ iff $f''=0$ iff $a=0$, so the eigenvectors
+   of eigenvalue $0$ are just the polynomials of the form $bx+c$.
+   In particular, if we put $u_1=1$ and $u_2=x$ then $u_1$ and $u_2$
+   are eigenvectors, and we have $\ip{u_1,u_2}=\int_{-1}^1 x\,dx=0$,
+   so they are orthogonal.  Next take $u_2=3x^2-1$.  By definition
+   we have $\al(f)=u_2.f''$ for all $f$, so in particular
+   $\al(u_2)=u_2.u_2''=6u_2$, so $u_2$ is an eigenvector of eigenvalue
+   $6$.  We are given that $\al$ is self-adjoint, so eigenvectors of
+   different eigenvalues are automatically orthogonal, so
+   $u_1,u_2,u_3$ is an orthogonal sequence.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{16.5}
+ \begin{itemize}
+  \item[(a)] We have
+   $\ip{\phi(f),g}=\int_{-\infty}^\infty x\,f(x)\ov{g(x)}\,dx$ and
+   $\ip{f,\phi(g)}=\int_{-\infty}^\infty f(x)\ov{x\,g(x)}\,dx=
+   \int_{-\infty}^\infty \ov{x}\,f(x)\ov{g(x)}\,dx$.  Here $x$ is real
+   so $\ov{x}=x$ so $\ip{\phi(f),g}=\ip{f,\phi(g)}$, which means that
+   $\phi$ is self-adjoint.
+  \item[(b)] If $\phi(f)=\lm\,f$ then $x,f(x)=\lm\,f(x)$ for all
+   $x\in\R$, so $(x-\lm)\,f(x)=0$ for all $x\in\R$.  If $x\neq\lm$
+   then we can divide by $x-\lm$ to see that $f(x)=0$.  If
+   $\lm\not\in\R$ then this finishes the argument: $x$ can never be
+   equal to $\lm$, so $f(x)=0$ for all $x\in\R$, so $f=0$.  If $\lm$
+   is real then we need one extra step: we have seen that $f(x)=0$ for
+   all $x\neq\lm$, but $f$ is continuous so it cannot jump away from
+   zero at $x=\lm$, so $f(\lm)=0$ as well, so $f=0$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-contraction}{16.6}
+ We first note that
+ \[ \gm\bbm a&b\\ c&d\ebm =
+    \bbm 0&1\\ 1&0\ebm \bbm a&b\\ c&d\ebm -
+    \bbm a&b\\ c&d\ebm \bbm 0&1\\ 1&0\ebm =
+    \bbm c&d\\ a&b\ebm - \bbm b&a\\ d&c\ebm =
+    \bbm c-b & d-a \\ a-d & b-c \ebm.
+ \]
+ \begin{itemize}
+  \item[(a)] The standard basis for $M_2\R$ consists of the
+   matrices
+   \[ E_1 = \bbm 1&0\\0&0 \ebm \hspace{4em}
+      E_2 = \bbm 0&1\\0&0 \ebm \hspace{4em}
+      E_3 = \bbm 0&0\\1&0 \ebm \hspace{4em}
+      E_4 = \bbm 0&0\\0&1 \ebm
+   \]
+   We have
+   \begin{align*}
+    \gm(E_1) &= \bbm 0&-1\\1&0 \ebm = -E_2+E_3 \\
+    \gm(E_2) &= \bbm -1&0\\0&1 \ebm = -E_1+E_4 \\
+    \gm(E_3) &= \bbm 1&0\\0&-1 \ebm =  E_1-E_4 \\
+    \gm(E_4) &= \bbm 0&1\\-1&0 \ebm =  E_2-E_3
+   \end{align*}
+   so the matrix of $\gm$ with respect to $E_1,E_2,E_3,E_4$ is
+   \[ \bbm  0 & -1 &  1 &  0 \\
+           -1 &  0 &  0 &  1 \\
+            1 &  0 &  0 & -1 \\
+            0 &  1 & -1 &  0 \ebm
+   \]
+  \item[(b)] From our formulae for $\gm(E_i)$, we see that the
+   matrices $U=E_1-E_4=\bbm 1&0\\0&-1\ebm$ and
+   $V=E_2-E_3=\bbm 0&1\\-1&0\ebm$ form a basis for $\img(\gm)$, and
+   the matrices $I=E_1+E_4$ and $T=E_2+E_3$ form a basis for
+   $\ker(\gm)$.  The matrices $E_1,\dotsc,E_4$ are orthonormal with
+   respect to the usual inner product, so we have
+   \begin{align*}
+    \ip{U,I} &= \ip{E_1-E_4,E_1+E_4} = 1.1 + (-1).1 = 0 \\
+    \ip{U,T} &= \ip{E_1-E_4,E_2+E_3} = 0 \\
+    \ip{V,I} &= \ip{E_2-E_3,E_1+E_4} = 0 \\
+    \ip{V,T} &= \ip{E_2-E_3,E_2+E_3} = 1.1 + (-1).1 = 0.
+   \end{align*}
+   This shows that $\ker(\gm)=\spn\{I,T\}$ is orthogonal to
+   $\img(\gm)=\spn\{U,V\}$.  As the dimensions of these two
+   subspaces add up to the dimension of the whole space, the
+   subspaces must be orthogonal complements of each other.
+  \item[(c)] One checks that $\gm(U)=-2V$ and $\gm(V)=-2U$.  It
+   follows that $\gm^2(U)=4U$, and so
+   $\gm^4(U)=\gm^2(4U)=16U=4\gm^2(U)$.  Similarly, we have
+   $\gm^4(V)=16V=4\gm^2(V)$.  As $\gm(I)=\gm(T)=0$, we also have
+   $\gm^4(I)=0=4\gm^2(I)$ and $\gm^4(T)=0=4\gm^2(T)$.  Thus $gm^4$
+   and $4\gm^2$ have the same effect on $U,V,I$ and $T$, which span
+   $M_2\R$, so $\gm^4=4\gm^2$.  Alternatively, we can just square
+   the matrix in part~(a) twice to see that
+   \[
+    \gm^2\sim
+     \bbm 2 &  0 &  0 & -2 \\
+          0 &  2 & -2 &  0 \\
+          0 & -2 &  2 &  0 \\
+         -2 &  0 &  0 &  2 \ebm
+    \hspace{4em}
+    \gm^4\sim
+     \bbm 8 &  0 &  0 & -8 \\
+          0 &  8 & -8 &  0 \\
+          0 & -8 &  8 &  0 \\
+         -8 &  0 &  0 &  8 \ebm
+   \]
+   which again shows that $\gm^4=4\gm^2$.
+  \item[(d)] As $T$ and $I$ lie in the kernel of $\gm$, they are
+  eigenvectors with eigenvalue $0$.  As $\gm(U)=-2V$ and
+  $\gm(V)=-2U$ we see that $\gm(U+V)=-2(U+V)$ and
+  $\gm(U-V)=2(U-V)$.  It follows that $\{I,T,U-V,U+V\}$ is a basis
+  consisting of eigenvectors.
+ \end{itemize}
+\EndDeferredSolution

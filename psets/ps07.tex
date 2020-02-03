@@ -1,0 +1,261 @@
+\begin{document}
+
+\begin{center}
+ {\huge Vector Spaces and Fourier Theory ---
+   Problem Sheet 7
+ }
+\end{center}
+
+\begin{rubric}
+ Please hand in your answers to exercises~\ref{ex-two-subspaces}
+ and~\ref{ex-adapted-bases} in the lecture on Monday April~21.
+\end{rubric}
+
+\begin{exercise}\label{ex-two-subspaces}
+ Let $U$ be a finite-dimensional vector space, and let $V$
+ and $W$ be subspaces of $U$.  In lectures we proved that
+ there exist elements
+ \[ u_1,\dotsc,u_p,v_1,\dotsc,v_q,w_1,\dotsc,w_r \]
+ such that
+ \begin{itemize}
+  \item $u_1,\dotsc,u_p$ is a basis for $V\cap W$
+  \item $u_1,\dotsc,u_p,v_1,\dotsc,v_q$ is a basis for $V$
+  \item $u_1,\dotsc,u_p,w_1,\dotsc,w_r$ is a basis for $W$
+  \item $u_1,\dotsc,u_p,v_1,\dotsc,v_q,w_1,\dotsc,w_r$ is a basis for $V+W$. 
+ \end{itemize}
+ Find elements as above for the case $U=M_2\R$
+ and $V=\{A\in U\st A^T=A\}$ and $W=\{A\in U\st\trc(A)=0\}$. 
+\end{exercise} 
+\begin{solution}
+ Note that $V\cap W$ is the set of matrices of the form
+ $\bsm a&b\\ b&-a\esm$, so if we put
+ $u_1=\bsm 1&0\\0&-1\esm$ and $u_2=\bsm 0&1\\1&0\esm$ then
+ $u_1,u_2$ is a basis for $V\cap W$.  We now put $v_1=\bsm
+ 1&0\\0&1\esm$ and $w_1=\bsm 0&1\\-1&0\esm$.  We find that
+ $u_1,u_2,v_1$ is a basis for $V$, and $u_1,u_2,w_1$ is a
+ basis for $W$.
+\end{solution}
+
+\begin{exercise}\label{ex-two-subspaces-numbers}
+ Let $Z$ be a finite-dimensional vector space, and let $U$,
+ $V$ and $W$ be subspaces of $Z$.  Suppose that
+ \begin{align*}
+  \dim(U) &= 2  & \dim(U\cap V) &= 1 \\
+  \dim(V) &= 3  & \dim(V\cap W) &= 2 \\
+  \dim(W) &= 4  & \dim((U+V)\cap W) &= 3.
+ \end{align*}
+ Find the dimensions of $U+V$, $V+W$ and $U+V+W$.  Hence
+ show that $U+V+W=V+W$ and thus that $U\leq V+W$.
+\end{exercise}
+\begin{solution}
+ \begin{align*}
+  \dim(U+V) &= \dim(U)+\dim(V)-\dim(U\cap V)=2+3-1=4\\
+  \dim(V+W) &= \dim(V)+\dim(W)-\dim(V\cap W)=3+4-2=5\\
+  \dim(U+V+W) &= \dim(U+V)+\dim(W)-\dim((U+V)\cap W)
+               = 4+4-3=5.
+ \end{align*}
+ Now it is clear that $V+W\leq U+V+W$ and
+ $\dim(V+W)=\dim(U+V+W)$; this can only happen if
+ $V+W=U+V+W$.  It is also clear that $U\leq U+V+W$ but
+ $U+V+W=V+W$ so $U\leq V+W$ as claimed.
+\end{solution}
+
+\begin{exercise}\label{ex-adapted-bases}
+ Let $\phi\:U\to V$ be a linear map between
+ finite-dimensional vector spaces.  Recall that there exists
+ a number $r$ and bases $u_1,\dotsc,u_n$ (for $U$) and
+ $v_1,\dotsc,v_m$ (for $V$) such that
+ \[ \phi(u_i) = \begin{cases}
+     v_i & \text{ if } i \leq r \\
+     0   & \text{ if } i > r.
+    \end{cases}
+ \]
+ (The method is to find a basis $v_1,\dotsc,v_r$ for
+ $\img(\phi)$, choose elements $u_1,\dotsc,u_r$ with
+ $\phi(u_i)=v_i$, then choose any basis $u_{r+1},\dotsc,u_n$
+ for $\ker(\phi)$, then choose any elements
+ $v_{r+1},\dotsc,v_m$ for $V$ such that $v_1,\dotsc,v_m$ is
+ a basis for $V$.)
+
+ Find such adapted bases for the following maps:
+ \begin{itemize}
+  \item[(a)] $\phi\:M_2\R\to\R[x]_{\leq 3}$,
+   $\phi(A)=[x, x^2]A\bsm 1\\ x\esm$
+  \item[(b)] $\psi\:\R[x]_{\leq 2}\to\R^3$,
+   $\psi(f)=[f(1),f(-1),f'(0)]^T$
+  \item[(c)] $\chi\:M_2\R\to M_3\R$,
+   $\chi(A)=\left[\begin{array}{c|c} 
+    A & 0 \\ \hline 0 & -\trc(A) \end{array}\right]$
+  \item[(d)] $\tht=\mu_\CP\:\R^4\to\R[x]_{\leq 2}$,
+   where $\CP=x^2,(x+1)^2,(x-1)^2,x^2+1$.
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] Here we have
+   \[ \phi\bsm a&b\\ c&d\esm = 
+       [x,x^2]\bsm a+bx\\ c+dx\esm = ax+(b+c)x^2+dx^3
+   \]
+   It follows that the list $v_1=x,v_2=x^2,v_3=x^3$ is a
+   basis for $\img(\phi)$, and the matrices
+   $u_1=\bsm 1&0\\0&0\esm,u_2=\bsm 0&1\\0&0\esm,u_3=\bsm 0&0\\0&1\esm$
+   have $\phi(u_i)=v_i$.  We also see that $\phi\bsm a&b\\ c&d\esm=0$ 
+   iff $a=d=0$ and $c=-b$, so $u_4=\bsm 0&1\\-1&0\esm$ gives
+   a basis for $\ker(\phi)$.  Finally, we can take $v_4=1$
+   to extend our list $v_1,\dotsc,v_3$ to a basis for all of
+   $\R[x]_{\leq 3}$.  Our final answer is thus:
+   \[ u_1=\bsm 1&0\\0&0\esm\hspace{2em}
+      u_2=\bsm 0&1\\0&0\esm\hspace{2em}
+      u_3=\bsm 0&0\\0&1\esm\hspace{2em}
+      u_4=\bsm 0&1\\-1&0\esm
+   \]
+   \[ v_1=x\hspace{2em} 
+      v_2=x^2\hspace{2em}
+      v_3=x^3\hspace{2em}
+      v_4=1
+   \]
+  \item[(b)] Here we have
+   \[ \psi(ax^2+bx+c) =
+       \bsm a+b+c \\ a-b+c\\ b \esm = 
+       (a+c)\bsm 1\\1\\0 \esm + b \bsm 1\\-1\\1\esm
+   \]
+   From this it is clear that the list
+   $v_1=[1,1,0]^T,v_2=[1,-1,1]^T$ is a basis for
+   $\img(\psi)$, and that if we put $u_1=1$ and $u_2=x$ then
+   $\phi(u_i)=v_i$ for $i=1,2$.  Moreover, we have
+   $\phi(ax^2+bx+c=0$ iff $b=0$ and $c=-a$, so $u_3=x^2-1$
+   gives a basis for $\ker(\phi)$.  Finally, almost any
+   choice of $v_3$ will ensure that $v_1,v_2,v_3$ is a basis
+   of $\R^3$, but the simplest is to take $v_3=[1,0,0]^T$.
+   Our final answer is
+   \[ u_1 = 1\hspace{2em} 
+      u_2 = x\hspace{2em}
+      u_3 = x^2-1 
+   \]
+   \[ v_1 = \bsm 1\\1\\0 \esm \hspace{2em}
+      v_2 = \bsm 1\\-1\\1 \esm \hspace{2em}
+      v_3 = \bsm 1\\0\\0\esm
+   \]
+  \item[(c)] Here we have
+   {\tiny \[ \chi\bsm a&b\\ c&d\esm = 
+       \bsm a & b & 0 \\ c & d & 0 \\ 0 & 0 & -a-d\esm =
+       a\bsm 1&0&0\\0&0&0\\0&0&-1\esm + 
+       b\bsm 0&1&0\\0&0&0\\0&0&0 \esm + 
+       c\bsm 0&0&0\\1&0&0\\0&0&0\esm + 
+       d\bsm 0&0&0\\0&1&0\\0&0&-1\esm
+   \]}
+   It follows that we can take
+   \[ u_1 = \bsm 1&0\\0&0 \esm 
+      u_2 = \bsm 0&1\\0&0 \esm 
+      u_3 = \bsm 0&0\\1&0 \esm 
+      u_4 = \bsm 0&0\\0&1 \esm 
+   \]
+   \[  v_1 = \bsm 1&0&0\\0&0&0\\0&0&-1\esm \hspace{1em}
+       v_2 = \bsm 0&1&0\\0&0&0\\0&0&0 \esm \hspace{1em}
+       v_3 = \bsm 0&0&0\\1&0&0\\0&0&0\esm \hspace{1em}
+       v_4 = \bsm 0&0&0\\0&1&0\\0&0&-1\esm
+   \]
+   and then $\chi(u_i)=v_i$ and $v_1,\dotsc,v_4$ is a basis
+   for $\img(\chi)$.  Moreover, it is clear that $\chi(A)$
+   can only be zero if $A$ is zero, so $\ker(\chi)=0$, so no
+   more $u$'s need to be added.  On the other hand, we need
+   five more $v$'s to make up a basis for $M_3\R$.  The
+   obvious choices are as follows:
+   {\tiny \[
+    v_5 = \bsm 0&0&1\\0&0&0\\0&0&0\esm\hspace{1em}
+    v_6 = \bsm 0&0&0\\0&0&1\\0&0&0\esm\hspace{1em}
+    v_7 = \bsm 0&0&0\\0&0&0\\0&0&1\esm\hspace{1em}
+    v_8 = \bsm 0&0&0\\0&0&0\\0&1&0\esm\hspace{1em}
+    v_9 = \bsm 0&0&0\\0&0&0\\1&0&0\esm
+   \]}
+  \item[(d)] Here we have
+   \[ \tht([a,b,c,d]^T) = ax^2+b(x+1)^2+c(x-1)^2+d(x^2+1)
+       = (a+b+c+d)x^2+2(b-c)x+(b+c+d)
+   \]
+   From this we find that
+   \begin{align*}
+    \tht([1,0,0,0]^T) &= x^2 \\
+    \tht([0,1/4,-1/4,0]^T) &= x \\
+    \tht([-1,0,0,1]^T) &= 1 \\
+    \tht([0,1,1,-2]^T) &= 0.
+   \end{align*}
+   We can therefore take
+   \[ u_1 = \bsm 1\\0\\0\\0 \esm \hspace{1em}
+      u_2 = \bsm 0\\ 1/4 \\ -1/4 \\ 0 \esm \hspace{1em} 
+      u_3 = \bsm -1\\ 0 \\ 0 \\ 1 \esm \hspace{1em} 
+      u_4 = \bsm 0\\ 1\\ 1\\ -2 \esm
+   \]
+   \[ v_1 = x^2 \hspace{2em} v_2 = x \hspace{2em} v_3 = 1 \]
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-recurrence}
+ Let $V$ be the set of all sequences $(a_0,a_1,a_2,\dotsc)$ for
+ which $a_{i+2}=3a_{i+1}-2a_i$ for all $i$.
+ \begin{itemize}
+  \item[(a)] Define $\pi\:V\to\R^2$ by
+   \[ \pi(a_0,a_1,a_2,a_3,\dotsc) = [a_0,a_1]^T. \]
+   Show that $\ker(\pi)=0$, so $\pi$ is injective.
+  \item[(b)] Define sequences $u,v$ by $u_i=1$ for all $i$, and
+  $v_i=2^i$.  Show that $u,v\in V$.
+  \item[(c)] Find constants $p,q,r,s$ such that the elements
+  $b=pu+qv$ and $c=ru+sv$ satisfy $\pi(b)=[1,0]^T$ and
+  $\pi(c)=[0,1]^T$.
+  \item[(d)] Show that $b$ and $c$ give a basis for $V$, and
+   deduce that $u$ and $v$ give a basis for $V$.
+  \item[(e)] Define $\lm\:V\xra{}V$ by
+   \[ \lm(a_0,a_1,a_2,a_3,\dotsc) =
+         (a_1,a_2,a_3,a_4,\dotsc).
+   \]
+   What is the matrix of $\lm$ with respect to the basis $u,v$?
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] If $a\in\ker(\pi)$ then $\pi(a)=0$ so $a_0=a_1=0$.
+   Using the relation $a_2=3a_1-2a_0$ we see that $a_2=0$.  We
+   can now use the relation $a_3=3a_2-2a_1$ to see that $a_3=0$.
+   More generally, if $a_0=\dotsb=a_{i-1}=0$ (for some $i\geq 2$)
+   then the relation $a_i=3a_{i-1}-2a_{i-2}$ tells us that
+   $a_i=0$ as well.  It follows by induction that $a_i=0$ for
+   all $i$, so $a=0$.  Thus $\ker(\pi)=0$ as claimed.
+  \item[(b)] We have $u_{i+2}-3u_{i+1}+2u_i=1-3+2=0$, so
+   $u\in V$.  We also have
+   \[ v_{i+2}-3v_{i+1}+2v_i = 2^{i+2}-3.2^{i+1}+2.2^i =
+      2^i(4 - 3.2 +2) = 0,
+   \]
+   so $v\in V$.
+  \item[(c)] We have $\pi(u)=[1,1]^T$ and $\pi(v)=[1,2]^T$.  By
+  inspection we have $\pi(2u-v)=[1,0]^T$ and $\pi(v-u)=[0,1]^T$, so we
+  can take $b=2u-v$ and $c=v-u$.
+  \item[(d)] Suppose we have an element $a\in V$.  We then have
+   \[ \pi(a - a_0b - a_1c) = \pi(a) - a_0\pi(b) - a_1\pi(c)
+      = [a_0,a_1]^T - a_0[1,0]^T - a_1[0,1]^T = [0,0]^T.
+   \]
+   As $\pi$ is injective, this means that $a=a_0b+a_1c$.  It is
+   clear that this expression for $a$ in terms of $b$ and $c$ is
+   unique, so $b$ and $c$ give a basis.  Next, for $a$ as above
+   we have
+   \[ a=a_0b+a_1c=a_0(2u-v)+a_1(v-u) = (2a_0-a_1)u+(a_1-a_0)v,
+   \]
+   which is a linear combination of $u$ and $v$.  This shows
+   that $u$ and $v$ span $V$, and they are clearly independent,
+   so they also form a basis.
+  \item[(a)] We have
+   \begin{align*}
+    \lm(u) &= \lm(1,1,1,1,1,\dotsc) = (1,1,1,1,\dotsc) = u \\
+    \lm(v) &= \lm(1,2,4,8,16,\dotsc) = (2,4,8,16,\dotsc) = 2v
+   \end{align*}
+   so the matrix of $\lm$ with respect to $u,v$ is just
+   $\bpm 1&0\\0&2\epm$.
+ \end{itemize}
+\end{solution}
+
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% compile-command: "do_both 07"
+%%% End:

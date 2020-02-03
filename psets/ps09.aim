@@ -1,0 +1,418 @@
+v> 4
+penalty> 0.05
+t> Consider the space $V=M_4\mathbf{R}$ with the usual inner product
+ $\langle A,B\rangle =trace(AB^T)$.  Consider the following sequence in
+ $V$:
+ {\tiny \[
+  A_1 = \left[\begin{array}{c} 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\end{array}\right] 
+  \hspace{3em}
+  A_2 = \left[\begin{array}{c} 0&0&0&0\\ 0&1&1&0\\ 0&1&1&0\\ 0&0&0&0\end{array}\right] 
+  \hspace{3em}
+  A_3 = \left[\begin{array}{c} 0&1&1&0\\ 1&1&1&1\\ 1&1&1&1\\ 0&1&1&0\end{array}\right] 
+  \hspace{3em}
+  A_4 = \left[\begin{array}{c} 1&1&1&1\\ 1&1&1&1\\ 1&1&1&1\\ 1&1&1&1\end{array}\right] 
+ \]}
+ Find an orthogonal sequence $C_1,\dotsc,C_4$ in $V$ such
+ that $span\{A_1,\dotsc,A_i\}=span\{C_1,\dotsc,C_i\}$ for
+ all $i$.  ({\bf Note:} the problem sheet asked for an 
+ orthonormal sequence, but here we just ask for an orthogonal
+ sequence, which is a little easier to find and much easier 
+ to type in.  You can use the Gram-Schmidt procedure for this
+ but it is easier to find an answer by inspection.)  Your
+ answer should be a list of four $4\times 4$ matrices, which
+ you can stick together to get a $4\times 16$ matrix, which
+ you should enter in the boxes below.
+c> MATRIX(4,16)
+s> [proc(ans)
+     local A,C,c,i,j,k;
+     if not(type(map(op,convert(ans,listlist)),[numeric$64])) then
+      `aim/SetInvalid`("You need to enter a number in every box.  No box should be empty, and there should be no algebraic symbols.", "not numeric");
+      return(0);
+     fi;
+     A[1] := matrix([[0,0,0,0],[0,1,0,0],[0,0,1,0], [0,0,0,0]]);
+     A[2] := matrix([[0,0,0,0],[0,1,1,0],[0,1,1,0], [0,0,0,0]]);
+     A[3] := matrix([[0,1,1,0],[1,1,1,1],[1,1,1,1], [0,1,1,0]]);
+     A[4] := matrix([[1,1,1,1],[1,1,1,1],[1,1,1,1], [1,1,1,1]]);
+     
+     for i from 1 to 4 do
+      C[i] := matrix(map(x -> [op(4*i-3..4*i,x)],convert(ans,listlist)));
+     od;
+
+     printf("<latex>Your matrices are: \n\\[ ");
+     for i from 1 to 4 do
+      printf("C_%d = %s     ",i,`aim/LaTeX`(C[i]));
+     od;
+     printf("  \\]</latex>\n");
+
+     for i from 1 to 4 do
+      if iszero(C[i]) then
+       if i=1 then 
+        printf("<latex>Your matrix $C_1$ is zero, so $span\\{C_1\\}=0\\neq span\\{A_1\\}$</latex>");
+       elif i=2 then 
+        printf("<latex>Your matrix $C_2$ is zero, so $span\\{C_1,C_2\\}=span\\{C_1\\}=span\\{A_1\\}\\neq span\\{A_1,A_2\\}$</latex>");
+       elif i=3 then 
+        printf("<latex>Your matrix $C_3$ is zero, so $span\\{C_1,C_2,C_3\\}=span\\{C_1,C_2\\}=span\\{A_1,A_2\\}\\neq span\\{A_1,A_2,A_3\\}$</latex>");
+       elif i=4 then 
+        printf("<latex>Your matrix $C_4$ is zero, so $span\\{C_1,C_2,C_3,C_4\\}=span\\{C_1,C_2,C_3\\}=span\\{A_1,A_2,A_3\\}\\neq span\\{A_1,A_2,A_3,A_4\\}$</latex>");
+       fi;
+       `aim/SetAnswerNote`(sprintf("zero (%d)",i));
+       return(0);
+      fi;
+      c[i,1] := C[i][2,2] - C[i][2,3];
+      c[i,2] := C[i][2,3] - C[i][2,4];
+      c[i,3] := C[i][2,4] - C[i][1,4];
+      c[i,4] := C[i][1,4];
+      err[i] := evalm(C[i] - add(c[i,j] * A[j],j=1..i));
+      if not(iszero(err[i])) then
+       s := "A_1";
+       for j from 2 to i do s := sprintf("%s,A_{%d}",s,j); od;
+       printf("<latex>Your matrix $C_{%d}$ does not lie in $span\\{%s\\}$</latex>",i,s);
+       `aim/SetAnswerNote`(sprintf("not in span at stage %d",i));
+       return(0); 
+      fi;
+     od;
+
+     for i from 1 to 3 do
+      for j from i+1 to 4 do
+       d := trace(evalm(transpose(C[i]) &* C[j]));
+       if d <> 0 then
+        printf("<latex>You have $\\langle C_{%d},C_{%d}\\rangle = %A \\neq 0$, so your sequence is not orthogonal.</latex>",
+               i,j,d);
+        `aim/SetAnswerNote`(sprintf("not orthogonal (%d,%d)",i,j));
+        return(0);
+       fi;
+      od;
+     od;
+     return(1);
+    end,
+    matrix([
+     [0,0,0,0,  0,0,0,0,  0,1,1,0,  1,0,0,1],
+     [0,1,0,0,  0,0,1,0,  1,0,0,1,  0,0,0,0],
+     [0,0,1,0,  0,1,0,0,  1,0,0,1,  0,0,0,0],
+     [0,0,0,0,  0,0,0,0,  0,1,1,0,  1,0,0,1]
+    ])]
+sb>
+t> 
+ Consider the matrices
+ {\tiny \[
+  B_1=A_1 = \left[\begin{array}{c} 0&0&0&0\\ 0&1&0&0\\ 0&0&1&0\\ 0&0&0&0\end{array}\right] 
+  \hspace{3em}
+  B_2=A_2-A_1 = \left[\begin{array}{c} 0&0&0&0\\ 0&0&1&0\\ 0&1&0&0\\ 0&0&0&0\end{array}\right] 
+  \hspace{3em}
+  B_3=A_3-A_2 = \left[\begin{array}{c} 0&1&1&0\\ 1&0&0&1\\ 1&0&0&1\\ 0&1&1&0\end{array}\right] 
+  \hspace{3em}
+  B_4=A_4-A_3 = \left[\begin{array}{c} 1&0&0&1\\ 0&0&0&0\\ 0&0&0&0\\ 1&0&0&1\end{array}\right] 
+ \]}
+ If $i\neq j$ we see that $B_i$ and $B_j$ do not overlap, or
+ in other words, in any place where $B_i$ has a one, $B_j$
+ has a zero.  To calculate $\langle B_i,B_j\rangle $ we multiply all
+ the entries in $B_i$ by the corresponding entries in $B_j$,
+ and add these terms together.  All the terms are zero
+ because the matrices do not overlap, so $\langle B_i,B_j\rangle
+ =0$,
+ so we have an orthogonal sequence.  From the formulae
+ \[ B_1=A_1     \hspace{3em}
+    B_2=A_2-A_1 \hspace{3em}
+    B_3=A_3-A_2 \hspace{3em}
+    B_4=A_4-A_3
+ \]
+ we deduce that
+ \[ A_1=B_1 \hspace{3em}
+    A_2=B_1+B_2 \hspace{2em}
+    A_3=B_1+B_2+B_3 \hspace{2em}
+    A_4=B_1+B_2+B_3+B_4.
+ \]
+ From these two sets of equations together we see that
+ $span\{B_1,\dotsc,B_i\}=span\{A_1,\dotsc,A_i\}$ for all
+ $i$.
+se>
+end>
+
+v> 3
+penalty> 0.05
+t> Consider the following vectors in $\mathbf{R}^5$:
+ \[
+  u_1 = \left[\begin{array}{c} 1\\ 1\\ 1\\ 1\\ 1\end{array}\right] \hspace{3em}
+  u_2 = \left[\begin{array}{c} 1\\ 1\\ 1\\ 1\\ 0\end{array}\right] \hspace{3em}
+  u_3 = \left[\begin{array}{c} 1\\ 1\\ 1\\ 0\\ 0\end{array}\right] \hspace{3em}
+  u_4 = \left[\begin{array}{c} 1\\ 1\\ 0\\ 0\\ 0\end{array}\right] \hspace{3em}
+  u_5 = \left[\begin{array}{c} 1\\ 0\\ 0\\ 0\\ 0\end{array}\right]
+ \]
+ Find an orthonormal sequence $v_1,\dotsc,v_5$ such that
+ $span\{v_1,\dotsc,v_i\}=span\{u_1,\dotsc,u_i\}$ for all $i$.
+ ({\bf Note:} the problem sheet asked for an 
+ orthonormal sequence, but here we just ask for an orthogonal
+ sequence, which is a little easier to find and much easier 
+ to type in.)
+ Enter the vectors $v_i$ as the columns in the matrix of
+ boxes below.
+ 
+c> MATRIX(5,5)
+s> [proc(ans)
+     local vv,v,c,i,j,k;
+     if not(type(map(op,convert(ans,listlist)),[constant$25])) then
+      `aim/SetInvalid`("You need to enter a number in every box.  No box should be empty, and there should be no algebraic symbols.", "not numeric");
+      return(0);
+     fi;
+     vv[1] := vector([1,1,1,1,1]);
+     vv[2] := evalm(vector([1,1,1,1,-4])/5);
+     vv[3] := evalm(vector([1,1,1,-3,0])/4);
+     vv[4] := evalm(vector([1,1,-2,0,0])/3);
+     vv[5] := evalm(vector([1,-1,0,0,0])/2);
+
+     for i from 1 to 5 do
+      v[i] := vector([seq(ans[j,i],j=1..5)]);
+     od;
+
+     printf("<latex>Your vectors are: \n\\[ ");
+     for i from 1 to 5 do
+      printf("v_%d = %s     ",i,`aim/LaTeX`(transpose(matrix([convert(v[i],list)]))));
+     od;
+     printf("  \\]</latex>\n");
+
+     for i from 1 to 5 do
+      if iszero(v[i]) then
+       if i=1 then 
+        printf("<latex>Your matrix $v_1$ is zero, so $span\\{v_1\\}=0\\neq span\\{u_1\\}$</latex>");
+       elif i=2 then 
+        printf("<latex>Your matrix $v_2$ is zero, so $span\\{v_1,v_2\\}=span\\{v_1\\}=span\\{u_1\\}\\neq span\\{u_1,u_2\\}$</latex>");
+       elif i=3 then 
+        printf("<latex>Your matrix $v_3$ is zero, so $span\\{v_1,v_2,v_3\\}=span\\{v_1,v_2\\}=span\\{u_1,u_2\\}\\neq span\\{u_1,u_2,u_3\\}$</latex>");
+       elif i=4 then 
+        printf("<latex>Your matrix $v_4$ is zero, so $span\\{v_1,v_2,v_3,v_4\\}=span\\{v_1,v_2,v_3\\}=span\\{u_1,u_2,u_3\\}\\neq span\\{u_1,u_2,u_3,u_4\\}$</latex>");
+       elif i=5 then 
+        printf("<latex>Your matrix $v_5$ is zero, so $span\\{v_1,\dotsc,v_5\\}=span\\{v_1,\dotsc,v_4\\}=span\\{u_1,\dotsc,u_4\\}\\neq span\\{u_1,\dotsc,u_5\\}$</latex>");
+       fi;
+       `aim/SetAnswerNote`(sprintf("zero (%d)",i));
+       return(0);
+      fi;
+      for k from i+1 to 5 do
+       if not(`aim/TestSymbolic`(dotprod(v[i],vv[k],'orthogonal'),0)) then
+        s := "u_1";
+        for j from 2 to i do s := sprintf("%s,u_{%d}",s,j); od;
+        printf("<latex>Your vector $v_{%d}$ does not lie in $span\\{%s\\}$</latex>",i,s);
+        `aim/SetAnswerNote`(sprintf("not in span at stage %d",i));
+        return(0); 
+       fi;
+      od;
+     od;
+
+     for i from 1 to 3 do
+      for j from i+1 to 4 do
+       d := simplify(dotprod(v[i],v[j],'orthogonal'));
+       if not(`aim/TestSymbolic`(d,0)) then
+        printf("<latex>You have $\\langle v_{%d},v_{%d}\\rangle= %A \\neq 0$, so your sequence is not orthogonal.</latex>",
+               i,j,d);
+        `aim/SetAnswerNote`(sprintf("not orthogonal (%d,%d)",i,j));
+        return(0);
+       fi;
+      od;
+     od;
+     return(1);
+    end,
+    matrix([
+     [1,  1/5,  1/4,  1/3,  1/2],
+     [1,  1/5,  1/4,  1/3, -1/2],
+     [1,  1/5,  1/4, -2/3,    0],
+     [1,  1/5, -3/4,    0,    0],
+     [1, -4/5,    0,    0,    0]
+    ])]
+sb>
+t> 
+ The Gram-Schmidt process gives the following answer:
+ \[ v_1 = \left[\begin{array}{c} 1\\1\\1\\1\\1\end{array}\right] \hspace{2em}
+    v_2 = \frac{1}{5}\left[\begin{array}{c} 1\\1\\1\\1\\-4\end{array}\right] \hspace{2em}
+    v_3 = \frac{1}{4}\left[\begin{array}{c} 1\\1\\1\\-3\\0\end{array}\right] \hspace{2em}
+    v_4 = \frac{1}{3}\left[\begin{array}{c} 1\\1\\-2\\0\\0\end{array}\right] \hspace{2em}
+    v_5 = \frac{1}{2}\left[\begin{array}{c} 1\\-1\\0\\0\\0\end{array}\right], 
+ \]
+ The steps are as follows.  We start with $v_1=u_1$, which gives
+ $\langle v_1,v_1\rangle =5$ and $\langle u_2,v_1\rangle =4$.  We then have
+ \[ v_2 = u_2 - \frac{\langle u_2,v_1\rangle
+ }{\langle v_1,v_1\rangle }v_1 =
+     \left[\begin{array}{c} 1\\1\\1\\1\\0 \end{array}\right] -
+     \frac{4}{5}\left[\begin{array}{c} 1\\1\\1\\1\\1 \end{array}\right] =
+     \frac{1}{5} \left[\begin{array}{c} 1\\1\\1\\1\\-4 \end{array}\right].
+ \]
+ This gives 
+ \[ \langle v_2,v_2\rangle =(1^2+1^2+1^2+1^2+(-4)^2)/25 = 20/25 = 4/5,
+ \]
+ and $\langle u_3,v_1\rangle =3$ and $\langle u_3,v_2\rangle =3/5$ so
+ \[ v_3 = u_3 - \frac{\langle u_3,v_1\rangle
+ }{\langle v_1,v_1\rangle }v_1
+              - \frac{\langle u_3,v_2\rangle
+ }{\langle v_2,v_2\rangle }v_2
+    = \left[\begin{array}{c} 1\\ 1\\ 1\\ 0\\ 0\end{array}\right] 
+      - \frac{3}{5} \left[\begin{array}{c} 1\\1\\1\\1\\1 \end{array}\right]
+      - \frac{3/5}{4/5} \frac{1}{5} \left[\begin{array}{c} 1\\1\\1\\1\\-4 \end{array}\right]
+    = \frac{1}{20} \left[\begin{array}{c} 5\\ 5\\ 5\\ -15\\ 0\end{array}\right] 
+    = \frac{1}{4} \left[\begin{array}{c} 1\\ 1\\ 1\\ -3\\ 0\end{array}\right] .
+ \]
+ This gives $\langle v_3,v_3\rangle =(1^2+1^2+1^2+(-3)^2)/16=3/4$ and 
+ $\langle u_4,v_1\rangle =2$ and $\langle u_4,v_2\rangle =2/5$ and
+ $\langle u_4,v_3\rangle =2/4=1/2$, so 
+ \begin{eqnarray*}
+  v_4 &=  u_4 - \frac{\langle u_4,v_1\rangle
+ }{\langle v_1,v_1\rangle }v_1
+              - \frac{\langle u_4,v_2\rangle
+ }{\langle v_2,v_2\rangle }v_2
+              - \frac{\langle u_4,v_3\rangle
+ }{\langle v_3,v_3\rangle }v_3 \\
+   &= \left[\begin{array}{c} 1\\ 1\\ 0\\ 0\\ 0\end{array}\right] 
+      - \frac{2}{5} \left[\begin{array}{c} 1\\1\\1\\1\\1 \end{array}\right]
+      - \frac{2/5}{4/5} \frac{1}{5} \left[\begin{array}{c} 1\\1\\1\\1\\-4 \end{array}\right]
+      - \frac{2/4}{3/4} \frac{1}{4} \left[\begin{array}{c} 1\\1\\1\\-3\\0 \end{array}\right]
+    = \frac{1}{30} \left[\begin{array}{c} 10\\ 10\\ -20\\ 0\\ 0\end{array}\right] 
+    = \frac{1}{3} \left[\begin{array}{c} 1\\ 1\\ -2\\ 0\\ 0\end{array}\right] .
+ \end{eqnarray*}
+ This in turn gives $\langle v_4,v_4\rangle =2/3$ and
+ $\langle u_5,v_1\rangle =1$
+ and $\langle u_5,v_2\rangle =1/5$ and $\langle u_5,v_3\rangle =1/4$ and
+ $\langle u_5,v_4\rangle =1/3$ so 
+ \begin{eqnarray*}
+   v_5 &= u_5 - \frac{\langle u_5,v_1\rangle
+ }{\langle v_1,v_1\rangle }v_1
+              - \frac{\langle u_5,v_2\rangle
+ }{\langle v_2,v_2\rangle }v_2
+              - \frac{\langle u_5,v_3\rangle
+ }{\langle v_3,v_3\rangle }v_3
+              - \frac{\langle u_5,v_4\rangle
+ }{\langle v_4,v_4\rangle }v_4 \\
+   &= \left[\begin{array}{c} 1\\ 0\\ 0\\ 0\\ 0\end{array}\right] 
+      - \frac{1}{5} \left[\begin{array}{c} 1\\1\\1\\1\\1 \end{array}\right]
+      - \frac{1/5}{4/5} \frac{1}{5} \left[\begin{array}{c} 1\\1\\1\\1\\-4 \end{array}\right]
+      - \frac{1/4}{3/4} \frac{1}{4} \left[\begin{array}{c} 1\\1\\1\\-3\\0 \end{array}\right]
+      - \frac{1/3}{2/3} \frac{1}{3} \left[\begin{array}{c} 1\\1\\-2\\0\\0 \end{array}\right]
+    = \frac{1}{60} \left[\begin{array}{c} 30\\ -30\\ 0\\ 0\\ 0\end{array}\right] 
+    = \frac{1}{2} \left[\begin{array}{c} 1\\ -1\\ 0\\ 0\\ 0\end{array}\right] .
+ \end{eqnarray*}
+ In summary, the vectors 
+ \[ v_1 = \left[\begin{array}{c} 1\\1\\1\\1\\1\end{array}\right] \hspace{2em}
+    v_2 = \frac{1}{5}\left[\begin{array}{c} 1\\1\\1\\1\\-4\end{array}\right] \hspace{2em}
+    v_3 = \frac{1}{4}\left[\begin{array}{c} 1\\1\\1\\-3\\0\end{array}\right] \hspace{2em}
+    v_4 = \frac{1}{3}\left[\begin{array}{c} 1\\1\\-2\\0\\0\end{array}\right] \hspace{2em}
+    v_5 = \frac{1}{2}\left[\begin{array}{c} 1\\-1\\0\\0\\0\end{array}\right], 
+ \]
+ form an orthogonal sequence with
+ $span\{v_1,\dotsc,v_i\}=span\{u_1,\dotsc,u_i\}$ for
+ $i=1,\dotsc,5$.  If we multiply each of these vectors by a nonzero constant then we
+ get another orthogonal sequence with the same spanning property.  Thus, the
+ vectors
+ \[ v'_1 = \left[\begin{array}{c} 1\\1\\1\\1\\1 \end{array}\right] \hspace{2em}
+    v'_2 = \left[\begin{array}{c} 1\\1\\1\\1\\-4\end{array}\right] \hspace{2em}
+    v'_3 = \left[\begin{array}{c} 1\\1\\1\\-3\\0\end{array}\right] \hspace{2em}
+    v'_4 = \left[\begin{array}{c} 1\\1\\-2\\0\\0\end{array}\right] \hspace{2em}
+    v'_5 = \left[\begin{array}{c} 1\\-1\\0\\0\\0\end{array}\right]
+ \]
+ would give another correct answer for this question.
+se>
+end>
+
+v> 3
+t>
+ Define an inner product on $\mathbf{R}[t]_{\leq 2}$ by 
+ \[ \langle f,g\rangle =
+     \pi^{-1/2} \int_{-\infty}^\infty f(t)g(t)e^{-t^2}dt.
+ \]
+ Apply the Gram-Schmidt procedure to the basis $\{1,t,t^2\}$
+ to get a basis for $\mathbf{R}[t]_{\leq 2}$ that is orthonormal
+ with respect to this inner product.  You may assume that when $n+m$ is odd we
+ have $\langle t^n,t^m\rangle=0$, but that when $n+m$ is even we have
+ \[
+   \langle t^n,t^m\rangle = 
+    \pi^{-1/2} \int_{-\infty}^\infty t^{n+m} e^{-t^2}\,dx
+   = \frac{1}{2^{n+m}} \,\frac{(n+m)!}{((n+m)/2)!}
+ \]
+ (and you should remember that $0!=1$).  
+c> MATRIX(3,1)
+s> [ proc(ans)
+      local u,lu,i,j,k;
+      for i from 1 to 3 do
+       u[i] := ans[i,1];
+       if `aim/TestEqual`(u[i],EMPTYCELL) then
+        `aim/SetInvalid`("You need to enter a function in each box.","empty cell");
+        return(0);
+       elif type([u[i]],[{list,vector,matrix,Vector,Matrix}]) then
+        `aim/SetInvalid`("<In each box you should enter an element of the space $\\mathbf{R}[t]_{\\leq 2}$, or in other words a quadratic polynomial in $t$.  You should not enter a vector or a matrix.","vector");
+        return(0);
+       elif not(type([u[i]],[polynom(constant,t)])) then 
+        `aim/SetInvalid`("In each box you should enter an element of the space $\\mathbf{R}[t]_{\\leq 2}$, or in other words a quadratic polynomial in $t$.","not poly");
+        return(0);
+       elif degree(u[i],t) > 2 then 
+        `aim/SetInvalid`("In each box you should enter an element of the space $\\mathbf{R}[t]_{\\leq 2}$, or in other words a polynomial in $t$ of degree at most two.  You have given a polynomial of degree greater than two.","bad degree");
+        return(0);
+       fi;
+       lu[i] := LaTeX(u[i]);
+      od;
+      `aim/t`(sprintf("Your functions are \\begin{eqnarray*} u_1(t) &=& %s \\\\ u_2(t) &=& %s \\\\ u_3(t) &=& %s \\end{eqnarray*}",
+        lu[1],lu[2],lu[3]));
+
+      if degree(u[1],t) > 0 then
+       `aim/t`(sprintf("You are supposed to have $span\\{u_1\\}=span\\{1\\}=\\{ constant polynomials \\}$.  This is not true because $u_1(t)=%s$, which is not constant.",lu[1]));
+       `aim/SetAnswerNote`("not in span at stage 1");
+       return(0);
+      fi;
+
+      if degree(u[2],t) > 1 then
+       `aim/t`(sprintf("You are supposed to have $span\\{u_1,u_2\\}=span\\{1,t\\}=\\{ polynomials of degree at most one \\}$.  This is not true because $u_2(t)=%s$, which has degree two.",lu[1]));
+       `aim/SetAnswerNote`("not in span at stage 2");
+       return(0);
+      fi;
+     
+      for i from 1 to 2 do 
+       for j from i+1 to 3 do
+        d := simplify(int(u[i]*u[j]*exp(-t^2),t=-infinity..infinity)/sqrt(Pi));
+        if not(`aim/TestSymbolic`(d,0)) then 
+         `aim/t`(sprintf("The inner product of $u_{%d}$ and $u_{%d}$ is \\[ \\frac{1}{\\sqrt{\\pi}}\\int_{-\\infty}^{\\infty} (%s)(%s) dt = %s \\neq 0, \\] so your sequence is not orthogonal.",i,j,lu[i],lu[j],LaTeX(d)));
+         `aim/SetAnswerNote`(sprintf("not orthogonal (%d,%d)",i,j));
+         return(0);
+        fi; 
+       od;
+      od;
+
+      for i from 1 to 3 do 
+       d := simplify(int(u[i]^2*exp(-t^2),t=-infinity..infinity)/sqrt(Pi));
+       if not(`aim/TestSymbolic`(d,1)) then 
+        `aim/t`(sprintf("The squared norm of $u_{%d}$ is \\[ \\frac{1}{\\sqrt{\\pi}}\\int_{-\\infty}^{\\infty} (%s)^2 dt = %s \\neq 1, \\] so your sequence is not orthonormal.",i,lu[i],LaTeX(d)));
+         `aim/SetAnswerNote`(sprintf("not normalised (%d)",i));
+        return(0);
+       fi; 
+      od;
+
+      return(1);
+     end,
+     matrix([[1],[sqrt(2)*t],[sqrt(2)*(t^2-1/2)]])
+   ]
+sb>
+t> 
+ The resulting orthonormal basis is 
+ $\{1,\sqrt{2}t,\sqrt{2}(t^2-1/2)\}$.  The calculation is as
+ follows.  We first note that if $i+j$ is an odd number, then
+ $t^{i+j}e^{-t^2}$ is an odd function, so its integral from
+ $-\infty$ to $\infty$ is zero, so $\langle t^i,t^j\rangle=0$.  In
+ particular, $t$ is orthogonal to $1$ and $t^2$.  Next,
+ the hint tells us that
+ \begin{eqnarray*}
+  \langle 1,1\rangle &=& 1 \\
+  \langle t,t\rangle &=& 1/2 \\
+  \langle 1,t^2\rangle &=& 1/2 \\
+  \langle t^2,t^2\rangle &=& 3/4.
+ \end{eqnarray*}
+ It follows that $\|t\|=1/\sqrt{2}$, so $1,\sqrt{2}t$ is an
+ orthonormal sequence.  The projection of $t^2$ orthogonal
+ to these is
+ \[
+  t^2 - \langle t^2,1\rangle1 - \langle t^2,\sqrt{2}t\rangle \sqrt{2}t 
+   = t^2 - 1/2.
+ \]
+ To normalise this, we note that
+ \[ \langle t^2-1/2,t^2-1/2\rangle = 
+     \langle t^2,t^2\rangle - 2\langle t^2,1/2\rangle +
+ \langle 1/2,1/2\rangle = 
+     3/4 - \langle t^2,1\rangle + \langle 1,1\rangle/4 = 
+     \frac{3}{4} - \frac{1}{2} + \frac{1}{4} = 1/2.
+ \]
+ It follows that $\|\sqrt{2}(t-1/2)\|=1$, so our orthonormal
+ basis is $\{1,\sqrt{2}t,\sqrt{2}(t^2-1/2)\}$.
+se>
+

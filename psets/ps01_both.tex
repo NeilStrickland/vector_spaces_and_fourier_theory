@@ -1,0 +1,335 @@
+\documentclass[a4paper]{amsart}
+%\usepackage{a4wide}
+\usepackage{fullpage}
+\usepackage[metapost,mplabels,truebbox]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex,debug]{hyperref}
+\graphicspath{{pics/}{mfpics/}}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{verbatim}
+
+\input{probmacros}
+
+\theoremstyle{definition}
+
+\newenvironment{rubric}{}{}
+\newtheorem{exercise}{Exercise}
+\newenvironment{solution}{{\noindent \bf Solution:}}{}
+
+\begin{document}
+
+\opengraphsfile{pics/pics01}
+
+\begin{center}
+ {\huge Vector Spaces and Fourier Theory ---
+   Problem Sheet 1
+ }
+\end{center}
+
+\begin{rubric}
+The first two problems on this sheet relate to the week 1
+lectures.  The remaining questions are essentially revision
+of SOM201 (Linear Algebra for Applications).  Please hand in
+questions 2 and 3 in the Monday lecture next week.
+\end{rubric}
+
+\begin{exercise}\label{ex-typical-elements}
+ For each of the following vector spaces $V$, write down two
+ typical elements of $V$ (say $u$ and $v$), calculate $u+v$
+ and $10v$, and observe that these are again elements of
+ $V$.  (For example, in the case $V=\R^2$ we could take
+ $u=\bsm 1\\2\esm$ and $v=\bsm 3\\4\esm$, then we would have
+ $u+v=\bsm 4\\6\esm$ and $10v=\bsm 30\\40\esm$, both of
+ which are again elements of $\R^2$.)
+ \begin{center}
+  (a)~~$V=\R^4$  \hspace{3em}
+  (b)~~$V=M_{2,3}(\R)$ \hspace{3em}
+  (c)~~$V=\R[x]$ \\
+  (d) $V$ is the set of physical vectors, as in
+   Example~2.6 in the notes.
+ \end{center}
+\end{exercise}
+\begin{solution}
+ Of course there are many different correct answers to this
+ question. The following will do:
+ \begin{itemize}
+  \item[(a)] $u=\bsm 1\\1\\1\\1\esm$,
+             $v=\bsm 1\\-1\\1\\-1\esm$,
+             $u+v=\bsm 2\\0\\2\\0\esm$,
+             $10v=\bsm 10\\-10\\10\\-10\esm$.
+  \item[(b)] $u=\bsm 1&2&3\\4&5&6\esm$,
+             $v=\bsm 6&5&4\\3&2&1\esm$,
+             $u+v=\bsm 7&7&7\\7&7&7\esm$,
+             $10v=\bsm 60&50&40\\30&20&10\esm$.
+  \item[(c)] $u=1+x$, $v=x+x^2$, $u+v=1+2x+x^2$, $10v=10x+10x^2$. 
+  \item[(d)] $u$ is the vector pointing 10 miles east, $v$
+   is the vector pointing 20 miles west, $u+v$ points ten
+   miles west, $10v$ points 200 miles west.
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-not-vector-spaces}
+ Explain why none of the following is a vector space (with
+ the obvious definition of addition and scalar
+ multiplication). 
+ \begin{itemize}
+  \item[(a)] $V_0=\left\{\bsm a&b\\ c&d\esm\in M_2\R\st a\leq b\leq
+    c\leq d\right\}$
+  \item[(b)] $V_1=\left\{\bsm a\\ b\esm\in\R^2\st
+                         a+b\text{ is an odd integer } \right\}$
+  \item[(c)] $V_2=\left\{\bsm x\\ y\esm\in\R^2 \st x^2=y^2\right\}$.
+  \item[(d)] $V_3=\{p\in\R[x]\st p(0)p(1)=0\}$
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+ \item[(a)] This is not a vector space because
+  $\bsm 1&2\\3&4\esm\in V_0$ but 
+  $(-1).\bsm 1&2\\3&4\esm=\bsm -1&-2\\-3&-4\esm\not\in V_0$,
+  which contradicts axiom~(b) of Predefinition~2.1.
+ \item[(b)] This is not a vector space because the zero matrix does
+  not lie in $V_1$.
+ \item[(c)] This is not a vector space because
+  $\bsm 1\\1\esm\in V_2$ and $\bsm 1\\-1\esm\in V_2$
+  but $\bsm 1\\1\esm+\bsm 1\\-1\esm=\bsm 2\\0\esm\not\in V_2$,
+  which contradicts axiom~(a).
+ \item[(d)] To see that this is not a vector space, consider
+  the polynomials $p(x)=x$ and $q(x)=1-x$.  Then
+  $p(0)p(1)=0=q(0)q(1)$, so $p\in V_3$ and $q\in V_3$.
+  However, $p(x)+q(x)=1$ for all $x$, so $p+q\not\in V_3$.
+  This contradicts axiom~(a).
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-check-dependence}
+ For each of the following lists of vectors, say (with justification) whether
+ they are linearly independent, whether they span $\R^3$,
+ and whether they form a basis of $\R^3$.  (If you
+ understand the concepts involved, you should be able to do
+ this by eye, without any calculation.)
+ \begin{itemize}
+  \item[(a)] $\vu_1=\bsm 1\\0\\2\esm$, 
+             $\vu_2=\bsm 3\\0\\4\esm$,
+             $\vu_3=\bsm 5\\0\\6\esm$,
+             $\vu_4=\bsm 7\\0\\8\esm$.
+  \item[(b)] $\vv_1=\bsm 1\\1\\0\esm$,
+             $\vv_2=\bsm 1\\0\\1\esm$,
+             $\vv_3=\bsm 0\\1\\1\esm$,
+             $\vv_4=\bsm 1\\1\\1\esm$.
+  \item[(c)] $\vw_1=\bsm 1\\2\\3\esm$,
+             $\vw_2=\bsm 4\\5\\6\esm$.
+  \item[(d)] $\vx_1=\bsm 1\\1\\1\esm$,
+             $\vx_2=\bsm 0\\2\\2\esm$,
+             $\vx_3=\bsm 0\\0\\4\esm$.
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] These are linearly dependent, and they do not span.  
+   Indeed, any list of four vectors in $\R^3$ is always dependent.
+   Explicitly, we have $\vu_1-\vu_2-\vu_3+\vu_4=0$, which gives a
+   direct proof of dependence.  Also, all the vectors $\vu_i$ have
+   zero as the second entry, so the same will be true for any vector
+   in the span of the vectors $\vu_i$.  In particular, the vector
+   $[0,1,0]^T$ does not lie in that span, so the $\vu_i$'s do not span
+   all of $\R^3$.  This means that they do not form a basis.
+  \item[(b)] Any list of four vectors in $\R^3$ is
+   automatically linearly dependent (and so cannot form a
+   basis).  More specifically, the relation
+   $\vv_1+\vv_2+\vv_3-2\vv_4=0$ shows that the $\vv_i$'s are
+   dependent.  These vectors span all of $\R^3$, because any
+   vector $\va=\bsm x\\ y\\ z\esm\in\R^3$ can be expressed
+   as $\va=-z\vv_1-y\vv_2-x\vv_3+(x+y+z)\vv_4$.
+  \item[(c)] A list of two vectors can only be linearly
+   dependent if one is a multiple of the other, which is
+   clearly not the case here, so $\vw_1$ and $\vw_2$ are
+   linearly independent.  Moreover, a list of two vectors
+   can never span all of $\R^3$.  More explicitly, we claim that the
+   vector $\ve_1=\bsm 0\\1\\0\esm$ cannot be expressed as a linear
+   combination of $\vw_1$ and $\vw_2$.  Indeed, if we have
+   $\lm_1\vw_1+\lm_2\vw_2=\ve_1$ then
+   \[ \bsm 0\\1\\0\esm =
+       \lm_1\bsm 1\\2\\3\esm + \lm_2\bsm 4\\5\\6\esm = 
+       \bsm \lm_1+4\lm_2 \\ 2\lm_1+5\lm_2 \\ 3\lm_1 + 6\lm_2 \esm,
+   \]
+   so 
+   \[ \lm_1 + 4\lm_2 = 0 \hspace{4em}
+      2\lm_1 + 5\lm_2 = 1 \hspace{4em}
+      3\lm_1 + 6\lm_2 = 0.
+   \]
+   The first and third of these easily give $\lm_1=\lm_2=0$, which is
+   incompatible with the second equation, so there is no solution.
+   This shows that $\vw_1$ and $\vw_2$ do not form a
+   basis of $\R^3$.
+  \item[(d)] The vectors $\vx_1$, $\vx_2$ and $\vx_3$ are
+   linearly independent and span $\R^3$, so they form a
+   basis.  One way to see this is to write down the matrix
+   $A=\bsm 1&0&0\\1&2&0\\1&2&4\esm$ whose columns are
+   $\vx_1$, $\vx_2$ and $\vx_3$, and observe that it
+   row-reduces almost instantly to the identity.
+   Alternatively, we must show that for any vector
+   $\va=\bsm x\\ y\\ z\esm\in\R^3$, there are unique real
+   numbers $\lm,\mu,\nu$ such that 
+   \[ \bsm x\\ y\\ z\esm =
+       \lm\bsm 1\\1\\1\esm +
+       \mu\bsm 0\\2\\2\esm +
+       \nu\bsm 0\\0\\4\esm.
+   \] 
+   This equation is equivalent to $\lm=x$ and
+   $\lm+2\mu=y$ and $\lm+2\mu+4\nu=z$.  It is easy to see that there is
+   indeed a unique solution, namely $\lm=x$ and $\mu=(y-x)/2$ and
+   $\nu=(z-y)/4$. 
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-subspaces-R-three}
+ Consider the following subspaces of $\R^4$:
+ \begin{align*}
+  U &= \{ [w,x,y,z]^T \st w-x+y-z=0 \} \\
+  V &= \{ [w,x,y,z]^T \st w+x+y=0=x+y+z \} \\
+  W &= \{ [u,u+v,u+2v,u+3v]^T \st u,v\in\R\}.
+ \end{align*}
+ Find $U\cap V$, $U\cap W$ and $V\cap W$.
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] $U\cap V$ is the set of vectors $[w,x,y,z]^T$
+   satisfying the three equations
+   \begin{align*}
+    w-x+y-z &= 0 \\
+    w+x+y &= 0 \\
+    x+y+z &= 0.
+   \end{align*}
+   Subtracting the last two equations gives $w=z$.  Putting
+   this back into the first equation gives $x=y$.  The
+   middle equation now gives $w=-2x$, so 
+   \[ [w,x,y,z] = [-2x,x,x,-2x]. \]
+   Thus 
+   \[ U\cap V = \{ [-2x,x,x,-2x]^T \st x\in\R\} = 
+       \spn([-2,1,1,-2]^T).
+   \]
+  \item[(b)] $U\cap W$ is the set of vectors of the form
+   $[u,u+v,u+2v,u+3v]^T$ for which
+   $u-(u+v)+(u+2v)-(u+3v)=0$, which reduces to $-2v=0$, or
+   equivalently $v=0$.  Thus 
+   \[ U\cap W = \{[u,u,u,u]^T\st u\in\R\} = 
+       \spn([1,1,1,1]^T) 
+   \]
+  \item[(c)] $V\cap W$ is the set of vectors of the form 
+   $[u,u+v,u+2v,u+3v]^T$ for which
+   $u+(u+v)+(u+2v)=0=(u+v)+(u+2v)+(u+3v)$, or in other words
+   $3u+3v=0=3u+6v$.  These equations easily imply that
+   $u=v=0$, and this means that $V\cap W=0$.
+ \end{itemize}
+\end{solution}
+
+\begin{exercise}\label{ex-degenerate-planes}
+ Consider the planes $P$, $Q$ and $R$ in $\R^3$ given by 
+ \begin{align*}
+  P &= \{ [x,y,z]^T \st x+2y+3z=0 \} \\
+  Q &= \{ [x,y,z]^T \st 3x+2y+z=0 \} \\
+  R &= \{ [x,y,z]^T \st x+y+z=0 \}.
+ \end{align*}
+ This system of planes has an unusual feature, not shared by
+ most other systems of three planes through the origin.
+ What is it? 
+\end{exercise}
+\begin{solution}
+ If you choose two planes at random, their intersection will
+ be a line (unless the two planes happened to be the same,
+ which is unlikely).  If you intersect this with a third
+ randomly chosen plane, then you will just get the origin
+ (barring unlikely coincidences).  The special feature of
+ $P$, $Q$ and $R$ is that $P\cap Q\cap R$ is not just the
+ origin, but a line.  Specifically, we have
+ \[ P\cap Q\cap R =
+      \left\{\bsm t\\ -2t\\ t\esm \st t\in\R\right\}.
+ \]
+\end{solution}
+
+\begin{exercise}\label{ex-antisym-spectrum}
+ Let $a$, $b$ and $c$ be nonzero real numbers.  Show that
+ the matrix
+ \[ A = \bbm 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \ebm
+ \]
+ has one real eigenvalue, and two purely imaginary
+ eigenvalues. 
+\end{exercise}
+\begin{solution}
+ The characteristic polynomial is
+ \begin{align*}
+  \det(tI-A)
+   &= \det\bsm t & -a & -b \\
+               a & t & -c \\
+               b & c & t \esm
+    =  t \det\bsm t & -c \\ c & t \esm 
+      +a \det\bsm a & -c \\ b & t \esm 
+      -b \det\bsm a & t \\ b & c \esm \\
+   &= t(t^2+c^2) +a(at+bc) -b(ac-bt) 
+    = t^3 + c^2t + a^2t + abc - abc + b^2t \\
+   &= t^3+(a^2+b^2+c^2)t.
+ \end{align*}
+ The eigenvalues of $A$ are the roots of this polynomial.
+ These are $0$ (which is real) and $\pm i\sqrt{a^2+b^2+c^2}$
+ (which are purely imaginary).
+\end{solution}
+
+\begin{exercise}\label{ex-rank}
+ Find the rank of the following matrix:
+ \[ A = \bsm  1 &  1 &  1 &  1 \\
+              1 &  1 & -1 & -1 \\
+              1 & -1 &  0 &  0 \\
+              0 &  0 &  1 & -1 \esm
+ \]
+\end{exercise}
+\begin{solution}
+ The matrix can be row-reduced as follows:
+ {\tiny \[
+  \bsm  1 &  1 &  1 &  1 \\
+        1 &  1 & -1 & -1 \\
+        1 & -1 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{1}
+  \bsm  1 &  1 &  1 &  1 \\
+        0 &  0 & -2 & -2 \\
+        0 & -2 & -1 &  1 \\
+        0 &  0 &  1 & -1 \esm \xra{2}
+  \bsm  1 &  1 &  0 &  2 \\
+        0 &  0 &  0 & -4 \\
+        0 & -2 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{3}
+  \bsm  1 &  1 &  0 &  2 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{4}
+  \bsm  1 &  1 &  0 &  0 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \esm \xra{5}
+  \bsm  1 &  0 &  0 &  0 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \esm \xra{6}
+  \bsm  1 &  0 &  0 &  0 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \\
+        0 &  0 &  0 &  1 \esm.
+ \]}
+ (In step 1 we subtract row 1 from rows 2 and 3; in step 2
+ we subtract suitable multiples of row 4 from rows 1, 2, and
+ 3; in step 3 we divide rows 2 and 3 by $-4$ and $-2$
+ respectively; in steps 4 and 5 we clear the 4th and 2nd
+ columns; in step 6 we reorder the rows.)  As the final
+ matrix is the identity, we see that $A$ is invertible and
+ has rank $4$. 
+\end{solution}
+
+\closegraphsfile
+\end{document}
+
+
+
+%%% Local Variables:
+%%% compile-command: "do_both 01"
+%%% End:
+
