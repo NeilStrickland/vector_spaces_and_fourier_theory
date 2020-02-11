@@ -1,0 +1,123 @@
+\input{coldef}
+
+\newcommand{\bbm}       {\left[\begin{matrix}}
+\newcommand{\ebm}       {\end{matrix}\right]}
+\newcommand{\bsm}       {\left[\begin{smallmatrix}}
+\newcommand{\esm}       {\end{smallmatrix}\right]}
+\newcommand{\bpm}       {\begin{pmatrix}}
+\newcommand{\epm}       {\end{pmatrix}}
+\newcommand{\bcf}[2]{\left(\begin{array}{c}{#1}\\{#2}\end{array}\right)}
+
+
+\newcommand{\csch}     {\operatorname{csch}}
+\newcommand{\sech}     {\operatorname{sech}}
+\newcommand{\arcsinh}  {\operatorname{arcsinh}}
+\newcommand{\arccosh}  {\operatorname{arccosh}}
+\newcommand{\arctanh}  {\operatorname{arctanh}}
+
+\newcommand{\range}     {\operatorname{range}}
+\newcommand{\img}       {\operatorname{image}}
+\newcommand{\trans}     {\operatorname{trans}}
+\newcommand{\trc}       {\operatorname{trace}}
+\newcommand{\trace}     {\operatorname{trace}}
+\newcommand{\adj}       {\operatorname{adj}}
+\newcommand{\spn}       {\operatorname{span}}
+\newcommand{\chr}       {\operatorname{char}}
+
+\newcommand{\tint}{\textstyle\int}
+\newcommand{\tm}{\times}
+\newcommand{\sse}{\subseteq}
+\newcommand{\st}{\;|\;}
+\newcommand{\sm}{\setminus}
+\newcommand{\iffa}      {\Leftrightarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\ip}[1]{\langle #1\rangle}
+\newcommand{\op}{\oplus}
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand{\ov}{\overline}
+\renewcommand{\:}{\colon}
+\newcommand{\hB}        {\widehat{B}}
+
+\newcommand{\N}         {{\mathbb{N}}}
+\newcommand{\Z}         {{\mathbb{Z}}}
+\newcommand{\Q}         {{\mathbb{Q}}}
+\renewcommand{\R}       {{\mathbb{R}}}
+\newcommand{\C}         {{\mathbb{C}}}
+
+\newcommand{\al}        {\alpha}
+\newcommand{\bt}        {\beta} 
+\newcommand{\gm}        {\gamma}
+\newcommand{\dl}        {\delta}
+\newcommand{\ep}        {\epsilon}
+\newcommand{\zt}        {\zeta}
+\newcommand{\et}        {\eta}
+\newcommand{\tht}       {\theta}
+\newcommand{\io}        {\iota}
+\newcommand{\kp}        {\kappa}
+\newcommand{\lm}        {\lambda}
+\newcommand{\ph}        {\phi}
+\newcommand{\ch}        {\chi}
+\newcommand{\ps}        {\psi}
+\newcommand{\rh}        {\rho}
+\newcommand{\sg}        {\sigma}
+\newcommand{\om}        {\omega}
+
+\newcommand{\va}        {\mathbf{a}}
+\newcommand{\vb}        {\mathbf{b}}
+\newcommand{\vc}        {\mathbf{c}}
+\newcommand{\vd}        {\mathbf{d}}
+\newcommand{\ve}        {\mathbf{e}}
+\newcommand{\vn}        {\mathbf{n}}
+\newcommand{\vt}        {\mathbf{t}}
+\newcommand{\vu}        {\mathbf{u}}
+\newcommand{\vv}        {\mathbf{v}}
+\newcommand{\vw}        {\mathbf{w}}
+\newcommand{\vx}        {\mathbf{x}}
+\newcommand{\vy}        {\mathbf{y}}
+%\newcommand{\vlm}       {\mathbf{\lambda}}
+\newcommand{\vlm}       {\bm{\lambda}}
+
+\newcommand{\xx}        {x\vphantom{x'}}
+\newcommand{\yy}        {y\vphantom{y'}}
+
+\newcommand{\CA}        {{\mathcal{A}}}
+\newcommand{\CB}        {{\mathcal{B}}}
+\newcommand{\CC}        {{\mathcal{C}}}
+\newcommand{\CP}        {{\mathcal{P}}}
+\newcommand{\CU}        {{\mathcal{U}}}
+\newcommand{\CV}        {{\mathcal{V}}}
+\newcommand{\CW}        {{\mathcal{W}}}
+\newcommand{\CX}        {{\mathcal{X}}}
+\newcommand{\CY}        {{\mathcal{Y}}}
+
+\newcommand{\EMPH}[1]{\emph{\RED{#1}}}
+\newcommand{\DEFN}[1]{\emph{\PURPLE{#1}}}
+\newcommand{\VEC}[1]    {\mathbf{#1}}
+
+\newcommand{\ghost}{{\tiny $\color[rgb]{1,1,1}.$}}
+
+\newcommand{\fs}{\fromSlide}
+\newcommand{\os}{\onlySlide}
+\newcommand{\fss}{\fromSlide*}
+\newcommand{\oss}{\onlySlide*}
+\newcommand{\ms}{\medskip\par}
+\newcommand{\bs}{\bigskip\par}
+\newcommand{\es}{\mbox{\RED{$\bigcirc$}}}
+
+\newenvironment{theorem}[1]{\textbf{Theorem \ref{#1}: }}{\par}
+\newenvironment{lemma}[1]{\textbf{Lemma \ref{#1}: }}{\par}
+\newenvironment{proposition}[1]{\textbf{Proposition \ref{#1}: }}{\par}
+\newenvironment{corollary}[1]{\textbf{Corollary \ref{#1}: }}{\par}
+
+\newenvironment{remark}[1]{\textbf{Remark \ref{#1}: }}{\par}
+\newenvironment{predefinition}[1]{\textbf{Predefinition \ref{#1}: }}{\par}
+\newenvironment{definition}[1]{\textbf{Definition \ref{#1}: }}{\par}
+\newenvironment{example}[1]{\textbf{Example \ref{#1}: }}{\par}
+\newenvironment{algorithm}[1]{\textbf{Algorithm \ref{#1}: }}{\par}
+\newenvironment{exercise}[1]{\textbf{Exercise \ref{#1}: }}{\par}
+
+\newenvironment{solution}{{\noindent \textbf{Solution: }}}{}
+%\renewenvironment{proof}{{\noindent \textbf{Proof: }}}{}
+\newenvironment{proof}{{\noindent \textbf{Proof: }}}{}
+
+\newcommand{\lbl}[1]{#1}

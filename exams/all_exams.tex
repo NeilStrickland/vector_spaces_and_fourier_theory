@@ -1,0 +1,3036 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex,debug]{hyperref}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{verbatim}
+\usepackage{bm}
+
+\input{macros}
+\input{solmac}
+
+\begin{document}
+
+\begin{center}
+ {\Huge Vector spaces and Fourier theory \\ Exam questions}
+\end{center}
+\vspace{4ex}
+
+\begin{problem}\textbf{[Mock exam Q1]}
+ \begin{itemize}
+  \item[(a)] Let $U$ be a finite-dimensional vector space,
+   and let $V$ and $W$ be subspaces of $V$.  Prove that
+   \[ \dim(V+W) = \dim(V) + \dim(W) - \dim(V\cap W). \]
+   If you use a result about the existence of certain bases
+   for $V$, $W$ and $V\cap W$ then you should prove it.
+   Other results may be quoted without proof.  \mrks{13}
+  \item[(b)] State the rank-nullity formula. 
+   \mrks{5}
+  \item[(c)] Suppose that $U=V+W$ and that $\phi\:U\to Z$ 
+   is a surjective linear map with $\ker(\phi)=V$.  Suppose
+   that $\dim(V)=5$, $\dim(W)=4$ and $\dim(V\cap W)=3$. 
+   What is $\dim(Z)$? 
+   \mrks{7}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] We claim that there exist elements 
+   \[ u_1,\dotsc,u_p,v_1,\dotsc,v_q,w_1,\dotsc,w_r \]
+   such that
+   \begin{itemize}
+   \item $u_1,\dotsc,u_p$ is a basis for $V\cap W$
+   \item $u_1,\dotsc,v_1,\dotsc,v_q$ is a basis for $V$
+   \item $u_1,\dotsc,w_1,\dotsc,w_r$ is a basis for $W$
+   \item $u_1,\dotsc,v_1,\dotsc,v_q,w_1,\dotsc,w_r$ is a basis for $V+W$. 
+   \end{itemize}\mks{2}
+   Assuming this, we have $\dim(V\cap W)=p$ and
+   $\dim(V)=p+q$ and $\dim(W)=p+r$ and 
+   \[ \dim(V+W)=p+q+r=(p+q)+(p+r)-p=\dim(V)+\dim(W)-\dim(V\cap W),
+   \]
+   as required \mks{2}.  To prove the claim, we first choose a basis
+   $u_1,\dotsc,u_p$ for $V\cap W$ \mk.  This list is then a
+   linearly independent list in $V$, so can be extended to a
+   basis $u_1,\dotsc,u_p,v_1,\dotsc,v_r$ for $V$ \mk. 
+   Similarly, the list $u_1,\dotsc,u_p$ is a linearly
+   independent list in $W$, so it can be extended to a basis
+   $u_1,\dotsc,u_p,w_1,\dotsc,w_r$ for $W$ \mk.  All that is
+   left is to prove that the list
+   $\CX=u_1,\dotsc,v_1,\dotsc,v_q,w_1,\dotsc,w_r$ is a basis
+   for $V+W$ \mk.  It is clear that $\CX\sse V\cup W\sse V+W$ so
+   $\spn(\CX)\sse V+W$.  Consider an element $x\in V+W$.  We
+   can then find $y\in V$ and $z\in W$ such that $x=y+z$. 
+   As $y\in V$ and $u_1,\dotsc,u_p,v_1,\dotsc,v_r$ is a
+   basis for $V$, we have $y=\sum_i\lm_iu_i+\sum_j\mu_jv_j$
+   for some constants $\lm_i,\mu_j\in\R$.  As $z\in W$ and
+   $u_1,\dotsc,u_p,w_1,\dotsc,w_r$ is a basis for $W$, we
+   have $z=\sum_i\lm'_iu_i+\sum_k\nu_kw_k$ for some
+   constants $\lm'_i,\nu_k\in\R$.  It follows that
+   \[ x=y+z=
+       \sum_i(\lm_i+\lm'_i)u_i + \sum_j\mu_jv_j + \sum_kw_k 
+        \in\spn(\CX). 
+   \]
+   This proves that $V\sse\spn(\CX)$, so $\CX$ spans $V$. 
+   Now suppose we have a linear relation 
+   \[ \sum_i\lm_iu_i + \sum_j\mu_jv_j + \sum_k\nu_kw_k=0. \]
+   Put $y=\sum_i\lm_iu_i + \sum_j\mu_jv_j$ and
+   $z=\sum_k\nu_kw_k$.  It is clear that $y\in V$ and
+   $z\in W$ but $z=-y$ so $z\in V\cap W$.  We also know that
+   $u_1,\dotsc,u_p$ is a basis for $V\cap W$, so
+   $z=\sum_i\lm'_iu_i=0$.  This means that 
+   \[ \sum_i\lm'_iu_i + \sum_k\nu_kw_k=0. \]
+   On the other hand, we know that the list
+   $u_1,\dotsc,u_p,w_1,\dotsc,w_r$ is a basis for $W$ and so
+   has no nontrivial linear relations, so 
+   \[ \lm'_1=\dotsb\lm'_p=\nu_1=\dotsb\nu_r=0. \]
+   This means that $z=0$ but $y=-z$ so $y=z$, so 
+   \[ \sum_i\lm_iu_i + \sum_j\mu_jv_j = 0. \]
+   This list $u_1,\dotsc,u_p,v_1,\dotsc,v_q$ is a basis for
+   $V$ and so has no nontrivial linear relations, so
+   \[ \lm_1=\dotsb=\lm_p=\mu_1=\dotsb=\mu_q=0. \]
+   This means that our original relation
+   \[ \sum_i\lm_iu_i + \sum_j\mu_jv_j + \sum_k\nu_kw_k=0. \]
+   is the trivial relation.  This means that the list $\CX$
+   is linearly independent and so is a basis of $V+W$, as
+   claimed. 
+  \item[(b)] Let $V$ and $W$ be finite-dimensional vector
+   spaces, and let $\phi\:V\to W$ be a linear map.  Then 
+   \[ \dim(V) = \dim(\ker(\phi)) + \dim(\img(\phi)).  \] 
+  \item[(c)] Part~(a) gives
+   \[ \dim(U)=\dim(V+W) = \dim(V)+\dim(W)-\dim(V\cap W) =
+       5+4-3 = 6.
+   \]
+   As $\phi$ is surjective we have $\img(\phi)=Z$, and we
+   are also given that $\ker(\phi)=V$.  The
+   rank-nullity formula therefore gives
+   \[ 6 = \dim(U) = \dim(\img(\phi))+\dim(\ker(\phi)) =
+      \dim(Z) + 5,
+   \]
+   which gives $\dim(Z)=1$.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506 Q1]}
+ \begin{itemize}
+  \item[(a)] Let $V$ and $W$ be vector spaces over $\R$.  
+   Define what it means for a map $\al\:V\to W$ to be
+   linear. \mrks{3}
+  \item[(b)] Which of the following maps are linear?
+   Justify your answers briefly, giving specific
+   counterexamples where appropriate. \mrks{9}
+   \begin{itemize}
+    \item[(i)] $\phi\:M_2\R\to \R$,
+     $\phi(A)=[1,1]A\bsm 1\\1\esm$.
+    \item[(ii)] $\psi\:\R[x]\to M_2\R$,
+     $\psi(f)=\bsm f(0) & f(1) \\ f'(0) & f'(1)\esm$.
+    \item[(iii)] $\chi\:M_2\R\to M_2\R$,
+     $\chi(A)=A^TA$.
+    \item[(iv)] $\tht\:\R^2\to\R[x]$, 
+     $\tht\bsm a\\ b\esm=ax^2+b(1-x)^2$.
+   \end{itemize}
+  \item[(c)] Consider the map $\al\:M_2\R\to M_2\R$ given by
+   $\al(A)=A^T-\trc(A)I$.
+   \begin{itemize}
+    \item[(i)] Give a formula for $\al\bsm a&b\\ c&d\esm$.
+     \mrks{2}
+    \item[(ii)] Give bases for the spaces
+     \begin{align*}
+      V &= \{A\in M_2\R\st \al(A)=A\} \\
+      W &= \{A\in M_2\R\st \al(A)=-A\} 
+     \end{align*}\mrks{11}
+   \end{itemize}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} A map $\al\:V\to W$ is linear iff for all
+   $v,v'\in V$ and all $t,t'\in\R$ we have
+   $\al(tv+t'v')=t\al(v)+t'\al(v')$. \mks{3}
+  \item[(b)] \textbf{Similar to problem sheets}
+   \begin{itemize}
+    \item[(i)] We have 
+     \[ \phi\bsm a&b\\ c&d\esm = [1,1]\bsm a+b\\ c+d\esm =
+         a+b+c+d.
+     \] 
+     This is linear \mk because if $A=\bsm a&b\\ c&d\esm$ and
+     $A'=\bsm a'&b'\\ c'&d'\esm$ then
+     \begin{align*}
+      \phi(tA+t'A')
+       &= \phi\bsm ta+t'a'&tb+t'b' \\ tc+t'c'&td+t'd'\esm 
+        = ta+t'a'+tb+t'b'+tc+t'c'+td+t'd' \\
+       &= t(a+b+c+d) + t'(a'+b'+c'+d')
+        = t\phi(A)+t'\phi(A'). \mk
+     \end{align*}
+    \item[(ii)] The map $\psi$ is also linear \mk, because if
+     $f,g\in\R[x]$ and $s,t\in\R$ then
+     \[ \psi(sf+tg) = 
+        \bsm sf(0) +tg(0)  & sf(1) +tg(1) \\
+             sf'(0)+tg'(0) & sf'(1)+tg'(1) \esm =
+        s\psi(f) + t\psi(g). \mk
+     \]
+    \item[(iii)] The map $\chi$ is not linear \mk, because
+     $\chi(I)=I$ and $\chi(-I)=I$, so
+     $\chi((-1).I)\neq(-1).\chi(I)$. \mks{2}
+    \item[(iv)] The map $\tht$ is linear \mk because
+     \begin{align*}
+       \tht\left(t\bsm a\\ b\esm + t'\bsm a'\\ b'\esm\right)
+         &= \tht\bsm ta+t'a'\\ tb+t'b'\esm 
+          = (ta+t'a')x^2 + (tb+t'b')(1-x)^2  \\
+         &= t(ax^2+b(1-x)^2)+t'(a'x^2+b'(1-x)^2)
+          = t\tht\bsm a\\b\esm + t'\tht\bsm a'\\ b'\esm.
+         \mk
+     \end{align*}
+   \end{itemize}
+  \item[(c)]  \textbf{Similar to problem sheets}
+   \begin{itemize}
+    \item[(i)]
+     $\al\bsm a&b\\ c&d\esm =
+      \bsm a&c\\ b&d\esm - (a+d)\bsm 1&0\\0&1\esm =
+      \bsm -d & c \\ b & -a \esm$. \mks{2}
+    \item[(ii)] Consider a matrix $A=\bsm a&b\\ c&d\esm$.
+     We have $\al(A)=A$ iff $-d=a$ and $c=b$ and $b=c$ and
+     $d=-a$, \mks{2} which means that $A$ has the form
+     \[ A = \bsm a & b \\ b & -a \esm = 
+             a\bsm 1&0\\0&-1\esm + b\bsm 0&1\\1&0\esm.
+             \mks{2}
+     \]
+     It follows that the list
+     $\bsm 1&0\\0&-1\esm,\bsm 0&1\\1&0\esm$ is a basis for
+     $V$ \mks{2}.  Similarly, we have $\al(A)=-A$ iff $-d=-a$ and
+     $c=-b$ and $b=-c$ and $-a=-d$ \mks{2}, which means that $A$ has
+     the form 
+     \[ A = \bsm a & b \\ -b & a \esm = 
+             a\bsm 1&0\\0&1\esm + b\bsm 0&1\\-1&0\esm. \mk
+     \]
+     It follows that the list
+     $\bsm 1&0\\0&1\esm,\bsm 0&1\\-1&0\esm$ is a basis for
+     $W$.\mks{2}
+   \end{itemize}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506R Q1]}
+ \begin{itemize}
+  \item[(a)] Let $V$ be a finite-dimensional vector space over $\R$.  
+   Define what it means to say that $W$ is a subspace of $V$.
+   \mrks{3}
+  \item[(b)] Let $W_0$ and $W_1$ be subspaces of $V$.  State a formula
+   relating $\dim(W_0+W_1)$ to the dimensions of various other spaces.
+   \mrks{3}
+  \item[(c)] In which of the following cases is $W$ a subspace of $V$?
+   Justify your answers briefly, giving specific
+   counterexamples where appropriate. \mrks{9}
+   \begin{itemize}
+    \item[(i)] $V=M_2\R$, $W=\{A\in M_2\R\st\det(A)=0\}$.
+    \item[(ii)] $V=M_2\R$, $W=\{A\in M_2\R\st\trc(A)\geq 0\}$.
+    \item[(iii)] $V=\R[x]_{\leq 3}$, $W=\{f\in V\st f(1)^2+f(-1)^2=0\}$.
+    \item[(iv)] $V=\R^3$, $W=\{v\in V\st Av=0\}$, where
+     $A=\bsm 1&1&1\\2&2&2\\3&3&3\esm$.
+   \end{itemize}
+  \item[(d)] Put $u=[1,1,1]^T$ and 
+   \begin{eqnarray*}
+    U &=& \{A\in M_3\R\st Au=0\} \\
+    V &=& \{A\in M_3\R\st A^T=A\} \\
+    W &=& \{A\in M_3\R\st A^T=-A\}.
+   \end{eqnarray*}
+   Find bases for $V\cap U$ and $W\cap U$. \mrks{10}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} A subspace of $V$ is a subset
+   $W\sse V$ such that~(i) $0_V\in W$ (ii) for all $w,w'\in W$ we have
+   $w+w'\in W$ and~(iii) for all $w\in W$ and $t\in\R$ we have $tw\in
+   W$.  (Equivalently, one can combine (ii) and (iii) into the
+   following condition: if $w,w'\in W$ and $t,t'\in\R$ then
+   $tw+t'w'\in W$.)  \mks{3}
+  \item[(b)] $\dim(W_0+W_1)=\dim(W_0)+\dim(W_1)-\dim(W_0\cap W_1)$.
+   \mks{3} 
+  \item[(c)] \textbf{Similar to problem sheets}
+   \begin{itemize}
+    \item[(i)] This is not a subspace \mk, because
+     $\bsm 1&0\\0&0\esm,\bsm 0&0\\0&1\esm\in W$ but
+     $\bsm 1&0\\0&0\esm+\bsm 0&0\\0&1\esm\not\in W$. \mk
+    \item[(ii)] This is not a subspace \mk, because $I\in W$ but
+     $(-1).I\not\in W$. \mk
+    \item[(iii)] This is a subspace \mk.  To see this, we first note that
+     $W=\{f\in V\st f(1)=f(-1)=0\}$ \mk.  If $f,g\in W$ and $s,t\in\R$ and
+     $h=sf+tg$ then $h(\pm 1)=sf(\pm 1)+tg(\pm 1)=s.0+t.0=0$, so
+     $h\in W$.  It is also clear that $0\in W$, so $W$ is a subspace
+     as claimed. \mk
+    \item[(iv)] This is a subspace \mk.  Indeed, it is clear that $A0=0$,
+     so $0\in W$.  Moreover, if $u,v\in W$ (so $Au=Av=0$) and
+     $s,t\in\R$ then $A(su+tv)=sAu+tAv=s.0+t.0=0$, so $su+tv\in W$.
+     This means that $W$ is closed under taking linear combinations,
+     so it is a subspace. \mk
+   \end{itemize}
+  \item[(d)]  \textbf{Similar to problem sheets}
+   A typical element of $V$ has the form
+   \[ A=\bsm a&b&c\\ b&d&e\\ c&e&f \esm \mk
+     \text{ and so } 
+     Au = \bsm a+b+c \\ b+d+e \\ c+e+f \esm. \mk
+   \]
+   Thus $A$ lies in $V\cap U$ iff $c=-a-b$ and $e=-b-d$ and
+   $f=-c-e=a+2b+d$ \mk, in which case $A$ has the form
+   \[ A = \bsm a&b&-a-b\\ b&d&-b-d \\ -a-b & -b-d & a+2b+d \esm 
+      = a \bsm 1&0&-1\\ 0&0&0\\ -1&0&1\esm + 
+        b \bsm 0&1&-1\\ 1&0&-1\\ -1&-1&2\esm + 
+        d \bsm 0&0&0\\ 0&1&-1\\ 0&-1&1 \esm. \mk
+   \]
+   From this it is clear that the matrices
+   \[ A_1 = \bsm 1&0&-1\\ 0&0&0\\ -1&0&1\esm , \hspace{3em}
+      A_2 = \bsm 0&1&-1\\ 1&0&-1\\ -1&-1&2\esm , \hspace{3em}
+      A_3 = \bsm 0&0&0\\ 0&1&-1\\ 0&-1&1 \esm
+   \]
+   give a basis for $V\cap U$.  \mk
+
+   Similarly, a typical element of $W$ has the form
+   \[ B = \bsm 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \esm \mk,
+      \text{ and so }
+      Bu = \bsm a+b \\ c-a \\ -b-c \esm. \mk
+   \]
+   Thus $B$ lies in $W\cap U$ iff $b=-a$ and $c=a$ (and $-b-c=0$,
+   which follows automatically from the other two equations) \mk.  If so
+   then $B=aB_1$, where 
+   \[ B_1 = \bsm 0 & 1 & -1 \\ -1 & 0 & 1 \\ 1 & -1 & 0 \esm. \mk \]
+   This means that $B_1$ is a basis for $W\cap U$.\mk
+ \end{itemize}
+\end{solution}
+
+
+\begin{problem}\textbf{[0607 Q1]}
+ Let $V$ and $W$ be vector spaces over $\R$.
+ \begin{itemize}
+  \item[(a)] Define what it means for a map $\al\:V\to W$ to be
+   linear. \mrks{3}
+  \item[(b)] Define what it means for a subset $U\sse V$ to be a
+   subspace. \mrks{3}
+  \item[(c)] Suppose that $\al$ is linear.  Define the kernel of
+   $\al$, and prove that it is a subspace of $V$. \mrks{5}
+  \item[(d)] Which of the following functions are linear?  (You should
+   justify your answers briefly.) \mrks{6}
+   \begin{itemize}
+    \item[(i)] $\rho\:M_2(\R)\to\R$ given by $\rho(A)=\trc(A^2)$
+    \item[(ii)] $\sg\:\R^2\to\R^2$ given by 
+     $\displaystyle \sg\bsm x\\ y\esm =
+      \bsm y^3/(x^2+y^2) \\ x^3/(x^2+y^2) \esm$
+    \item[(iii)] $\tau\:M_2(\R)\to M_2(\R)$ given by 
+     $\displaystyle \tau(A)=
+       \bsm 1&1 \\ 1&1\esm A \bsm 1&1 \\ 1&1\esm$
+   \end{itemize}
+  \item[(e)] Which of the following sets is a subspace?  (You should
+   justify your answers briefly.) \mrks{8}
+   \begin{itemize}
+    \item[(i)] $U_0=\{f\in\R[x]\st f(1)\leq f(2)\leq f(3)\}$
+    \item[(ii)] $U_1=\{A\in M_2(\R)\st\det(A+I)=\det(A-I)\}$
+    \item[(iii)] $U_2=\{A\in M_2(\R)\st\trc(A^2)=0\}$\\
+     (\textbf{Hint:} which elements of the standard basis for
+     $M_2(\R)$ lie in $U_2$?)
+   \end{itemize}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} $\al$ is linear if
+   $\al(tv+t'v')=t\al(v)+t'\al(v')$ for 
+   all $t,t'\in\R$ and $v,v'\in V$. \mks{3}
+  \item[(b)] \textbf{Bookwork.} $U$ is a subspace if~(i) $0\in U$
+   and~(ii) for all 
+   $t,t'\in\R$ and all $u,u'\in U$ we have $tu+t'u'\in U$. \mks{3}
+  \item[(c)] \textbf{Bookwork.} The kernel of $\al$ is the set
+   $\{u\in V\st\al(u)=0\}$.\mk
+   As $\al$ is linear we have $\al(0)=0$, so $0\in\ker(\al)$.  \mk Now
+   suppose that $t,t'\in\R$ and $u,u'\in\ker(\al)$.  We then have
+   $\al(u)=0=\al(u')$ \mk and also 
+   \[ \al(tu+t'u') = t\al(u)+t'\al(u')=t.0+t'.0=0, \]
+   so $tu+t'u'\in\ker(\al)$.  \mks{2} This shows that $\ker(\al)$ is a
+   subspace.
+  \item[(d)]  \textbf{Similar to problem sheets}
+   \begin{itemize}
+    \item[(i)] We have $\rho(I)=2=\rho(-I)$, so
+     $\rho(-I)\neq-\rho(I)$, so $\rho$ is not linear. \mks{2}
+    \item[(ii)] We have 
+     \begin{align*}
+      \sg([1,0]^T) &= [0^3/(1^2+0^2),1^3/(1^2+0^2)]^T = [0,1]^T \\
+      \sg([0,1]^T) &= [1^3/(1^2+0^2),0^3/(1^2+0^2)]^T = [1,0]^T \\
+      \sg([1,1]^T) &= [1^3/(1^2+1^2),1^3/(1^2+1^2)]^T = [1/2,1/2]^T
+     \end{align*}
+     so $\sg(\ve_1+\ve_2)\neq\sg(\ve_1)+\sg(\ve_2)$.  Thus, $\sg$ is
+     not linear. \mks{2}
+    \item[(iii)] Put $Q=\bsm 1&1\\ 1&1\esm$ for brevity.  We have 
+     \[ \tau(tA+t'A') = 
+        Q(tA+t'A')Q = QtAQ+Qt'A'Q = tQAQ + t'QA'Q = 
+        t\tau(A) + t'\tau(A'),
+     \]
+     so $\tau$ is linear. \mks{2}
+   \end{itemize}
+  \item[(e)] \textbf{Similar to problem sheets}
+   \begin{itemize}
+    \item[(i)] $U_0$ is not a subspace, because the function $f(x)=x$
+     lies in $U_0$, but $-f$ does not. \mks{2}
+    \item[(ii)] Given a matrix $A=\bsm a&b\\ c&d\esm$ we have
+     \begin{align*}
+      \det(A+I) &= \det\bsm a+1 & b \\ c & d+1 \esm 
+                 = ad+a+d+1-bc \\
+      \det(A-I) &= \det\bsm a-1 & b \\ c & d-1 \esm 
+                 = ad-a-d+1-bc \\
+      \det(A+I)-\det(A-I) &= 2(a+d).
+     \end{align*}
+     This means that $A$ lies in $U_1$ iff $a+d=0$ iff $A$ has the
+     form $\bsm a&b \\c&-a\esm$.  Given this, it is clear that $U_1$
+     is a subspace.  \mks{3}
+    \item[(iii)] Given a matrix $A=\bsm a&b\\ c&d\esm$ we have
+     $A^2=\bsm a^2+bc & b(a+d) \\ c(a+d) & d^2+bc\esm$, so
+     $\trc(A^2)=a^2+d^2+2bc$.  Using this we see that the matrices
+     $\bsm 0&1\\0&0\esm$ and $\bsm 0&0\\1&0\esm$ lie in $U_2$, but
+     their sum does not.  Thus, $U_2$ is not a subspace. \mks{3}
+   \end{itemize}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607R Q1]}
+ Let $V$ and $W$ be vector spaces over $\R$.
+ \begin{itemize}
+  \item[(a)] Define what it means for a map $\al\:V\to W$ to be
+   linear. \mrks{3}
+  \item[(b)] Define what it means for a subset $U\sse V$ to be a
+   subspace of $V$. \mrks{3}
+  \item[(c)] Suppose that $\al$ is linear.  Define the image of
+   $\al$, and prove that it is a subspace of $V$. \mrks{7}
+  \item[(d)] Which of the following functions are linear?  (You should
+   justify your answers.) \mrks{6}
+   \begin{itemize}
+    \item[(i)] $\rho\:M_2(\R)\to M_2(\R)$ given by $\rho(A)=A^TA$
+    \item[(ii)] $\sg\:\R^2\to\R^2$ given by 
+     $\displaystyle \sg\bsm x\\ y\esm =
+      \bsm x+y^2 \\ x^2+y \esm$
+    \item[(iii)] $\tau\:\R[x]\to M_2(\R)$ given by 
+     $\displaystyle \tau(f)= \bsm 0&f(1) \\ f'(1)&0\esm$
+   \end{itemize}
+  \item[(e)] Which of the following sets is a subspace?  (You should
+   justify your answers.) \mrks{6}
+   \begin{itemize}
+    \item[(i)] $U_0=\{f\in\R[x]\st f(1)=f(2)=f(3)\}$
+    \item[(ii)] $U_1=\{A\in M_2(\R)\st\trc(A)\geq 0\}$
+    \item[(iii)] $U_2=\{A\in M_2(\R)\st\det(A)=0\}$
+   \end{itemize}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} $\al$ is linear if
+   $\al(tv+t'v')=t\al(v)+t'\al(v')$ for 
+   all $t,t'\in\R$ and $v,v'\in V$. \mks{3}
+  \item[(b)] \textbf{Bookwork.} $U$ is a subspace if~(i) $0\in U$
+   and~(ii) for all 
+   $t,t'\in\R$ and all $u,u'\in U$ we have $tu+t'u'\in U$. \mks{3}
+  \item[(c)] \textbf{Bookwork.} The image of $\al$ is 
+   \[ \img(\al) = \{\al(v)\st v\in V\} = 
+       \{w\in W\st w=\al(v) \text{ for some } v\in V\}. \mks{2}
+   \]
+   As $\al$ is linear we have $0_W=\al(0_V)$, so $0_W\in\img(\al)$. \mk
+
+   Now suppose we have elements $w,w'\in\img(\al)$, and real numbers
+   $t,t'\in\R$; we must show that the element $w''=tw+t'w'$ lies in
+   $\img(\al)$.  \mk By the definition of $\img(\al)$, there must exist
+   elements $v,v'\in V$ with $\al(v)=w$ and $\al(v')=w'$ \mk.  Put
+   $v''=tv+t'v'\in V$.  As $\al$ is linear we have
+   \[ \al(v'')=t\al(v)+t'\al(v')=tw+t'w'=w''.  \mk \]
+   Thus $w''$ is $\al(\text{something in } V)$, so $w''\in\img(\al)$
+   as required.  This shows that $\img(\al)$ is a subspace of $W$. \mk
+  \item[(d)]  \textbf{Similar to problem sheets and the June exam}
+   \begin{itemize}
+    \item[(i)] We have $\rho(I)=I=\rho(-I)$, so
+     $\rho(-I)\neq-\rho(I)$, so $\rho$ is not linear. \mks{2}
+    \item[(ii)] We have 
+     \begin{align*}
+      \sg([ 1,0]^T) &= [1,1]^T \\
+      \sg(-[1,0]^T) &= [-1,1]^T \neq -\sg([1,0]^T) 
+     \end{align*}
+     so $\sg$ is not linear. \mks{2}
+    \item[(iii)] We have 
+     \begin{align*}
+      \tau(sf+tg) &= 
+       \bsm 0 & (sf+tg)(1) \\ (sf+tg)'(1) & 0 \esm = 
+       \bsm 0 & sf(1)+tg(1) \\ sf'(1)+tg'(1) & 0 \esm \\
+      &= 
+       s \bsm 0 & f(1) \\ f'(1) & 0 \esm + 
+       t \bsm 0 & g(1) \\ g'(1) & 0 \esm =
+       s\tau(f) + t \tau(g). 
+     \end{align*}
+     Thus, $\tau$ is linear. \mks{2}
+   \end{itemize}
+  \item[(e)] \textbf{Similar to problem sheets and the June exam}
+   \begin{itemize}
+    \item[(i)] $U_0$ is a subspace.  Indeed, if $f,g\in U_0$ and
+     $s,t\in\R$, then $f(1)=f(2)=f(3)$
+     (as $f\in U_0$) and $g(1)=g(2)=g(3)$ (as $g\in U_0$) so
+     \[ sf(1)+tg(1) = sf(2)+tg(2) = sf(3)+tg(3), \]
+     or in other words $sf+tg\in U_0$.  \mks{2}
+    \item[(ii)] The set $U_1$ contains $I$ but not $-I$, so it is not
+     a subspace. \mks{2}
+    \item[(iii)] The set $U_2$ contains the matrices
+     $E_1=\bsm 1&0\\0&0\esm$ and $E_4=\bsm 0&0\\0&1\esm$ but not
+     $E_1+E_4$, so it is not a subspace. \mks{2}
+   \end{itemize}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708 Q1]}
+ In this question, $X$ denotes the matrix $\bsm 1&2\\3&4\esm$.
+ \begin{itemize}
+  \item[(a)] Let $V$ and $W$ be vector spaces.  Define what it means
+   for a map $\phi\:V\to W$ to be linear. \mrks{3}
+  \item[(b)] Which of the following maps are linear? Justify your
+   answers. \mrks{8}
+   \begin{itemize}
+    \item[(i)] $\phi_1\:M_2(\R)\to M_2(\R)$ given by 
+     $\phi_1(A)=XAX$.
+    \item[(ii)] $\phi_2\:M_2(\R)\to M_2(\R)$ given by 
+     $\phi_2(A) = AXA$.
+    \item[(iii)] $\phi_3\:\R[x]_{\leq 2}\to\R[x]_{\leq 4}$ given by
+     $\phi_3(f(x))=f(x)^2$.
+    \item[(iv)] $\phi_4\:\R[x]_{\leq 2}\to\R[x]_{\leq 4}$ given by
+     $\phi_4(f(x))=f(x^2)$ (eg $\phi_3(3x^2+4x+5)=3x^4+4x^2+5$).
+   \end{itemize}
+  \item[(c)] Define what it means for a linear map $\phi\:V\to W$ to
+   be (i)~injective; (ii) surjective.  \mrks{5}
+  \item[(d)] Which of the following maps are injective? Justify your
+   answers. \mrks{9}
+   \begin{itemize}
+    \item[(i)] $\psi_1\:M_2(\R)\to M_2(\R)$ given by 
+     $\psi_1(A)=XA-AX$.
+    \item[(ii)] $\psi_2\:M_2(\R)\to M_2(\R)$ given by 
+     $\psi_2(A)=XA$.
+    \item[(iii)] $\psi_3\:\R[x]_{\leq 2}\to\R^3$ given by
+     $\psi_3(f(x))=[f''(0),f'(1),f(2)]^T$. 
+   \end{itemize}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] $\phi$ is linear iff $\phi(tv+t'v')=t\phi(v)+t'\phi(v')$
+   for all $t,t'\in\R$ and $v,v'\in V$.  \mks{3} \textbf{Bookwork}
+  \item[(b)] \textbf{Similar to problem sheets, lecture notes and past
+   papers}
+   \begin{itemize}
+    \item[(i)] $\phi_1$ is linear \mk, because
+     $\phi_1(tA+t'A')=X(tA+t'A')X=tXAX+t'XA'X=t\phi_1(A)+t'\phi_1(A')$
+     \mk.
+    \item[(ii)] $\phi_2$ is not linear \mk,
+     because $\phi_2(I)=IXI=X$ and
+     $\phi_2(-I)=(-I)X(-I)=X\neq -\phi_2(I)$ \mk.
+    \item[(iii)] $\phi_3$ is not linear \mk, because
+     $\phi_3(-1)=\phi_3(1)=1$, so $\phi_3(-1)\neq -\phi_3(1)$ \mk.
+    \item[(iv)] $\phi_4$ is linear \mk.  To see this, suppose we have
+     $f,g\in\R[x]_{\leq 2}$, say $f(x)=ax^2+bx+x$ and
+     $g(x)=px^2+qx+r$, and $s,t\in\R$.  Then 
+     \begin{align*}
+       \phi_4(sf(x)+tg(x)) &= \phi_3((sa+tp)x^2 + (sb+tq)x + (sc+tr)) \\
+         &= (sa+tp)x^4 + (sb+tq)x^2 + (sc+tr) \\
+         &= s(ax^4+bx^2+c) + t(px^4+qx^2+r) \\
+         &= s\phi_4(f(x)) + t\phi_4(g(x)). \mk
+     \end{align*}
+   \end{itemize}
+  \item[(c)] A linear map $\phi\:V\to W$ is said to be
+   \emph{injective} if whenever $v,v'\in V$ and $\phi(v)=\phi(v')$ we
+   have $v=v'$. \mks{3}  It is \emph{surjective} if for each $w\in W$
+   there exists $v\in V$ with $\phi(v)=w$. \mks{2}  \textbf{Bookwork}
+  \item[(d)] \textbf{Similar to problem sheets, lecture notes and past
+   papers}
+   \begin{itemize}
+    \item[(i)] We have $\psi_1(I)=XI-IX=X-X=0$, so $I\in\ker(\psi_1)$,
+     so $\ker(\psi_1)\neq 0$, so $\psi_1$ is not injective \mks{3}.
+     Alternatively, we have $\psi_1(X)=X^2-X^2=0$ and we can argue in
+     the same way.  For a more pedestrian approach, we have 
+     \[ \psi_1\bsm a&b\\ c&d\esm = 
+         \bsm 1&2\\3&4\esm \bsm a&b\\ c&d\esm - 
+         \bsm a&b\\ c&d\esm \bsm 1&2\\3&4\esm = 
+         \bsm a+2c& b+2d\\ 3a+4c& 3b+4d \esm - 
+         \bsm a+3b & 2a+4b\\ c+3d & 2c+4d \esm = 
+         \bsm 2c-3b & -2a-3b+2d \\ 3a+3c-3d & 3b-2c \esm. 
+     \]
+     This vanishes iff $2c-3b=-2a-3b+2d=3a+3c-3d=3b-2c=0$, and these
+     equations reduce to $c=3b/2$ and $d=3b/2+a$, so 
+     \[ \ker(\psi_1) = \left\{\bsm a& b \\ 3b/2 & 3b/2+a\esm \st
+           a,b\in\R\right\} \neq 0.
+     \]
+    \item[(ii)] Note that $\det(X)=-2\neq 0$ so $X$ is invertible.  If
+     $\psi_2(A)=XA=0$ then $A=X^{-1}XA=X^{-1}.0=0$, so
+     $\ker(\psi_2)=0$, so $\psi_2$ is injective \mks{3}.  For a more
+     pedestrian approach, we have 
+     \[ \psi_2\bsm a&b\\ c&d\esm =
+         \bsm 1&2\\3&4\esm \bsm a&b\\ c&d\esm = 
+         \bsm a+2c& b+2d\\ 3a+4c& 3b+4d \esm. 
+     \] 
+     This vanishes iff $a+2c=0$~(1) and $b+2d=0$~(2) and $3a+4c=0$~(3)
+     and $3b+4d=0$~(4).  The equations $(3)-2.(1)$ and $(4)-2.(2)$
+     give $a=b=0$, and by substituting these in (1) and (3) we get
+     $c=d=0$.  This shows that $\ker(\psi_2)=0$ as required.
+    \item[(iii)] We have $\psi_3(ax^2+bx+c)=[2a,2a+b,4a+2b+c]^T$.
+     This can only be zero if $2a=2a+b=4a+2b+c=0$, which easily
+     implies that $a=b=c=0$.  Thus $\ker(\psi_3)=0$ and $\psi_3$ is
+     injective.  \mks{3}
+   \end{itemize}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708R Q1]}
+ \begin{itemize}
+  \item[(a)] Let $V$ be a finite-dimensional vector space over $\R$.  
+   Define what it means to say that $W$ is a subspace of $V$.
+   \mrks{3}
+  \item[(b)] Let $W_0$ and $W_1$ be subspaces of $V$.  State a formula
+   relating $\dim(W_0+W_1)$ to the dimensions of various other spaces.
+   \mrks{3}
+  \item[(c)] In which of the following cases is $W$ a subspace of $V$?
+   Justify your answers briefly, giving specific
+   counterexamples where appropriate. \mrks{9}
+   \begin{itemize}
+    \item[(i)] $V=M_2(\R)$, $W=\{A\in M_2(\R)\st\det(A)\geq 0\}$.
+    \item[(ii)] $V=M_2(\R)$, $W=\{A\in M_2(\R)\st\trc(A)=0\}$.
+    \item[(iii)] $V=\R[x]_{\leq 3}$, $W=\{f\in V\st f(0)^4+f(1)^4+f(2)^4=0\}$.
+    \item[(iv)] $V=\R^3$, $W=\{v\in V\st Av=0\}$, where
+     $A=\bsm 1&2&1\\2&3&2\\1&2&1\esm$.
+   \end{itemize}
+  \item[(d)] Put $u=[1,0,1]$ and 
+   \begin{eqnarray*}
+    U &=& \{A\in M_3(\R)\st uA=0\} \\
+    V &=& \{A\in M_3(\R)\st A^T=A\} \\
+    W &=& \{A\in M_3(\R)\st A^T=-A\}.
+   \end{eqnarray*}
+   Find bases for $V\cap U$ and $W\cap U$. \mrks{10}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \textbf{This is a slight modification of a question from a past paper.}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} A subspace of $V$ is a subset
+   $W\sse V$ such that~(i) $0_V\in W$ (ii) for all $w,w'\in W$ we have
+   $w+w'\in W$ and~(iii) for all $w\in W$ and $t\in\R$ we have $tw\in
+   W$.  (Equivalently, one can combine (ii) and (iii) into the
+   following condition: if $w,w'\in W$ and $t,t'\in\R$ then
+   $tw+t'w'\in W$.)  \mks{3}
+  \item[(b)] $\dim(W_0+W_1)=\dim(W_0)+\dim(W_1)-\dim(W_0\cap W_1)$.
+   \mks{3} 
+  \item[(c)] \textbf{Similar to problem sheets}
+   \begin{itemize}
+    \item[(i)] This is not a subspace \mk, because
+     $\bsm 1&0\\0&0\esm,\bsm 0&0\\0&-1\esm\in W$ but
+     $\bsm 1&0\\0&0\esm+\bsm 0&0\\0&-1\esm\not\in W$. \mk
+    \item[(ii)] This is a subspace \mk, because if $A,A'\in W$ and
+     $t,t'\in\R$ then $\trc(A)=\trc(A')=0$ so
+     $\trc(tA+t'A')=t\trc(A)+t'\trc(A')=t.0+t'.0=0$, so $tA+t'A'\in W$.\mk
+    \item[(iii)] This is a subspace \mk.  Indeed, as $f(n)^4\geq 0$
+     for all $n$, we can only have $f(0)^4+f(1)^4+f(2)^4=0$ if
+     $f(0)=f(1)=f(2)=0$.  Thus $W=\{f\in V\st f(0)=f(1)=f(2)=0\}$ \mk, and
+     this is easily seen to be a subspace \mk.  
+    \item[(iv)] This is a subspace \mk.  Indeed, it is clear that $A0=0$,
+     so $0\in W$.  Moreover, if $u,v\in W$ (so $Au=Av=0$) and
+     $s,t\in\R$ then $A(su+tv)=sAu+tAv=s.0+t.0=0$, so $su+tv\in W$.
+     This means that $W$ is closed under taking linear combinations,
+     so it is a subspace. \mk
+   \end{itemize}
+  \item[(d)]  \textbf{Similar to problem sheets}
+   A typical element of $V$ has the form
+   \[ A=\bsm a&b&c\\ b&d&e\\ c&e&f \esm \mk
+     \text{ and so } 
+     uA = [a+c, \; b+e, \; c+f] \mk.
+   \]
+   Thus $A$ lies in $V\cap U$ iff $a=-c$ and $e=-b$ and $f=-c$
+   \mk, in which case $A$ has the form
+   \[ A = \bsm -c&b&c\\ b&d&-b \\ c & -b & -c \esm 
+      = b \bsm 0&1&0\\ 1&0&-1 \\ 0&-1&0\esm + 
+        c \bsm -1&0&1\\ 0&0&0 \\ 1&0&-1\esm + 
+        d \bsm 0&0&0\\ 0&1&0 \\ 0&0&0 \esm. \mk
+   \]
+   From this it is clear that the matrices
+   \[ A_1 = \bsm 0&1&0\\ 1&0&-1 \\ 0&-1&0\esm , \hspace{3em}
+      A_2 = \bsm -1&0&1\\ 0&0&0 \\ 1&0&-1\esm , \hspace{3em}
+      A_3 = \bsm 0&0&0\\ 0&1&0 \\ 0&0&0 \esm
+   \]
+   give a basis for $V\cap U$.  \mk
+
+   Similarly, a typical element of $W$ has the form
+   \[ B = \bsm 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \esm \mk,
+      \text{ and so }
+      uB = \bsm -b \\ a-c \\ b \esm. \mk
+   \]
+   Thus $B$ lies in $W\cap U$ iff $b=0$ and $c=a$  \mk.  If so
+   then $B=aB_1$, where 
+   \[ B_1 = \bsm 0 & 1 & 0 \\ -1 & 0 & 1 \\ 0 & -1 & 0 \esm. \mk \]
+   This means that $B_1$ is a basis for $W\cap U$.\mk
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[Mock exam Q2]}
+ Let $V$ be a finite-dimensional vector space over $\R$.
+ \begin{itemize}
+  \item[(a)] Define what is meant by an \emph{inner product}
+   on $V$.
+  \item[(b)] State and prove the Cauchy-Schwartz inequality.
+   (You need not discuss the case where it is actually an
+   equality.) 
+  \item[(c)] Let $f\:[0,1]\to\R$ be a continuous function.
+   Prove that 
+   \[ \left(\textstyle \int_0^1 x f(x)\,dx\right)^2 
+       \leq \frac{1}{3}\int_0^1 f(x)^2\,dx.
+   \]
+  \item[(d)] Find an orthogonal sequence $u_1,u_2,u_3,u_4$
+   in $\R^4$ such that
+   $\spn(u_1,\dotsc,u_i)=\spn(v_1,\dotsc,v_i)$ for all $i$,
+   where
+   \[ v_1 = \bsm 1\\1\\1\\1\esm \hspace{1em}
+      v_2 = \bsm 0\\0\\1\\1\esm \hspace{1em}
+      v_3 = \bsm 0\\0\\0\\1\esm \hspace{1em}
+      v_4 = \bsm 0\\1\\0\\0\esm 
+   \]
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] An \emph{inner product} on $V$ is a rule that
+   assigns a number $\ip{u,v}\in\R$ to each pair of elements
+   $u,v\in V$ such that
+   \begin{itemize}
+    \item[(i)] $\ip{u+v,w}=\ip{u,w}+\ip{v,w}$ for all
+     $u,v,w\in V$.
+    \item[(ii)] $\ip{tu,v}=t\ip{u,v}$ for all $u,v\in V$ and
+     $t\in\R$.
+    \item[(iii)] $\ip{u,v}=\ip{v,u}$ for all $u,v\in V$.
+    \item[(iv)] We have $\ip{u,u}\geq 0$ for all $u\in V$, and
+     $\ip{u,u}=0$ iff $u=0$.
+   \end{itemize}
+  \item[(b)] The Cauchy-Schwartz inequality says that for
+   $u,v\in V$ we have $|\ip{u,v}|\leq\|u\|\|v\|$.  To see
+   this, first note that it is obviously true if $v=0$, so
+   we may assume that $v\neq 0$ and so $\|v\|>0$.  Put
+   $x=\ip{v,v}u-\ip{u,v}v$.  Then
+   \begin{align*}
+    \|x\|^2 & = \ip{x,x} \\
+    &= \ip{v,v}^2\ip{u,u} - 2\ip{v,v}\ip{u,v}\ip{u,v} + \ip{u,v}^2\ip{v,v} \\
+    &= \ip{v,v}(\ip{u,u}\ip{v,v}-\ip{u,v}^2).
+   \end{align*}
+   As $\ip{v,v}=\|v\|^2>0$, we can divide by this to get
+   \[ \ip{u,u}\ip{v,v} - \ip{u,v}^2 =(\|x\|/\|v\|)^2. \]
+   This is a square, so it must be nonnegative, so
+   $\ip{u,u}\ip{v,v}\geq\ip{u,v}^2$.  As both sides are
+   nonnegative this inequality reains valid when we take
+   square roots.  After noting that $\sqrt{t^2}=|t|$ for all
+   $t\in\R$, we conclude that $\|u\|\|v\|\geq|\ip{u,v}|$, as
+   claimed. 
+  \item[(c)] Now take $V=C[0,1]$, with the usual inner
+   product $\ip{f,g}=\int_0^1 f(x)g(x)\,dx$.  Take
+   $g(x)=x$, so $\|g\|^2=\int_0^1x^2\,dx=1/3$.  The
+   Cauchy-Schwartz inequality then says that
+   $\ip{f,g}^2\leq\|f\|^2\|g\|^2=\|f\|^2/3$, or in other
+   words 
+   \[ \left(\textstyle \int_0^1 x f(x)\,dx\right)^2 
+       \leq \frac{1}{3}\int_0^1 f(x)^2\,dx.
+   \]
+  \item[(d)] Put
+   \[ v_1 = \bsm 1\\1\\1\\1\esm \hspace{1em}
+      v_2 = \bsm 0\\0\\1\\1\esm \hspace{1em}
+      v_3 = \bsm 0\\0\\0\\1\esm \hspace{1em}
+      v_4 = \bsm 0\\1\\0\\0\esm 
+   \]
+   We apply the Gram-Schmidt procedure as follows:
+   \begin{align*}
+    u_1 &= v_1 = \bsm 1\\1\\1\\1\esm \\
+    \ip{u_1,u_1} &= 1^2+1^2+1^1+1^2 = 4 \\
+    \ip{v_2,u_1} &= 2 \\ 
+    u_2 &= v_2 - \frac{\ip{v_2,u_1}}{\ip{u_1,u_1}}u_1 \\
+        &= \bsm 0\\0\\1\\1 \esm - \frac{2}{4}\bsm 1\\1\\1\\1\esm
+         = \frac{1}{2}\bsm -1\\-1\\1\\1\esm \\
+    \ip{u_2,u_2} &= \tfrac{1}{4}(1^2+1^2+1^2+1^2)=1 \\
+    \ip{v_3,u_1} &= 1 \\
+    \ip{v_3,u_2} &= 1/2 \\
+    u_3 &= v_3 - \frac{\ip{v_3,u_1}}{\ip{u_1,u_1}}u_1 
+               - \frac{\ip{v_3,u_2}}{\ip{u_2,u_2}}u_2  \\
+        &= \bsm 0\\0\\0\\1 \esm - 
+           \frac{1}{4} \bsm 1\\1\\1\\1 \esm -
+           \frac{1/2}{1}.\frac{1}{2}\bsm -1\\-1\\1\\1\esm 
+         = \frac{1}{2}\bsm 0\\0\\-1\\1\esm \\
+    \ip{u_3,u_3} &= \tfrac{1}{4}(0^2+0^2+(-1)^2+1^2) = \tfrac{1}{2}\\
+    \ip{v_4,u_1} &= 1 \\
+    \ip{v_4,u_2} &= -\tfrac{1}{2} \\
+    \ip{v_4,u_3} &= 0 \\
+    u_4 &= v_4 - \frac{\ip{v_4,u_1}}{\ip{u_1,u_1}}u_1 
+               - \frac{\ip{v_4,u_2}}{\ip{u_2,u_2}}u_2 
+               - \frac{\ip{v_4,u_3}}{\ip{u_3,u_3}}u_3  \\
+        &= \bsm 0\\1\\0\\0\esm -
+           \frac{1}{4}\bsm 1\\1\\1\\1 \esm - 
+           \frac{-1/2}{1}.\frac{1}{2}\bsm -1\\-1\\1\\1\esm
+         = \frac{1}{2} \bsm -1\\1\\0\\0\esm. 
+   \end{align*}
+   We conclude that the sequence
+   \[ u_1,u_2,u_3,u_4 = 
+     \bsm 1\\1\\1\\1\esm, \; 
+     \frac{1}{2}\bsm -1\\-1\\1\\1\esm, \;
+     \frac{1}{2}\bsm 0\\0\\-1\\1\esm, \;
+     \frac{1}{2} \bsm -1\\1\\0\\0\esm
+   \]
+   is an orthogonal sequence such that
+   $\spn(u_1,\dotsc,u_i)=\spn(v_1,\dotsc,v_i)$ for
+   $i=1,\dotsc,4$.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506 Q2]}
+ \begin{itemize}
+  \item[(a)]
+   Let $V$ and $W$ be finite-dimensional vector spaces, and
+   let $\phi\:V\to W$ be a linear map.  Prove that there is
+   a number $r\geq 0$ and lists $v_1,\dotsc,v_n\in V$ and
+   $w_1,\dotsc,w_m\in W$ such that
+   \begin{itemize}
+    \item[(i)] $w_1,\dotsc,w_m$ is a basis for $W$
+    \item[(ii)] $\phi(v_i)=w_i$ for $i=1,\dotsc,r$
+    \item[(iii)] $v_{r+1},\dotsc,v_n$ is a basis for
+     $\ker(\phi)$. 
+   \end{itemize}
+   Prove also that the list $v_1,\dotsc,v_n$ is linearly
+   independent.  \mrks{13}
+  \item[(b)]
+   Find bases as in~(a) for the following case:
+   $V=M_2\R$, $W=\R[x]_{\leq 3}$ and 
+   \[ \phi(A) = [x^2,\;\;x] A \bsm 1\\ x\esm.  \]
+   \mrks{12}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{This is a cut-down version of a theorem
+    proved in lectures.  I will tell the students that such
+    questions may be set, and give them a short list
+    of theorems that might be used.}\\
+   Choose a basis $w_1,\dotsc,w_r$ for
+   $\img(\phi)\leq W$ \mk.  This is a linearly independent list
+   in $W$ \mk, so it can be extended to a list
+   $\CW=w_1,\dotsc,w_m$ (for some $m\geq n$) that is a basis
+   for $W$ \mks{2}.  Next, for $i=1,\dotsc,r$ we note that
+   $w_i\in\img(\phi)$, so we can choose $v_i\in V$ such that
+   $\phi(v_i)=w_i$ \mk.  This gives us elements
+   $v_1,\dotsc,v_r\in V$.  Now choose a basis for
+   $\ker(\phi)$ \mk, and label the elements as
+   $v_{r+1},\dotsc,v_n$ say \mk.  Now (i), (ii) and (iii)
+   are satisfied.  We must show that the list
+   $\CV=v_1,\dotsc,v_n$ is linearly independent.  Consider
+   a relation $\lm_1v_1+\dotsc+\lm_nv_n=0$ \mk.
+   We apply $\phi$, which gives 
+   \[ (\lm_1\phi(v_1)+\dotsb+\lm_r\phi(v_r)) + 
+      (\lm_{r+1}\phi(v_{r+1})+\dotsb+\lm_n\phi(v_n)) = 0.
+      \mk
+   \]
+   In the first block of terms we have $\phi(v_i)=w_i$, and
+   in the second block we have $\phi(v_i)=0$.  The equation
+   therefore reduces to
+   \[ \lm_1 w_1 + \dotsb + \lm_rw_r = 0. \mk \]
+   As the list $w_1,\dotsc,w_r$ is a basis for $\img(\phi)$,
+   it is linearly independent, so we must have
+   $\lm_1=\dotsb=\lm_r=0$ \mk.  Thus, our original relation
+   simplifies to $\lm_{r+1}v_{r+1}+\dotsb+\lm_nv_n=0$.  As
+   the list $v_{r+1},\dotsc,v_n$ is a basis for
+   $\ker(\phi)$, it is linearly independent, so
+   $\lm_{r+1}=\dotsb=\lm_n=0$ \mk, so our original relation was
+   the trivial one.  This shows that $\CV$ is linearly
+   independent \mk.  
+  \item[(b)]
+   Now consider the map $\phi\:M_2\R\to\R[x]_{\leq 3}$ given
+   by $\phi(A)=[x^2,\;x]A\bsm 1\\ x\esm$, or equivalently
+   \[ \phi\bsm a&b\\ c&d\esm =
+       [x^2,\; x]\bsm a+bx\\ c+dx\esm = 
+       (a+bx)x^2 + (c+dx)x  = bx^3+(a+d)x^2+cx. \mks{2}
+   \]
+   From this it is clear that the list
+   $w_1,w_2,w_3=x^3,x^2,x$ is a basis for $\img(\phi)$ \mks{2}.  If
+   we put $w_4=1$ then $w_1,\dotsc,w_4$ is a basis for
+   $\R[x]_{\leq 3}$ extending our basis for $\img(\phi)$ \mks{2}.
+   Now put 
+   \[ v_1 = \bsm 0&1\\0&0\esm \hspace{1em}
+      v_2 = \bsm 1&0\\0&0\esm \hspace{1em}
+      v_3 = \bsm 0&0\\1&0\esm \hspace{1em}
+      v_4 = \bsm 1&0\\0&-1\esm \mks{2}
+   \]
+   Using the above formula for $\phi$ we see that
+   $\phi(v_1)=x^3=w_1$ and $\phi(v_2)=x^2=w_2$ and
+   $\phi(v_3)=x=w_3$ and $\phi(v_4)=0$ \mks{2}.  More generally, the
+   formula shows that $\phi\bsm a&b\\ c&d\esm$ is only zero
+   when $b=c=0$ and $d=-a$, which means that
+   $\bsm a&b\\ c&d\esm=a\bsm 1&0\\0&-1\esm=av_4$.  This
+   shows that $v_4$ is a basis for $\ker(\phi)$ \mks{2}, so we have
+   all the properties mentioned in~(a).
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506R Q2]}
+ \begin{itemize}
+  \item[(a)]
+   Let $V$ and $W$ be finite-dimensional vector spaces, and
+   let $\phi\:V\to W$ be a linear map.  Prove that there is
+   a number $r\geq 0$ and lists $v_1,\dotsc,v_n\in V$ and
+   $w_1,\dotsc,w_m\in W$ such that
+   \begin{itemize}
+    \item[(i)] $w_1,\dotsc,w_m$ is a basis for $W$
+    \item[(ii)] $\phi(v_i)=w_i$ for $i=1,\dotsc,r$
+    \item[(iii)] $v_{r+1},\dotsc,v_n$ is a basis for
+     $\ker(\phi)$. 
+   \end{itemize}
+   Prove also that the list $v_1,\dotsc,v_n$ is linearly
+   independent.  \mrks{15}
+  \item[(b)]
+   Find bases as in~(a) for the following case:
+   $V=\R[x]_{\leq 2}$, $W=\R^4$ and 
+   \[ \phi(f) = [f(0),f(1),f(0),f(1)]^T.  \]
+   \mrks{10}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{This is a cut-down version of a theorem
+    proved in lectures, and is identical to the first half 
+    of a question on the June exam.  I told the students that such
+    questions might be set, and gave them a short list
+    of theorems that might be used.}\\
+   Choose a basis $w_1,\dotsc,w_r$ for
+   $\img(\phi)\leq W$ \mks{2}.  This is a linearly independent list
+   in $W$ \mk, so it can be extended to a list
+   $\CW=w_1,\dotsc,w_m$ (for some $m\geq n$) that is a basis
+   for $W$ \mks{2}.  Next, for $i=1,\dotsc,r$ we note that
+   $w_i\in\img(\phi)$, so we can choose $v_i\in V$ such that
+   $\phi(v_i)=w_i$ \mk.  This gives us elements
+   $v_1,\dotsc,v_r\in V$.  Now choose a basis for
+   $\ker(\phi)$ \mks{2}, and label the elements as
+   $v_{r+1},\dotsc,v_n$ say \mk.  Now (i), (ii) and (iii)
+   are satisfied.  We must show that the list
+   $\CV=v_1,\dotsc,v_n$ is linearly independent.  Consider
+   a relation $\lm_1v_1+\dotsc+\lm_nv_n=0$ \mk.
+   We apply $\phi$, which gives 
+   \[ (\lm_1\phi(v_1)+\dotsb+\lm_r\phi(v_r)) + 
+      (\lm_{r+1}\phi(v_{r+1})+\dotsb+\lm_n\phi(v_n)) = 0.
+      \mk
+   \]
+   In the first block of terms we have $\phi(v_i)=w_i$, and
+   in the second block we have $\phi(v_i)=0$.  The equation
+   therefore reduces to
+   \[ \lm_1 w_1 + \dotsb + \lm_rw_r = 0. \mk \]
+   As the list $w_1,\dotsc,w_r$ is a basis for $\img(\phi)$,
+   it is linearly independent, so we must have
+   $\lm_1=\dotsb=\lm_r=0$ \mk.  Thus, our original relation
+   simplifies to $\lm_{r+1}v_{r+1}+\dotsb+\lm_nv_n=0$.  As
+   the list $v_{r+1},\dotsc,v_n$ is a basis for
+   $\ker(\phi)$, it is linearly independent, so
+   $\lm_{r+1}=\dotsb=\lm_n=0$ \mk, so our original relation was
+   the trivial one.  This shows that $\CV$ is linearly
+   independent \mk.  
+  \item[(b)]
+   Now consider the map $\phi\:V=\R[x]_{\leq 2}\to\R^4=W$ given
+   by $\phi(f)=[f(0),f(1),f(0),f(1)]^T$, or equivalently
+   \[ \phi(ax^2+bx+c) =
+       \bsm c \\ a+b+c \\ c \\ a+b+c \esm = 
+       c \bsm 1\\1\\1\\1 \esm + (a+b) \bsm 0\\1\\0\\1\esm. \mks{2}
+   \]
+   Thus, if we put $w_1=[1,1,1,1]^T$ and $w_2=[0,1,0,1]^T$ then
+   the list $w_1,w_2$ is a basis for $\img(\phi)$ \mks{2}, which we can extend
+   to a basis for all of $\R^4$ by taking $w_3=[0,0,1,0]^T$ and
+   $w_4=[0,0,0,1]^T$ \mks{2}.  If we put $v_1=1$ and $v_2=x$ then we see that
+   $\phi(v_i)=w_i$ for $i=1,2$ \mks{2}.  We also see from the above formulae
+   that for a polynomial $f(x)=ax^2+bx+c$ we have $\phi(f)=0$ iff
+   $a+b+c=c=0$ iff $f(x)=a(x^2-x)$ for some $a$, so the element
+   $v_3=x^2-x$ gives a basis for $\ker(\phi)$ \mks{2}.  In summary, we have
+   $r=2$ and
+   \[ v_1=1 \hspace{2em}
+      v_2=x \hspace{2em}
+      v_3=x^2-x \hspace{2em}
+      w_1=\bsm 1\\1\\1\\1\esm \hspace{2em}
+      w_2=\bsm 0\\1\\0\\1\esm \hspace{2em}
+      w_3=\bsm 0\\0\\1\\0\esm \hspace{2em}
+      w_4=\bsm 0\\0\\0\\1\esm
+   \]
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607 Q2]}
+ Consider the linear map $\al\:\R[x]_{\leq 2}\to M_2(\R)$ given by 
+ \[ \al(f) = \bsm f(0) & f(1) \\ f'(0) & f'(1) \esm. \]
+ \begin{itemize}
+  \item[(a)] Write down a basis $\CU$ for $\R[x]_{\leq 2}$ and a basis
+   $\CV$ for $M_2(\R)$. \mrks{3}
+  \item[(b)] Find the matrix of $\al$ with respect to the bases $\CU$
+   and $\CV$. \mrks{5}
+  \item[(c)] Show that $\al$ is injective. \mrks{4}
+  \item[(d)] Give a basis for the image of $\al$. \mrks{4}
+  \item[(e)] Find a nonzero matrix $X=\bsm a&b\\ c&d\esm$ such that
+   $\ip{X,\al(x^i)}=0$ for $i=0,1,2$. \mrks{5}\\
+   (Here we use the standard inner product for square matrices.)
+  \item[(f)] Show (by an explicit example) that $\al$ is not
+   surjective. \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Similar to problem sheets}
+   The obvious basis for $\R[x]_{\leq 2}$ consists of the
+   polynomials $p_0(x)=1$, $p_1(x)=x$ and $p_2(x)=x^2$.\mk  The obvious
+   basis for $M_2(\R)$ consists of the matrices
+   \[ E_1 = \bsm 1&0\\0&0 \esm \hspace{3em}
+      E_2 = \bsm 0&1\\0&0 \esm \hspace{3em}
+      E_3 = \bsm 0&0\\1&0 \esm \hspace{3em}
+      E_4 = \bsm 0&0\\0&1 \esm. \mks{2}
+   \] 
+  \item[(b)] \textbf{Similar to problem sheets}
+   We have 
+   \begin{align*}
+    \al(p_0) &= \bsm 1 & 1 \\ 0 & 0 \esm = 1.E_1 + 1.E_2 + 0.E_3 + 0.E_4 \\
+    \al(p_1) &= \bsm 0 & 1 \\ 1 & 1 \esm = 0.E_1 + 1.E_2 + 1.E_3 + 1.E_4 \\
+    \al(p_2) &= \bsm 0 & 1 \\ 0 & 2 \esm = 0.E_1 + 1.E_2 + 0.E_3 + 2.E_4
+    \mks{3}
+   \end{align*}
+   so the matrix of $\al$ with respect to our bases is
+   \[ A = \bsm 1 & 0 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 0 \\ 0 & 1 & 2 \esm.
+       \mks{2}
+   \]
+  \item[(c)] \textbf{Similar to problem sheets}
+   From the above we see that 
+   \[ \al(a+bx+cx^2) = a\al(p_0) + b\al(p_1) + c\al(p_2) = 
+       \bsm a & a+b+c \\ b & b+2c \esm. \mks{2}
+   \]
+   Thus, if $\al(a+bx+cx^2)=0$ we see that $a=a+b+c=b=b+2c=0$, which
+   easily implies that $a=b=c=0$.  This shows that $\ker(\al)=\{0\}$
+   and thus that $\al$ is injective.  \mks{2}
+  \item[(d)] \textbf{Unseen} As $\al$ is injective, the matrices
+   $\al(p_0)=\bsm 1&1\\0&0\esm$, $\al(p_1)=\bsm 0&1\\1&1\esm$ and
+   $\al(p_2)=\bsm 0&1\\0&2\esm$ form a basis for the image. \mks{4}
+  \item[(e)] \textbf{Similar to problem sheets} We have
+   \begin{align*}
+    \ip{X,\al(1)}   &= \ip{\bsm a&b\\ c&d\esm,\bsm 1&1\\ 0&0\esm} 
+                     = a+b \\
+    \ip{X,\al(x)}   &= \ip{\bsm a&b\\ c&d\esm,\bsm 0&1\\ 1&1\esm} 
+                     = b+c+d \\
+    \ip{X,\al(x^2)} &= \ip{\bsm a&b\\ c&d\esm,\bsm 0&1\\ 0&2\esm} 
+                     = b+2d  \mks{2}
+   \end{align*}
+   We therefore must have $a+b=b+c+d=b+2d=0$, which gives $a=2d$,
+   $b=-2d$ and $c=d$, so $X=d\bsm 2 & -2 \\ 1 & 1 \esm$.  \mks{2} Here $d$ is
+   arbitrary so we can take $d=1$ and so $X=\bsm 2&-2\\ 1&1\esm$. \mk
+  \item[(f)] \textbf{Unseen}
+   Observe that $\ip{X,X}=2^2+(-2)^2+1^2+1^2=10\neq 0$, but
+   $\ip{X,A}=0$ for all $A$ in the image of $\al$ (by part~(d)).  It
+   follows that $X\not\in\img(\al)$, and thus that
+   $\img(\al)\neq M_2(\R)$, so $\al$ is not surjective.  \mks{4}
+  \end{itemize}
+ \end{solution}
+
+ \begin{problem}\textbf{[0607R Q2]}
+ Define linear maps $\phi,\psi\:M_2(\R)\to M_2(\R)$ by
+ \begin{align*}
+  \phi\bsm a & b \\ c & d \esm &=
+    \bsm a-c & a-c \\ b-d & b-d \esm \\
+  \psi(A) &= \phi(\phi(A)).
+ \end{align*}
+ \begin{itemize}
+  \item[(a)] Write down a basis for $M_2(\R)$. \mrks{2}
+  \item[(b)] Find the matrix of $\phi$ with respect to your basis. \mrks{5}
+  \item[(c)] Give a basis for $\ker(\phi)$. \mrks{5}
+  \item[(d)] Give a formula for $\psi\bsm a&b\\ c&d\esm$. \mrks{4}
+  \item[(e)] Give a basis for $\img(\psi)$.  \mrks{3}
+  \item[(f)] Show that $\img(\psi)\leq\ker(\phi)$. \mrks{3}
+  \item[(g)] What can you conclude about $\phi(\phi(\phi(A)))$? \mrks{3}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] The list 
+   \[ E_1 = \bsm 1&0\\0&0\esm,\qquad
+      E_2 = \bsm 0&1\\0&0\esm,\qquad
+      E_3 = \bsm 0&0\\1&0\esm,\qquad
+      E_4 = \bsm 0&0\\0&1\esm
+   \]
+   is a basis for $M_2(\R)$. \mks{2}
+  \item[(b)] We have
+   \begin{align*}
+    \phi(E_1) &= \bsm  1& 1\\ 0& 0 \esm =  E_1 + E_2 + 0E_3 + 0E_4 \\
+    \phi(E_2) &= \bsm  0& 0\\ 1& 1 \esm = 0E_1 + 0E_2 + E_3 + E_4 \\
+    \phi(E_3) &= \bsm -1&-1\\ 0& 0 \esm = -E_1 - E_2 + 0E_3 + 0E_4 \\
+    \phi(E_4) &= \bsm  0& 0\\-1&-1 \esm = 0E_1 + 0E_2 - E_3 - E_4 \mks{3}
+   \end{align*}
+   The matrix of $\phi$ is thus
+   \[ \bsm 1&0&-1&0 \\ 1&0&-1&0 \\ 0&1&0&-1 \\ 0&1&0&-1 \esm. \mks{2} \]
+  \item[(c)] Consider a matrix $A=\bsm a&b\\ c&d\esm$.  We
+   have $A\in\ker(\phi)$ iff $a-c=0=b-d$ \mk iff $c=a$ and $d=b$ \mk, iff
+   $A$ has the form 
+   \[ A=\bsm a&b\\ a&b\esm=
+         a\bsm 1&0\\1&0\esm + b\bsm 0&1\\0&1\esm. \mk
+   \]
+   It follows that the matrices $A_1=\bsm 1&0\\1&0\esm$ and
+   $A_2=\bsm 0&1\\0&1\esm$ give a basis for $\ker(\phi)$ \mks{2}.
+  \item[(d)] We have $\phi\bsm a&b\\ c&d\esm=\bsm a'&b'\\ c'&d'\esm$,
+   where $a'=b'=a-c$ and $c'=d'=b-d$.  Thus
+   \[ \psi\bsm a&b\\ c&d\esm = 
+      \phi\bsm a'&b'\\ c'&d'\esm =
+      \bsm a'-c' & a'-c' \\ b'-d' & b'-d' \esm = 
+      \bsm a-b-c+d & a-b-c+d \\ a-b-c+d & a-b-c+d \esm =
+      (a-b-c+d) \bsm 1&1\\ 1&1\esm.  \mks{4}
+   \]
+  \item[(e)] From the above, we see that the matrix
+   $A_3=\bsm 1&1\\1&1 \esm$ is a basis for $\img(\psi)$. \mks{3}
+  \item[(f)] Every element $X\in\img(\psi)$ has the form $X=tA_3$ for
+   some $t$, but $A_3=A_1+A_2$, so
+   $X=tA_1+tA_2\in\spn\{A_1,A_2\}=\ker(\phi)$.  Thus
+   $\img(\psi)\leq\ker(\phi)$.  \mks{3}
+  \item[(g)] We have $\phi(\phi(\phi(A)))=\phi(\psi(A))$, and
+   $\psi(A)\in\img(\psi)\leq\ker(\phi)$, so this is just zero.
+   Alternatively, we have 
+   \[ \phi(\psi(A))=\phi\left((a-b-c+d)\bsm 1&1 \\ 1&1\esm\right) = 
+       (a-b-c+d)\phi\bsm 1&1 \\ 1&1\esm = 0. \mks{3}
+   \]
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708 Q2]}
+ \begin{itemize}
+  \item[(a)] Let $V$ be a vector space, and let $\CV=v_1,\dotsc,v_n$
+   be a list of elements of $V$.  Define what it means for $\CV$
+   to~(i) be linearly independent (ii)~span $V$ (iii)~be a basis for
+   $V$.  \mrks{6}
+  \item[(b)] In each of the following cases, say whether the given
+   list is linearly independent, whether it spans, and whether it is a
+   basis.  Justify your answers, giving explicit counterexamples where
+   appropriate.  \mrks{16}
+   \begin{itemize}
+    \item[(i)] $V=\R^4$,
+     $v_1=\bsm 1\\1\\0\\0 \esm$,
+     $v_2=\bsm 0\\0\\1\\1 \esm$,
+     $v_3=\bsm 1\\0\\0\\1 \esm$.
+    \item[(ii)] $V=\R[x]_{\leq 2}$, $p_1(x)=(x-2)^2$, $p_2(x)=x^2$,
+     $p_3(x)=(x+2)^2$.
+    \item[(iii)] $V=M_2(\R)$, 
+     $A_1 = \bsm 1 & 0 \\ 0 & -1\esm$,
+     $A_2 = \bsm 0 & 1 \\ 0 & -1\esm$,
+     $A_3 = \bsm 0 & 0 \\ 1 & -1\esm$,
+     $A_4 = \bsm 0 & 1 \\ 1 & -2\esm$,
+     $A_5 = \bsm 1 & 0 \\ 1 & -2\esm$,
+     $A_6 = \bsm 1 & 1 \\ 0 & -2\esm$.
+    \item[(iv)] $V=\{ f\in C^\infty(\R)\st f''=f \}$,
+     $f_0(x)=\exp(x)$, $f_1(x)=\exp(-x)$,
+     $f_2(x)=\sinh(x)$, $f_3(x)=\cosh(x)$.  (Here you may quote
+     standard facts about differential equations.)
+   \end{itemize}
+  \item[(c)] Give a list of four nonzero vectors in $\R^3$ such that
+   the first three vectors in the list form a basis, but the last
+   three do not. \mrks{3}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] Define $\mu_{\CV}\:\R^n\to V$ by
+   $\mu_{\CV}(\vlm)=\sum_i\lm_iv_i$.  The list $\CV$ is \emph{linearly
+    dependent} if there exists a nonzero $\vlm$ with
+   $\mu_\CV(\vlm)=0$; otherwise, the list is \emph{linearly
+    independent} \mks{2}.  The list \emph{spans} $V$ if for each $v\in V$
+   there exists $\vlm\in\R^n$ with $\mu_\CV(\vlm)=v$ \mks{2}.  The list is a
+   \emph{basis} for $V$ if it is linearly independent and also spans \mks{2}.
+   \textbf{Bookwork.  Formulations not involving $\mu_\CV$ are also
+   acceptable.}
+  \item[(b)] 
+   \textbf{Similar to problem sheets, lecture notes and past
+   papers.}
+   In each case there is one mark for independence, one mark for
+   spanning, and two marks for justification.
+   \begin{itemize}
+    \item[(i)] We have 
+     \[ \mu_{\CV}(\vlm)=
+         \lm_1\bsm 1\\1\\0\\0\esm +
+         \lm_2\bsm 0\\0\\1\\1\esm +
+         \lm_3\bsm 1\\0\\0\\1\esm = 
+         \bsm \lm_1+\lm_3 \\ \lm_1 \\ \lm_2 \\ \lm_2+\lm_3 \esm.
+     \]
+     This can only vanish if $\lm_1+\lm_3=\lm_1=\lm_2=\lm_2+\lm_3=0$,
+     which easily implies that $\lm_1=\lm_2=\lm_3=0$.  Thus $\CV$ is
+     linearly independent.  However, if $x$ is any of the vectors
+     $v_i$ then $x_1-x_2+x_3-x_4=0$, so the same will be true for any
+     $x\in\spn(\CV)$, so in particular the vector $\ve_1=[1,0,0,0]^T$
+     does not lie in $\spn(\CV)$, so the list $\CV$ does not span
+     $\R^4$.  \textbf{It is also acceptable to say that $\CV$ is too
+      short to span $\R^4$, or to use row-reduction.}  It is therefore
+     not a basis.  \mks{4}
+    \item[(ii)] We have 
+     \begin{align*}
+      p_1(x) &= x^2 - 4x + 4 \\
+      p_2(x) &= x^2 \\
+      p_3(x) &= x^2 + 4x + 4
+     \end{align*}
+     so 
+     \begin{align*}
+      x^2 &= p_2(x) \\
+      x   &= (p_3(x)-p_1(x))/8 \\
+      1   &= (p_1(x)-2p_2(x)+p_3(x))/8. 
+     \end{align*}
+     Thus $x^2,x,1\in\spn(\CP)$, and these monomials form a basis for
+     $\R[x]_{\leq 2}$, so $\CP$ spans $\R[x]_{\leq 2}$.  As $\CP$ has
+     length three, which is the same as the dimension of
+     $\R[x]_{\leq 2}$, we see that $\CP$ is also linearly independent
+     and thus a basis.\mks{4}
+
+     \textbf{A more equational proof is also acceptable.  Some
+      relevant formulae are given below.}
+     \[ \mu_\CP(\vlm) = \lm_1(x^2-4x+4)+\lm_2x^2+\lm_3(x^2+4x+4) 
+          = (\lm_1+\lm_2+\lm_3)x^2 +
+            (-4\lm_1+4\lm_3)x +
+            (4\lm_1+4\lm_3).
+     \]
+     Given a polynomial $f(x)=ax^2+bx+c$, we have $\mu_{\CP}(\vlm)=f$
+     iff the following equations hold:
+     \begin{align*}
+      \lm_1+\lm_2+\lm_3 &= a \tag{A}\\
+      -4\lm_1 + 4\lm_3 &= b \tag{B} \\
+      4\lm_1 + 4\lm_3 &= c \tag{C}.
+     \end{align*}
+     These can be solved as follows:
+     \begin{align*}
+      \lm_1 &= (c-b)/8 \\
+      \lm_2 &= a-c/4 \\
+      \lm_3 &= (c+b)/8.
+     \end{align*}
+    \item[(iii)] The list $\CA=A_1,\dotsc,A_6$ is linearly dependent,
+     because of the relation $A_1+A_2-A_6=0$.  Also, for each matrix
+     $A_i$, the sum of all the entries is zero.  It follows that any
+     matrix in $\spn(\CA)$ has the same property, so
+     $I\not\in\spn(\CA)$, so $\CA$ is not a spanning set.  It therefore
+     cannot be a basis either. \mks{4}
+    \item[(iv)] It is standard that any function $f(x)$ with
+     $f''(x)=f(x)$ has the form $f(x)=a\,e^x+b\,e^{-x}$ for some
+     constants $a$ and $b$.  Thus,
+     $f=af_1+bf_2+0f_3+0f_4\in\spn(\CF)$, so $\CF$ spans $V$.
+     However, the relation $f_1+f_2-2f_4=0$ shows that $\CF$ is
+     linearly dependent, and thus not a basis. \mks{4}
+   \end{itemize}
+  \item[(c)] \textbf{Unseen.} There are many possible examples, such
+   as the list  
+   \[ \bsm 1\\0\\0\esm, \bsm 0\\1\\0\esm,
+      \bsm 0\\0\\1\esm, \bsm 0\\1\\1\esm.  \mks{3}
+   \]
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708R Q2]}
+ Let $V$ be a finite-dimensional vector space over $\R$.
+ \begin{itemize}
+  \item[(a)] Define what is meant by an \emph{inner product}
+   on $V$. \mrks{5}
+  \item[(b)] State and prove the Cauchy-Schwartz inequality.
+   (You need not discuss the case where it is actually an
+   equality.) \mrks{10}
+  \item[(c)] Let $f\:[0,1]\to\R$ be a continuous function.
+   Prove that 
+   \[ \left(\textstyle \int_0^1 x^2 f(x)\,dx\right)^2 
+       \leq \frac{1}{5}\int_0^1 f(x)^2\,dx.
+   \]
+   \mrks{4}
+  \item[(d)] Find an orthogonal sequence $u_1,u_2,u_3,u_4$
+   in $\R^4$ such that
+   $\spn(u_1,\dotsc,u_i)=\spn(v_1,\dotsc,v_i)$ for all $i$,
+   where
+   \[ v_1 = \bsm 1\\1\\1\\1\esm \hspace{1em}
+      v_2 = \bsm 0\\0\\1\\1\esm \hspace{1em}
+      v_3 = \bsm 0\\0\\0\\1\esm \hspace{1em}
+      v_4 = \bsm 0\\1\\0\\0\esm 
+   \]
+   \mrks{6}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \textbf{This is a slight modification of a question from a past paper.}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}
+   An \emph{inner product} on $V$ is a rule that
+   assigns a number $\ip{u,v}\in\R$ to each pair of elements
+   $u,v\in V$ such that
+   \begin{itemize}
+    \item[(i)] $\ip{u+v,w}=\ip{u,w}+\ip{v,w}$ for all
+     $u,v,w\in V$.\mk
+    \item[(ii)] $\ip{tu,v}=t\ip{u,v}$ for all $u,v\in V$ and
+     $t\in\R$.\mk
+    \item[(iii)] $\ip{u,v}=\ip{v,u}$ for all $u,v\in V$. \mk
+    \item[(iv)] We have $\ip{u,u}\geq 0$ for all $u\in V$, \mk and
+     $\ip{u,u}=0$ iff $u=0$. \mk
+   \end{itemize}
+  \item[(b)] \textbf{Bookwork.}
+   Let $V$ be a vector space with an inner product, and let
+   $u$ and $v$ be elements of $V$.  Then $|\ip{u,v}|\leq \|u\|\|v\|$.\mks{2}
+
+   \noindent\textbf{Proof:} For any $s$ and $t$ we have 
+   \[ 0 \leq \|su-tv\|^2 \mk = \ip{su-tv,su-tv} = 
+       s^2\ip{u,u} - 2st\ip{u,v} + t^2\ip{v,v} = 
+       s^2\|u\|^2 + t^2\|v\|^2 - 2st\ip{u,v}. \mk
+   \]
+   Now take $s=\|v\|^2$ and $t=\ip{u,v}$ \mks{2} to get 
+   \[ 0\leq \|u\|^2\|v\|^4 + \ip{u,v}^2 \|v\|^2 - 2\|v\|^2 \ip{u,v}^2 
+       = \|v\|^2(\|u\|^2\|v\|^2 - \ip{u,v}^2). \mk
+   \]
+   If $v=0$ then we have $|\ip{u,v}|=0=\|u\|\|v\|$ so the claim
+   holds. \mk  If $v\neq 0$ then $\|v\|^2>0$ so the above inequality will
+   remain valid after dividing by $\|v\|^2$, giving
+   $\ip{u,v}^2\leq\|u\|^2\|v\|^2$. \mk  We now take square roots (and note
+   that $\sqrt{a^2}=|a|$) to get $|\ip{u,v}|\leq\|u\|\|v\|$, as claimed.\mk
+  \item[(c)] \textbf{Similar to problem sheets}
+   Now take $V=C[0,1]$, with the usual inner
+   product $\ip{f,g}=\int_0^1 f(x)g(x)\,dx$.  Take
+   $g(x)=x^2$, so $\|g\|^2=\int_0^1x^4\,dx=1/5$ \mk.  The
+   Cauchy-Schwartz inequality \mk then says that
+   $\ip{f,g}^2\leq\|f\|^2\|g\|^2=\|f\|^2/5$ \mk, or in other
+   words 
+   \[ \left(\textstyle \int_0^1 x^2 f(x)\,dx\right)^2 
+       \leq \frac{1}{5}\int_0^1 f(x)^2\,dx. \mk
+   \]
+  \item[(d)] \textbf{Similar to problem sheets}
+   Put
+   \[ v_1 = \bsm 1\\1\\1\\1\esm \hspace{1em}
+      v_2 = \bsm 0\\0\\1\\1\esm \hspace{1em}
+      v_3 = \bsm 0\\0\\0\\1\esm \hspace{1em}
+      v_4 = \bsm 0\\1\\0\\0\esm 
+   \]
+   We apply the Gram-Schmidt procedure as follows:
+   \begin{align*}
+    u_1 &= v_1 = \bsm 1\\1\\1\\1\esm \\
+    \ip{u_1,u_1} &= 1^2+1^2+1^2+1^2 = 4 \\
+    \ip{v_2,u_1} &= 2 \mk \\ 
+    u_2 &= v_2 - \frac{\ip{v_2,u_1}}{\ip{u_1,u_1}}u_1 \mk \\
+        &= \bsm 0\\0\\1\\1 \esm - \frac{2}{4}\bsm 1\\1\\1\\1\esm
+         = \frac{1}{2}\bsm -1\\-1\\1\\1\esm \mk \\
+    \ip{u_2,u_2} &= \tfrac{1}{4}(1^2+1^2+1^2+1^2)=1 \\
+    \ip{v_3,u_1} &= 1 \\
+    \ip{v_3,u_2} &= 1/2 \\
+    u_3 &= v_3 - \frac{\ip{v_3,u_1}}{\ip{u_1,u_1}}u_1 
+               - \frac{\ip{v_3,u_2}}{\ip{u_2,u_2}}u_2  \mk \\
+        &= \bsm 0\\0\\0\\1 \esm - 
+           \frac{1}{4} \bsm 1\\1\\1\\1 \esm -
+           \frac{1/2}{1}.\frac{1}{2}\bsm -1\\-1\\1\\1\esm 
+         = \frac{1}{2}\bsm 0\\0\\-1\\1\esm \mk \\
+    \ip{u_3,u_3} &= \tfrac{1}{4}(0^2+0^2+(-1)^2+1^2) = \tfrac{1}{2}\\
+    \ip{v_4,u_1} &= 1 \\
+    \ip{v_4,u_2} &= -\tfrac{1}{2} \\
+    \ip{v_4,u_3} &= 0 \\
+    u_4 &= v_4 - \frac{\ip{v_4,u_1}}{\ip{u_1,u_1}}u_1 
+               - \frac{\ip{v_4,u_2}}{\ip{u_2,u_2}}u_2 
+               - \frac{\ip{v_4,u_3}}{\ip{u_3,u_3}}u_3  \\
+        &= \bsm 0\\1\\0\\0\esm -
+           \frac{1}{4}\bsm 1\\1\\1\\1 \esm - 
+           \frac{-1/2}{1}.\frac{1}{2}\bsm -1\\-1\\1\\1\esm
+         = \frac{1}{2} \bsm -1\\1\\0\\0\esm. \mk 
+   \end{align*}
+   We conclude that the sequence
+   \[ u_1,u_2,u_3,u_4 = 
+     \bsm 1\\1\\1\\1\esm, \; 
+     \frac{1}{2}\bsm -1\\-1\\1\\1\esm, \;
+     \frac{1}{2}\bsm 0\\0\\-1\\1\esm, \;
+     \frac{1}{2} \bsm -1\\1\\0\\0\esm
+   \]
+   is an orthogonal sequence such that
+   $\spn(u_1,\dotsc,u_i)=\spn(v_1,\dotsc,v_i)$ for
+   $i=1,\dotsc,4$.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[Mock exam Q3]}
+ Define $\phi\:\R[x]_{\leq 3}\to\R[x]_{\leq 3}$ by 
+ \[ \phi(f)(x) = x^3 f(4/x). \]
+ \begin{itemize}
+  \item[(a)] Find the matrix of $\phi$ with respect to the
+   usual basis of $\R[x]_{\leq 3}$.
+  \item[(b)] Hence or otherwise, find the eigenvalues of
+   $\phi$, and find a basis of $\R[x]_{\leq 3}$ consisting
+   of eigenvectors for $\phi$.
+  \item[(c)] Is $\phi$ injective?
+  \item[(d)] Is $\phi$ surjective?
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] We have
+   \begin{align*}
+    \phi(1)   &= x^3.1           
+              &= 0.1 + 0.x + 0.x^2 + 1.x^3 \\
+    \phi(x)   &= x^3.\frac{4}{x} 
+              &= 0.1 + 0.x + 4.x^2 + 0.x^3 \\
+    \phi(x^2) &= x^3.\left(\frac{4}{x}\right)^2
+              &= 0.1 + 16.x + 0.x^2 + 0.x^3 \\
+    \phi(x^3) &= x^3.\left(\frac{4}{x}\right)^3
+              &= 64.1 + 0.x + 0.x^2 + 0.x^3,
+   \end{align*}
+   so the matrix of $\phi$ is 
+   \[ P = \bsm  0 &  0 &  0 & 64 \\
+                0 &  0 & 16 &  0 \\
+                0 &  4 &  0 &  0 \\
+                1 &  0 &  0 &  0 \esm
+   \]
+  \item[(b)] The characteristic polynomial of $P$ is the
+   determinant of the matrix $tI-P$, which is
+   \begin{align*}
+      \det\bsm t & 0 & 0 & -64 \\
+               0 & t & -16 & 0 \\
+               0 & -4 & t &  0 \\
+               -1 & 0 & 0 & t \esm &= 
+      t \det \bsm t & -16 & 0 \\ -4 & t & 0 \\ 0 & 0 & t \esm -
+      (-64) \det \bsm 0 & t & -16 \\ 0 & -4 & t \\ -1 & 0 &
+      0 \esm \\
+     &= t^2 (t^2-64) + 64 . (-1) . (t^2-64) 
+     = (t^2-64)^2 = (t-8)^2(t+8)^2.
+   \end{align*}
+   It follows that the eigenvalues of $P$ (or of $\phi$) are
+   $8$ and $-8$.  Consider a function
+   $f(x)=a+bx+cx^2+dx^3$.  We have
+   $\phi(f)=64d+16cx+4bx^2+ax^3$, so $\phi(f)=8f$ iff
+   $64d=8a$ and $16c=8b$ and $4b=8c$ and $a=8d$, which
+   reduces to $a=8d$ and $b=2c$, which means that $f$ has
+   the form $f(x)=d(x^3+8)+c(x^2+2x)$.  It follows that
+   $x^3+8$ and $x^2+2x$ are eigenvectors of eigenvalue $8$.
+   Similarly, we have $\phi(f)=-8f$ iff $64d=-8a$ and
+   $16c=-8b$ and $4b=-8c$ and $a=-8d$, which
+   reduces to $a=-8d$ and $b=-2c$, which means that $f$ has
+   the form $f(x)=d(x^3-8)+c(x^2-2x)$.  It follows that
+   $x^3-8$ and $x^2-2x$ are eigenvectors of eigenvalue $-8$.
+   We thus have a list $\CV=x^3+8,x^2+2x,x^3-8,x^2-2x$ of
+   eigenvectors of $\phi$, and this list is easily seen to
+   be a basis of $\R[x]_{\leq 3}$.
+  \item[(c)] We see from~(b) that $0$ is not an eigenvalue
+   of $\phi$, so $\ker(\phi)=0$, so $\phi$ is injective.
+  \item[(d)] The rank-nullity formula says that 
+   \[ \dim(\img(\phi)) + \dim(\ker(\phi)) =
+       \dim(\R[x]_{\leq 3}) = 4.
+   \]
+   As $\ker(\phi)=0$ this gives $\dim(\img(\phi))=4$, so
+   $\img(\phi)=\R[x]_{\leq 3}$, so $\phi$ is surjective.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506 Q3]}
+ Define linear maps $\phi,\psi\:M_2\R\to M_2\R$ by
+ \begin{align*}
+  \phi\bsm a & b \\ c & d \esm &=
+    \bsm a+c & b+d \\ a+c & b+d \esm \\
+  \psi(A) &= \phi(A)-2A.
+ \end{align*}
+ \begin{itemize}
+  \item[(a)] Write down a basis for $M_2\R$. \mrks{2}
+  \item[(b)] Find the matrix of $\phi$ with respect to your
+   basis.  \mrks{4}
+  \item[(c)] Find the matrix of $\psi$ with respect to your
+   basis. \mrks{3}
+  \item[(d)] Give bases for $\ker(\phi)$, $\img(\phi)$ and
+   $\ker(\psi)$.  \mrks{12}  
+  \item[(e)] Using~(d), give a basis for $M_2\R$ consisting
+   of eigenvectors for $\phi$. \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \textbf{This is all similar to questions on problem sheets,
+  except perhaps for~(e).}
+ \begin{itemize}
+  \item[(a)] The list 
+   \[ E_1 = \bsm 1&0\\0&0\esm,\qquad
+      E_2 = \bsm 0&1\\0&0\esm,\qquad
+      E_3 = \bsm 0&0\\1&0\esm,\qquad
+      E_4 = \bsm 0&0\\0&1\esm
+   \]
+   is a basis for $M_2\R$. \mks{2}
+  \item[(b)] We have
+   \begin{align*}
+    \phi(E_1) &= \bsm 1&0\\1&0 \esm = 1E_1 + 0E_2 + 1E_3 + 0E_4 \\
+    \phi(E_2) &= \bsm 0&1\\0&1 \esm = 0E_1 + 1E_2 + 0E_3 + 1E_4 \\
+    \phi(E_3) &= \bsm 1&0\\1&0 \esm = 1E_1 + 0E_2 + 1E_3 + 0E_4 \\
+    \phi(E_4) &= \bsm 0&1\\0&1 \esm = 0E_1 + 1E_2 + 0E_3 + 1E_4 \mks{3}
+   \end{align*}
+   The matrix of $\phi$ is thus
+   \[ \bsm 1&0&1&0 \\ 0&1&0&1 \\ 1&0&1&0 \\ 0&1&0&1 \esm. \mk \]
+  \item[(c)] The simplest thing is just to say that the matrix of
+   $\psi$ is the matrix of $\phi$ minus twice the identity.
+   Alternatively, we have 
+   \[ \psi\bsm a&b\\ c&d\esm = 
+       \bsm a+c & b+d \\ a+c & b+d \esm - 
+       \bsm 2a & 2b \\ 2c & 2d \esm = 
+       \bsm c-a & d-b \\ a-c & b-d \esm
+   \]
+   so
+   \begin{align*}
+    \psi(E_1) &= \bsm -1&0\\1&0 \esm = (-1)E_1 + 0E_2 + 1E_3 + 0E_4 \\
+    \psi(E_2) &= \bsm 0&-1\\0&1 \esm = 0E_1 + (-1)E_2 + 0E_3 + 1E_4 \\
+    \psi(E_3) &= \bsm 1&0\\-1&0 \esm = 1E_1 + 0E_2 + (-1)E_3 + 0E_4 \\
+    \psi(E_4) &= \bsm 0&1\\0&-1 \esm = 0E_1 + 1E_2 + 0E_3 + (-1)E_4 \mks{2}
+   \end{align*}
+   The matrix of $\psi$ is thus
+   \[ \bsm -1&0&1&0 \\ 0&-1&0&1 \\ 1&0&-1&0 \\ 0&1&0&-1 \esm. \mk \]
+  \item[(d)] Consider a matrix $A=\bsm a&b\\ c&d\esm$.  We
+   have $A\in\ker(\phi)$ iff $a+c=0=b+d$ \mk iff $A$ has the
+   form 
+   \[ A=\bsm a&b\\-a&-b\esm=
+         a\bsm 1&0\\-1&0\esm + b\bsm 0&1\\0&-1\esm. \mk
+   \]
+   It follows that $\bsm 1&0\\-1&0\esm,\bsm 0&1\\0&-1\esm$
+   is a basis for $\ker(\phi)$ \mks{2}.  Similarly, the formula
+   in~(c) shows that $\psi(A)=0$ iff $c=a$ and $d=b$ \mk iff $A$
+   has the form
+   \[ A=\bsm a&b\\ a&b\esm= 
+         a\bsm 1&0\\1&0\esm + b\bsm 0&1\\0&1\esm, \mk
+   \]
+   so $\bsm 1&0\\1&0\esm,\bsm 0&1\\0&1\esm$ is a basis for
+   $\ker(\psi)$ \mks{2}.  Next, the formula
+   \[ \phi\bsm a & b \\ c & d \esm =
+       \bsm a+c & b+d \\ a+c & b+d \esm \]
+   shows that any matrix $B$ in $\img(\phi)$ has the form 
+   \[ B = \bsm p&q\\ p&q\esm =
+        p \bsm 1&0\\1&0\esm + q\bsm 0&1\\0&1\esm. \mk
+   \]
+   Moreover, for any matrix $B$ of the above form we have
+   $B=\phi\bsm p&q\\0&0\esm$, so $B\in\img(\phi)$ \mk.  This
+   means that $\img(\phi)$ is precisely the set of matrices
+   of the above form, so
+   $\bsm 1&0\\1&0\esm,\bsm 0&1\\0&1\esm$ is a basis for
+   $\img(\phi)$ \mks{2}.
+  \item[(e)] The elements of $\ker(\phi)$ are eigenvectors
+   for $\phi$ of eigenvalue $0$ \mk, and the elements of
+   $\ker(\psi)$ are eigenvectors of $\phi$ of eigenvalue
+   $2$ \mk.  It follows that the list 
+   \[ \CE = \bsm 1&0\\-1&0\esm,\bsm 0&1\\0&-1\esm,
+            \bsm 1&0\\1&0\esm,\bsm 0&1\\0&1\esm
+   \]
+   consists of eigenvectors of $\phi$.  It is easily seen to
+   be a basis of $M_2\R$. \mks{2}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506R Q3]}
+ Define a linear map $\phi\:M_2\R\to M_2\R$ by $\phi(A)=QA-AQ$, where
+ $Q=\bsm 3&4\\4&-3\esm$.
+ \begin{itemize}
+  \item[(a)] Show that $I$ and $Q$ are eigenvectors for $\phi$.
+   (\textbf{Hint:} you do not need any elaborate calculation for
+   this.) \mrks{3}
+  \item[(b)] Give a formula for $\phi\left(\bsm a&b\\ c&d\esm\right)$
+   \mrks{3}
+  \item[(c)] Write down a basis for $M_2\R$. \mrks{2}
+  \item[(d)] Find the matrix of $\phi$ with respect to your
+   basis. \mrks{4}
+  \item[(e)] Find $X$ such that $X$ is an eigenvector of $\phi$ with
+   eigenvalue $10$, and show that $X^T$ is an eigenvector of $\phi$ of
+   eigenvalue $-10$. \mrks{9}
+  \item[(f)] What is the matrix of $\phi$ with respect to the basis
+   $I,Q,X,X^T$ of $M_2\R$? \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] We have $\phi(I)=QI-IQ=Q-Q=0$ \mk and $\phi(Q)=Q^2-Q^2=0$
+   \mk, so $I$ and $Q$ are eigenvectors of eigenvalue $0$ \mk.
+  \item[(b)] 
+   \[ \phi\bsm a&b\\c&d\esm = 
+     \bsm 3&4\\4&-3 \esm\bsm a&b\\ c&d\esm -   
+     \bsm a&b\\ c&d\esm\bsm 3&4\\4&-3 \esm = 
+     \bsm 3a+4c & 3b+4d \\ 4a-3c & 4b-3d \esm - 
+     \bsm 3a+4b & 4a-3b \\ 3c+4d & 4c-3d \esm = 
+     \bsm -4b+4c & -4a+6b+4d \\ 4a-6c-4d & 4b-4c \esm \mks{3}
+   \]
+  \item[(c)] The list 
+   \[ E_1 = \bsm 1&0\\0&0\esm,\qquad
+      E_2 = \bsm 0&1\\0&0\esm,\qquad
+      E_3 = \bsm 0&0\\1&0\esm,\qquad
+      E_4 = \bsm 0&0\\0&1\esm
+   \]
+   is a basis for $M_2\R$. \mks{2}
+  \item[(d)] Using the formula in~(b) we have
+   \begin{align*}
+    \phi(E_1) &= \bsm 0 & -4 \\ 4 & 0 \esm 
+               = 0.E_1 -4.E_2 + 4.E_3 + 0.E_4 \\
+    \phi(E_2) &= \bsm -4 & 6 \\ 0 & 4 \esm 
+               = -4.E_1 + 6.E_2 + 0.E_3 + 4.E_4 \\
+    \phi(E_3) &= \bsm 4 & 0 \\ -6 & -4 \esm 
+               = 4.E_1 + 0.E_2 - 6.E_3 - 4.E_4 \\
+    \phi(E_4) &= \bsm 0 & 4 \\ -4 & 0 \esm
+               = 0.E_1 + 4.E_2 - 4.E_3 + 0.E_4 \mks{3}
+   \end{align*}
+   The matrix of $\phi$ is thus
+   \[ M = \bsm 0&-4&4&0 \\ -4&6&0&4 \\ 4&0&-6&-4 \\ 0&4&-4&0 \esm. \mk \]
+  \item[(c)] Take $X=\bsm w&x\\ y&z\esm$ \mk.  We need $\phi(X)=10X$ \mk, or
+   in other words $\bsm -4x+4y&-4w+6x+4z\\ 4w-6y-4z&4x-4y\esm =
+   \bsm 10w&10x\\10y&10z\esm$ \mk, or
+   \begin{align*}
+    -10w-4x+4y &= 0 \\
+    -4w-4x+4z &= 0 \\
+    4w-16y+4z &= 0 \\
+    4x-4y-10z &= 0.  \mk 
+   \end{align*}
+   From the first and last of these we get $w=-z$, and we can
+   substitute this into the second and third equations to get $x=2z$
+   and $y=-z/2$, so $X=\bsm -z&2z\\ -z/2&z\esm$.  Here $z$ is
+   arbitrary so we take $z=-2$ to get $X=\bsm 2&-4\\1&-2\esm$ \mk.
+
+   We now have $X^T=\bsm 2&1\\-4&-2\esm$, so 
+   \[ \phi(X^T) =
+       \bsm
+        -4.1+4.(-4) & -4.2+6.1+4.(-2) \\
+        4.2-6.(-4)-4.(-2) & 4.1 - 4.(-4)
+       \esm = 
+       \bsm -20 & -10 \\ 40 & 20 \esm = -10 X^T, \mks{3}
+   \]
+   so $X^T$ is an eigenvector of eigenvalue $-10$. \mk
+  \item[(d)] We have
+   \begin{align*}
+    \phi(I)   &=    0   = 0.I + 0.Q +  0.X +  0.X^T \\
+    \phi(Q)   &=    0   = 0.I + 0.Q +  0.X +  0.X^T \\
+    \phi(X)   &=  10X   = 0.I + 0.Q + 10.X +  0.X^T \\
+    \phi(X^T) &= -10X^T = 0.I + 0.Q +  0.X - 10.X^T, \mks{2}
+   \end{align*}
+   so the relevant matrix is 
+   \[ \bsm 0 & 0 & 0  & 0 \\ 0 & 0 & 0 &   0 \\
+           0 & 0 & 10 & 0 \\ 0 & 0 & 0 & -10 \esm. \mks{2}
+   \]
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607 Q3]}
+ \begin{itemize}
+  \item[(a)] Define the standard inner product on the space
+   $M_2(\R)$. \mrks{2}
+  \item[(b)] What is $\ip{A,B}$, where $A=\bsm 1&1\\0&1\esm$
+   and $B=\bsm 1&0\\1&1\esm$? \mrks{2}
+  \item[(c)] Let $R_\tht$ denote the rotation matrix
+   $\bsm\cos(\tht)&-\sin(\tht)\\ \sin(\tht)&\cos(\tht)\esm$.  Simplify
+   $\ip{R_\tht,R_\phi}$, and thus describe when
+   $\ip{R_\tht,R_\phi}=0$.  \mrks{6}
+  \item[(d)] Put $V=\{X\in M_2(\R)\st X\bsm 1\\1\esm =0\}$ and 
+   $W=\{Y\in M_2(\R)\st Y\bsm 1\\-1\esm =0\}$.
+   \begin{itemize}
+    \item[(i)] Find the general form for elements of $V$, and thus the
+     dimension of $V$.\mrks{3}
+    \item[(ii)] Find the general form for elements of $W$, and thus the
+     dimension of $W$.\mrks{2}
+    \item[(iii)] Show that every element of $V$ is orthogonal to every
+     element of $W$.\mrks{1}
+    \item[(iv)] By comparing dimensions, prove that $V^\perp=W$.\mrks{4}
+   \end{itemize}
+  \item[(e)] Find orthonormal bases for $V$ and $W$. \mrks{5}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} The standard inner product on $M_2(\R)$ is
+   $\ip{A,B}=\trc(AB^T)$. \mks{2}
+  \item[(b)] In particular, if $A=\bsm 1&1\\0&1\esm$
+   and $B=\bsm 1&0\\1&1\esm$ we have $B^T=A$ so
+   $AB^T=A^2=\bsm 1&2\\0&1\esm$ \mk so
+   $\ip{A,B}=\trc\bsm 1&2\\0&1\esm=2$ \mk.
+  \item[(c)] \textbf{Unseen.} We have 
+   \[ R_\tht R_\phi^T = 
+       \bsm\cos(\tht)&-\sin(\tht)\\ \sin(\tht)&\cos(\tht)\esm
+       \bsm\cos(\phi)& \sin(\phi)\\ -\sin(\phi)&\cos(\phi)\esm
+     = \bsm 
+        \cos(\tht)\cos(\phi) + \sin(\tht)\sin(\phi) &
+        \cos(\tht)\sin(\phi) - \sin(\tht)\cos(\phi) \\
+        \sin(\tht)\cos(\phi) - \cos(\tht)\sin(\phi) &
+        \cos(\tht)\cos(\phi) + \sin(\tht)\sin(\phi)
+       \esm.  \mks{2}
+   \]
+   Taking traces, we get 
+   \[ \ip{R_\tht,R_\phi} = 
+       2(\cos(\tht)\cos(\phi)+\sin(\tht)\sin(\phi)) = 
+       2 \cos(\tht-\phi). \mks{2}
+   \]
+   In particular, this means that $\ip{R_\tht,R_\phi}=0$ iff
+   $\tht-\phi$ has the form $(n+\half)\pi$ for some integer
+   $n$. \mks{2} 
+  \item[(d)]\textbf{ Similar to problem sheets. }
+   \begin{itemize}
+    \item[(i)]
+     For $X=\bsm w&x\\ y&z\esm\in M_2(\R)$ we have
+     $X\bsm 1\\1\esm=\bsm w+x\\ y+z\esm$, so $X\in V$ iff
+     $x=-w$ and $z=-y$.  \mk This means that 
+     \[ X = \bsm w&-w\\ y&-y\esm =
+        w\bsm 1&-1\\0&0\esm + x\bsm 0&0\\1&-1\esm.  \mk
+     \]
+     It follows that $V$ has dimension $2$, with basis 
+     $\bsm 1&-1\\0&0\esm,\bsm 0&0\\ 1&-1\esm$. \mk
+    \item[(ii)]  
+     Similarly, for a matrix $Y=\bsm p&q\\ r&s\esm\in M_2(\R)$ we
+     have $Y\bsm 1\\-1\esm=\bsm p-q\\r-s\esm$, so $Y\in W$ iff
+     $p=q$ and $r=s$.  This means that
+     \[ Y = \bsm p&p \\ r&r\esm = 
+        p\bsm 1&1\\ 0&0\esm + q\bsm 0&0\\1&1\esm. \mk
+     \]
+     It follows that $W$ also has dimension $2$. \mk
+    \item[(iii)] We have
+     \[ \ip{X,Y}=\trc(XY^T)=
+         \trc\left(\bsm w&-w\\ y&-y\esm\bsm p&r\\ p&r\esm\right)=
+         \trc\bsm 0&0\\ 0&0\esm =0. \mk
+     \]
+    \item[(iv)] Part~(iii) tells us that 
+     $W\leq V^\perp$.  \mk However, we also have $\dim(W)=2$ and
+     $\dim(V^\perp)=\dim(M_2(\R))-\dim(V)=4-2=2=\dim(W)$, so we
+     must have $V^\perp=W$. \mks{3}
+   \end{itemize}
+  \item[(e)]\textbf{ Similar to problem sheets. } We have seen that
+   $\bsm 1&-1\\0&0\esm,\bsm 0&0\\ 1&-1\esm$ is a basis for $V$ \mk,
+   and these two matrices are orthogonal \mk.  It follows that 
+   $\frac{1}{\sqrt{2}}\bsm 1&-1\\0&0\esm,
+    \frac{1}{\sqrt{2}}\bsm 0&0\\1&-1\esm$ is an orthonormal basis for
+   $V$ \mk.  Similarly, the list 
+   $\frac{1}{\sqrt{2}}\bsm 1&1\\0&0\esm,
+    \frac{1}{\sqrt{2}}\bsm 0&0\\1&1\esm$ is an orthonormal basis for $W$.
+   \mks{2}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607R Q3]}
+ Let $\phi\:V\to W$ be a linear map.
+ \begin{itemize}
+  \item[(a)]
+   Define what it means for $\phi$
+   be~(i)~injective; (ii)~surjective; (iii)~bijective. \mrks{5}
+  \item[(b)] 
+   Define $\ker(\phi)$, and show that it is a subspace of
+   $V$. \mrks{5}
+  \item[(c)] Show that $\phi$ is injective iff
+   $\ker(\phi)=0$. \mrks{7}
+  \item[(d)] Consider the linear map
+   $\psi\:\R[x]_{\leq 3}\to M_2(\R)$ given by 
+   \[ \psi(p) = \bsm p(1) & p(-1) \\ p'(1) & p'(-1) \esm. \]
+   Show that $\psi$ is injective. (You need not prove that
+   it is linear.) \mrks{4}
+  \item[(e)] Use the rank-nullity formula to deduce that
+   $\psi$ is also surjective. \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}
+   \begin{itemize}
+    \item[(i)] $\phi$ is injective iff whenever $v,v'\in V$
+     and $\phi(v)=\phi(v')$ we have $v=v'$. \mks{2}
+    \item[(ii)] $\phi$ is surjective iff for all $w\in W$
+     there exists some $v\in V$ with $\phi(v)=w$. \mks{2}
+    \item[(iii)] $\phi$ is bijective iff it is both
+     injective and surjective. \mk
+   \end{itemize}
+  \item[(b)] \textbf{Bookwork.} 
+   $\ker(\phi)$ is defined to be the set of all
+   $v\in V$ such that $\phi(v)=0_W$ \mks{2}.  We certainly have
+   $\phi(0_V)=0_W$, so $0_V\in\ker(\phi)$ \mk.  Suppose we have
+   $v,v'\in\ker(\phi)$ and $t,t'\in\R$.  We then have
+   \[ \phi(tv+t'v') = t\phi(v)+t'\phi(v') = 
+        t.0_W + t'.0_W = 0_W,
+   \]
+   so $tv+t'v'\in\ker(\phi)$. \mks{2} This proves that $\ker(\phi)$
+   is a subspace.
+  \item[(c)] \textbf{Bookwork.} Suppose that $\phi$ is injective.  If
+   $v\in\ker(\phi)$ then we have $\phi(v)=0=\phi(0)$ and so
+   (by injectivity) $v=0$.  Thus $\ker(\phi)=0$. \mks{3}
+
+   Conversely, suppose that $\ker(\phi)=0$.  Suppose we have
+   $v,v'\in V$ with $\phi(v)=\phi(v')$.  Then
+   $\phi(v-v')=\phi(v)-\phi(v')=0-0=0$, so
+   $v-v'\in\ker(\phi)=\{0\}$, so $v-v'=0$, so $v=v'$.  This
+   shows that $\phi$ is injective. \mks{4}
+  \item[(d)] \textbf{Similar to problem sheets.}
+   Now consider the map
+   $\psi\:\R[x]_{\leq 3}\to M_2(\R)$ given by 
+   \[ \psi(p) = \bsm p(1) & p(-1) \\ p'(1) & p'(-1) \esm. \]
+   More explicitly, if $p(x)=ax^3+bx^2+cx+d$ then
+   \[ \psi(p) = \bsm a+b+c+d & -a+b-c+d \\ 3a+2b+c & 3a-2b+c \esm.\mk
+   \]
+   If $p\in\ker(\psi)$ then $\psi(p)=\bsm 0&0\\0&0\esm$, so
+   \begin{align}
+     a+b+c+d &= 0   \tag{A} \\
+    -a+b-c+d &= 0   \tag{B} \\
+     3a+2b+c &= 0   \tag{C} \\
+     3a-2b+c &= 0.  \mk \tag{D}
+   \end{align}
+   By subtracting (C) and (D) we get $b=0$.  Similarly, by adding
+   (A) and (B) we get $2b+2d=0$ but $b=0$ so $d=0$.  After
+   substituting these values our equations become $a+c=0$ and
+   $3a+c=0$, and we can subtract these to get $a=0$ and thus also
+   $c=0$.  As $a=b=c=d=0$ we have $p(x)=0$.  \mk This shows that
+   $\ker(\psi)=\{0\}$, so $\psi$ is injective.  \mk
+  \item[(e)] \textbf{Similar to problem sheets.}
+   We have $\dim(\R[x]_{\leq 3})=\dim(M_2(\R))=4$.
+   The rank-nullity formula says that
+   \[ \dim(\ker(\psi))+\dim(\img(\psi)) = 
+       \dim(\R[x]_{\leq 3}) = 4. \mk
+   \]
+   As $\ker(\psi)=0$ \mk this gives
+   $\dim(\img(\psi))=4=\dim(M_2(\R))$ \mk, so $\img(\psi)=M_2(\R)$\mk,
+   so $\psi$ is surjective.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708 Q3]}
+ \begin{itemize}
+  \item[(a)] Suppose we have a finite-dimensional vector space $U$,
+   and subspaces $V$ and $W$ of $U$.  State a theorem about the
+   existence of compatible bases for $V\cap W$, $V$, $W$ and $V+W$.
+   (You need not give a proof.)  \mrks{6}
+  \item[(b)] Deduce a formula relating the dimensions of $V\cap W$,
+   $V$, $W$ and $V+W$. \mrks{2}
+ \end{itemize}
+ Now take $U=M_2(\R)$, and consider the spaces
+ \begin{align*}
+  V &= \{\bsm a&b \\ c&d \esm\in M_2(\R) \st a+b=c+d \} \\
+  W &= \{\bsm a&b \\ c&d \esm\in M_2(\R) \st a+c=b+d \}.
+ \end{align*}
+ \begin{itemize}
+  \item[(c)] Find a basis $A_1,A_2$ for $V\cap W$ \mrks{5}
+  \item[(d)] Find a matrix $B$ such that $A_1,A_2,B$ is a basis for
+   $V$.  You should justify your answer carefully, either directly or by
+   consideration of dimensions.  \mrks{4}
+  \item[(e)] Find a matrix $C$ such that $A_1,A_2,C$ is a basis for
+   $W$.  Here you need not justify your answer. \mrks{2}
+  \item[(f)] Show that $V+W=M_2(\R)$, either directly or by
+   consideration of dimensions.  \mrks{3}
+  \item[(g)] Write down a matrix $X$ such that $\ip{A,X}=0$ for all
+   $A\in V$. (Here we use the standard inner product on $M_2(\R)$.)
+   \mrks{3}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}
+   There exist vectors $u_1,\dotsc,u_p$, $v_1,\dotsc,v_q$
+   and $w_1,\dotsc,w_r$ (for some $p,q,r\geq 0$) \mks{2} such that 
+   \begin{itemize}
+    \item $u_1,\dotsc,u_p$ is a basis for $V\cap W$ \mk
+    \item $u_1,\dotsc,u_p,v_1,\dotsc,v_q$ is a basis for $V$ \mk
+    \item $u_1,\dotsc,u_p,w_1,\dotsc,w_r$ is a basis for $W$ \mk
+    \item $u_1,\dotsc,u_p,v_1,\dotsc,v_q,w_1,\dotsc,w_r$ is a basis
+     for $V+W$. \mk
+   \end{itemize}
+  \item[(b)] \textbf{Bookwork.} It follows that 
+   \[ \dim(V+W) = p+q+r = (p+r) + (q+r) - r =
+       \dim(V) + \dim(W) - \dim(V\cap W). \mks{2}
+   \]
+  \item[(c)] \textbf{Similar to lecture notes and problem sheets.}
+   $V\cap W$ is the set of matrices $A=\bsm a&b\\ c&d\esm$
+   satisfying $a+b-c-d=0$ and $a-b+c-d=0$ \mk.  These equations easily
+   reduce to $a=d$ and $b=c$ \mk, so $V\cap W$ is the set of matrices of
+   the form 
+   \[ A=\bsm a&b\\ b&a\esm=a\bsm 1&0\\0&1\esm + b\bsm 0&1\\1&0\esm.\mk \]
+   From this, we see that the matrices $A_1=\bsm 1&0\\0&1\esm$ and
+   $A_2=\bsm 0&1\\1&0\esm$ give a basis for $V\cap W$. \mks{2}
+  \item[(d)] \textbf{Similar to lecture notes and problem sheets.}
+   Take $B=\bsm 0&0\\1&-1\esm$ \mk.  We
+   find that $B\in V$ and $A_1,A_2,B$ are linearly independent.  They
+   therefore span a subspace of $V$ of dimension three, but $V$ is a
+   proper subspace of $M_2(\R)$ and so has dimension at most three, so
+   $A_1,A_2,B$ must be a basis for $V$.  More explicitly, a typical
+   element $A\in V$ has the form $A=\bsm a&b\\c&d\esm$ with $a+b=c+d$,
+   so $d=a+b-c$, so  
+   \[ A - aA_1 - bA_2 =
+       \bsm a & b\\ c & a+b-c\esm - 
+       \bsm a&0\\ 0&a\esm -
+       \bsm 0&b\\b&0\esm =
+       \bsm 0&0 \\ c-b & b-c\esm = (c-b) B,
+   \]
+   so $A=aA_1+bA_2+(c-b)B$.  Thus $V$ is spanned by $A_1,A_2,B$. \mks{3}
+  \item[(e)] Take $C=\bsm 0&0\\1&1\esm$. \mks{2}
+  \item[(f)] \textbf{Unseen.}
+   In general, if $V$ and $W$ are two subspaces of a vector
+   space $U$, we have $\dim(V+W)+\dim(V\cap W)=\dim(V)+\dim(W)$.  In
+   our case, part~(a) tells us that $\dim(V\cap W)=2$, and parts~(b)
+   and~(c) tell us that $\dim(V)=\dim(W)=3$.  It follows that
+   $\dim(V+W)=3+3-2=4$ \mks{2}.  However, $V+W$ is a subspace of the
+   four-dimensional space $M_2(\R)$, and a subspace of the same
+   dimension as the total space must be equal to the total space, so
+   $V+W=M_2(\R)$ as required. \mk
+  \item[(g)] \textbf{Unseen.} Put $X=\bsm 1&1\\-1&-1\esm$.  Then for
+   $A=\bsm a&b\\ c&d\esm$ we have $\ip{A,X}=a+b-c-d$, so $\ip{A,X}=0$
+   iff $a+b=c+d$ iff $A\in V$. \mks{3}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708R Q3]}
+ Consider the linear map $\al\:\R[x]_{\leq 2}\to M_2(\R)$ given by 
+ \[ \al(f) = \bsm f(1) & f(2) \\ f'(1) & f'(2) \esm. \]
+ \begin{itemize}
+  \item[(a)] Write down a basis $\CU$ for $\R[x]_{\leq 2}$ and a basis
+   $\CV$ for $M_2(\R)$. \mrks{3}
+  \item[(b)] Find the matrix of $\al$ with respect to the bases $\CU$
+   and $\CV$. \mrks{5}
+  \item[(c)] Show that $\al$ is injective. \mrks{4}
+  \item[(d)] Give a basis for the image of $\al$. \mrks{4}
+  \item[(e)] Find a nonzero matrix $X=\bsm a&b\\ c&d\esm$ such that
+   $\ip{X,\al(x^i)}=0$ for $i=0,1,2$. \mrks{5}\\
+   (Here we use the standard inner product for square matrices.)
+  \item[(f)] Show (by an explicit example) that $\al$ is not
+   surjective. \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \textbf{This is a slight modification of a question from a past paper.}
+ \begin{itemize}
+  \item[(a)] \textbf{Similar to problem sheets}
+   The obvious basis for $\R[x]_{\leq 2}$ consists of the
+   polynomials $p_0(x)=1$, $p_1(x)=x$ and $p_2(x)=x^2$.\mk  The obvious
+   basis for $M_2(\R)$ consists of the matrices
+   \[ E_1 = \bsm 1&0\\0&0 \esm \hspace{3em}
+      E_2 = \bsm 0&1\\0&0 \esm \hspace{3em}
+      E_3 = \bsm 0&0\\1&0 \esm \hspace{3em}
+      E_4 = \bsm 0&0\\0&1 \esm. \mks{2}
+   \] 
+  \item[(b)] \textbf{Similar to problem sheets}
+   We have 
+   \begin{align*}
+    \al(p_0) &= \bsm 1 & 1 \\ 0 & 0 \esm = 1.E_1 + 1.E_2 + 0.E_3 + 0.E_4 \\
+    \al(p_1) &= \bsm 1 & 2 \\ 1 & 1 \esm = 1.E_1 + 2.E_2 + 1.E_3 + 1.E_4 \\
+    \al(p_2) &= \bsm 1 & 4 \\ 2 & 4 \esm = 1.E_1 + 4.E_2 + 2.E_3 + 4.E_4
+    \mks{3}
+   \end{align*}
+   so the matrix of $\al$ with respect to our bases is
+   \[ A = \bsm 1 & 1 & 1 \\ 1 & 2 & 4 \\ 0 & 1 & 2 \\ 0 & 1 & 4 \esm.
+       \mks{2}
+   \]
+  \item[(c)] \textbf{Similar to problem sheets}
+   From the above we see that 
+   \[ \al(a+bx+cx^2) = a\al(p_0) + b\al(p_1) + c\al(p_2) = 
+       \bsm a+b+c & a+2b+4c \\ b+2c & b+4c \esm. \mks{2}
+   \]
+   Thus, if $\al(a+bx+cx^2)=0$ we see that 
+   \begin{align*}
+    a+b+c &= 0 \\
+    a+2b+4c &= 0 \\
+    b+2c &= 0 \\
+    b+4c &= 0.
+   \end{align*}
+   By subtracting the last two equations we see that $c=0$, and we can
+   substitute this in the last equation to give $b=0$.  The first
+   equation then gives $a=0$ as well.  This shows that $\ker(\al)=\{0\}$
+   and thus that $\al$ is injective.  \mks{2}
+  \item[(d)] \textbf{Unseen} As $\al$ is injective, the matrices
+   $\al(p_0)=\bsm 1&1\\0&0\esm$, $\al(p_1)=\bsm 1&2\\1&1\esm$ and
+   $\al(p_2)=\bsm 1&4\\2&4\esm$ form a basis for the image. \mks{4}
+  \item[(e)] \textbf{Similar to problem sheets} We have
+   \begin{align*}
+    \ip{X,\al(1)}   &= \ip{\bsm a&b\\ c&d\esm,\bsm 1&1\\ 0&0\esm} 
+                     = a+b \\
+    \ip{X,\al(x)}   &= \ip{\bsm a&b\\ c&d\esm,\bsm 1&2\\ 1&1\esm} 
+                     = a+2b+c+d \\
+    \ip{X,\al(x^2)} &= \ip{\bsm a&b\\ c&d\esm,\bsm 1&4\\ 2&4\esm} 
+                     = a+4b+2c+4d  \mks{2}
+   \end{align*}
+   We therefore must have 
+   \begin{align*}
+    a+b &= 0 \\
+    a+2b+c+d &= 0 \\
+    a+4b+2c+4d &= 0.
+   \end{align*}
+   The first equation gives $b=-a$, using which we rewrite the other
+   two as $-a+c+d=0$ and $-3a+2c+4d=0$.  Subtracting three times the
+   first of these from the second gives $c=d$, using which we get
+   $a=2d$.  Thus $X$ must have the form $X=\bsm 2d& -2d\\ d&d\esm$. \mks{2}
+   Here $d$ is arbitrary so we can take $X=\bsm 2&-2\\ 1&1\esm$. \mk
+  \item[(f)] \textbf{Unseen}
+   Observe that $\ip{X,X}=2^2+(-2)^2+1^2+1^2=10\neq 0$, but
+   $\ip{X,A}=0$ for all $A$ in the image of $\al$ (by part~(d)).  It
+   follows that $X\not\in\img(\al)$, and thus that
+   $\img(\al)\neq M_2(\R)$, so $\al$ is not surjective.  \mks{4}
+  \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[Mock exam Q4]}
+ Define a linear map $\al\:\R[x]_{\leq 2}\to\R^3$ by 
+ \[ \al(p) = \left[\textstyle
+     \int_{-1}^1 p(x)\,dx , 
+     \int_{-2}^2 p(x)\,dx , 
+     \int_{-3}^3 p(x)\,dx 
+    \right]^T
+ \]
+ \begin{itemize}
+  \item[(a)] Give a basis for $\R[x]_{\leq 2}$ and a basis
+   for $\R^3$.
+  \item[(b)] Find the matrix of $\al$ with respect to your
+   bases in~(a).
+  \item[(c)] Find bases for $\ker(\al)$ and $\img(\al)$.
+  \item[(d)] Show that
+   \[ \img(\al) =
+       \left\{\bsm x\\ y\\ z\esm \st 5x-4y+z=0\right\} .
+   \]
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] The list $\CP=1,x,x^2$ is a basis for
+   $\R[x]_{\leq 2}$.  The list
+   $\CE=\bsm 1\\0\\0\esm,\bsm 0\\1\\0\esm,\bsm 0\\0\\1\esm$
+   is a basis for $\R^3$.
+  \item[(b)] If $f(x)=a+bx+cx^2$ then
+   $\int f(x)\,dx=F(x)=ax+bx^2/2+cx^3/3$, so 
+   \begin{align*}
+    \int_{-1}^1 f(x)\,dx &= F(1)-F(-1) = 2a+2c/3 \\
+    \int_{-2}^2 f(x)\,dx &= F(2)-F(-2) = 4a+16c/3 \\
+    \int_{-3}^3 f(x)\,dx &= F(3)-F(-3) = 6a+54c/3,
+   \end{align*}
+   so
+   \[ \al(  1)=\bsm 2\\4\\6\esm \hspace{1em}
+      \al(  x)=\bsm 0\\0\\0\esm \hspace{1em}
+      \al(x^2)=\bsm 2/3\\16/3\\54/3\esm.
+   \]
+   The matrix of $\al$ with respect to our bases is thus
+   \[ A = 
+       \bsm 2 & 0 & 2/3 \\ 4 & 0 & 16/3 \\ 6 & 0 & 54/3 \esm
+   \]
+  \item[(c)] If $f(x)=a+bx+cx^2$ we have 
+   \[ \al(f) = [2a+2c/3,\; 4a+16c/3,\; 6a+54c/3]^T. \]
+   For this to be zero we must have $2a+2c/3=0$ and
+   $4a+16c/3=0$ and $6a+54c/3=0$, or equivalently $a=-c/3$
+   and $a=-4c/3$ and $a=-3c$, which together give $a=0$ and
+   $c=0$.  However, $b$ can be arbitrary.  It follows that
+   $x$ is a basis for $\ker(\al)$.  On the other hand, using
+   the equation 
+   \[ \al(f) = 2a \bsm 1 \\ 2\\ 3\esm +
+               \frac{2c}{3} \bsm 1 \\ 8 \\ 27 \esm, 
+   \]
+   we see that $[1,2,3]^T,[1,8,27]^T$ is a basis for
+   $\img(\al)$.
+  \item[(d)] Put 
+   \[ W = \left\{\bsm x\\ y\\ z\esm \st 5x-4y+z=0\right\} .
+   \]
+   We claim that $W=\img(\al)$.  Indeed, we have
+   \begin{align*}
+    5\tm 1 - 4\tm 2 + 3  &= 0 \\
+    5\tm 1 - 4\tm 8 + 27 &= 0, 
+   \end{align*}
+   so the vectors $[1,2,3]^T$ and $[1,8,27]^T$ lie in $W$.
+   As these vectors span $\img(\al)$, we see that
+   $\img(\al)\leq W$.  On the other hand, $W$ is a plane in
+   $\R^3$ so it has dimension $2$, which is the same as
+   $\dim(\img(\al))$, so $\img(\al)=W$ as claimed.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506 Q4]}
+ Let $\phi\:V\to W$ be a linear map.
+ \begin{itemize}
+  \item[(a)]
+   Define what it means for $\phi$
+   be~(i)~injective; (ii)~surjective; (iii)~bijective. \mrks{5}
+  \item[(b)] 
+   Define $\ker(\phi)$, and show that it is a subspace of
+   $V$. \mrks{5}
+  \item[(c)] Show that $\phi$ is injective iff
+   $\ker(\phi)=0$. \mrks{7}
+  \item[(d)] Consider the linear map
+   $\psi\:\R[x]_{\leq 3}\to M_2\R$ given by 
+   \[ \psi(p) = \bsm p(0) & p(1) \\ p(-1) & p(2) \esm. \]
+   Show that $\psi$ is injective. (You need not prove that
+   it is linear.) \mrks{4}
+  \item[(e)] Use the rank-nullity formula to deduce that
+   $\psi$ is also surjective. \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}
+   \begin{itemize}
+    \item[(i)] $\phi$ is injective iff whenever $v,v'\in V$
+     and $\phi(v)=\phi(v')$ we have $v=v'$. \mks{2}
+    \item[(ii)] $\phi$ is surjective iff for all $w\in W$
+     there exists some $v\in V$ with $\phi(v)=w$. \mks{2}
+    \item[(iii)] $\phi$ is bijective iff it is both
+     injective and surjective. \mk
+   \end{itemize}
+  \item[(b)] \textbf{Bookwork.} 
+   $\ker(\phi)$ is defined to be the set of all
+   $v\in V$ such that $\phi(v)=0_W$ \mks{2}.  We certainly have
+   $\phi(0_V)=0_W$, so $0_V\in\ker(\phi)$ \mk.  Suppose we have
+   $v,v'\in\ker(\phi)$ and $t,t'\in\R$.  We then have
+   \[ \phi(tv+t'v') = t\phi(v)+t'\phi(v') = 
+        t.0_W + t'.0_W = 0_W,
+   \]
+   so $tv+t'v'\in\ker(\phi)$. \mks{2} This proves that $\ker(\phi)$
+   is a subspace.
+  \item[(c)] \textbf{Bookwork.} Suppose that $\phi$ is injective.  If
+   $v\in\ker(\phi)$ then we have $\phi(v)=0=\phi(0)$ and so
+   (by injectivity) $v=0$.  Thus $\ker(\phi)=0$. \mks{3}
+
+   Conversely, suppose that $\ker(\phi)=0$.  Suppose we have
+   $v,v'\in V$ with $\phi(v)=\phi(v')$.  Then
+   $\phi(v-v')=\phi(v)-\phi(v')=0-0=0$, so
+   $v-v'\in\ker(\phi)=\{0\}$, so $v-v'=0$, so $v=v'$.  This
+   shows that $\phi$ is injective. \mks{4}
+  \item[(d)] \textbf{Similar to problem sheets.}
+   Now consider the map
+   $\psi\:\R[x]_{\leq 3}\to M_2\R$ given by 
+   \[ \psi(p) = \bsm p(0) & p(1) \\ p(-1) & p(2) \esm. \]
+   If $p\in\ker(\psi)$ then $\psi(p)=\bsm 0&0\\0&0\esm$, so
+   $p(0)=p(1)=p(2)=p(3)=0$ \mk.  Thus $p$ is a polynomial of
+   degree $3$ with at least $4$ different roots; this can
+   only happen if $p=0$.  More explicitly, suppose that
+   $p(x)=a+bx+cx^2+dx^3$.  Then 
+   \[ \psi(p) =
+       \bsm a & a+b+c+d \\ a-b+c-d & a+2b+4c+8d \esm,\mk
+   \]
+   so $\psi(p)=0$ iff $a=0$ and $a+b+c+d=0$ and $a-b+c-d=0$
+   and $a+2b+4c+8d=0$ \mk.  Putting $a=0$ in the remaining
+   equations gives $b+c+d=0$ and $-b+c-d=0$ and
+   $2b+4c+8d=0$.  By adding the first two of these we get
+   $c=0$, so $b+d=0$ and $2b+8d=0$.  These equations easily
+   give $b=d=0$ as well, so $\bsm a&b\\ c&d\esm=0$ \mk.  Thus
+   $\ker(\psi)=0$ and so $\psi$ is injective.
+  \item[(e)] \textbf{Similar to problem sheets.}
+   We have $\dim(\R[x]_{\leq 3})=\dim(M_2\R)=4$.
+   The rank-nullity formula says that
+   \[ \dim(\ker(\psi))+\dim(\img(\psi)) = 
+       \dim(\R[x]_{\leq 3}) = 4. \mk
+   \]
+   As $\ker(\psi)=0$ \mk this gives
+   $\dim(\img(\psi))=4=\dim(M_2\R)$ \mk, so $\img(\psi)=M_2\R$\mk,
+   so $\psi$ is surjective.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506R Q4]}
+ Let $\phi\:V\to W$ be a linear map.
+ \begin{itemize}
+  \item[(a)]
+   Define what it means for $\phi$
+   be~(i)~injective; (ii)~surjective. \mrks{4}
+  \item[(b)] 
+   Define $\img(\phi)$, and show that it is a subspace of
+   $W$. \mrks{5}
+  \item[(c)] Define $\ker(\phi)$, and show that if $\ker(\phi)=\{0\}$
+   then $\phi$ injective. \mrks{5}
+  \item[(d)] State the rank-nullity formula.  \mrks{3}
+  \item[(e)] Consider the linear map
+   $\psi\:\R[x]_{\leq 2}\to\R^2$ given by $\psi(f)=[f(2),f(3)]^T$.
+   What are the dimensions of $\R[x]_{\leq 2}$, $\R^2$ and
+   $\ker(\psi)$?  \mrks{5}
+  \item[(f)] Use the rank-nullity formula to deduce that $\psi$ is
+   surjective. \mrks{3}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}
+   \begin{itemize}
+    \item[(i)] $\phi$ is injective iff whenever $v,v'\in V$
+     and $\phi(v)=\phi(v')$ we have $v=v'$. \mks{2}
+    \item[(ii)] $\phi$ is surjective iff for all $w\in W$
+     there exists some $v\in V$ with $\phi(v)=w$. \mks{2}
+   \end{itemize}
+  \item[(b)] \textbf{Bookwork.}
+   $\img(\phi)=\{w\in W\st w=\phi(v) \text{ for some } v\in V\}$ \mk.
+   As $0_W=\phi(0_V)$, we see that $0_W\in\img(\phi)$.  \mk If
+   $w,w'\in\img(\phi)$ and $t,t'\in\R$ then we can choose
+   $v,v'\in V$ such that $w=\phi(v)$ and $w'=\phi(v')$, and then we
+   find that $\phi(tv+t'v')=t\phi(v)+t'\phi(v')=tw+t'w'$, so
+   $tw+t'w'\in\img(\phi)$.  This proves that $\img(\phi)$ is a
+   subspace of $W$. \mks{3}
+  \item[(c)] \textbf{Bookwork.}  $\ker(\phi)=\{v\in V\st\phi(v)=0\}$ \mk.
+   Suppose that $\ker(\phi)=\{0\}$; we claim that $\phi$ is injective.
+   Suppose that $v,v'\in V$ and $\phi(v)=\phi(v')$; we must show that
+   $v=v'$ \mks{2}.  As $\phi(v)=\phi(v')$ we have
+   $\phi(v-v')=\phi(v)-\phi(v')=0$ \mk, so $v-v'\in\ker(\phi)=\{0\}$, so
+   $v-v'=0$, so $v=v'$ as required \mk.
+  \item[(d)] Let $\phi\:V\to W$ be a linear map between
+   finite-dimensional vector spaces.  Then
+   $\dim(\img(\phi))+\dim(\ker(\phi))=\dim(V)$.  \mks{3}
+  \item[(e)] \textbf{Similar to problem sheets.} 
+   Now consider the linear map $\psi\:\R[x]_{\leq 2}\to\R^2$ given by
+   $\psi(f)=[f(2),f(3)]^T$.  The space $\R[x]_{\leq 2}$ has basis
+   $1,x,x^2$ and so has dimension $3$ \mk. The space $\R^2$ has basis
+   $\bsm 1\\0\esm,\bsm 0\\1\esm$ and so has dimension $2$ \mk.  We have
+   $\psi(f)=0$ iff $f(2)=f(3)=0$ iff $f(x)$ is divisible by
+   $(x-2)(x-3)$.  If so then $f(x)$ must be a constant times
+   $(x-2)(x-3)$ (as otherwise the degree would be too large).  Thus
+   $\ker(\psi)$ has basis $(x-2)(x-3)$ and thus dimension $1$. \mks{3}
+  \item[(f)] The rank-nullity formula now tells us that the space
+   $\img(\phi)\leq\R^2$ has dimension $3-1=2$ \mk, which is the same as
+   the dimension of $\R^2$ itself \mk, so $\img(\phi)=\R^2$, so $\phi$ is
+   surjective \mk.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607 Q4]}
+ \begin{itemize}
+  \item[(a)] State and prove the Cauchy-Schwartz inequality. \mrks{10}
+  \item[(b)] Find constants $\al$ and $\bt$ such that 
+   $\int_{-1}^1 f(x)\,dx=\al f(-1)+\bt f(0)+\al f(1)$ for all
+   $f\in\R[x]_{\leq 2}$. \mrks{6}
+  \item[(c)] Deduce that if $f\in\R[x]_{\leq 2}$ and
+   $\int_{-1}^1f(t)^2\,dt=1$, then
+   $|f(-1)+4f(0)+f(1)|\leq{}3\sqrt{2}$. \mrks{9}
+
+   (You may assume that the rule
+   $\ip{f,g}=\int_{-1}^1 f(t)g(t)\,dt$ gives an inner product on
+   $\R[x]_{\leq 2}$.)
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} 
+   Let $V$ be a vector space with an inner product, and let
+   $u$ and $v$ be elements of $V$.  Then $|\ip{u,v}|\leq \|u\|\|v\|$.\mks{2}
+
+   \noindent\textbf{Proof:} For any $s$ and $t$ we have 
+   \[ 0 \leq \|su-tv\|^2 \mk = \ip{su-tv,su-tv} = 
+       s^2\ip{u,u} - 2st\ip{u,v} + t^2\ip{v,v} = 
+       s^2\|u\|^2 + t^2\|v\|^2 - 2st\ip{u,v}. \mk
+   \]
+   Now take $s=\|v\|^2$ and $t=\ip{u,v}$ \mks{2} to get 
+   \[ 0\leq \|u\|^2\|v\|^4 + \ip{u,v}^2 \|v\|^2 - 2\|v\|^2 \ip{u,v}^2 
+       = \|v\|^2(\|u\|^2\|v\|^2 - \ip{u,v}^2). \mk
+   \]
+   If $v=0$ then we have $|\ip{u,v}|=0=\|u\|\|v\|$ so the claim
+   holds. \mk  If $v\neq 0$ then $\|v\|^2>0$ so the above inequality will
+   remain valid after dividing by $\|v\|^2$, giving
+   $\ip{u,v}^2\leq\|u\|^2\|v\|^2$. \mk  We now take square roots (and note
+   that $\sqrt{a^2}=|a|$) to get $|\ip{u,v}|\leq\|u\|\|v\|$, as claimed.\mk
+  \item[(b)] \textbf{ Similar to problem sheets. }
+   Consider a polynomial $f(x)=ax^2+bx+c$.  We then have 
+   \[ \int_{-1}^1f(x)\,dx=\left[ax^3/3+bx^2/2+cx\right]_{-1}^1 = 
+       2a/3+2c. \mks{2}
+   \]
+   On the other hand, we have
+   \[ \al f(-1) + \bt f(0) + \al f(1) = 
+      \al(a-b+c) + \bt c + \al(a+b+c) = 2\al a + (2\al+\bt)c. \mks{2}
+   \]
+   For these to match up for all $a,b$ and $c$ we must have $2/3=2\al$
+   and $2=2\al+\bt$, which gives $\al=1/3$ and $\bt=4/3$. \mks{2}
+  \item[(c)]\textbf{ Unseen. }
+   Part~(b) tells us that $\ip{f,1}=(f(-1)+4f(0)+f(1))/3$,
+   so $|f(-1)+4f(0)+f(1)|=\ip{f,3}$ \mks{2}.  The Cauchy-Schwartz
+   inequality \mk 
+   tells us that this is at most $\|f\|\|3\|$ \mk.  Here
+   $\|f\|^2=\int_{-1}^1f(t)^2\,dt$, and we are given that this is
+   equal to one, so $\|f\|=1$ \mk.  We also have
+   $\|3\|^2=\int_{-1}^13^2\,dt=18$ \mk and so
+   $\|3\|=\sqrt{18}=3\sqrt{2}$ \mk.  Putting this together, we get
+   $|f(-1)+4f(0)+f(1)|\leq 3\sqrt{2}$ \mks{2} as claimed.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607R Q4]}
+ Let $V$ be a vector space, and let $\CV=v_1,\dotsc,v_n$ be
+ a list of elements of $V$.  
+ \begin{itemize}
+  \item[(a)] Define the map $\mu_\CV\:\R^n\to V$. \mrks{3}
+  \item[(b)] Define, in terms of $\mu_\CV$, what it means
+   for $\CV$ to be~(i)~linearly independent; (ii)~a spanning
+   set; (iii)~a basis. \mrks{6}
+  \item[(c)] Consider the polynomials 
+   \begin{align*}
+    p_0(x) &= x^5 \\
+    p_1(x) &= 1+x \\
+    p_2(x) &= x+x^2 \\
+    p_3(x) &= x^2+x^3 \\
+    p_4(x) &= x^3+x^4 \\
+    p_5(x) &= x^4+x^5.
+   \end{align*}
+   Is the list $\CP=p_0,\dotsc,p_4$ a basis for $\R[x]_{\leq 5}$?
+   Justify your answer. \mrks{7}
+  \item[(d)] Consider the list $\CA=A_0,\dotsc,A_4$, where
+   {\tiny \[
+    A_0 = \bsm 1&0&0\\0&0&0\\0&0&0\esm \hspace{1em}
+    A_1 = \bsm 1&1&0\\1&1&0\\0&0&0\esm \hspace{1em}
+    A_2 = \bsm 1&1&1\\1&1&1\\1&1&1\esm \hspace{1em}
+    A_3 = \bsm 0&0&0\\0&1&1\\0&1&1\esm \hspace{1em}
+    A_4 = \bsm 0&0&0\\0&0&0\\0&0&1\esm \hspace{1em}
+   \]}
+   Prove that these are linearly independent. \mrks{6}
+  \item[(e)] Find a linear relation between the following vectors  \mrks{3}
+   \[ \vv_1 = \bsm 1\\ 1\\ 1\\ 1 \esm \hspace{2em}
+      \vv_2 = \bsm 2\\ 1\\ 1\\ 2 \esm \hspace{2em}
+      \vv_3 = \bsm 1\\ 1\\ 2\\ 2 \esm \hspace{2em}
+      \vv_4 = \bsm 2\\ 2\\ 1\\ 1 \esm \hspace{2em}
+      \vv_5 = \bsm 1\\ 2\\ 1\\ 2 \esm.
+   \]
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] The map $\mu_\CV\:\R^n\to V$ is defined by
+   \[ \mu_\CV([\lm_1,\dotsc,\lm_n]^T) = 
+       \lm_1v_1+\dotsb+\lm_nv_n.  \mks{3}
+   \]
+  \item[(b)] The list $\CV$ is linearly independent iff
+   $\mu_\CV$ is injective \mks{2}.  It spans $V$ iff $\mu_\CV$ is
+   surjective \mks{2}.  It is a basis iff $\mu_\CV$ is bijective \mks{2}.
+  \item[(c)] We have 
+   \begin{align*}
+    \mu_\CP(\vlm) &= 
+     \lm_0x^5 + \lm_1(1+x) + \lm_2(x+x^2) + \lm_3(x^2+x^3) +
+     \lm_4(x^3+x^4) + \lm_5(x^4+x^5) \\
+    &= \lm_1 + (\lm_1+\lm_2)x + (\lm_2+\lm_3)x^2 + 
+       (\lm_3+\lm_4)x^3 + (\lm_4+\lm_5)x^4 + (\lm_0+\lm_5)x^5. \mks{2}
+   \end{align*}
+   Thus, given a polynomial $f(x)=\sum_{i=0}^5a_ix^i$, we have
+   $\mu_\CP(\vlm)=f$ iff the following equations are satisfied:
+   \begin{align*}
+     \lm_1       &= a_0 \\
+     \lm_1+\lm_2 &= a_1 \\
+     \lm_2+\lm_3 &= a_2 \\
+     \lm_3+\lm_4 &= a_3 \\
+     \lm_4+\lm_5 &= a_4 \\
+     \lm_0+\lm_5 &= a_5.  \mks{2}
+   \end{align*}
+   It is easy to see that these have the unique solution
+   \begin{align*}
+    \lm_0 &= a_5-a_4+a_3-a_2+a_1-a_0 \\
+    \lm_1 &= a_0 \\
+    \lm_2 &= a_1-a_0 \\
+    \lm_3 &= a_2-a_1+a_0 \\
+    \lm_4 &= a_3-a_2+a_1-a_0 \\
+    \lm_5 &= a_4-a_3+a_2-a_1+a_0. \mks{2}
+   \end{align*}
+   As this solution always exists and is unique, we see that $\mu_\CP$
+   is a bijection and thus that $\CP$ is a basis. \mk
+  \item[(d)] We have
+   \[ \mu_\CA(\vlm) = \lm_0A_0+\dotsb+\lm_4A_4 = 
+       \bsm \lm_0+\lm_1+\lm_2 & \lm_1+\lm_2 & \lm_2 \\
+            \lm_1+\lm_2 & \lm_1+\lm_2+\lm_3 & \lm_2+\lm_3 \\
+            \lm_2 & \lm_2+\lm_3 & \lm_2+\lm_3+\lm_4 \esm. \mks{2}
+   \]
+   For this to equal zero we would have to have
+   \begin{align}
+    \lm_0+\lm_1+\lm_2 &= 0  \tag{1} \\
+    \lm_1+\lm_2       &= 0  \tag{2} \\
+    \lm_2             &= 0  \tag{3} \\
+    \lm_1+\lm_2+\lm_3 &= 0  \tag{4} \\
+    \lm_2+\lm_3       &= 0  \tag{5} \\
+    \lm_2+\lm_3+\lm_4 &= 0. \mk \tag{6}
+   \end{align}
+   From~(3) we have $\lm_2=0$, and we can substitute this in~(2)
+   and~(5) to get $\lm_1=\lm_3=0$.  We can then substitute these
+   values in~(1) and~(6) to get $\lm_0=\lm_4=0$, so $\vlm=0$.  \mks{2} This
+   shows that the list $\CA$ has only the trivial linear relation, so
+   it is linearly independent. \mk
+  \item[(e)] By inspection we have $3\vv_1-\vv_3-\vv_4=0$. \mks{3}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708 Q4]}
+ \begin{itemize}
+  \item[(a)] Define the notion of an \emph{inner product} on a
+   finite-dimensional vector space over $\R$. \mrks{5}
+  \item[(b)] Define what it means for a sequence of elements to be~(i)
+   \emph{orthogonal}; (ii) \emph{orthonormal}. \mrks{3}
+  \item[(c)] Let $V$ and $W$ be vector spaces with inner products, and
+   let $\phi\:V\to W$ and $\psi\:W\to V$ be linear maps.  Define what
+   it means for these maps to be \emph{adjoint} to each other. \mrks{2}
+ \end{itemize}
+ For the rest of this question, we use the spaces $V=M_2(\R)$ and
+ $W=\R[x]_{\leq 2}$, with the inner products
+ \begin{align*}
+  \ip{A,B} &= \text{trace}(A^TB)
+    & & \text{ for } A,B\in V\\
+  \ip{f,g} &= f(-1)g(-1) + f(0)g(0) + f(1)g(1) 
+    & & \text{ for } f,g\in W.
+ \end{align*}
+ (You need not check that these are inner products.)
+ \begin{itemize}
+  \item[(d)] Calculate $\ip{x^i,x^j}$ for $i,j=0,\dotsc,2$. \mrks{4}
+  \item[(e)] Using the Gram-Schmidt procedure or otherwise, find an
+   orthonormal basis for $W$. \mrks{6}
+  \item[(f)] Define $\phi\:V\to W$ by 
+   $\phi(A)=\bsm x& 1\esm A\bsm x\\1\esm$, and let $\psi\:W\to V$ be
+   adjoint to $\phi$.  Calculate
+   $\ip{\phi\bsm a&b\\c&d\esm,px^2+qx+r}$, and thus give a formula for
+   $\psi(px^2+qx+r)$.  \mrks{5}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}
+   An \emph{inner product} on $V$ is a rule that gives a
+   number $\ip{u,v}\in\R$ for each $u,v\in V$ \mk, with the following
+   properties: 
+   \begin{itemize}
+    \item[(i)] $\ip{u+v,w}=\ip{u,w}+\ip{v,w}$ for all
+     $u,v,w\in V$. \mk
+    \item[(ii)] $\ip{tu,v}=t\ip{u,v}$ for all $u,v\in V$ and
+     $t\in\R$. \mk
+    \item[(iii)] $\ip{u,v}=\ip{v,u}$ for all $u,v\in V$. \mk
+    \item[(iv)] We have $\ip{u,u}\geq 0$ for all $u\in V$, and
+     $\ip{u,u}=0$ iff $u=0$. \mk
+   \end{itemize}
+  \item[(b)] \textbf{Bookwork.}
+   Consider a sequence $\CV=v_1,\dotsc,v_n$ in a vector
+   space $V$ with inner product.  We say that $\CV$ is
+   \emph{orthogonal} if $\ip{v_i,v_j}=0$ for all $i\neq j$ \mks{2}, and
+   \emph{orthonormal} if it is orthogonal and also $\ip{v_i,v_i}=1$
+   for all $i$.  \mk
+  \item[(c)] \textbf{Bookwork.}
+   Let $V$ and $W$ be vector spaces with inner products, and
+   let $\phi\:V\to W$ and $\psi\:W\to V$ be linear maps.  We say that
+   $\phi$ and $\psi$ are \emph{adjoint} if for all $v\in V$ and all
+   $w\in W$ we have $\ip{\phi(v),w}=\ip{v,\psi(w)}$. \mks{2}
+ \end{itemize}
+ Some students will probably attempt to do parts~(d) to~(f) using
+ either $\ip{f,g}=\int_0^1 fg$ or $\ip{f,g}=\int_{-1}^1 fg$.  There
+ will be an overall penalty of one point for that, together with the
+ implicit penalty that the calculations become a little harder.
+ \begin{itemize}
+  \item[(d)] \textbf{Similar to lecture notes and problem sheets.}
+   For the inner product given, we have 
+   \[ \ip{x^i,x^j} = (-1)^{i+j} + 0^{i+j} + 1. \]
+   If $i=j=0$ this gives $3$.  In all other cases, the second term is
+   zero and we get $0$ if $i+j$ is odd, and $2$ if $i+j$ is even.
+   Thus
+   \begin{align*}
+    \ip{1,1} &= 3 & \ip{1,x} &= 0 & \ip{1,x^2} &= 2 \\
+    \ip{x,1} &= 0 & \ip{x,x} &= 2 & \ip{x,x^2} &= 0 \\
+    \ip{x^2,1} &= 2 & \ip{x^2,x} &= 0 & \ip{x^2,x^2} &= 2. \mks{4}
+   \end{align*}
+  \item[(e)] \textbf{Similar to lecture notes and problem sheets.}
+   We use the Gram-Schmidt procedure, starting with $u_1=1$
+   and $u_2=x$ and $u_3=x^2$.  We then put 
+   \begin{align*}
+    v_1 &= u_1 = 1 \\
+    v_2 &= u_2 - \frac{\ip{u_2,v_1}}{v_1,v_1}v_1 
+         = x - \frac{\ip{x,1}}{\ip{1,1}}1 = x - \frac{0}{3} = x \\
+    v_3 &= u_3 - \frac{\ip{u_3,v_1}}{\ip{v_1,v_1}}v_1 
+               - \frac{\ip{u_3,v_2}}{\ip{v_2,v_2}}v_2 \\
+        &= x^2 - \frac{\ip{x^2,1}}{\ip{1,1}} 1
+               - \frac{\ip{x^2,x}}{\ip{x,x}} x \\
+        &= x^2 - \frac{2}{3} 1 - \frac{0}{2} x = x^2-2/3. \mks{4}
+   \end{align*}
+   This gives an orthogonal basis.  We find that $\|v_1\|=\sqrt{3}$
+   and $\|v_2\|=\sqrt{2}$ and 
+   \[ \|v_3\|^2 = \ip{x^2-2/3,x^2-2/3} = 
+      ((-1)^2-2/3)^2 + (0^2-2/3)^2 + (1^2-2/3)^2 = 6/9 = 2/3, \mk
+   \]
+   so $\|v_3\|=\sqrt{2/3}$.  We then put $\hat{v}_i=v_i/\|v_i\|$, so
+   \begin{align*}
+    \hat{v}_1 &= 1/\sqrt{3} \\
+    \hat{v}_2 &= x/\sqrt{2} \\
+    \hat{v}_3 &= \sqrt{3/2}(x^2-2/3). \mk
+   \end{align*}
+   This gives the required orthonormal basis.
+  \item[(f)] \textbf{Similar to lecture notes and problem sheets.}
+   We have 
+   \[ \psi\bsm a&b\\ c&d\esm =
+       \bsm x&1\esm \bsm a&b\\ c&d\esm \bsm x\\ 1\esm =
+        ax^2 + (b+c)x + d, \mk
+   \]
+   so
+   \begin{align*}
+    \ip{\phi\bsm a&b\\c&d\esm,px^2+qx+r}
+     &= \ip{ax^2+(b+c)x+c,px^2+qx+r} \\
+     &= (a-b-c+d)(p-q+r) + cr + (a+b+c+d)(p+q+r) \\
+     &= ap-aq+ar-bp+bq-br-cp+cq-cr+dp-dq+dr+cr+ \\
+     &\hspace{1.2em} ap+aq+ar+bp+bq+br+cp+cq+cr+dp+dq+dr \\ 
+     &= (2p+2r)a + 2qb + 2qc + (2p+3r)d \mks{2} \\
+     &= \ip{\bsm a&b\\ c&d\esm ,
+            \bsm 2p+2r & 2q \\ 2q & 2p+3r \esm}. \mk
+   \end{align*}
+   It follows that
+   $\psi(px^2+qx+r)=\bsm 2p+2r & 2q \\ 2q & 2p+3r \esm$. \mk
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708R Q4]}
+ Let $V$ be a vector space, and let $\CV=v_1,\dotsc,v_n$ be
+ a list of elements of $V$.  
+ \begin{itemize}
+  \item[(a)] Define the map $\mu_\CV\:\R^n\to V$. \mrks{3}
+  \item[(b)] Define, in terms of $\mu_\CV$, what it means
+   for $\CV$ to be~(i)~linearly independent; (ii)~a spanning
+   set; (iii)~a basis. \mrks{6}
+  \item[(c)] Consider the polynomials 
+   \begin{align*}
+    p_0(x) &= x^5 \\
+    p_1(x) &= 1+x \\
+    p_2(x) &= x+x^2 \\
+    p_3(x) &= x^2+x^3 \\
+    p_4(x) &= x^3+x^4 \\
+    p_5(x) &= x^4+x^5.
+   \end{align*}
+   Is the list $\CP=p_0,\dotsc,p_5$ a basis for $\R[x]_{\leq 5}$?
+   Justify your answer. \mrks{7}
+  \item[(d)] Consider the list $\CA=A_0,\dotsc,A_4$, where
+   {\tiny \[
+    A_0 = \bsm 1&0&0\\0&0&0\\0&0&0\esm \hspace{1em}
+    A_1 = \bsm 1&1&0\\1&1&0\\0&0&0\esm \hspace{1em}
+    A_2 = \bsm 1&1&1\\1&1&1\\1&1&1\esm \hspace{1em}
+    A_3 = \bsm 0&0&0\\0&1&1\\0&1&1\esm \hspace{1em}
+    A_4 = \bsm 0&0&0\\0&0&0\\0&0&1\esm \hspace{1em}
+   \]}
+   Prove that these are linearly independent. \mrks{6}
+  \item[(e)] Find a linear relation between the following vectors  \mrks{3}
+   \[ \vv_1 = \bsm 1\\ 1\\ 1\\ 1 \esm \hspace{2em}
+      \vv_2 = \bsm 2\\ 1\\ 1\\ 2 \esm \hspace{2em}
+      \vv_3 = \bsm 1\\ 1\\ 2\\ 2 \esm \hspace{2em}
+      \vv_4 = \bsm 2\\ 2\\ 1\\ 1 \esm \hspace{2em}
+      \vv_5 = \bsm 1\\ 2\\ 1\\ 2 \esm.
+   \]
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \textbf{This is a slight modification of a question from a past paper.}
+ \begin{itemize}
+  \item[(a)] The map $\mu_\CV\:\R^n\to V$ is defined by
+   \[ \mu_\CV([\lm_1,\dotsc,\lm_n]^T) = 
+       \lm_1v_1+\dotsb+\lm_nv_n.  \mks{3}
+   \]
+  \item[(b)] The list $\CV$ is linearly independent iff
+   $\mu_\CV$ is injective \mks{2}.  It spans $V$ iff $\mu_\CV$ is
+   surjective \mks{2}.  It is a basis iff $\mu_\CV$ is bijective \mks{2}.
+  \item[(c)] We have 
+   \begin{align*}
+    \mu_\CP(\vlm) &= 
+     \lm_0x^5 + \lm_1(1+x) + \lm_2(x+x^2) + \lm_3(x^2+x^3) +
+     \lm_4(x^3+x^4) + \lm_5(x^4+x^5) \\
+    &= \lm_1 + (\lm_1+\lm_2)x + (\lm_2+\lm_3)x^2 + 
+       (\lm_3+\lm_4)x^3 + (\lm_4+\lm_5)x^4 + (\lm_0+\lm_5)x^5. \mks{2}
+   \end{align*}
+   Thus, given a polynomial $f(x)=\sum_{i=0}^5a_ix^i$, we have
+   $\mu_\CP(\vlm)=f$ iff the following equations are satisfied:
+   \begin{align*}
+     \lm_1       &= a_0 \\
+     \lm_1+\lm_2 &= a_1 \\
+     \lm_2+\lm_3 &= a_2 \\
+     \lm_3+\lm_4 &= a_3 \\
+     \lm_4+\lm_5 &= a_4 \\
+     \lm_0+\lm_5 &= a_5.  \mks{2}
+   \end{align*}
+   It is easy to see that these have the unique solution
+   \begin{align*}
+    \lm_0 &= a_5-a_4+a_3-a_2+a_1-a_0 \\
+    \lm_1 &= a_0 \\
+    \lm_2 &= a_1-a_0 \\
+    \lm_3 &= a_2-a_1+a_0 \\
+    \lm_4 &= a_3-a_2+a_1-a_0 \\
+    \lm_5 &= a_4-a_3+a_2-a_1+a_0. \mks{2}
+   \end{align*}
+   As this solution always exists and is unique, we see that $\mu_\CP$
+   is a bijection and thus that $\CP$ is a basis. \mk
+  \item[(d)] We have
+   \[ \mu_\CA(\vlm) = \lm_0A_0+\dotsb+\lm_4A_4 = 
+       \bsm \lm_0+\lm_1+\lm_2 & \lm_1+\lm_2 & \lm_2 \\
+            \lm_1+\lm_2 & \lm_1+\lm_2+\lm_3 & \lm_2+\lm_3 \\
+            \lm_2 & \lm_2+\lm_3 & \lm_2+\lm_3+\lm_4 \esm. \mks{2}
+   \]
+   For this to equal zero we would have to have
+   \begin{align}
+    \lm_0+\lm_1+\lm_2 &= 0  \tag{1} \\
+    \lm_1+\lm_2       &= 0  \tag{2} \\
+    \lm_2             &= 0  \tag{3} \\
+    \lm_1+\lm_2+\lm_3 &= 0  \tag{4} \\
+    \lm_2+\lm_3       &= 0  \tag{5} \\
+    \lm_2+\lm_3+\lm_4 &= 0. \mk \tag{6}
+   \end{align}
+   From~(3) we have $\lm_2=0$, and we can substitute this in~(2)
+   and~(5) to get $\lm_1=\lm_3=0$.  We can then substitute these
+   values in~(1) and~(6) to get $\lm_0=\lm_4=0$, so $\vlm=0$.  \mks{2} This
+   shows that the list $\CA$ has only the trivial linear relation, so
+   it is linearly independent. \mk
+  \item[(e)] By inspection we have $3\vv_1-\vv_3-\vv_4=0$. \mks{3}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[Mock exam Q5]}
+ Let $V$ be a vector space, and let $\CV=v_1,\dotsc,v_n$ be
+ a list of elements of $V$.  
+ \begin{itemize}
+  \item[(a)] Define the map $\mu_\CV\:\R^n\to V$.
+  \item[(b)] Define, in terms of $\mu_\CV$, what it means
+   for $\CV$ to be~(i)~linearly independent; (ii)~a spanning
+   set; (iii)~a basis.
+  \item[(c)] Consider the polynomials $p_i(x)=x^i+x^{i+1}$.
+   Is $p_0,\dotsc,p_4$ a basis for $\R[x]_{\leq 5}$?
+  \item[(d)] Consider the matrices
+   {\tiny \[
+    A_0 = \bsm 1&0&0\\0&0&0\\0&0&0\esm \hspace{1em}
+    A_1 = \bsm 1&1&0\\1&1&0\\0&0&0\esm \hspace{1em}
+    A_2 = \bsm 1&1&1\\1&1&1\\1&1&1\esm \hspace{1em}
+    A_3 = \bsm 0&0&0\\0&1&1\\0&1&1\esm \hspace{1em}
+    A_4 = \bsm 0&0&0\\0&0&0\\0&0&1\esm \hspace{1em}
+   \]}
+   Prove that these do not span the space $V$ of all
+   $3\tm 3$ symmetric matrices.
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] The map $\mu_\CV\:\R^n\to V$ is defined by
+   \[ \mu_\CV([\lm_1,\dotsc,\lm_n]^T) = 
+       \lm_1v_1+\dotsb+\lm_nv_n.
+   \]
+  \item[(b)] The list $\CV$ is linearly independent iff
+   $\mu_\CV$ is injective.  It spans $V$ iff $\mu_\CV$ is
+   surjective.  It is a basis iff $\mu_\CV$ is bijective.
+  \item[(c)] Put $p_i(x)=x^i+x^{i+1}=x^i(1+x)$.  Then
+   $p_i(-1)=0$ for all $i$, so $f(-1)=0$ for all
+   $f\in\spn(p_0,\dotsc,p_4)$.  In particular, the constant
+   polynomial $1$ does not lie in $\spn(p_0,\dotsc,p_4)$, so
+   $p_0,\dotsc,p_4$ does not span $\R[x]_{\leq 5}$ and so
+   cannot be a basis.
+  \item[(d)] Consider the matrix
+   $B=\bsm 0&0&1\\0&0&0\\1&0&0\esm\in V$.  We claim that
+   this does not lie in $\spn(A_0,\dotsc,A_4)$.  Indeed, we
+   have
+   \[ a_0A_0+\dotsb+a_4A_4 = 
+       \bsm a_0+a_1+a_2 & a_1+a_2 & a_2 \\
+            a_1+a_2 & a_1+a_2+a_3 & a_2+a_3 \\
+            a_2 & a_2+a_3 & a_2+a_3+a_4 \esm.
+   \]
+   For this to equal $B$ we would have to have
+   \begin{align*}
+    a_0+a_1+a_2 &= 0 \\
+    a_1+a_2 &= 0 \\
+    a_2 &= 1 \\
+    a_1+a_2+a_3 &= 0 \\
+    a_2+a_3 &= 0 \\
+    a_2+a_3+a_4 &= 0.
+   \end{align*}
+   By subtracting the second and third equations we get
+   $a_1=-1$, but by subtracting the fourth and fifth
+   equations we get $a_1=0$.  This contradiction means that
+   there is no list $a_0,\dotsc,a_4$ such that
+   $\sum_ia_iA_i=B$, so $B\not\in\spn(A_0,\dotsc,A_4)$, so
+   the list $A_0,\dotsc,A_4$ does not span $V$.
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506 Q5]}
+ Consider the vector space $U=\R[x]_{\leq 2}$ with the inner
+ product 
+ \[ \ip{f,g} = \int_{-1}^1 f(x)g(x)\,dx. \]
+ \begin{itemize}
+  \item[(a)] Given a polynomial $u=a+bx+cx^2$,
+   calculate $\ip{u,x^i}$ for $i=0,1,2$. \mrks{3}
+  \item[(b)] Find an element $u\in U$ such that
+   $\ip{f,u}=f(0)$ for all $f\in U$. \mrks{6}
+  \item[(c)] By taking $f=u$, calculate $\|u\|$. \mrks{2}
+  \item[(d)] State and prove the Cauchy-Schwartz inequality.
+   (You need not discuss the case where it is actually an
+   equality.) \mrks{10}
+  \item[(e)] Deduce that 
+   \[ |f(0)|\leq
+       \frac{3}{\sqrt{8}}\sqrt{\textstyle\int_{-1}^1 f(x)^2\,dx}
+   \]
+   for all $f\in U$. \mrks{4}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Straightforward use of definition.} We have 
+   \begin{align*}
+    \ip{u,1}   &= \int_{-1}^1 a+bx+cx^2 \,dx
+                = \left[             ax +
+                         \tfrac{1}{2}bx^2 + 
+                         \tfrac{1}{3}cx^3 \right]_{-1}^1 \\
+               &= \left( a + \tfrac{b}{2} +
+                         \tfrac{c}{3} \right)
+                        -
+                  \left( -a + \tfrac{b}{2} -
+                         \tfrac{c}{3} \right) \\
+               &= 2a + \tfrac{2}{3}c \\
+    \ip{u,x}   &= \int_{-1}^1 ax+bx^2+cx^3 \,dx
+                = \left[ \tfrac{1}{2}ax^2 +
+                         \tfrac{1}{3}bx^3 + 
+                         \tfrac{1}{4}cx^4 \right]_{-1}^1 \\
+               &= \left( \tfrac{a}{2} + \tfrac{b}{3} +
+                         \tfrac{c}{4}  \right)
+                        -
+                  \left( \tfrac{a}{2} - \tfrac{b}{3} +
+                         \tfrac{c}{4}  \right) \\
+               &= \tfrac{2}{3}b  \\
+    \ip{u,x^2} &= \int_{-1}^1 ax^2+bx^3+cx^4 \,dx
+                = \left[ \tfrac{1}{3}ax^3 +
+                         \tfrac{1}{4}bx^4 + 
+                         \tfrac{1}{5}cx^5 \right]_{-1}^1 \\
+               &= \left( \tfrac{a}{3} + \tfrac{b}{4} +
+                         \tfrac{c}{5}  \right)
+                        -
+                  \left( -\tfrac{a}{3} + \tfrac{b}{4} -
+                         \tfrac{c}{5}  \right) \\
+               &= \tfrac{2}{3}a + \tfrac{2}{5}c \mks{3}
+   \end{align*}
+  \item[(b)] \textbf{I have not yet written the relevant
+    problem sheet, but will find something like this to put
+    in.}\\ Consider an element $u=a+bx+cx^2\in V$. 
+   We want $\ip{u,f}=f(0)$, so we must have
+   \begin{align*}
+    1 &= \ip{u,1} = 2a + \tfrac{2}{3}c \\
+    0 &= \ip{u,x} = \tfrac{2}{3}b  \\
+    0 &= \ip{u,x^2} = \tfrac{2}{3}a + \tfrac{2}{5}c \mks{3}
+   \end{align*}
+   The second equation gives $b=d=0$.
+   The third equation gives $c=-\tfrac{5}{3}a$, which can be
+   substituted into the first equation to give
+   $1=(2-\tfrac{10}{9})a=\tfrac{8}{9}a$, so $a=\tfrac{9}{8}$
+   and $c=-\tfrac{5}{3}a=-\tfrac{15}{8}$ \mks{2}.  This gives
+   \[ u = (9-15x^2)/8. \mk \]
+  \item[(c)] \textbf{Unseen.} Taking $f=u$ gives $\ip{u,u}=u(0)=9/8$, so
+   $\|u\|=\sqrt{9/8}=3/\sqrt{8}$. \mks{2}
+  \item[(d)] \textbf{Bookwork.} The Cauchy-Schwartz inequality says that for
+   $u,v\in U$ we have $|\ip{u,v}|\leq\|u\|\|v\|$. \mks{2} To see
+   this, first note that it is obviously true if $v=0$, so
+   we may assume that $v\neq 0$ and so $\|v\|>0$.  \mk Put
+   $x=\ip{v,v}u-\ip{u,v}v$. \mks{2} Then
+   \begin{align*}
+    \|x\|^2 & = \ip{x,x} \\
+    &= \ip{v,v}^2\ip{u,u} - 2\ip{v,v}\ip{u,v}\ip{u,v} + \ip{u,v}^2\ip{v,v} \\
+    &= \ip{v,v}(\ip{u,u}\ip{v,v}-\ip{u,v}^2). \mks{2}
+   \end{align*}
+   As $\ip{v,v}=\|v\|^2>0$, we can divide by this to get
+   \[ \ip{u,u}\ip{v,v} - \ip{u,v}^2 =(\|x\|/\|v\|)^2. \]
+   This is a square, so it must be nonnegative, so
+   $\ip{u,u}\ip{v,v}\geq\ip{u,v}^2$ \mks{2}.  As both sides are
+   nonnegative this inequality remains valid when we take
+   square roots.  After noting that $\sqrt{t^2}=|t|$ for all
+   $t\in\R$, we conclude that $\|u\|\|v\|\geq|\ip{u,v}|$, as
+   claimed. \mk
+  \item[(e)] \textbf{Unseen.}
+   The Cauchy-Schwartz inequality\mk says that
+   $|\ip{f,u}|\leq\|u\|\|f\|$\mk, or in other words 
+   \[ |f(0)|\leq\frac{3}{\sqrt{8}}\|f\|=
+       \frac{3}{\sqrt{8}}\sqrt{\textstyle\int_{-1}^1 f(x)^2\,dx}.
+   \]
+   \mks{2}
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0506R Q5]}
+ Consider the vector space $V=M_2\R$ with the usual inner product
+ $\ip{A,B}=\trc(A^TB)$.  Let $s$ and $t$ be positive real numbers, and
+ define $\phi\:V\to\R$ by
+ \[ \phi(A)=\bsm s&t\esm A\bsm s\\t\esm \]
+ \begin{itemize}
+  \item[(a)] Find a matrix $P$ such that $\phi(A)=\ip{P,A}$ for all
+   $A\in V$.  \mrks{5}
+  \item[(b)] Calculate $\|P\|$, simplifying your answer as much as
+   possible.  \mrks{2}
+  \item[(c)] State and prove the Cauchy-Schwartz inequality. \mrks{10}
+  \item[(d)] Deduce that $|\phi(A)|\leq s^2+t^2$ for all $A\in V$
+   with $\|A\|\leq 1$.  \mrks{3}
+  \item[(e)] Find a matrix $A$ such that $\|A\|=1$ and and
+   $\phi(A)=s^2+t^2$. \mrks{5}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] If $A=\bsm a&b\\c&d\esm$ then 
+   \[ \phi(A) = \bsm s & t\esm \bsm a&b\\ c&d\esm \bsm s\\ t\esm = 
+       \bsm s & t \esm \bsm as+bt\\ cs+dt\esm = 
+       s^2a + stb + stc + t^2d. \mks{2} 
+   \]
+   On the other hand, if $P=\bsm w&x\\ y&z\esm$ then
+   \[ \ip{P,A} = \trc\left(\bsm w&y\\ x&z\esm\bsm a&b\\ c&d\esm\right)
+        = \trc\bsm wa+yc & wb+yd \\ xa+zc & xb+zd \esm =
+        wa+xb+yc+zd. \mk
+   \]
+   Thus, to have $\phi(A)=\ip{P,A}$ we must have $w=s^2$ and $x=y=st$
+   and $z=t^2$, so $P=\bsm s^2&st\\ st&t^2\esm$. \mks{2}
+  \item[(b)] We now have $\|P\|^2=s^4+s^2t^2+s^2t^2+t^4 \mk=(s^2+t^2)^2$,
+   so $\|P\|=s^2+t^2$. \mk
+  \item[(c)] \textbf{Bookwork.} The Cauchy-Schwartz inequality says that for
+   $u,v\in U$ we have $|\ip{u,v}|\leq\|u\|\|v\|$. \mks{2} To see
+   this, first note that it is obviously true if $v=0$, so
+   we may assume that $v\neq 0$ and so $\|v\|>0$.  \mk Put
+   $x=\ip{v,v}u-\ip{u,v}v$. \mks{2} Then
+   \begin{align*}
+    \|x\|^2 & = \ip{x,x} \\
+    &= \ip{v,v}^2\ip{u,u} - 2\ip{v,v}\ip{u,v}\ip{u,v} + \ip{u,v}^2\ip{v,v} \\
+    &= \ip{v,v}(\ip{u,u}\ip{v,v}-\ip{u,v}^2). \mks{2}
+   \end{align*}
+   As $\ip{v,v}=\|v\|^2>0$, we can divide by this to get
+   \[ \ip{u,u}\ip{v,v} - \ip{u,v}^2 =(\|x\|/\|v\|)^2. \]
+   This is a square, so it must be nonnegative, so
+   $\ip{u,u}\ip{v,v}\geq\ip{u,v}^2$ \mks{2}.  As both sides are
+   nonnegative this inequality remains valid when we take
+   square roots.  After noting that $\sqrt{t^2}=|t|$ for all
+   $t\in\R$, we conclude that $\|u\|\|v\|\geq|\ip{u,v}|$, as
+   claimed. \mk
+  \item[(d)] \textbf{Unseen.}
+   The Cauchy-Schwartz inequality\mk now tells us that
+   $|\phi(A)|=|\ip{P,A}|\leq\|P\|\|A\|=(s^2+t^2)\|A\|$ \mk.  In
+   particular, if $\|A\|\leq 1$ then $|\phi(A)|\leq s^2+t^2$.
+   \mk
+  \item[(e)] Now take $A=P/(s^2+t^2)=P/\|P\|$ \mks{3}.  We then have
+   $\|A\|=1$ and $\phi(A)=\ip{P,P/\|P\|}=\|P\|^2/\|P\|=\|P\|=s^2+t^2$
+   \mks{2}. 
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607 Q5]}
+ Let $V$ be a vector space over $\R$.
+ \begin{itemize}
+  \item[(a)] Define the map $\mu_\CV\:\R^n\to V$ (where
+   $\CV=v_1,\dotsc,v_n$ is a list of elements of $V$). \mrks{2}
+  \item[(b)] Show that any linear map $\phi\:\R^n\to V$ has the form
+   $\phi=\mu_\CV$ for some list $\CV$.  \mrks{5}
+  \item[(c)] Some of the following situations are possible, and some
+   are not.  For each situation that is possible, give an example.
+   For each situation that is impossible, give a brief argument to
+   show that it is impossible.  \mrks{8}
+   \begin{itemize}
+    \item[(i)] A space $V$ with a spanning list $\CA$ of length $4$
+     and a linearly independent list $\CB$ of length $3$.
+    \item[(ii)] A space $V$ with a spanning list $\CA$ of length $3$
+     and a linearly independent list $\CB$ of length $4$.
+    \item[(iii)] A $3$-dimensional space $V$ with a list $\CV$ of
+     length $3$ that is linearly independent but does not span.
+    \item[(iv)] A $3$-dimensional space $V$ with a list $\CV$ of
+     length $3$ that is linearly dependent and does not span. 
+   \end{itemize}
+  \item[(d)] Define what is meant by a \emph{jump} in a sequence
+   $\CV$. \mrks{3}
+  \item[(e)] Find the jumps in the following sequence:
+   \[ v_1 = \bsm 0\\0\\0  \esm \hspace{2em}
+      v_2 = \bsm 1\\1\\1  \esm \hspace{2em}
+      v_3 = \bsm 2\\2\\2  \esm \hspace{2em}
+      v_4 = \bsm 1\\0\\-1 \esm \hspace{2em}
+      v_5 = \bsm 1\\2\\3  \esm \hspace{2em}
+      v_6 = \bsm 3\\2\\1  \esm
+   \]
+   \mrks{7}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.} The map $\mu_\CV$ is just given by
+   $\mu_\CV([\lm_1,\dotsc,\lm_n]^T)=\sum_i\lm_iv_i$. \mks{2}
+  \item[(b)] \textbf{Bookwork.} Let $\phi\:\R^n\to V$ be a linear map.  Let
+   $\ve_1,\dotsc,\ve_n$ be the standard basis of $\R^n$, so
+   $\vx=\sum_ix_i\ve_i$ for all $\vx\in\R^n$ \mk.  Put
+   $v_i=\phi(\ve_i)\in V$ \mk and $\CV=v_1,\dotsc,v_n$.  We claim that
+   $\phi=\mu_\CV$ \mk.  Indeed, for any $\vx\in\R^n$ we have
+   \[ \phi(\vx)  = \phi(\sum_ix_i\ve_i) 
+                 = \sum_i x_i\phi(\ve_i) 
+                 = \sum_i x_iv_i = \mu_\CV(\vx) \mks{2}
+   \]
+   as claimed.
+  \item[(c)]\textbf{ Unseen. }
+   \begin{itemize}
+    \item[(i)] An example is $V=\R^3$ with $\CA=\ve_1,\ve_2,\ve_3,0$
+     and $\CB=\ve_1,\ve_2,\ve_3$. \mks{2}
+    \item[(ii)] This is impossible \mk by Steinitz's Lemma: any spanning
+     list must be at least as long as any linearly independent list. \mk
+    \item[(iii)] This is impossible \mk: in a $3$-dimensional space, a
+     list of length three is independent iff it spans \mk.
+    \item[(iv)] An example is $V=\R^3$ with $\CV=0,0,0$.\mks{2}
+   \end{itemize}
+  \item[(d)] \textbf{Bookwork.}
+   Put $V_i=\spn(v_1,\dotsc,v_i)$ (with $V_0=0$).  We then
+   say that $i$ is a \emph{jump} if $v_i\not\in V_{i-1}$. \mks{3}
+  \item[(e)] \textbf{ Similar to problem sheets. } 
+   As $v_1=0\in V_0$ and $v_3=2v_2\in V_2$ and
+   $v_5=v_3-v_4\in V_4$ and $v_6=v_3+v_4\in V_5$, we see that $1$,
+   $3$, $5$ and $6$ are not jumps \mks{3}.  As $V_1=0$ and $v_2\neq 0$, we see
+   that $2$ is a jump \mks{2}.  It is also clear that $V_3$ is the set of
+   vectors of the form $[t,t,t]^T$, and $v_4$ does not lie in that
+   set, so $4$ is a jump \mks{2}.  Thus, the set of jumps is precisely
+   $\{2,4\}$. 
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0607R Q5]}
+ Consider the vector space $V=M_2(\R)$ with the usual inner product
+ $\ip{A,B}=\trc(A^TB)$.  Define $\phi\:V\to\R$ by
+ \[ \phi(A)=\bsm 3& 4\esm A\bsm 3\\ 4\esm \]
+ \begin{itemize}
+  \item[(a)] Find a matrix $P$ such that $\phi(A)=\ip{P,A}$ for all
+   $A\in V$.  \mrks{5}
+  \item[(b)] Calculate $\|P\|$ \mrks{2}
+  \item[(c)] State and prove the Cauchy-Schwartz inequality. \mrks{10}
+  \item[(d)] Deduce that $|\phi(A)|\leq 25$ for all $A\in V$
+   with $\|A\|\leq 1$.  \mrks{3}
+  \item[(e)] Find a matrix $A$ such that $\|A\|=1$ and and
+   $\phi(A)=25$. \mrks{5}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] If $A=\bsm a&b\\c&d\esm$ then 
+   \[ \phi(A) = \bsm 3 & 4\esm \bsm a&b\\ c&d\esm \bsm 3\\ 4\esm = 
+       \bsm 3 & 4 \esm \bsm 3a+4b\\ 3c+4d\esm = 
+       9a + 12b + 12c + 16d. \mks{2} 
+   \]
+   On the other hand, if $P=\bsm w&x\\ y&z\esm$ then
+   \[ \ip{P,A} = \trc\left(\bsm w&y\\ x&z\esm\bsm a&b\\ c&d\esm\right)
+        = \trc\bsm wa+yc & wb+yd \\ xa+zc & xb+zd \esm =
+        wa+xb+yc+zd. \mk
+   \]
+   Thus, to have $\phi(A)=\ip{P,A}$ we must have $w=9$ and $x=y=12$
+   and $z=16$, so $P=\bsm 9 & 12 \\ 12 & 16\esm$. \mks{2}
+  \item[(b)] We now have $\|P\|^2=9^2+12^2+12^2+16^2=625 \mk$,
+   so $\|P\|=\sqrt{625}=25$. \mk
+  \item[(c)] \textbf{Bookwork.} The Cauchy-Schwartz inequality says
+   that for any inner product space $U$ and any 
+   $u,v\in U$ we have $|\ip{u,v}|\leq\|u\|\|v\|$. \mks{2} To see
+   this, first note that it is obviously true if $v=0$, so
+   we may assume that $v\neq 0$ and so $\|v\|>0$.  \mk Put
+   $x=\ip{v,v}u-\ip{u,v}v$. \mks{2} Then
+   \begin{align*}
+    \|x\|^2 & = \ip{x,x} \\
+    &= \ip{v,v}^2\ip{u,u} - 2\ip{v,v}\ip{u,v}\ip{u,v} + \ip{u,v}^2\ip{v,v} \\
+    &= \ip{v,v}(\ip{u,u}\ip{v,v}-\ip{u,v}^2). \mks{2}
+   \end{align*}
+   As $\ip{v,v}=\|v\|^2>0$, we can divide by this to get
+   \[ \ip{u,u}\ip{v,v} - \ip{u,v}^2 =(\|x\|/\|v\|)^2. \]
+   This is a square, so it must be nonnegative, so
+   $\ip{u,u}\ip{v,v}\geq\ip{u,v}^2$ \mks{2}.  As both sides are
+   nonnegative this inequality remains valid when we take
+   square roots.  After noting that $\sqrt{t^2}=|t|$ for all
+   $t\in\R$, we conclude that $\|u\|\|v\|\geq|\ip{u,v}|$, as
+   claimed. \mk
+  \item[(d)] \textbf{Unseen.}
+   The Cauchy-Schwartz inequality\mk now tells us that
+   $|\phi(A)|=|\ip{P,A}|\leq\|P\|\|A\|=25\|A\|$ \mk.  In
+   particular, if $\|A\|\leq 1$ then $|\phi(A)|\leq 25$.
+   \mk
+  \item[(e)] Now take
+   $A=P/25=P/\|P\|=\bsm 0.36 & 0.48 \\ 0.48 & 0.64\esm$ \mks{3}.
+   We then have
+   $\|A\|=1$ and $\phi(A)=\ip{P,P/\|P\|}=\|P\|^2/\|P\|=\|P\|=25$
+   \mks{2}. 
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708 Q5]}
+ Let $V$ be a finite-dimensional vector space over $\R$, and let
+ $\phi\:V\to V$ be a linear map.
+ \begin{itemize}
+  \item[(a)] Define the kernel of $\phi$, and prove that it is a
+   subspace of $V$.  \mrks{5}
+  \item[(b)] Define the terms \emph{eigenvalue} and
+   \emph{eigenvector}, and show that if $\phi$ is not injective then
+   $0$ is an eigenvalue of $\phi$.  \mrks{6}
+ \end{itemize}
+ For the rest of this question, we take $V=\R[x]_{\leq 2}$, and we
+ define $\phi\:V\to V$ by 
+ \[ \phi(f(x))=(f(2)-f(0))x. \]
+ \begin{itemize}
+  \item[(c)] Give a basis for $V$, and find the matrix of $\phi$ with
+   respect to your basis.  \mrks{4}
+  \item[(d)] Find the trace and determinant of $\phi$.  \mrks{3}
+  \item[(e)] Find a basis for $V$ consisting of eigenvectors of
+   $\phi$. \mrks{7}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}  The kernel of $\phi$ is the set
+   $\ker(\phi)=\{v\in V\st\phi(v)=0\}$ \mk.  We have $\phi(0)=0$, so
+   $0\in\ker(\phi)$ \mk.  If $u,v\in\ker(\phi)$ and $s,t\in\R$ then 
+   \[ \phi(su+tv)=s\phi(u)+t\phi(v)=s.0+t.0=0, \]
+   so $su+tv\in\ker(\phi)$ \mks{3}.  This shows that $\ker(\phi)$ is a
+   subspace of $V$.
+  \item[(b)] \textbf{Bookwork.}  
+   We say that a number $\lm\in\R$ is an eigenvalue for
+   $\phi$ if there is a nonzero element $v\in V$ with $\phi(v)=\lm
+   v$.  Any such element $v$ is called an eigenvector for $\phi$ of
+   eigenvalue $\lm$. \mks{2}
+
+   If $\phi$ is not injective, then there must exist two elements
+   $u,v\in V$ with $u\neq v$ but $\phi(u)=\phi(v)$ \mk.  This means that
+   the vector $w=u-v$ is nonzero and satisfies
+   $\phi(w)=\phi(u)-\phi(v)=0=0.w$ \mks{2}, so $w$ is a nonzero eigenvector of
+   eigenvalue $0$, so $0$ is an eigenvalue of $\phi$. \mk
+  \item[(c)] \textbf{Similar to lecture notes and problem sheets.}
+   The obvious basis is $x^2,x,1$ \mk.  We have 
+   \begin{align*}
+    \phi(ax^2+bx+c) &= (4a+2b) x \\
+    \phi(x^2) &= 0.x^2 + 4.x + 0.1 \\
+    \phi(x)   &= 0.x^2 + 2.x + 0.1 \\
+    \phi(1)   &= 0.x^2 + 0.x + 0.1 \mks{2}
+   \end{align*}
+   so the relevant matrix is 
+   \[ P = \bsm 0 & 0 & 0 \\ 4 & 2 & 0 \\ 0 & 0 & 0 \esm. \mk \]
+  \item[(d)] \textbf{Similar to lecture notes and problem sheets.}
+   The trace and determinant of $\phi$ are defined to be the
+   trace and determinant of the corresponding matrix \mk (with respect to
+   any basis), so $\text{trace}(\phi)=\text{trace}(P)=0+2+0=2$ \mk and
+   $\det(\phi)=\det(P)=0$ \mk.
+  \item[(e)] \textbf{Similar to lecture notes and problem sheets.}
+   The characteristic polynomial of $\phi$ is 
+   \[ \text{char}(\phi)(t) = 
+       \det = \bsm t & 0 & 0 \\ -4 & t-2 & 0 \\ 0 & 0 & t \esm = 
+        t^2(t-2).  
+   \]
+   Thus, the eigenvalues are $0$ and $2$.  \mks{2} Consider a polynomial
+   $f(x)=ax^2+bx+c$, so $\phi(f)=(4a+2b)x$.  Then $f$ is an
+   eigenvector of eigenvalue $0$ iff $\phi(f)=0$ iff $4a+2b=0$ iff $f$
+   has the form $f(x)=ax^2-2ax+c=a(x^2-2x)+c.1$.  Thus $x^2-2x$ and
+   $1$ are linearly independent eigenvectors of eigenvalue $0$ \mks{2}.
+   Similarly, $f$ is an eigenvector of eigenvalue $2$ iff $\phi(f)=2f$
+   iff $(4a+2b)x=2ax^2+2bx+2c$ iff $a=c=0$, so $x$ is an eigenvector
+   of eigenvalue $2$.  \mks{2} Thus $1,x,x^2-2x$ is a basis consisting of
+   eigenvectors. \mk
+ \end{itemize}
+\end{solution}
+
+\begin{problem}\textbf{[0708R Q5]}
+ Let $V$ be a finite-dimensional vector space over $\R$, and let
+ $\phi\:V\to V$ be a linear map.
+ \begin{itemize}
+  \item[(a)] Define the kernel of $\phi$, and prove that it is a
+   subspace of $V$.  \mrks{5}
+  \item[(b)] Define the terms \emph{eigenvalue} and
+   \emph{eigenvector} (for linear maps, not for matrices).  Show that
+   if $\phi$ is not injective then $0$ is an eigenvalue of $\phi$.  \mrks{6}
+ \end{itemize}
+ For the rest of this question, we take $V=\R[x]_{\leq 2}$, and we
+ define $\phi\:V\to V$ by 
+ \[ \phi(f(x))=(f(2)-2f(1))x^2. \]
+ \begin{itemize}
+  \item[(c)] Give a basis for $V$, and find the matrix of $\phi$ with
+   respect to your basis.  \mrks{4}
+  \item[(d)] Find the trace and characteristic polynomial of $\phi$.  \mrks{3}
+  \item[(e)] Find a basis for $V$ consisting of eigenvectors of
+   $\phi$. \mrks{7}
+ \end{itemize}
+\end{problem}
+\begin{solution}
+ \textbf{This is a slight modification of a question from the June exam.}
+ \begin{itemize}
+  \item[(a)] \textbf{Bookwork.}  The kernel of $\phi$ is the set
+   $\ker(\phi)=\{v\in V\st\phi(v)=0\}$ \mk.  We have $\phi(0)=0$, so
+   $0\in\ker(\phi)$ \mk.  If $u,v\in\ker(\phi)$ and $s,t\in\R$ then 
+   \[ \phi(su+tv)=s\phi(u)+t\phi(v)=s.0+t.0=0, \]
+   so $su+tv\in\ker(\phi)$ \mks{3}.  This shows that $\ker(\phi)$ is a
+   subspace of $V$.
+  \item[(b)] \textbf{Bookwork.}  
+   We say that a number $\lm\in\R$ is an eigenvalue for
+   $\phi$ if there is a nonzero element $v\in V$ with $\phi(v)=\lm
+   v$.  Any such element $v$ is called an eigenvector for $\phi$ of
+   eigenvalue $\lm$. \mks{2}
+
+   If $\phi$ is not injective, then there must exist two elements
+   $u,v\in V$ with $u\neq v$ but $\phi(u)=\phi(v)$ \mk.  This means that
+   the vector $w=u-v$ is nonzero and satisfies
+   $\phi(w)=\phi(u)-\phi(v)=0=0.w$ \mks{2}, so $w$ is a nonzero eigenvector of
+   eigenvalue $0$, so $0$ is an eigenvalue of $\phi$. \mk
+  \item[(c)] \textbf{Similar to lecture notes and problem sheets.}
+   The obvious basis is $x^2,x,1$ \mk.  We have 
+   \begin{align*}
+    \phi(ax^2+bx+c) &= ((4a+2b+c) - 2(a+b+c)) x^2 = (2a-c) x^2\\
+    \phi(x^2) &= 2.x^2 + 0.x + 0.1 \\
+    \phi(x)   &= 0.x^2 + 0.x + 0.1 \\
+    \phi(1)   &= -1.x^2 + 0.x + 0.1 \mks{2}
+   \end{align*}
+   so the relevant matrix is 
+   \[ P = \bsm 2 & 0 & -1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \esm. \mk \]
+  \item[(d)] \textbf{Similar to lecture notes and problem sheets.}
+   The trace and characteristic polynomial of $\phi$ are defined to be the
+   trace and characteristic polynomial of the corresponding matrix 
+   (with respect to any basis), so
+   $\text{trace}(\phi)=\text{trace}(P)=2+0+0=2$ \mk and 
+   \[ \text{char}(\phi)(t) = 
+       \det = \bsm t-2 & 0 & 1 \\ 0 & t & 0 \\ 0 & 0 & t \esm = 
+        t^2(t-2). \mks{2}  
+   \]
+  \item[(e)] \textbf{Similar to lecture notes and problem sheets.}
+   From the characteristic polynomial we see that the eigenvalues are
+   $0$ and $2$.  \mks{2} Consider a polynomial 
+   $f(x)=ax^2+bx+c$, so $\phi(f)=(2a-c)x^2$.  Then $f$ is an
+   eigenvector of eigenvalue $0$ iff $\phi(f)=0$ iff $2a-c=0$ iff $f$
+   has the form $f(x)=ax^2+bx+2a=a(x^2+2)+bx$.  Thus $x^2+2$ and
+   $x$ are linearly independent eigenvectors of eigenvalue $0$ \mks{2}.
+   Similarly, $f$ is an eigenvector of eigenvalue $2$ iff $\phi(f)=2f$
+   iff $(2a-c)x^2=2ax^2+2bx+2c$ iff $b=c=0$, so $x^2$ is an eigenvector
+   of eigenvalue $2$.  \mks{2} Thus $x^2+2,x,x^2$ is a basis consisting of
+   eigenvectors. \mk
+ \end{itemize}
+\end{solution}
+
+
+\end{document}

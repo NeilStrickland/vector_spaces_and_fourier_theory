@@ -152,7 +152,67 @@
  \]
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-check-subspace}{4.3}
+\BeginDeferredSolution{ex-degenerate-planes}{4.3}
+ The characteristic polynomial is
+ \begin{align*}
+  \det(tI-A)
+   &= \det\bsm t & -a & -b \\
+               a & t & -c \\
+               b & c & t \esm
+    =  t \det\bsm t & -c \\ c & t \esm
+      +a \det\bsm a & -c \\ b & t \esm
+      -b \det\bsm a & t \\ b & c \esm \\
+   &= t(t^2+c^2) +a(at+bc) -b(ac-bt)
+    = t^3 + c^2t + a^2t + abc - abc + b^2t \\
+   &= t^3+(a^2+b^2+c^2)t.
+ \end{align*}
+ The eigenvalues of $A$ are the roots of this polynomial.
+ These are $0$ (which is real) and $\pm i\sqrt{a^2+b^2+c^2}$
+ (which are purely imaginary).
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-degenerate-planes}{4.4}
+ The matrix can be row-reduced as follows:
+ {\tiny \[
+  \bsm  1 &  1 &  1 &  1 \\
+        1 &  1 & -1 & -1 \\
+        1 & -1 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{1}
+  \bsm  1 &  1 &  1 &  1 \\
+        0 &  0 & -2 & -2 \\
+        0 & -2 & -1 &  1 \\
+        0 &  0 &  1 & -1 \esm \xra{2}
+  \bsm  1 &  1 &  0 &  2 \\
+        0 &  0 &  0 & -4 \\
+        0 & -2 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{3}
+  \bsm  1 &  1 &  0 &  2 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{4}
+  \bsm  1 &  1 &  0 &  0 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \esm \xra{5}
+  \bsm  1 &  0 &  0 &  0 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \esm \xra{6}
+  \bsm  1 &  0 &  0 &  0 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \\
+        0 &  0 &  0 &  1 \esm.
+ \]}
+ (In step 1 we subtract row 1 from rows 2 and 3; in step 2
+ we subtract suitable multiples of row 4 from rows 1, 2, and
+ 3; in step 3 we divide rows 2 and 3 by $-4$ and $-2$
+ respectively; in steps 4 and 5 we clear the 4th and 2nd
+ columns; in step 6 we reorder the rows.)  As the final
+ matrix is the identity, we see that $A$ is invertible and
+ has rank $4$.
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-check-subspace}{4.5}
  \begin{itemize}
   \item[(0)] The set $U_0$ is a subspace.  Indeed, it
    certainly contains the zero vector.  If $[w,x,y,z]^T$ and
@@ -194,7 +254,7 @@
  \end{itemize}
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-check-subspace-FR}{4.4}
+\BeginDeferredSolution{ex-check-subspace-FR}{4.6}
  The set $U_1$ is not a subspace, because the zero function
  is not in $U_1$.  The set $U_2$ is not a subspace either.
  Indeed, the constant function $f(t)=1$ is an element of
@@ -212,7 +272,7 @@
  subspace.  However, $U_0$ and $U_3$ are subspaces of $F$.
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-find-eg-subspace}{4.5}
+\BeginDeferredSolution{ex-find-eg-subspace}{4.7}
  Of course there are many different correct answers for this
  question.  The following will do:
  \begin{itemize}
@@ -226,7 +286,7 @@
  \end{itemize}
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-find-eg-trivial-intersect}{4.6}
+\BeginDeferredSolution{ex-find-eg-trivial-intersect}{4.8}
  Of course there are many different correct answers for this
  question.  The following will do:
  \begin{itemize}
@@ -242,7 +302,7 @@
  \end{itemize}
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-quad-intersection}{4.7}
+\BeginDeferredSolution{ex-quad-intersection}{4.9}
  Consider a polynomial $f\in U$, say $f(x)=ax^2+bx+c$.  We
  have $f(0)=c$, so $f\in V$ iff $c=0$ iff $f(x)=ax^2+bx$ for
  some $a,b\in\R$.  On the other hand, we have
@@ -273,7 +333,7 @@
  $h(x)=r(x^2-1)+sx=-c(x^2-1)+bx$ as before.
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-inj-misc-i}{4.8}
+\BeginDeferredSolution{ex-inj-misc-i}{4.10}
  Firstly, it is clear that $\al\bsm u\\ v\esm$ can only be
  zero if $u=v=0$, so $\ker(\al)=0$, so $\al$ is injective.
  Next, if $A\in\img(\al)$ then $A=\bsm u& -u\\ v&-v\esm$ for
@@ -292,7 +352,7 @@
  $\img(\al)=\{A\st A\bsm 1\\1\esm=0\}$, as claimed.
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-inj-misc-ii}{4.9}
+\BeginDeferredSolution{ex-inj-misc-ii}{4.11}
  \begin{itemize}
   \item[(a)] $\displaystyle
    \phi\bsm a&b\\ c&d\esm =
@@ -333,7 +393,7 @@
  \end{itemize}
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-inj-misc-iii}{4.10}
+\BeginDeferredSolution{ex-inj-misc-iii}{4.12}
  \begin{itemize}
   \item[(a)] $\displaystyle
     \phi(f) =
@@ -389,7 +449,7 @@
  \end{itemize}
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-inj-misc-iv}{4.11}
+\BeginDeferredSolution{ex-inj-misc-iv}{4.13}
  \begin{itemize}
   \item[(a)] This map is injective but not surjective, and
    so is not an isomorphism.  Indeed, if $\bsm x\\ y\\ x\esm=0$,
@@ -457,7 +517,7 @@
  \end{itemize}
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-inj-misc-v}{4.12}
+\BeginDeferredSolution{ex-inj-misc-v}{4.14}
  Consider a vector $\vu$ in $L\cap M$.  We
  must have $\vu=\bsm s\\2s\esm$ for some $s$ (because
  $\vu\in L$) and $\vu=\bsm 2t\\ t\esm$ for some $t$ (because
@@ -492,7 +552,7 @@
  so $\R^2=L+M$ as claimed.
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-trace-free-symmetric}{4.13}
+\BeginDeferredSolution{ex-trace-free-symmetric}{4.15}
  If $A\in V\cap W$ then $A=A^T$ (because $A\in V$) and also
  $A^T=-A$ (because $A\in W$) so $A=-A$.  We now add $A$ to
  both sides to get $2A=0$, and divide by $2$ to get $A=0$.
@@ -2092,7 +2152,49 @@
  as required.
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-isometric-embedding}{14.6}
+\BeginDeferredSolution{ex-adjoint-v}{14.6}
+ \begin{itemize}
+  \item[(a)]
+   First note that $e_n(t)=e^{int}$, so $e'_n(t)=ine^{int}$, so
+   $e''_n(t)=(in)^2e^{int}=-n^2e_n(t)$.  This means that
+   $\Dl(e_n)=-n^2e_n$, and thus that
+   $\Dl(f)=\sum_n a_n.(-n^2e_n)=-\sum_n n^2 a_n e_n$.
+  \item[(b)]
+   Consider elements $f,g\in T_2$, say $f=\sum_{n=-2}^2a_ne_n$ and
+   $g=\sum_{k=-2}^2b_me_m$.  We then have
+   \begin{align*}
+    \Dl(f) &= -\sum_n n^2 a_n e_n \\
+    \ip{\Dl(f),g} &=
+     \left\langle -\sum_n n^2a_ne_n,\sum_m b_me_m\right\rangle
+      = -\sum_{n,m} n^2 a_n\,\overline{b_m}\,\ip{e_n,e_m} \\
+    &= -\sum_{n=-2}^2 n^2 a_n \overline{b_n} \\
+    \Dl(g) &= -\sum_m m^2 b_m e_m \\
+    \ip{f,\Dl(g)} &=
+     \left\langle\sum_n a_ne_n,-\sum_m m^2b_me_m\right\rangle
+      = -\sum_{n,m} m^2 a_n\,\overline{b_m}\,\ip{e_n,e_m} \\
+    &= -\sum_{m=-2}^2 m^2 a_m \overline{b_m}
+   \end{align*}
+   This shows that $\ip{\Dl(f),g}=\ip{f,\Dl(g)}$, so $\Dl$ is
+   self-adjoint.
+  \item[(c)] Part~(a) tells us that the matrix of $\Dl$ with respect
+   to the standard basis $\CE=e_{-2},e_{-1},e_0,e_1,e_2$ is
+   {\tiny \[
+     D = \bsm -4 &  0 & 0 &  0 &  0 \\
+               0 & -1 & 0 &  0 &  0 \\
+               0 &  0 & 0 &  0 &  0 \\
+               0 &  0 & 0 & -1 &  0 \\
+               0 &  0 & 0 &  0 & -4 \esm
+   \]}
+   From this it is clear that the eigenvalues are $0$, $-1$ and $-4$.
+  \item[(d)] The eigenspace for the eigenvalue $0$ is spanned by $e_0$
+   and so has dimension one.  The eigenspace for the eigenvalue $-1$ is
+   spanned by $e_{-1}$ and $e_1$, and so has dimension $2$.
+   Similarly, the eigenspace for the eigenvalue $-4$ has dimension two,
+   with basis $e_{-2},e_2$.
+ \end{itemize}
+\EndDeferredSolution
+
+\BeginDeferredSolution{ex-isometric-embedding}{14.7}
  For any $a,b\in U$ we have
  \[ \ip{\phi(a),\phi(b)}=\ip{a,\phi^*\phi(b)}=\ip{a,b}. \]
  (The first step is the definition of $\phi^*$, and the
@@ -2105,7 +2207,7 @@
  $\phi(u_1),\dotsc,\phi(u_n)$ is also orthonormal.
 \EndDeferredSolution
 
-\BeginDeferredSolution{ex-contraction}{14.7}
+\BeginDeferredSolution{ex-contraction}{14.8}
  \begin{itemize}
   \item[(a)] We are given that $\phi\phi^*(v)=v$ for all
    $v\in V$.  In particular, we can take $v=\phi(u)$ to get

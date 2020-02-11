@@ -1995,6 +1995,83 @@ need to understand the relationship between these.
       \left\{\bsm t\\ -2t\\ t\esm \st t\in\R\right\}.
  \]
 \end{solution}
+
+\begin{exercise}\label{ex-antisym-spectrum}
+ Let $a$, $b$ and $c$ be nonzero real numbers.  Show that
+ the matrix
+ \[ A = \bbm 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \ebm
+ \]
+ has one real eigenvalue, and two purely imaginary
+ eigenvalues. 
+\end{exercise}
+\begin{solution}
+ The characteristic polynomial is
+ \begin{align*}
+  \det(tI-A)
+   &= \det\bsm t & -a & -b \\
+               a & t & -c \\
+               b & c & t \esm
+    =  t \det\bsm t & -c \\ c & t \esm 
+      +a \det\bsm a & -c \\ b & t \esm 
+      -b \det\bsm a & t \\ b & c \esm \\
+   &= t(t^2+c^2) +a(at+bc) -b(ac-bt) 
+    = t^3 + c^2t + a^2t + abc - abc + b^2t \\
+   &= t^3+(a^2+b^2+c^2)t.
+ \end{align*}
+ The eigenvalues of $A$ are the roots of this polynomial.
+ These are $0$ (which is real) and $\pm i\sqrt{a^2+b^2+c^2}$
+ (which are purely imaginary).
+\end{solution}
+
+\begin{exercise}\label{ex-rank}
+ Find the rank of the following matrix:
+ \[ A = \bsm  1 &  1 &  1 &  1 \\
+              1 &  1 & -1 & -1 \\
+              1 & -1 &  0 &  0 \\
+              0 &  0 &  1 & -1 \esm
+ \]
+\end{exercise}
+\begin{solution}
+ The matrix can be row-reduced as follows:
+ {\tiny \[
+  \bsm  1 &  1 &  1 &  1 \\
+        1 &  1 & -1 & -1 \\
+        1 & -1 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{1}
+  \bsm  1 &  1 &  1 &  1 \\
+        0 &  0 & -2 & -2 \\
+        0 & -2 & -1 &  1 \\
+        0 &  0 &  1 & -1 \esm \xra{2}
+  \bsm  1 &  1 &  0 &  2 \\
+        0 &  0 &  0 & -4 \\
+        0 & -2 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{3}
+  \bsm  1 &  1 &  0 &  2 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 & -1 \esm \xra{4}
+  \bsm  1 &  1 &  0 &  0 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \esm \xra{5}
+  \bsm  1 &  0 &  0 &  0 \\
+        0 &  0 &  0 &  1 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \esm \xra{6}
+  \bsm  1 &  0 &  0 &  0 \\
+        0 &  1 &  0 &  0 \\
+        0 &  0 &  1 &  0 \\
+        0 &  0 &  0 &  1 \esm.
+ \]}
+ (In step 1 we subtract row 1 from rows 2 and 3; in step 2
+ we subtract suitable multiples of row 4 from rows 1, 2, and
+ 3; in step 3 we divide rows 2 and 3 by $-4$ and $-2$
+ respectively; in steps 4 and 5 we clear the 4th and 2nd
+ columns; in step 6 we reorder the rows.)  As the final
+ matrix is the identity, we see that $A$ is invertible and
+ has rank $4$. 
+\end{solution}
+
 %------------------------------------------------------------
 \begin{exercise}\exlabel{ex-check-subspace}
  Which of the following subsets of $\R^4$ is a subspace?
@@ -6315,9 +6392,8 @@ If these three things are true, we say that $i$ is a \emph{jump}.
    as claimed.
  \end{itemize}
 \end{solution}
-%------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-quadratic-ip}
  Use the inner product $\ip{f,g}=\int_{-1}^1 f(x)g(x)\,dx$ on
  $\R[x]_{\leq 2}$.
  \begin{itemize}
@@ -7458,7 +7534,7 @@ tautology.
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-ip-misc-i}
  For $x\in\R^4$, put 
  \[ \al(x) = x_1^2+x_2^2+x_3^2+x_4^2 -
       \frac{(x_1-x_2)^2}{2} -
@@ -7927,6 +8003,59 @@ following example.
 \end{solution}
 %------------------------------------------------------------
 
+\begin{exercise}\label{ex-diff-spectrum}
+ Let $T_2$ be the usual space of trigonometric polynomials.  We can
+ define $\Dl\:T_2\to T_2$ by $\Dl(f)=f''$.
+ \begin{itemize}
+  \item[(a)] Find $\Dl(f)$, where $f=\sum_{n=-2}^2 a_ne_n$.
+  \item[(b)] Show that $\Dl$ is self-adjoint. (This can be deduced
+   from part~(a), or you can prove it more directly.)
+  \item[(c)] Find the eigenvalues of $\Dl$ (there are three of them).
+  \item[(d)] What are the dimensions of the corresponding eigenspaces? 
+ \end{itemize}
+\end{exercise}
+\begin{solution}
+ \begin{itemize}
+  \item[(a)]
+   First note that $e_n(t)=e^{int}$, so $e'_n(t)=ine^{int}$, so
+   $e''_n(t)=(in)^2e^{int}=-n^2e_n(t)$.  This means that
+   $\Dl(e_n)=-n^2e_n$, and thus that
+   $\Dl(f)=\sum_n a_n.(-n^2e_n)=-\sum_n n^2 a_n e_n$.
+  \item[(b)]
+   Consider elements $f,g\in T_2$, say $f=\sum_{n=-2}^2a_ne_n$ and
+   $g=\sum_{k=-2}^2b_me_m$.  We then have 
+   \begin{align*}
+    \Dl(f) &= -\sum_n n^2 a_n e_n \\   
+    \ip{\Dl(f),g} &=
+     \left\langle -\sum_n n^2a_ne_n,\sum_m b_me_m\right\rangle 
+      = -\sum_{n,m} n^2 a_n\,\overline{b_m}\,\ip{e_n,e_m} \\
+    &= -\sum_{n=-2}^2 n^2 a_n \overline{b_n} \\  
+    \Dl(g) &= -\sum_m m^2 b_m e_m \\
+    \ip{f,\Dl(g)} &=
+     \left\langle\sum_n a_ne_n,-\sum_m m^2b_me_m\right\rangle 
+      = -\sum_{n,m} m^2 a_n\,\overline{b_m}\,\ip{e_n,e_m} \\
+    &= -\sum_{m=-2}^2 m^2 a_m \overline{b_m}
+   \end{align*}
+   This shows that $\ip{\Dl(f),g}=\ip{f,\Dl(g)}$, so $\Dl$ is
+   self-adjoint.
+  \item[(c)] Part~(a) tells us that the matrix of $\Dl$ with respect
+   to the standard basis $\CE=e_{-2},e_{-1},e_0,e_1,e_2$ is
+   {\tiny \[
+     D = \bsm -4 &  0 & 0 &  0 &  0 \\
+               0 & -1 & 0 &  0 &  0 \\
+               0 &  0 & 0 &  0 &  0 \\
+               0 &  0 & 0 & -1 &  0 \\
+               0 &  0 & 0 &  0 & -4 \esm 
+   \]}
+   From this it is clear that the eigenvalues are $0$, $-1$ and $-4$.
+  \item[(d)] The eigenspace for the eigenvalue $0$ is spanned by $e_0$
+   and so has dimension one.  The eigenspace for the eigenvalue $-1$ is
+   spanned by $e_{-1}$ and $e_1$, and so has dimension $2$.
+   Similarly, the eigenspace for the eigenvalue $-4$ has dimension two,
+   with basis $e_{-2},e_2$. 
+ \end{itemize}
+\end{solution}
+
 \begin{exercise}\exlabel{ex-isometric-embedding}
  Let $U$ and $V$ be vector spaces with inner products, and
  let $\phi\:U\to V$ be a linear map with the property that
@@ -8188,7 +8317,7 @@ De Moivre's theorem tells us that
  \Large \textbf{Exercises}
 \end{center}
 
-\begin{exercise}
+\begin{exercise}\label{ex-pi-period}
  Suppose that $f\in T_2$ satisfies $f(0)=f(\pi)$ and
  $f(-\pi/2)=f(\pi/2)$.  Show that $f(t+\pi)=f(t)$ for all $t$.
 \end{exercise}
@@ -8222,7 +8351,7 @@ De Moivre's theorem tells us that
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-square-perp}
  Put $U=\{f\in T_2\st f(0)=f'(0)=0\}$.  The aim of this exercise is to
  find an orthonormal basis for $U^\perp$.
  \begin{itemize}
@@ -8449,7 +8578,7 @@ The following lemma will be useful in the proof.
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-self-adjoint}
  Define $\al\:\C^3\to\C^3$ by 
  $\displaystyle\al\bsm x\\ y\\ z\esm =
   \bsm x+2y+z\\ 2x+9y+2z\\ x+2y+z\esm$.
@@ -8522,7 +8651,7 @@ The following lemma will be useful in the proof.
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-unitary}
  Define $\al\:\C^5\to\C^5$ by 
  \[ \al([z_0,z_1,z_2,z_3,z_4]^T) = [z_1,z_2,z_3,z_4,z_0]^T. \]
  \begin{itemize}
@@ -8582,7 +8711,7 @@ The following lemma will be useful in the proof.
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-sixpotent}
  Define a map $\al\:\R[x]_{\leq 2}\to\R[x]_{\leq 2}$ by
  $\al(f)=(3x^2-1)f''$.  You may assume that if we use the inner
  product $\ip{f,g}=\int_{-1}^1 f(x)g(x)\,dx$ on $\R[x]_{\leq 2}$, then
@@ -8621,7 +8750,7 @@ The following lemma will be useful in the proof.
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-gaussian}
  Let $V$ be the space of functions $f\:\R\to\C$ of the form
  $f(x)=p(x)e^{-x^2/2}$ for some $p\in\C[x]$.  Give this the Hermitian
  form $\ip{f,g}=\int_{-\infty}^\infty f(x)\ov{g(x)}\,dx$.  Define
@@ -8653,7 +8782,7 @@ The following lemma will be useful in the proof.
 \end{solution}
 %------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}\label{ex-commutator}
  Let $T$ be the matrix $\bbm 0&1\\1&0\ebm$, and define
  $\gm\:M_2\R\to M_2\R$ by $\gm(A)=TA-AT$.
  \begin{itemize}
