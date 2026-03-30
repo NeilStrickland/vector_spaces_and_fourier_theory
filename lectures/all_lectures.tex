@@ -19,7 +19,7 @@
 \usepackage{verbatim}
 \usepackage{bm}
 \usepackage{xr}
-\externaldocument{../../notes/linear}
+\externaldocument{../notes/linear}
 
 \input{coldef}
 
@@ -889,56 +889,6 @@
     
    }
    \uncover<11->{This is left as an exercise.}
-  \end{remark}
- }
-\end{frame}
-
-\begin{frame}[t]
- \frametitle{Linear maps}
- \uncover<2->{
-  \begin{definition}{defn-linear}
-   Let $V,W$ be vector spaces.  Let $\phi\:V\xra{}W$ be a
-   function \\
-   \uncover<3->{
-    (so for each element $v\in V$ we have an element
-    $\phi(v)\in W$).\\}
-   \uncover<4->{
-    We say that $\phi$ is \DEFN{linear} if 
-    \begin{itemize}
-     \uncover<5->{\item[(a)] For any $v$ and $v'$ in $V$, we have
-      $\phi(v+v')=\phi(v)+\phi(v')$ in $W$.}
-     \uncover<6->{\item[(b)] For any $t\in\R$ and $v\in V$ we have
-      $\phi(tv)=t\phi(v)$ in $W$. }
-    \end{itemize}
-   }
-   \uncover<7->{By taking $t=v=0$ in~(b), we see that a linear map must satisfy
-    $\phi(0)=0$.
-    \bigskip
-    
-   }
-   \uncover<8->{
-    Further simple arguments also show that
-    $\phi(v-v')=\phi(v)-\phi(v')$. 
-   }
-  \end{definition}
-  \bigskip
-  
- }
- \uncover<9->{\begin{remark}{rem-linear-condensed}
-   The definition can be reformulated slightly as follows.  A
-   map $\phi\:V\to W$ is linear iff
-   \begin{itemize}
-   \item[(c)] For any $t,t'\in\R$ and any $v,v'\in V$ we have
-    $\phi(tv+t'v')=t\phi(v)+t'\phi(v')$. 
-   \end{itemize}
-   \uncover<10->{
-    To show that this reformulation is valid, we must show that
-    if~(c) holds, then so do~(a) and~(b); and conversely,
-    if~(a) and~(b) hold, then so does~(c).
-    \bigskip
-    
-   }
-   \uncover<11->{This is left as an exercise. \;\es}
   \end{remark}
  }
 \end{frame}
@@ -1981,29 +1931,6 @@
 
 \begin{frame}[t]
  \frametitle{Kernels and images are subspaces}
- \uncover<2->{
-  \begin{proposition}{prop-ker-img}
-   Let $U$ and $V$ be vector spaces, and let $\phi\:U\xra{}V$ be a
-   linear map.  \uncover<3->{Then $\ker(\phi)$ is a subspace of $U$, and
-    $\img(\phi)$ is a subspace of $V$.}
-  \end{proposition}\bs}
- \uncover<4->{{\textbf{Proof for $\ker(\phi)$:}}
-  We have $\phi(0_U)=0_V$, which shows that
-  $0_U\in\ker(\phi)$\\ 
-  \uncover<5->{Next, suppose that $u,u'\in\ker(\phi)$}\uncover<6->{,
-   which means that $\phi(u)=\phi(u')=0$.\\}
-  \uncover<6->{Suppose also that $t,t'\in\R$\ms}
-  \uncover<7->{As $\phi$ is linear this implies
-   that\\
-   $\phi(tu+t'u')=t\phi(u)+t'\phi(u')=t.0+t'.0=0$,\\}
-  \uncover<8->{so $tu+t'u'\in\ker(\phi)$.\ms}
-  \uncover<9->{As this works for all $u,u'\in\ker(\phi)$ and
-   $t,t'\in\R$, we deduce that $\ker(\phi)$ is a subspace.\es}
- }
-\end{frame}
-
-\begin{frame}[t]
- \frametitle{Kernels and images are subspaces}
  \begin{proposition}{prop-ker-img}
   Let $U$ and $V$ be vector spaces, and let $\phi\:U\xra{}V$ be a
   linear map.  Then $\ker(\phi)$ is a subspace of $U$, and
@@ -2022,30 +1949,6 @@
  \uncover<6->{This shows that $tv+t'v'\in\img(\phi)$.\bs}
  \uncover<7->{As this works for all $v,v'\in\img(\phi)$ and
   $t,t'\in\R$, we deduce that $\img(\phi)$ is a subspace.\es}
-\end{frame}
-
-\begin{frame}[t]
- \frametitle{Kernels and images}
- \uncover<2->{
-  \begin{definition}{defn-ker-img}
-   Let $U$ and $V$ be vector spaces, and let $\phi\:U\xra{}V$
-   be a linear map.  \uncover<3->{Then we write
-    \begin{align*}
-     \ker(\phi) &= \{u\in U\st \phi(u) = 0 \} \\
-     \uncover<4->{\img(\phi)} &
-     \uncover<4->{= \{v\in V \st v = \phi(u) \text{ for some } u\in U\}.}
-    \end{align*}}
-  \end{definition}}
- \uncover<5->{
-  \begin{example}{eg-ker-img-i}
-   Define $\pi\:\R^3\to\R^3$ by
-   $\pi\bsm x\\ y\\ z\esm=\bsm 0\\ y\\ z\esm$.  
-   \uncover<6->{Then
-    \begin{align*}
-     \ker(\pi) &= \{\bsm x\\ 0\\ 0\esm\st x\in\R\} \\
-     \uncover<7->{\img(\pi)} & \uncover<7->{ = \{\bsm 0\\ y\\ z\esm\st y,z\in\R\} \es}
-    \end{align*}}
-  \end{example}}
 \end{frame}
 
 \begin{frame}[t]
